@@ -1,4 +1,4 @@
-package com.lesorin.firespark.view;
+package com.lesorin.firespark.view.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
