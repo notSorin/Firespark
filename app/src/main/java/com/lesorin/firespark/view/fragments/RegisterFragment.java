@@ -25,7 +25,7 @@ public class RegisterFragment extends Fragment
     {
         if(_view == null)
         {
-            _view = inflater.inflate(R.layout.fragment_login, container, false);
+            _view = inflater.inflate(R.layout.fragment_register, container, false);
         }
 
         return _view;
