@@ -1,7 +1,8 @@
-package com.lesorin.firespark;
+package com.lesorin.firespark.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import com.lesorin.firespark.R;
 
 public class StartActivity extends AppCompatActivity
 {
