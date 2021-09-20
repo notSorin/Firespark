@@ -11,6 +11,8 @@ import com.lesorin.firespark.view.fragments.WelcomeFragment;
 
 public class StartActivity extends AppCompatActivity
 {
+    private ViewPager _viewPager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -22,13 +24,24 @@ public class StartActivity extends AppCompatActivity
 
     private void initializeViewPager()
     {
-        ViewPager vp = findViewById(R.id.ViewPager);
+        _viewPager = findViewById(R.id.ViewPager);
+
         ViewPagerAdapter vpa = new ViewPagerAdapter(getSupportFragmentManager());
 
         vpa.addFragment(new WelcomeFragment(), null);
         vpa.addFragment(new LoginFragment(), null);
         vpa.addFragment(new RegisterFragment(), null);
 
-        vp.setAdapter(vpa);
+        _viewPager.setAdapter(vpa);
+    }
+
+    public void logInButtonPressed()
+    {
+        _viewPager.setCurrentItem(1);
+    }
+
+    public void signUpButtonPressed()
+    {
+        _viewPager.setCurrentItem(2);
     }
 }
