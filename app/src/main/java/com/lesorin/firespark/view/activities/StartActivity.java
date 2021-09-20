@@ -35,6 +35,19 @@ public class StartActivity extends AppCompatActivity
         _viewPager.setAdapter(vpa);
     }
 
+    @Override
+    public void onBackPressed()
+    {
+        if(_viewPager.getCurrentItem() != 0)
+        {
+            _viewPager.setCurrentItem(0);
+        }
+        else
+        {
+            super.onBackPressed();
+        }
+    }
+
     public void logInButtonPressed()
     {
         _viewPager.setCurrentItem(1);
