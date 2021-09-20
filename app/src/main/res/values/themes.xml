@@ -2,20 +2,45 @@
     <!-- Base application theme. -->
     <style name="Theme.Firespark" parent="Theme.MaterialComponents">
         <item name="windowNoTitle">true</item>
-        <!-- Primary brand color. -->
+
         <item name="colorPrimary">@color/primaryColor</item>
         <item name="colorPrimaryVariant">@color/primaryLightColor</item>
-        <item name="colorPrimaryDark">@color/primaryDarkColor</item>
-        <item name="colorOnPrimary">@color/primaryTextColor</item>
-
-        <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/secondaryColor</item>
         <item name="colorSecondaryVariant">@color/secondaryLightColor</item>
+
+        <item name="colorOnPrimary">@color/primaryTextColor</item>
         <item name="colorOnSecondary">@color/secondaryTextColor</item>
 
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor">@color/primaryColor</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+
+        <item name="android:colorBackground">#333342</item>
+        <item name="colorSurface">@color/white_50</item>
+        <item name="colorError">@color/red_600</item>
+
         <!-- Customize your theme here. -->
+        <!--Material type attributes-->
+        <item name="textAppearanceHeadline1">@style/TextAppearance.Firespark.Headline1</item>
+        <item name="textAppearanceHeadline2">@style/TextAppearance.Firespark.Headline2</item>
+        <item name="textAppearanceHeadline3">@style/TextAppearance.Firespark.Headline3</item>
+        <item name="textAppearanceHeadline4">@style/TextAppearance.Firespark.Headline4</item>
+        <item name="textAppearanceHeadline5">@style/TextAppearance.Firespark.Headline5</item>
+        <item name="textAppearanceHeadline6">@style/TextAppearance.Firespark.Headline6</item>
+        <item name="textAppearanceSubtitle1">@style/TextAppearance.Firespark.Subtitle1</item>
+        <item name="textAppearanceSubtitle2">@style/TextAppearance.Firespark.Subtitle2</item>
+        <item name="textAppearanceBody1">@style/TextAppearance.Firespark.Body1</item>
+        <item name="textAppearanceBody2">@style/TextAppearance.Firespark.Body2</item>
+        <item name="textAppearanceButton">@style/TextAppearance.Firespark.Button</item>
+        <item name="textAppearanceCaption">@style/TextAppearance.Firespark.Caption</item>
+        <item name="textAppearanceOverline">@style/TextAppearance.Firespark.Overline</item>
+        <!--Material shape attributes-->
+        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.Firespark.SmallComponent</item>
+        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.Firespark.MediumComponent</item>
+        <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.Firespark.LargeComponent</item>
+        <!--Component styles-->
+        <item name="materialAlertDialogTheme">@style/ThemeOverlay.MaterialComponents.Dialog.Alert</item>
+        <item name="bottomSheetDialogTheme">@style/ThemeOverlay.MaterialComponents.BottomSheetDialog</item>
+        <item name="navigationViewStyle">@style/Widget.Firespark.NavigationView</item>
+        <item name="toolbarStyle">@style/Widget.MaterialComponents.Toolbar.PrimarySurface</item>
     </style>
 
     <style name="Theme.Firespark.NoActionBar">
@@ -23,82 +48,6 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="TextAppearance.MdcTypographyStyles.Headline1" parent="TextAppearance.MaterialComponents.Headline1">
-        <item name="fontFamily">@font/spartan_regular</item>
-        <item name="android:fontFamily">@font/spartan_regular</item>
-        <item name="android:textSize">100sp</item>
-    </style>
 
-    <style name="TextAppearance.MdcTypographyStyles.Headline2" parent="TextAppearance.MaterialComponents.Headline2">
-        <item name="fontFamily">@font/spartan_black</item>
-        <item name="android:fontFamily">@font/spartan_black</item>
-        <item name="android:textSize">62sp</item>
-    </style>
-
-    <style name="TextAppearance.MdcTypographyStyles.Headline3" parent="TextAppearance.MaterialComponents.Headline3">
-        <item name="fontFamily">@font/spartan_regular</item>
-        <item name="android:fontFamily">@font/spartan_regular</item>
-        <item name="android:textSize">50sp</item>
-    </style>
-
-    <style name="TextAppearance.MdcTypographyStyles.Headline4" parent="TextAppearance.MaterialComponents.Headline4">
-        <item name="fontFamily">@font/spartan_regular</item>
-        <item name="android:fontFamily">@font/spartan_regular</item>
-        <item name="android:textSize">35sp</item>
-    </style>
-
-    <style name="TextAppearance.MdcTypographyStyles.Headline5" parent="TextAppearance.MaterialComponents.Headline5">
-        <item name="fontFamily">@font/spartan_regular</item>
-        <item name="android:fontFamily">@font/spartan_regular</item>
-        <item name="android:textSize">25sp</item>
-    </style>
-
-    <style name="TextAppearance.MdcTypographyStyles.Headline6" parent="TextAppearance.MaterialComponents.Headline6">
-        <item name="fontFamily">@font/spartan_regular</item>
-        <item name="android:fontFamily">@font/spartan_regular</item>
-        <item name="android:textSize">21sp</item>
-    </style>
-
-    <style name="TextAppearance.MdcTypographyStyles.Subtitle1" parent="TextAppearance.MaterialComponents.Subtitle1">
-        <item name="fontFamily">@font/spartan_regular</item>
-        <item name="android:fontFamily">@font/spartan_regular</item>
-        <item name="android:textSize">17sp</item>
-    </style>
-
-    <style name="TextAppearance.MdcTypographyStyles.Subtitle2" parent="TextAppearance.MaterialComponents.Subtitle2">
-        <item name="fontFamily">@font/spartan_regular</item>
-        <item name="android:fontFamily">@font/spartan_regular</item>
-        <item name="android:textSize">15sp</item>
-    </style>
-
-    <style name="TextAppearance.MdcTypographyStyles.Body1" parent="TextAppearance.MaterialComponents.Body1">
-        <item name="fontFamily">@font/spartan_regular</item>
-        <item name="android:fontFamily">@font/spartan_regular</item>
-        <item name="android:textSize">17sp</item>
-    </style>
-
-    <style name="TextAppearance.MdcTypographyStyles.Body2" parent="TextAppearance.MaterialComponents.Body2">
-        <item name="fontFamily">@font/spartan_regular</item>
-        <item name="android:fontFamily">@font/spartan_regular</item>
-        <item name="android:textSize">15sp</item>
-    </style>
-
-    <style name="TextAppearance.MdcTypographyStyles.Button" parent="TextAppearance.MaterialComponents.Button">
-        <item name="fontFamily">@font/spartan_regular</item>
-        <item name="android:fontFamily">@font/spartan_regular</item>
-        <item name="android:textSize">15sp</item>
-    </style>
-
-    <style name="TextAppearance.MdcTypographyStyles.Caption" parent="TextAppearance.MaterialComponents.Caption">
-        <item name="fontFamily">@font/spartan_regular</item>
-        <item name="android:fontFamily">@font/spartan_regular</item>
-        <item name="android:textSize">12sp</item>
-    </style>
-
-    <style name="TextAppearance.MdcTypographyStyles.Overline" parent="TextAppearance.MaterialComponents.Overline">
-        <item name="fontFamily">@font/spartan_regular</item>
-        <item name="android:fontFamily">@font/spartan_regular</item>
-        <item name="android:textSize">10sp</item>
-    </style>
 
 </resources>
