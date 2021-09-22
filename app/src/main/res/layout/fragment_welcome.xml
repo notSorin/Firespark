@@ -13,7 +13,7 @@
         android:gravity="center"
         android:text="@string/app_name"
         android:textAppearance="@style/TextAppearance.Firespark.Headline2"
-        android:textColor="@color/primaryTextColor" />
+        android:textColor="@android:color/white" />
 
     <TextView
         android:layout_width="match_parent"
@@ -21,7 +21,7 @@
         android:gravity="center"
         android:text="@string/WelcomeCaption"
         android:textAppearance="@style/TextAppearance.Firespark.Body2"
-        android:textColor="@color/secondaryColor" />
+        android:textColor="@android:color/white" />
 
     <LinearLayout
         android:layout_width="match_parent"
