@@ -11,10 +11,8 @@
         <item name="colorOnPrimary">@color/primaryTextColor</item>
         <item name="colorOnSecondary">@color/secondaryTextColor</item>
 
-
-
         <item name="android:colorBackground">#333342</item>
-        <item name="colorSurface">@color/white_50</item>
+        <item name="colorSurface">@color/secondaryTextColor</item>
         <item name="colorError">@color/red_600</item>
 
         <!-- Customize your theme here. -->
