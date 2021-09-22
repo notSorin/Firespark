@@ -1,5 +1,10 @@
 <resources>
     <string name="app_name">Firespark</string>
-    <string name="tab_text_1">Tab 1</string>
-    <string name="tab_text_2">Tab 2</string>
+    <string name="LogInCaption">Good to have you back!</string>
+    <string name="LogInTitle">Log in</string>
+    <string name="SignupTitle">Sign up</string>
+    <string name="SignupCaption">It\'s free!</string>
+    <string name="WelcomeCaption">Share your thoughts.</string>
+    <string name="LogIn">Log in</string>
+    <string name="Signup">Sign up</string>
 </resources>

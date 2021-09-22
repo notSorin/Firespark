@@ -15,7 +15,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:gravity="center"
-            android:text="Sign up"
+            android:text="@string/SignupTitle"
             android:textAppearance="@style/TextAppearance.Firespark.Headline2"
             android:textColor="@color/primaryTextColor" />
 
@@ -23,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="It's free!"
+            android:text="@string/SignupCaption"
             android:textAppearance="@style/TextAppearance.Firespark.Body2"
             android:textColor="@color/primaryTextColor" />
 
