@@ -6,7 +6,7 @@ import android.os.Bundle;
 import com.lesorin.firespark.R;
 import com.lesorin.firespark.view.fragments.AlphaPageTransformer;
 import com.lesorin.firespark.view.fragments.LoginFragment;
-import com.lesorin.firespark.view.fragments.RegisterFragment;
+import com.lesorin.firespark.view.fragments.SignupFragment;
 import com.lesorin.firespark.view.fragments.ViewPagerAdapter;
 import com.lesorin.firespark.view.fragments.WelcomeFragment;
 
@@ -31,7 +31,7 @@ public class StartActivity extends AppCompatActivity
 
         vpa.addFragment(new WelcomeFragment(), null);
         vpa.addFragment(new LoginFragment(), null);
-        vpa.addFragment(new RegisterFragment(), null);
+        vpa.addFragment(new SignupFragment(), null);
 
         _viewPager.setAdapter(vpa);
         _viewPager.setPageTransformer(true, new AlphaPageTransformer());

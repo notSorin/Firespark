@@ -9,12 +9,12 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import com.lesorin.firespark.R;
 
-public class RegisterFragment extends Fragment
+public class SignupFragment extends Fragment
 {
 
     private View _view;
 
-    public RegisterFragment()
+    public SignupFragment()
     {
         _view = null;
     }
