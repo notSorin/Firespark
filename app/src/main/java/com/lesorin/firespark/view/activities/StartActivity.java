@@ -35,6 +35,7 @@ public class StartActivity extends AppCompatActivity
 
         _viewPager.setAdapter(vpa);
         _viewPager.setPageTransformer(true, new AlphaPageTransformer());
+        _viewPager.setOffscreenPageLimit(2);
     }
 
     @Override
