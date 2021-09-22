@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 import android.os.Bundle;
 import com.lesorin.firespark.R;
+import com.lesorin.firespark.view.fragments.AlphaPageTransformer;
 import com.lesorin.firespark.view.fragments.LoginFragment;
 import com.lesorin.firespark.view.fragments.RegisterFragment;
 import com.lesorin.firespark.view.fragments.ViewPagerAdapter;
@@ -33,6 +34,7 @@ public class StartActivity extends AppCompatActivity
         vpa.addFragment(new RegisterFragment(), null);
 
         _viewPager.setAdapter(vpa);
+        _viewPager.setPageTransformer(true, new AlphaPageTransformer());
     }
 
     @Override
