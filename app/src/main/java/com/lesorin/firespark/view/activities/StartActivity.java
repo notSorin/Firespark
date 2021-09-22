@@ -3,6 +3,9 @@ package com.lesorin.firespark.view.activities;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 import android.os.Bundle;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import com.google.android.material.snackbar.Snackbar;
 import com.lesorin.firespark.R;
 import com.lesorin.firespark.view.fragments.AlphaPageTransformer;
@@ -21,7 +24,16 @@ public class StartActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
+        initializeBackgroundImage();
         initializeViewPager();
+    }
+
+    private void initializeBackgroundImage()
+    {
+        final Animation animShake = AnimationUtils.loadAnimation(this, R.anim.slowzoom);
+        ImageView bgImage = findViewById(R.id.BackgroundImage);
+
+        bgImage.startAnimation(animShake);
     }
 
     private void initializeViewPager()
