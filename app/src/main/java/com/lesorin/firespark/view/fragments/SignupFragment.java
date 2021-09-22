@@ -52,6 +52,8 @@ public class SignupFragment extends Fragment
 
         _signupButton.setOnClickListener(view ->
         {
+            view.setEnabled(false); //Re-enable later if sign up fails.
+
             ((StartActivity)getContext()).signUpButtonPressed(_name.getText().toString(),
                     _email.getText().toString(), _password.getText().toString(),
                     _passwordRepeat.getText().toString());
