@@ -12,4 +12,5 @@
     <string name="RepeatPassword">Repeat password</string>
     <string name="SignupPassword">Password (min. 8 characters)</string>
     <string name="DisplayName">Name</string>
+    <string name="NotYetImplemented">Action not yet implemented.</string>
 </resources>

@@ -3,6 +3,7 @@ package com.lesorin.firespark.view.activities;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 import android.os.Bundle;
+import com.google.android.material.snackbar.Snackbar;
 import com.lesorin.firespark.R;
 import com.lesorin.firespark.view.fragments.AlphaPageTransformer;
 import com.lesorin.firespark.view.fragments.LoginFragment;
@@ -59,5 +60,10 @@ public class StartActivity extends AppCompatActivity
     public void fakeSignUpButtonPressed()
     {
         _viewPager.setCurrentItem(2);
+    }
+
+    public void logInButtonPressed(String email, String password)
+    {
+        Snackbar.make(_viewPager, R.string.NotYetImplemented, Snackbar.LENGTH_LONG).show();
     }
 }
