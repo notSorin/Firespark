@@ -7,6 +7,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.tabs.TabLayout;
 import com.lesorin.firespark.R;
 import com.lesorin.firespark.view.fragments.AlphaPageTransformer;
 import com.lesorin.firespark.view.fragments.LoginFragment;
@@ -49,6 +50,10 @@ public class StartActivity extends AppCompatActivity
         _viewPager.setAdapter(vpa);
         _viewPager.setPageTransformer(true, new AlphaPageTransformer());
         _viewPager.setOffscreenPageLimit(2);
+
+        TabLayout tabLayout = findViewById(R.id.TabLayout);
+
+        tabLayout.setupWithViewPager(_viewPager, true);
     }
 
     @Override
