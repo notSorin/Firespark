@@ -25,7 +25,7 @@ public class SignupFragment extends Fragment
     {
         if(_view == null)
         {
-            _view = inflater.inflate(R.layout.fragment_register, container, false);
+            _view = inflater.inflate(R.layout.fragment_signup, container, false);
         }
 
         return _view;
