@@ -37,17 +37,17 @@ public class WelcomeFragment extends Fragment
 
     private void initializeButtons()
     {
-        _loginButton = _view.findViewById(R.id.LoginButton);
-        _signUpButton = _view.findViewById(R.id.SignUpButton);
+        _loginButton = _view.findViewById(R.id.FakeLoginButton);
+        _signUpButton = _view.findViewById(R.id.FakeSignUpButton);
 
         _loginButton.setOnClickListener(view ->
         {
-            ((StartActivity)getContext()).logInButtonPressed();
+            ((StartActivity)getContext()).fakeLogInButtonPressed();
         });
 
         _signUpButton.setOnClickListener(view ->
         {
-            ((StartActivity)getContext()).signUpButtonPressed();
+            ((StartActivity)getContext()).fakeSignUpButtonPressed();
         });
     }
 }

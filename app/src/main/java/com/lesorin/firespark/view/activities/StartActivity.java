@@ -50,12 +50,12 @@ public class StartActivity extends AppCompatActivity
         }
     }
 
-    public void logInButtonPressed()
+    public void fakeLogInButtonPressed()
     {
         _viewPager.setCurrentItem(1);
     }
 
-    public void signUpButtonPressed()
+    public void fakeSignUpButtonPressed()
     {
         _viewPager.setCurrentItem(2);
     }

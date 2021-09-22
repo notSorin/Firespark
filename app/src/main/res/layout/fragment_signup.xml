@@ -20,7 +20,7 @@
         android:gravity="center"
         android:text="@string/SignupCaption"
         android:textAppearance="@style/TextAppearance.Firespark.Body2"
-        android:textColor="@color/primaryTextColor" />
+        android:textColor="@color/secondaryColor" />
 
     <LinearLayout
         android:layout_width="match_parent"

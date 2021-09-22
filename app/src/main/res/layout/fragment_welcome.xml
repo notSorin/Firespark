@@ -21,7 +21,7 @@
         android:gravity="center"
         android:text="@string/WelcomeCaption"
         android:textAppearance="@style/TextAppearance.Firespark.Body2"
-        android:textColor="@color/primaryTextColor" />
+        android:textColor="@color/secondaryColor" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -36,7 +36,7 @@
             android:orientation="horizontal">
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/LoginButton"
+                android:id="@+id/FakeLoginButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
@@ -44,7 +44,7 @@
                 app:cornerRadius="20dp" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/SignUpButton"
+                android:id="@+id/FakeSignUpButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
