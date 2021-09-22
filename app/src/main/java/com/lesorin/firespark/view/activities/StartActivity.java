@@ -78,4 +78,9 @@ public class StartActivity extends AppCompatActivity
     {
         Snackbar.make(_viewPager, R.string.NotYetImplemented, Snackbar.LENGTH_LONG).show();
     }
+
+    public void signUpButtonPressed(String name, String email, String password, String passwordRepeat)
+    {
+        Snackbar.make(_viewPager, R.string.NotYetImplemented, Snackbar.LENGTH_LONG).show();
+    }
 }
