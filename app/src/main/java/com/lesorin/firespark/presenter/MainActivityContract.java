@@ -21,6 +21,7 @@ public interface MainActivityContract
 
     interface Model
     {
+        void setPresenter(MainActivityContract.PresenterModel presenter);
         void logUserOut();
     }
 }

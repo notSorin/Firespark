@@ -4,12 +4,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.lesorin.firespark.R;
+import com.lesorin.firespark.model.MainActivityModel;
+import com.lesorin.firespark.presenter.MainActivityContract;
+import com.lesorin.firespark.presenter.MainActivityPresenter;
 import com.lesorin.firespark.view.fragments.HomeFragment;
 import com.lesorin.firespark.view.fragments.PopularFragment;
 import com.lesorin.firespark.view.fragments.ProfileFragment;
 
-public class MainActivity extends AppCompatActivity
+public class MainActivity extends AppCompatActivity implements MainActivityContract.View
 {
+    private MainActivityContract.PresenterView _presenter;
     private BottomNavigationView _navigationView;
     private ProfileFragment _profileFragment;
     private HomeFragment _homeFragment;
@@ -21,8 +25,26 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        initializeMVP();
         initializeFragments();
         initializeNavigationView();
+    }
+
+    private void initializeMVP()
+    {
+        //Although the view in MVP should not have any knowledge about the concrete implementation of the
+        //Presenter and Model, for Android apps this is a spacial case because the entry point of the app
+        //is a View, therefore it is acceptable for the view to directly access a concrete presenter
+        //and model to correctly instantiate the presenter.
+        MainActivityContract.PresenterView presenterView = new MainActivityPresenter();
+        MainActivityContract.Model model = new MainActivityModel();
+        MainActivityContract.PresenterModel presenterModel = (MainActivityContract.PresenterModel)presenterView;
+
+        presenterView.setView(this);
+        presenterView.setModel(model);
+        model.setPresenter(presenterModel);
+
+        _presenter = presenterView;
     }
 
     private void initializeFragments()
