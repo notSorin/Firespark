@@ -22,7 +22,7 @@ import com.lesorin.firespark.view.fragments.WelcomeFragment;
 public class StartActivity extends AppCompatActivity implements StartActivityContract.View
 {
     private ViewPager _viewPager;
-    private StartActivityContract.Presenter _presenter;
+    private StartActivityContract.PresenterView _presenter;
     private WelcomeFragment _welcomeFragment;
     private LoginFragment _loginFragment;
     private SignupFragment _signUpFragment;
@@ -46,14 +46,15 @@ public class StartActivity extends AppCompatActivity implements StartActivityCon
         //Presenter and Model, for Android apps this is a spacial case because the entry point of the app
         //is a View, therefore it is acceptable for the view to directly access a concrete presenter
         //and model to correctly instantiate the presenter.
-        StartActivityContract.Presenter presenter = new StartActivityPresenter();
+        StartActivityContract.PresenterView presenterView = new StartActivityPresenter();
         StartActivityContract.Model model = new StartActivityModel();
+        StartActivityContract.PresenterModel presenterModel = (StartActivityContract.PresenterModel)presenterView;
 
-        presenter.setView(this);
-        presenter.setModel(model);
-        model.setPresenter(presenter);
+        presenterView.setView(this);
+        presenterView.setModel(model);
+        model.setPresenter(presenterModel);
 
-        _presenter = presenter;
+        _presenter = presenterView;
     }
 
     private void initializeBackgroundImage()

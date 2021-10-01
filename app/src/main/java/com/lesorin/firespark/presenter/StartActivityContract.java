@@ -2,12 +2,17 @@ package com.lesorin.firespark.presenter;
 
 public interface StartActivityContract
 {
-    interface Presenter
+    interface PresenterView
     {
         void setView(View view);
         void setModel(Model model);
         void signUpButtonPressed(String name, String email, String password, String passwordRepeat);
+    }
+
+    interface PresenterModel
+    {
         void userCreatedSuccessfully();
+        void failedToCreateUser();
     }
 
     interface View
@@ -20,7 +25,7 @@ public interface StartActivityContract
 
     interface Model
     {
-        void setPresenter(Presenter presenter);
+        void setPresenter(PresenterModel presenter);
         void createUser(String name, String email, String password);
     }
 }

@@ -5,7 +5,7 @@ import com.lesorin.firespark.presenter.StartActivityContract;
 
 public class StartActivityModel implements StartActivityContract.Model
 {
-    private StartActivityContract.Presenter _presenter;
+    private StartActivityContract.PresenterModel _presenter;
     private FirebaseAuth _firebaseAuth;
 
     public StartActivityModel()
@@ -13,7 +13,7 @@ public class StartActivityModel implements StartActivityContract.Model
         //_firebaseAuth = FirebaseAuth.getInstance();
     }
 
-    public void setPresenter(StartActivityContract.Presenter presenter)
+    public void setPresenter(StartActivityContract.PresenterModel presenter)
     {
         _presenter = presenter;
     }
@@ -22,8 +22,16 @@ public class StartActivityModel implements StartActivityContract.Model
     public void createUser(String name, String email, String password)
     {
         _presenter.userCreatedSuccessfully();
-        /*_firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
-            //todo
+        /*_firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task ->
+        {
+            if(task.isSuccessful())
+            {
+                _presenter.userCreatedSuccessfully();
+            }
+            else
+            {
+                _presenter.failedToCreateUser();
+            }
         });*/
     }
 }

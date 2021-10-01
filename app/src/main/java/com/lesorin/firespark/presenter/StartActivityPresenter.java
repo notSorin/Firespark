@@ -1,6 +1,6 @@
 package com.lesorin.firespark.presenter;
 
-public class StartActivityPresenter implements StartActivityContract.Presenter
+public class StartActivityPresenter implements StartActivityContract.PresenterView, StartActivityContract.PresenterModel
 {
     private StartActivityContract.View _view;
     private StartActivityContract.Model _model;
@@ -52,5 +52,11 @@ public class StartActivityPresenter implements StartActivityContract.Presenter
     public void userCreatedSuccessfully()
     {
         _view.userCreatedSuccessfully();
+    }
+
+    @Override
+    public void failedToCreateUser()
+    {
+
     }
 }
