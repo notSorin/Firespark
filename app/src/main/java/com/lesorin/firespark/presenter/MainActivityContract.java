@@ -7,6 +7,7 @@ public interface MainActivityContract
         void setView(View view);
         void setModel(Model model);
         void appStarted();
+        void logOutButtonPressed();
     }
 
     interface PresenterModel
@@ -16,7 +17,7 @@ public interface MainActivityContract
 
     interface View
     {
-
+        void openStartActivity();
     }
 
     interface Model

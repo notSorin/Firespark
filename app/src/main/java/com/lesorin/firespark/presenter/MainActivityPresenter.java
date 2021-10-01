@@ -26,4 +26,11 @@ public class MainActivityPresenter implements MainActivityContract.PresenterView
     {
 
     }
+
+    @Override
+    public void logOutButtonPressed()
+    {
+        _model.logUserOut();
+        _view.openStartActivity();
+    }
 }

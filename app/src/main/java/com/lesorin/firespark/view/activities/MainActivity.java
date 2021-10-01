@@ -1,6 +1,7 @@
 package com.lesorin.firespark.view.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.lesorin.firespark.R;
@@ -84,5 +85,13 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
 
     public void logOutButtonPressed()
     {
+        _presenter.logOutButtonPressed();
+    }
+
+    @Override
+    public void openStartActivity()
+    {
+        startActivity(new Intent(this, StartActivity.class));
+        finish();
     }
 }
