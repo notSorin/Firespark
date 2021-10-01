@@ -133,20 +133,6 @@ public class StartActivityModel implements StartActivityContract.Model
     }
 
     @Override
-    public String getUserName()
-    {
-        String name = null;
-        FirebaseUser user = _firebaseAuth.getCurrentUser();
-
-        if(user != null)
-        {
-            name = user.getDisplayName();
-        }
-
-        return name;
-    }
-
-    @Override
     public boolean isUserSignedIn()
     {
         return _firebaseAuth.getCurrentUser() != null;

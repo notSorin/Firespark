@@ -50,7 +50,6 @@ public interface StartActivityContract
         void setPresenter(PresenterModel presenter);
         void createUser(String name, String email, String password);
         void logUserIn(String email, String password);
-        String getUserName();
         boolean isUserSignedIn();
     }
 }
