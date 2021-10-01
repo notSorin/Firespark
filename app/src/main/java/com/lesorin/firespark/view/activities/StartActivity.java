@@ -9,21 +9,31 @@ import android.widget.ImageView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
 import com.lesorin.firespark.R;
+import com.lesorin.firespark.model.StartActivityModel;
+import com.lesorin.firespark.presenter.StartActivityContract;
+import com.lesorin.firespark.presenter.StartActivityPresenter;
 import com.lesorin.firespark.view.fragments.AlphaPageTransformer;
 import com.lesorin.firespark.view.fragments.LoginFragment;
 import com.lesorin.firespark.view.fragments.SignupFragment;
 import com.lesorin.firespark.view.fragments.ViewPagerAdapter;
 import com.lesorin.firespark.view.fragments.WelcomeFragment;
 
-public class StartActivity extends AppCompatActivity
+public class StartActivity extends AppCompatActivity implements StartActivityContract.View
 {
     private ViewPager _viewPager;
+    private StartActivityContract.Presenter _presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
+
+        //Although the view in MVP should not have any knowledge about the concrete implementation of the
+        //Presenter and Model, for Android apps this is a spacial case because the entry point of the app
+        //is a View, therefore it is acceptable for the view to directly access a concrete presenter
+        //and model to correctly instantiate the presenter.
+        _presenter = new StartActivityPresenter(this, new StartActivityModel());
 
         initializeBackgroundImage();
         initializeViewPager();

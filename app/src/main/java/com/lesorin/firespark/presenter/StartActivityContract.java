@@ -11,4 +11,9 @@ public interface StartActivityContract
     {
 
     }
+
+    interface Model
+    {
+
+    }
 }
