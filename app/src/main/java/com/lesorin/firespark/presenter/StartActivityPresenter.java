@@ -41,6 +41,15 @@ public class StartActivityPresenter implements StartActivityContract.PresenterVi
     }
 
     @Override
+    public void appStarted()
+    {
+        if(_model.isUserSignedIn())
+        {
+            _view.openMainActivity();
+        }
+    }
+
+    @Override
     public void userCreatedSuccessfully()
     {
         _view.userCreatedSuccessfully();
@@ -80,7 +89,7 @@ public class StartActivityPresenter implements StartActivityContract.PresenterVi
     @Override
     public void logUserInSuccess()
     {
-        //_view.openMainActivity();
+        _view.openMainActivity();
     }
 
     @Override

@@ -101,6 +101,14 @@ public class StartActivity extends AppCompatActivity implements StartActivityCon
         }
     }
 
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+
+        _presenter.appStarted();
+    }
+
     public void fakeLogInButtonPressed()
     {
         _viewPager.setCurrentItem(1);

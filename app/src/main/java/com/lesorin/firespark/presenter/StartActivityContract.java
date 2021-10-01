@@ -8,6 +8,7 @@ public interface StartActivityContract
         void setModel(Model model);
         void signUpButtonPressed(String name, String email, String password, String passwordRepeat);
         void logInButtonPressed(String email, String password);
+        void appStarted();
     }
 
     interface PresenterModel
@@ -50,5 +51,6 @@ public interface StartActivityContract
         void createUser(String name, String email, String password);
         void logUserIn(String email, String password);
         String getUserName();
+        boolean isUserSignedIn();
     }
 }

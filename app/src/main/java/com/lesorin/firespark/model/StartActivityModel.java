@@ -146,6 +146,12 @@ public class StartActivityModel implements StartActivityContract.Model
         return name;
     }
 
+    @Override
+    public boolean isUserSignedIn()
+    {
+        return _firebaseAuth.getCurrentUser() != null;
+    }
+
     private void sendVerificationEmail()
     {
         FirebaseUser user = _firebaseAuth.getCurrentUser();
