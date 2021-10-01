@@ -29,4 +29,7 @@
     <string name="CreateUserEmptyName">Name cannot be empty.</string>
     <string name="CreateUserEmptyEmailOrPassword">Email and password cannot be empty.</string>
     <string name="CreateUserInvalidEmail">Cannot sign up with the provided email.</string>
+    <string name="ProfilePage">My Profile</string>
+    <string name="HomePage">Home</string>
+    <string name="PopularPage">Popular</string>
 </resources>
