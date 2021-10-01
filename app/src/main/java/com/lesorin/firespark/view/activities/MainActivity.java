@@ -41,13 +41,16 @@ public class MainActivity extends AppCompatActivity
             switch (item.getItemId())
             {
                 case R.id.ProfilePage:
-                    getSupportFragmentManager().beginTransaction().replace(R.id.FragmentContainer, _profileFragment).commit();
+                    getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.fade_in, R.anim.fade_out).
+                            replace(R.id.FragmentContainer, _profileFragment).commit();
                     break;
                 case R.id.HomePage:
-                    getSupportFragmentManager().beginTransaction().replace(R.id.FragmentContainer, _homeFragment).commit();
+                    getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.fade_in, R.anim.fade_out).
+                            replace(R.id.FragmentContainer, _homeFragment).commit();
                     break;
                 case R.id.PopularPage:
-                    getSupportFragmentManager().beginTransaction().replace(R.id.FragmentContainer, _popularFragment).commit();
+                    getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.fade_in, R.anim.fade_out).
+                            replace(R.id.FragmentContainer, _popularFragment).commit();
                     break;
             }
 
