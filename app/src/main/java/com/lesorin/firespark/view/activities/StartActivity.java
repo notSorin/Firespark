@@ -122,7 +122,7 @@ public class StartActivity extends AppCompatActivity implements StartActivityCon
 
     public void logInButtonPressed(String email, String password)
     {
-        _loginFragment.setElementsState(true);
+        _loginFragment.setElementsState(false);
         Snackbar.make(_viewPager, R.string.PleaseWait, Snackbar.LENGTH_LONG).show();
         _presenter.logInButtonPressed(email, password);
     }
