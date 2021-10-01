@@ -24,20 +24,13 @@ public class StartActivityPresenter implements StartActivityContract.PresenterVi
     @Override
     public void signUpButtonPressed(String name, String email, String password, String passwordRepeat)
     {
-        if(name.length() > 0)
+        if(password.equals(passwordRepeat))
         {
-            if(password.equals(passwordRepeat))
-            {
-                _model.createUser(name, email, password);
-            }
-            else
-            {
-                _view.errorPasswordsDoNotMatch();
-            }
+            _model.createUser(name, email, password);
         }
         else
         {
-            _view.errorNameTooShort();
+            _view.errorPasswordsDoNotMatch();
         }
     }
 
@@ -100,5 +93,23 @@ public class StartActivityPresenter implements StartActivityContract.PresenterVi
     public void logUserInFailure()
     {
         _view.errorCannotLogIn();
+    }
+
+    @Override
+    public void failedToCreateUserEmptyName()
+    {
+        _view.errorCreateUserEmptyName();
+    }
+
+    @Override
+    public void failedToCreateUserEmptyEmailOrPassword()
+    {
+        _view.errorCreateUserEmptyEmailOrPassword();
+    }
+
+    @Override
+    public void failedToCreateUserInvalidEmail()
+    {
+        _view.errorCreateUserInvalidEmail();
     }
 }

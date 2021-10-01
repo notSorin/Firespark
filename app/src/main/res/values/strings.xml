@@ -20,10 +20,13 @@
     <string name="SignUpFailed">Sign up failed. Check email and try again…</string>
     <string name="CreateUserAlreadyExists">This email is already in use.</string>
     <string name="CreateUserWeakPassword">Your password is too weak.</string>
-    <string name="CreateUserUnknownError">Failed to sign up. Please try again later.</string>
+    <string name="CreateUserUnknownError">Failed to sign up. Check your internet connection.</string>
     <string name="CreateUserVerificationEmailSent">Check your email to verify your account.</string>
     <string name="CreateUserVerificationEmailNotSent">An email could not be sent to verify this account.</string>
     <string name="PleaseWait">Please wait...</string>
     <string name="UserNotVerified">Check your email to verify this account.</string>
     <string name="CannotLogIn">Incorrect email or password.</string>
+    <string name="CreateUserEmptyName">Name cannot be empty.</string>
+    <string name="CreateUserEmptyEmailOrPassword">Email and password cannot be empty.</string>
+    <string name="CreateUserInvalidEmail">Cannot sign up with the provided email.</string>
 </resources>

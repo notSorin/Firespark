@@ -21,11 +21,13 @@ public interface StartActivityContract
         void logUserInSuccess();
         void logUserInFailureNotVerified();
         void logUserInFailure();
+        void failedToCreateUserEmptyName();
+        void failedToCreateUserEmptyEmailOrPassword();
+        void failedToCreateUserInvalidEmail();
     }
 
     interface View
     {
-        void errorNameTooShort();
         void errorPasswordsDoNotMatch();
         void userCreatedSuccessfully();
         void errorCreateUserAlreadyExists();
@@ -37,6 +39,9 @@ public interface StartActivityContract
         void errorUserNotVerified();
         void errorCannotLogIn();
         void openMainActivity();
+        void errorCreateUserEmptyName();
+        void errorCreateUserEmptyEmailOrPassword();
+        void errorCreateUserInvalidEmail();
     }
 
     interface Model

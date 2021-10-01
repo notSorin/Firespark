@@ -1,6 +1,9 @@
 package com.lesorin.firespark.model;
 
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.auth.FirebaseUser;
@@ -24,32 +27,52 @@ public class StartActivityModel implements StartActivityContract.Model
     @Override
     public void createUser(String name, String email, String password)
     {
-        _firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task ->
+        if(!name.isEmpty())
         {
-            if(task.isSuccessful())
+            if(!email.isEmpty() && !password.isEmpty())
             {
-                sendVerificationEmail();
+                _firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this::handleCreateUserTask);
             }
             else
             {
-                try
-                {
-                    throw task.getException();
-                }
-                catch(FirebaseAuthUserCollisionException e)
-                {
-                    _presenter.failedToCreateUserAlreadyExists();
-                }
-                catch (FirebaseAuthWeakPasswordException wpe)
-                {
-                    _presenter.failedToCreateUserWeakPassword();
-                }
-                catch(Exception e)
-                {
-                    _presenter.failedToCreateUserUnknownError();
-                }
+                _presenter.failedToCreateUserEmptyEmailOrPassword();
             }
-        });
+        }
+        else
+        {
+            _presenter.failedToCreateUserEmptyName();
+        }
+    }
+
+    private void handleCreateUserTask(Task<AuthResult> task)
+    {
+        if(task.isSuccessful())
+        {
+            sendVerificationEmail();
+        }
+        else
+        {
+            try
+            {
+                throw task.getException();
+            }
+            catch(FirebaseAuthUserCollisionException e)
+            {
+                _presenter.failedToCreateUserAlreadyExists();
+            }
+            catch (FirebaseAuthWeakPasswordException wpe)
+            {
+                _presenter.failedToCreateUserWeakPassword();
+            }
+            catch(FirebaseAuthInvalidCredentialsException ice)
+            {
+                _presenter.failedToCreateUserInvalidEmail();
+            }
+            catch(Exception e)
+            {
+                _presenter.failedToCreateUserUnknownError();
+            }
+        }
     }
 
     @Override

@@ -126,13 +126,6 @@ public class StartActivity extends AppCompatActivity implements StartActivityCon
     }
 
     @Override
-    public void errorNameTooShort()
-    {
-        _signUpFragment.setElementsState(true);
-        Snackbar.make(_viewPager, R.string.NameTooShort, Snackbar.LENGTH_LONG).show();
-    }
-
-    @Override
     public void errorPasswordsDoNotMatch()
     {
         _signUpFragment.setElementsState(true);
@@ -202,5 +195,26 @@ public class StartActivity extends AppCompatActivity implements StartActivityCon
     public void openMainActivity()
     {
 
+    }
+
+    @Override
+    public void errorCreateUserEmptyName()
+    {
+        _signUpFragment.setElementsState(true);
+        Snackbar.make(_viewPager, R.string.CreateUserEmptyName, Snackbar.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void errorCreateUserEmptyEmailOrPassword()
+    {
+        _signUpFragment.setElementsState(true);
+        Snackbar.make(_viewPager, R.string.CreateUserEmptyEmailOrPassword, Snackbar.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void errorCreateUserInvalidEmail()
+    {
+        _signUpFragment.setElementsState(true);
+        Snackbar.make(_viewPager, R.string.CreateUserInvalidEmail, Snackbar.LENGTH_LONG).show();
     }
 }
