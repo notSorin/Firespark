@@ -3,6 +3,7 @@ package com.lesorin.firespark.model;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
+import com.google.firebase.auth.FirebaseUser;
 import com.lesorin.firespark.presenter.StartActivityContract;
 
 public class StartActivityModel implements StartActivityContract.Model
@@ -27,7 +28,7 @@ public class StartActivityModel implements StartActivityContract.Model
         {
             if(task.isSuccessful())
             {
-                _presenter.userCreatedSuccessfully();
+                sendVerificationEmail();
             }
             else
             {
@@ -49,5 +50,25 @@ public class StartActivityModel implements StartActivityContract.Model
                 }
             }
         });
+    }
+
+    private void sendVerificationEmail()
+    {
+        FirebaseUser user = _firebaseAuth.getCurrentUser();
+
+        if(user != null)
+        {
+            user.sendEmailVerification().addOnCompleteListener(task ->
+            {
+                if(task.isSuccessful())
+                {
+                    _presenter.createUserVerificationEmailSent();
+                }
+                else
+                {
+                    _presenter.createUserVerificationEmailNotSent();
+                }
+            });
+        }
     }
 }

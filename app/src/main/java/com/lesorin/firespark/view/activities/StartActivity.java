@@ -120,6 +120,7 @@ public class StartActivity extends AppCompatActivity implements StartActivityCon
     public void signUpButtonPressed(String name, String email, String password, String passwordRepeat)
     {
         _signUpFragment.setSignUpButtonState(false);
+        Snackbar.make(_viewPager, R.string.PleaseWait, Snackbar.LENGTH_LONG).show();
         _presenter.signUpButtonPressed(name, email, password, passwordRepeat);
     }
 
@@ -162,5 +163,23 @@ public class StartActivity extends AppCompatActivity implements StartActivityCon
     {
         _signUpFragment.setSignUpButtonState(true);
         Snackbar.make(_viewPager, R.string.CreateUserUnknownError, Snackbar.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void notifyVerificationEmailSent()
+    {
+        Snackbar.make(_viewPager, R.string.CreateUserVerificationEmailSent, Snackbar.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void notifyVerificationEmailNotSent()
+    {
+        Snackbar.make(_viewPager, R.string.CreateUserVerificationEmailNotSent, Snackbar.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void openLogInView()
+    {
+        _viewPager.setCurrentItem(1);
     }
 }

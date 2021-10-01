@@ -64,4 +64,17 @@ public class StartActivityPresenter implements StartActivityContract.PresenterVi
     {
         _view.errorCreateUserUnknownError();
     }
+
+    @Override
+    public void createUserVerificationEmailSent()
+    {
+        _view.notifyVerificationEmailSent();
+        _view.openLogInView();
+    }
+
+    @Override
+    public void createUserVerificationEmailNotSent()
+    {
+        _view.notifyVerificationEmailNotSent();
+    }
 }

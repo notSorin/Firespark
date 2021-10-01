@@ -15,6 +15,8 @@ public interface StartActivityContract
         void failedToCreateUserAlreadyExists();
         void failedToCreateUserWeakPassword();
         void failedToCreateUserUnknownError();
+        void createUserVerificationEmailSent();
+        void createUserVerificationEmailNotSent();
     }
 
     interface View
@@ -25,6 +27,9 @@ public interface StartActivityContract
         void errorCreateUserAlreadyExists();
         void errorCreateUserWeakPassword();
         void errorCreateUserUnknownError();
+        void notifyVerificationEmailSent();
+        void notifyVerificationEmailNotSent();
+        void openLogInView();
     }
 
     interface Model
