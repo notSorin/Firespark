@@ -50,9 +50,12 @@ public class LoginFragment extends Fragment
 
         _loginButton.setOnClickListener(view ->
         {
-            view.setEnabled(false); //Re-enable later if log in fails.
-
             ((StartActivity)getContext()).logInButtonPressed(_email.getText().toString(), _password.getText().toString());
         });
+    }
+
+    public void setLoginButtonState(boolean enabled)
+    {
+        _loginButton.setEnabled(enabled);
     }
 }
