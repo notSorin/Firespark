@@ -29,14 +29,25 @@ public class StartActivity extends AppCompatActivity implements StartActivityCon
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
+        initializeMVP();
+        initializeBackgroundImage();
+        initializeViewPager();
+    }
+
+    private void initializeMVP()
+    {
         //Although the view in MVP should not have any knowledge about the concrete implementation of the
         //Presenter and Model, for Android apps this is a spacial case because the entry point of the app
         //is a View, therefore it is acceptable for the view to directly access a concrete presenter
         //and model to correctly instantiate the presenter.
-        _presenter = new StartActivityPresenter(this, new StartActivityModel());
+        StartActivityContract.Presenter presenter = new StartActivityPresenter();
+        StartActivityContract.Model model = new StartActivityModel();
 
-        initializeBackgroundImage();
-        initializeViewPager();
+        presenter.setView(this);
+        presenter.setModel(model);
+        model.setPresenter(presenter);
+
+        _presenter = presenter;
     }
 
     private void initializeBackgroundImage()
@@ -96,6 +107,6 @@ public class StartActivity extends AppCompatActivity implements StartActivityCon
 
     public void signUpButtonPressed(String name, String email, String password, String passwordRepeat)
     {
-        Snackbar.make(_viewPager, R.string.NotYetImplemented, Snackbar.LENGTH_LONG).show();
+        _presenter.signUpButtonPressed(name, email, password, passwordRepeat);
     }
 }
