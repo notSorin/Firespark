@@ -54,8 +54,10 @@ public class LoginFragment extends Fragment
         });
     }
 
-    public void setLoginButtonState(boolean enabled)
+    public void setElementsState(boolean enabled)
     {
+        _email.setEnabled(enabled);
+        _password.setEnabled(enabled);
         _loginButton.setEnabled(enabled);
     }
 }

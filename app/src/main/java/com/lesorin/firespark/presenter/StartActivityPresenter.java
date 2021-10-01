@@ -42,6 +42,12 @@ public class StartActivityPresenter implements StartActivityContract.PresenterVi
     }
 
     @Override
+    public void logInButtonPressed(String email, String password)
+    {
+        _model.logUserIn(email, password);
+    }
+
+    @Override
     public void userCreatedSuccessfully()
     {
         _view.userCreatedSuccessfully();
@@ -76,5 +82,23 @@ public class StartActivityPresenter implements StartActivityContract.PresenterVi
     public void createUserVerificationEmailNotSent()
     {
         _view.notifyVerificationEmailNotSent();
+    }
+
+    @Override
+    public void logUserInSuccess()
+    {
+        //_view.openMainActivity();
+    }
+
+    @Override
+    public void logUserInFailureNotVerified()
+    {
+        _view.errorUserNotVerified();
+    }
+
+    @Override
+    public void logUserInFailure()
+    {
+        _view.errorCannotLogIn();
     }
 }

@@ -113,13 +113,14 @@ public class StartActivity extends AppCompatActivity implements StartActivityCon
 
     public void logInButtonPressed(String email, String password)
     {
-        _loginFragment.setLoginButtonState(false);
-        Snackbar.make(_viewPager, R.string.NotYetImplemented, Snackbar.LENGTH_LONG).show();
+        _loginFragment.setElementsState(true);
+        Snackbar.make(_viewPager, R.string.PleaseWait, Snackbar.LENGTH_LONG).show();
+        _presenter.logInButtonPressed(email, password);
     }
 
     public void signUpButtonPressed(String name, String email, String password, String passwordRepeat)
     {
-        _signUpFragment.setSignUpButtonState(false);
+        _signUpFragment.setElementsState(false);
         Snackbar.make(_viewPager, R.string.PleaseWait, Snackbar.LENGTH_LONG).show();
         _presenter.signUpButtonPressed(name, email, password, passwordRepeat);
     }
@@ -127,14 +128,14 @@ public class StartActivity extends AppCompatActivity implements StartActivityCon
     @Override
     public void errorNameTooShort()
     {
-        _signUpFragment.setSignUpButtonState(true);
+        _signUpFragment.setElementsState(true);
         Snackbar.make(_viewPager, R.string.NameTooShort, Snackbar.LENGTH_LONG).show();
     }
 
     @Override
     public void errorPasswordsDoNotMatch()
     {
-        _signUpFragment.setSignUpButtonState(true);
+        _signUpFragment.setElementsState(true);
         Snackbar.make(_viewPager, R.string.PasswordsDoNotMatch, Snackbar.LENGTH_LONG).show();
     }
 
@@ -147,21 +148,21 @@ public class StartActivity extends AppCompatActivity implements StartActivityCon
     @Override
     public void errorCreateUserAlreadyExists()
     {
-        _signUpFragment.setSignUpButtonState(true);
+        _signUpFragment.setElementsState(true);
         Snackbar.make(_viewPager, R.string.CreateUserAlreadyExists, Snackbar.LENGTH_LONG).show();
     }
 
     @Override
     public void errorCreateUserWeakPassword()
     {
-        _signUpFragment.setSignUpButtonState(true);
+        _signUpFragment.setElementsState(true);
         Snackbar.make(_viewPager, R.string.CreateUserWeakPassword, Snackbar.LENGTH_LONG).show();
     }
 
     @Override
     public void errorCreateUserUnknownError()
     {
-        _signUpFragment.setSignUpButtonState(true);
+        _signUpFragment.setElementsState(true);
         Snackbar.make(_viewPager, R.string.CreateUserUnknownError, Snackbar.LENGTH_LONG).show();
     }
 
@@ -181,5 +182,25 @@ public class StartActivity extends AppCompatActivity implements StartActivityCon
     public void openLogInView()
     {
         _viewPager.setCurrentItem(1);
+    }
+
+    @Override
+    public void errorUserNotVerified()
+    {
+        _loginFragment.setElementsState(true);
+        Snackbar.make(_viewPager, R.string.UserNotVerified, Snackbar.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void errorCannotLogIn()
+    {
+        _loginFragment.setElementsState(true);
+        Snackbar.make(_viewPager, R.string.CannotLogIn, Snackbar.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void openMainActivity()
+    {
+
     }
 }

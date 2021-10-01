@@ -24,4 +24,6 @@
     <string name="CreateUserVerificationEmailSent">Check your email to verify your account.</string>
     <string name="CreateUserVerificationEmailNotSent">An email could not be sent to verify this account.</string>
     <string name="PleaseWait">Please wait...</string>
+    <string name="UserNotVerified">Check your email to verify this account.</string>
+    <string name="CannotLogIn">Incorrect email or password.</string>
 </resources>

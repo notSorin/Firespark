@@ -52,6 +52,55 @@ public class StartActivityModel implements StartActivityContract.Model
         });
     }
 
+    @Override
+    public void logUserIn(String email, String password)
+    {
+        if(!email.isEmpty() && !password.isEmpty())
+        {
+            _firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task ->
+            {
+                if(task.isSuccessful())
+                {
+                    FirebaseUser user = _firebaseAuth.getCurrentUser();
+
+                    if(user != null)
+                    {
+                        if(user.isEmailVerified())
+                        {
+                            _presenter.logUserInSuccess();
+                        }
+                        else
+                        {
+                            _presenter.logUserInFailureNotVerified();
+                        }
+                    }
+                }
+                else
+                {
+                    _presenter.logUserInFailure();
+                }
+            });
+        }
+        else
+        {
+            _presenter.logUserInFailure();
+        }
+    }
+
+    @Override
+    public String getUserName()
+    {
+        String name = null;
+        FirebaseUser user = _firebaseAuth.getCurrentUser();
+
+        if(user != null)
+        {
+            name = user.getDisplayName();
+        }
+
+        return name;
+    }
+
     private void sendVerificationEmail()
     {
         FirebaseUser user = _firebaseAuth.getCurrentUser();
@@ -69,6 +118,10 @@ public class StartActivityModel implements StartActivityContract.Model
                     _presenter.createUserVerificationEmailNotSent();
                 }
             });
+        }
+        else
+        {
+            _presenter.createUserVerificationEmailNotSent();
         }
     }
 }

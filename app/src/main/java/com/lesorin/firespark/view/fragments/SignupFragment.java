@@ -58,8 +58,12 @@ public class SignupFragment extends Fragment
         });
     }
 
-    public void setSignUpButtonState(boolean enabled)
+    public void setElementsState(boolean enabled)
     {
+        _name.setEnabled(enabled);
+        _email.setEnabled(enabled);
+        _password.setEnabled(enabled);
+        _passwordRepeat.setEnabled(enabled);
         _signupButton.setEnabled(enabled);
     }
 }

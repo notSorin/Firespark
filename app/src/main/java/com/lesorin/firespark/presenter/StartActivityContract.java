@@ -7,6 +7,7 @@ public interface StartActivityContract
         void setView(View view);
         void setModel(Model model);
         void signUpButtonPressed(String name, String email, String password, String passwordRepeat);
+        void logInButtonPressed(String email, String password);
     }
 
     interface PresenterModel
@@ -17,6 +18,9 @@ public interface StartActivityContract
         void failedToCreateUserUnknownError();
         void createUserVerificationEmailSent();
         void createUserVerificationEmailNotSent();
+        void logUserInSuccess();
+        void logUserInFailureNotVerified();
+        void logUserInFailure();
     }
 
     interface View
@@ -30,11 +34,16 @@ public interface StartActivityContract
         void notifyVerificationEmailSent();
         void notifyVerificationEmailNotSent();
         void openLogInView();
+        void errorUserNotVerified();
+        void errorCannotLogIn();
+        void openMainActivity();
     }
 
     interface Model
     {
         void setPresenter(PresenterModel presenter);
         void createUser(String name, String email, String password);
+        void logUserIn(String email, String password);
+        String getUserName();
     }
 }
