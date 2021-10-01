@@ -1,4 +1,4 @@
-package com.lesorin.firespark.presenter;
+package com.lesorin.firespark.presenter.transferobjects;
 
 public class Comment
 {
