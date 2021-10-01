@@ -57,6 +57,6 @@ public class StartActivityPresenter implements StartActivityContract.PresenterVi
     @Override
     public void failedToCreateUser()
     {
-
+        _view.failedToCreateUser();
     }
 }

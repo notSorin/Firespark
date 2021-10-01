@@ -21,6 +21,7 @@ public interface StartActivityContract
         void errorPasswordsDoNotMatch();
         void userCreatedSuccessfully();
         void errorPasswordTooShort();
+        void failedToCreateUser();
     }
 
     interface Model

@@ -33,7 +33,7 @@ public class StartActivity extends AppCompatActivity implements StartActivityCon
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
-        //FirebaseApp.initializeApp(this);
+        FirebaseApp.initializeApp(this);
 
         initializeMVP();
         initializeBackgroundImage();
@@ -148,5 +148,12 @@ public class StartActivity extends AppCompatActivity implements StartActivityCon
     {
         _signUpFragment.setSignUpButtonState(true);
         Snackbar.make(_viewPager, R.string.PasswordTooShort, Snackbar.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void failedToCreateUser()
+    {
+        _signUpFragment.setSignUpButtonState(true);
+        Snackbar.make(_viewPager, R.string.SignUpFailed, Snackbar.LENGTH_LONG).show();
     }
 }
