@@ -24,6 +24,33 @@ public class StartActivityPresenter implements StartActivityContract.Presenter
     @Override
     public void signUpButtonPressed(String name, String email, String password, String passwordRepeat)
     {
-        _model.createUser(name, email, password);
+        if(name.length() > 0)
+        {
+            if(password.length() >= 8)
+            {
+                if(password.equals(passwordRepeat))
+                {
+                    _model.createUser(name, email, password);
+                }
+                else
+                {
+                    _view.errorPasswordsDoNotMatch();
+                }
+            }
+            else
+            {
+                _view.errorPasswordTooShort();
+            }
+        }
+        else
+        {
+            _view.errorNameTooShort();
+        }
+    }
+
+    @Override
+    public void userCreatedSuccessfully()
+    {
+        _view.userCreatedSuccessfully();
     }
 }

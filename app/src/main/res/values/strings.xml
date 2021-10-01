@@ -13,4 +13,8 @@
     <string name="SignupPassword">Password (min. 8 characters)</string>
     <string name="DisplayName">Name (min. 1 character)</string>
     <string name="NotYetImplemented">Action not yet implemented.</string>
+    <string name="NameTooShort">Name must  be at least 1 character long.</string>
+    <string name="PasswordsDoNotMatch">Passwords do not match.</string>
+    <string name="UserCreateSuccess">User has been registered.</string>
+    <string name="PasswordTooShort">Your password is too short.</string>
 </resources>

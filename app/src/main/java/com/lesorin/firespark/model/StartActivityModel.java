@@ -10,7 +10,7 @@ public class StartActivityModel implements StartActivityContract.Model
 
     public StartActivityModel()
     {
-        _firebaseAuth = FirebaseAuth.getInstance();
+        //_firebaseAuth = FirebaseAuth.getInstance();
     }
 
     public void setPresenter(StartActivityContract.Presenter presenter)
@@ -21,8 +21,9 @@ public class StartActivityModel implements StartActivityContract.Model
     @Override
     public void createUser(String name, String email, String password)
     {
-        _firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
+        _presenter.userCreatedSuccessfully();
+        /*_firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
             //todo
-        });
+        });*/
     }
 }

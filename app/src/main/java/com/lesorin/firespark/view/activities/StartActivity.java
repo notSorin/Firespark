@@ -8,6 +8,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.FirebaseApp;
 import com.lesorin.firespark.R;
 import com.lesorin.firespark.model.StartActivityModel;
 import com.lesorin.firespark.presenter.StartActivityContract;
@@ -22,12 +23,17 @@ public class StartActivity extends AppCompatActivity implements StartActivityCon
 {
     private ViewPager _viewPager;
     private StartActivityContract.Presenter _presenter;
+    private WelcomeFragment _welcomeFragment;
+    private LoginFragment _loginFragment;
+    private SignupFragment _signUpFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
+
+        //FirebaseApp.initializeApp(this);
 
         initializeMVP();
         initializeBackgroundImage();
@@ -64,9 +70,13 @@ public class StartActivity extends AppCompatActivity implements StartActivityCon
 
         ViewPagerAdapter vpa = new ViewPagerAdapter(getSupportFragmentManager());
 
-        vpa.addFragment(new WelcomeFragment(), null);
-        vpa.addFragment(new LoginFragment(), null);
-        vpa.addFragment(new SignupFragment(), null);
+        _welcomeFragment = new WelcomeFragment();
+        _loginFragment = new LoginFragment();
+        _signUpFragment = new SignupFragment();
+
+        vpa.addFragment(_welcomeFragment, null);
+        vpa.addFragment(_loginFragment, null);
+        vpa.addFragment(_signUpFragment, null);
 
         _viewPager.setAdapter(vpa);
         _viewPager.setPageTransformer(true, new AlphaPageTransformer());
@@ -102,11 +112,40 @@ public class StartActivity extends AppCompatActivity implements StartActivityCon
 
     public void logInButtonPressed(String email, String password)
     {
+        _loginFragment.setLoginButtonState(false);
         Snackbar.make(_viewPager, R.string.NotYetImplemented, Snackbar.LENGTH_LONG).show();
     }
 
     public void signUpButtonPressed(String name, String email, String password, String passwordRepeat)
     {
+        _signUpFragment.setSignUpButtonState(false);
         _presenter.signUpButtonPressed(name, email, password, passwordRepeat);
+    }
+
+    @Override
+    public void errorNameTooShort()
+    {
+        _signUpFragment.setSignUpButtonState(true);
+        Snackbar.make(_viewPager, R.string.NameTooShort, Snackbar.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void errorPasswordsDoNotMatch()
+    {
+        _signUpFragment.setSignUpButtonState(true);
+        Snackbar.make(_viewPager, R.string.PasswordsDoNotMatch, Snackbar.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void userCreatedSuccessfully()
+    {
+        Snackbar.make(_viewPager, R.string.UserCreateSuccess, Snackbar.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void errorPasswordTooShort()
+    {
+        _signUpFragment.setSignUpButtonState(true);
+        Snackbar.make(_viewPager, R.string.PasswordTooShort, Snackbar.LENGTH_LONG).show();
     }
 }
