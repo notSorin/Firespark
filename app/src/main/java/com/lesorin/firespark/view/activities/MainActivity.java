@@ -59,4 +59,8 @@ public class MainActivity extends AppCompatActivity
 
         _navigationView.setSelectedItemId(R.id.HomePage);
     }
+
+    public void logOutButtonPressed()
+    {
+    }
 }

@@ -7,11 +7,14 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import com.google.android.material.button.MaterialButton;
 import com.lesorin.firespark.R;
+import com.lesorin.firespark.view.activities.MainActivity;
 
 public class ProfileFragment extends Fragment
 {
     private View _view;
+    private MaterialButton _logoutButton;
 
     public ProfileFragment()
     {
@@ -25,8 +28,20 @@ public class ProfileFragment extends Fragment
         if(_view == null)
         {
             _view = inflater.inflate(R.layout.fragment_profile, container, false);
+
+            initializeLogoutButton();
         }
 
         return _view;
+    }
+
+    private void initializeLogoutButton()
+    {
+        _logoutButton = _view.findViewById(R.id.LogoutButton);
+
+        _logoutButton.setOnClickListener(view ->
+        {
+            ((MainActivity)getContext()).logOutButtonPressed();
+        });
     }
 }
