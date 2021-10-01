@@ -18,4 +18,7 @@
     <string name="UserCreateSuccess">Your account has been created.</string>
     <string name="PasswordTooShort">Your password is too short.</string>
     <string name="SignUpFailed">Sign up failed. Check email and try again…</string>
+    <string name="CreateUserAlreadyExists">This email is already in use.</string>
+    <string name="CreateUserWeakPassword">Your password is too weak.</string>
+    <string name="CreateUserUnknownError">Failed to sign up. Please try again later.</string>
 </resources>

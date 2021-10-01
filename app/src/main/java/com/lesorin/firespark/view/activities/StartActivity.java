@@ -144,16 +144,23 @@ public class StartActivity extends AppCompatActivity implements StartActivityCon
     }
 
     @Override
-    public void errorPasswordTooShort()
+    public void errorCreateUserAlreadyExists()
     {
         _signUpFragment.setSignUpButtonState(true);
-        Snackbar.make(_viewPager, R.string.PasswordTooShort, Snackbar.LENGTH_LONG).show();
+        Snackbar.make(_viewPager, R.string.CreateUserAlreadyExists, Snackbar.LENGTH_LONG).show();
     }
 
     @Override
-    public void failedToCreateUser()
+    public void errorCreateUserWeakPassword()
     {
         _signUpFragment.setSignUpButtonState(true);
-        Snackbar.make(_viewPager, R.string.SignUpFailed, Snackbar.LENGTH_LONG).show();
+        Snackbar.make(_viewPager, R.string.CreateUserWeakPassword, Snackbar.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void errorCreateUserUnknownError()
+    {
+        _signUpFragment.setSignUpButtonState(true);
+        Snackbar.make(_viewPager, R.string.CreateUserUnknownError, Snackbar.LENGTH_LONG).show();
     }
 }

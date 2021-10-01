@@ -26,20 +26,13 @@ public class StartActivityPresenter implements StartActivityContract.PresenterVi
     {
         if(name.length() > 0)
         {
-            if(password.length() >= 8)
+            if(password.equals(passwordRepeat))
             {
-                if(password.equals(passwordRepeat))
-                {
-                    _model.createUser(name, email, password);
-                }
-                else
-                {
-                    _view.errorPasswordsDoNotMatch();
-                }
+                _model.createUser(name, email, password);
             }
             else
             {
-                _view.errorPasswordTooShort();
+                _view.errorPasswordsDoNotMatch();
             }
         }
         else
@@ -55,8 +48,20 @@ public class StartActivityPresenter implements StartActivityContract.PresenterVi
     }
 
     @Override
-    public void failedToCreateUser()
+    public void failedToCreateUserAlreadyExists()
     {
-        _view.failedToCreateUser();
+        _view.errorCreateUserAlreadyExists();
+    }
+
+    @Override
+    public void failedToCreateUserWeakPassword()
+    {
+        _view.errorCreateUserWeakPassword();
+    }
+
+    @Override
+    public void failedToCreateUserUnknownError()
+    {
+        _view.errorCreateUserUnknownError();
     }
 }

@@ -12,7 +12,9 @@ public interface StartActivityContract
     interface PresenterModel
     {
         void userCreatedSuccessfully();
-        void failedToCreateUser();
+        void failedToCreateUserAlreadyExists();
+        void failedToCreateUserWeakPassword();
+        void failedToCreateUserUnknownError();
     }
 
     interface View
@@ -20,8 +22,9 @@ public interface StartActivityContract
         void errorNameTooShort();
         void errorPasswordsDoNotMatch();
         void userCreatedSuccessfully();
-        void errorPasswordTooShort();
-        void failedToCreateUser();
+        void errorCreateUserAlreadyExists();
+        void errorCreateUserWeakPassword();
+        void errorCreateUserUnknownError();
     }
 
     interface Model

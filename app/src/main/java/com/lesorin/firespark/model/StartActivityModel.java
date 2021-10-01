@@ -1,6 +1,8 @@
 package com.lesorin.firespark.model;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.lesorin.firespark.presenter.StartActivityContract;
 
 public class StartActivityModel implements StartActivityContract.Model
@@ -29,7 +31,22 @@ public class StartActivityModel implements StartActivityContract.Model
             }
             else
             {
-                _presenter.failedToCreateUser();
+                try
+                {
+                    throw task.getException();
+                }
+                catch(FirebaseAuthUserCollisionException e)
+                {
+                    _presenter.failedToCreateUserAlreadyExists();
+                }
+                catch (FirebaseAuthWeakPasswordException wpe)
+                {
+                    _presenter.failedToCreateUserWeakPassword();
+                }
+                catch(Exception e)
+                {
+                    _presenter.failedToCreateUserUnknownError();
+                }
             }
         });
     }
