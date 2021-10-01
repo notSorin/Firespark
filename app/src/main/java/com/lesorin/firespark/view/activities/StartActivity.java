@@ -2,6 +2,7 @@ package com.lesorin.firespark.view.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -202,7 +203,8 @@ public class StartActivity extends AppCompatActivity implements StartActivityCon
     @Override
     public void openMainActivity()
     {
-
+        startActivity(new Intent(this, MainActivity.class));
+        finish();
     }
 
     @Override
