@@ -1,12 +1,11 @@
 package com.lesorin.firespark.model;
 
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.lesorin.firespark.presenter.StartActivityContract;
 
 public class StartActivityModel implements StartActivityContract.Model
@@ -31,7 +30,18 @@ public class StartActivityModel implements StartActivityContract.Model
         {
             if(!email.isEmpty() && !password.isEmpty())
             {
-                _firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this::handleCreateUserTask);
+                _firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task ->
+                {
+                    if(task.isSuccessful())
+                    {
+                        setUserName(name);
+                        sendVerificationEmail();
+                    }
+                    else
+                    {
+                        handleCreateUserException(task.getException());
+                    }
+                });
             }
             else
             {
@@ -44,34 +54,46 @@ public class StartActivityModel implements StartActivityContract.Model
         }
     }
 
-    private void handleCreateUserTask(Task<AuthResult> task)
+    private void setUserName(String name)
     {
-        if(task.isSuccessful())
+        if(name != null && !name.isEmpty())
         {
-            sendVerificationEmail();
+            FirebaseUser user = _firebaseAuth.getCurrentUser();
+
+            if(user != null)
+            {
+                UserProfileChangeRequest.Builder upcrb = new UserProfileChangeRequest.Builder();
+
+                upcrb.setDisplayName(name);
+
+                UserProfileChangeRequest upcr = upcrb.build();
+
+                user.updateProfile(upcr);
+            }
         }
-        else
+    }
+
+    private void handleCreateUserException(Exception exception)
+    {
+        try
         {
-            try
-            {
-                throw task.getException();
-            }
-            catch(FirebaseAuthUserCollisionException e)
-            {
-                _presenter.failedToCreateUserAlreadyExists();
-            }
-            catch (FirebaseAuthWeakPasswordException wpe)
-            {
-                _presenter.failedToCreateUserWeakPassword();
-            }
-            catch(FirebaseAuthInvalidCredentialsException ice)
-            {
-                _presenter.failedToCreateUserInvalidEmail();
-            }
-            catch(Exception e)
-            {
-                _presenter.failedToCreateUserUnknownError();
-            }
+            throw exception;
+        }
+        catch(FirebaseAuthUserCollisionException e)
+        {
+            _presenter.failedToCreateUserAlreadyExists();
+        }
+        catch (FirebaseAuthWeakPasswordException wpe)
+        {
+            _presenter.failedToCreateUserWeakPassword();
+        }
+        catch(FirebaseAuthInvalidCredentialsException ice)
+        {
+            _presenter.failedToCreateUserInvalidEmail();
+        }
+        catch(Exception e)
+        {
+            _presenter.failedToCreateUserUnknownError();
         }
     }
 
