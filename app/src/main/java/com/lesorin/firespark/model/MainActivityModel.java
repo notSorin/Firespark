@@ -2,7 +2,6 @@ package com.lesorin.firespark.model;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.lesorin.firespark.presenter.MainActivityContract;
-import java.util.ArrayList;
 
 public class MainActivityModel implements MainActivityContract.Model
 {
@@ -31,8 +30,11 @@ public class MainActivityModel implements MainActivityContract.Model
         MainActivityContract.User user = new MainActivityContract.User();
 
         user._name = _firebaseAuth.getCurrentUser().getDisplayName();
-        user._followers = new ArrayList<>();
-        user._following = new ArrayList<>();
+
+        for(int i = 0; i < 30; i++)
+        {
+            user._sparks.add(new MainActivityContract.Spark());
+        }
 
         _presenter.profileDataAcquired(user);
     }

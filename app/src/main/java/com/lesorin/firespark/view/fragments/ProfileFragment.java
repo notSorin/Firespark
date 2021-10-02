@@ -8,6 +8,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.button.MaterialButton;
 import com.lesorin.firespark.R;
 import com.lesorin.firespark.presenter.MainActivityContract;
@@ -18,6 +21,7 @@ public class ProfileFragment extends Fragment
     private View _view;
     private MaterialButton _logoutButton;
     private TextView _userName, _userFollowing;
+    private RecyclerView _userSparks;
 
     public ProfileFragment()
     {
@@ -34,10 +38,16 @@ public class ProfileFragment extends Fragment
 
             initializeTexts();
             initializeLogoutButton();
+            initializeSparksRecycleView();
             ((MainActivity)getContext()).requestProfileData();
         }
 
         return _view;
+    }
+
+    private void initializeSparksRecycleView()
+    {
+        _userSparks = _view.findViewById(R.id.UserSparks);
     }
 
     private void initializeTexts()
@@ -60,5 +70,12 @@ public class ProfileFragment extends Fragment
     {
         _userName.setText(user._name);
         _userFollowing.setText(String.format(getResources().getString(R.string.UserFollowing), user._followers.size(), user._following.size()));
+
+        SparksRecycleViewAdapter srva = new SparksRecycleViewAdapter(user._sparks);
+        RecyclerView.LayoutManager lm = new LinearLayoutManager(getContext());
+
+        _userSparks.setLayoutManager(lm);
+        _userSparks.setItemAnimator(new DefaultItemAnimator());
+        _userSparks.setAdapter(srva);
     }
 }

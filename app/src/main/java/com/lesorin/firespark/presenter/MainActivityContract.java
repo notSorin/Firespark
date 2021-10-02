@@ -1,6 +1,6 @@
 package com.lesorin.firespark.presenter;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public interface MainActivityContract
 {
@@ -34,17 +34,32 @@ public interface MainActivityContract
     class User
     {
         public String _name;
-        public List<String> _followers;
-        public List<String> _following;
+        public ArrayList<String> _followers;
+        public ArrayList<String> _following;
+        public ArrayList<Spark> _sparks;
+
+        public User()
+        {
+            _followers = new ArrayList<>();
+            _following = new ArrayList<>();
+            _sparks = new ArrayList<>();
+        }
     }
 
     class Spark
     {
         public String _id, _text, _ownerId, _ownerName;
         public boolean _isDeleted;
-        public List<String> _likes;
-        public List<String> _subscribers;
-        public List<Comment> _comments;
+        public ArrayList<String> _likes;
+        public ArrayList<String> _subscribers;
+        public ArrayList<Comment> _comments;
+
+        public Spark()
+        {
+            _likes = new ArrayList<>();
+            _subscribers = new ArrayList<>();
+            _comments = new ArrayList<>();
+        }
     }
 
     class Comment
