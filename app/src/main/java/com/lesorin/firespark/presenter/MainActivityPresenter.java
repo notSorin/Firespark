@@ -1,5 +1,7 @@
 package com.lesorin.firespark.presenter;
 
+import java.util.ArrayList;
+
 public class MainActivityPresenter implements MainActivityContract.PresenterView, MainActivityContract.PresenterModel
 {
     private MainActivityContract.View _view;
@@ -40,8 +42,20 @@ public class MainActivityPresenter implements MainActivityContract.PresenterView
     }
 
     @Override
+    public void requestHomeData()
+    {
+        _model.requestHomeData();
+    }
+
+    @Override
     public void profileDataAcquired(MainActivityContract.User user)
     {
         _view.displayProfileData(user);
+    }
+
+    @Override
+    public void homeDataAcquired(ArrayList<MainActivityContract.Spark> sparks)
+    {
+        _view.displayHomeData(sparks);
     }
 }

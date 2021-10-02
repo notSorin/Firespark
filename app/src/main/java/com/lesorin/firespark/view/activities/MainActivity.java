@@ -11,6 +11,7 @@ import com.lesorin.firespark.presenter.MainActivityPresenter;
 import com.lesorin.firespark.view.fragments.HomeFragment;
 import com.lesorin.firespark.view.fragments.PopularFragment;
 import com.lesorin.firespark.view.fragments.ProfileFragment;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements MainActivityContract.View
 {
@@ -101,8 +102,19 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
         _profileFragment.setUserData(user);
     }
 
+    @Override
+    public void displayHomeData(ArrayList<MainActivityContract.Spark> sparks)
+    {
+        _homeFragment.setSparks(sparks);
+    }
+
     public void requestProfileData()
     {
         _presenter.requestProfileData();
+    }
+
+    public void requestHomeData()
+    {
+        _presenter.requestHomeData();
     }
 }

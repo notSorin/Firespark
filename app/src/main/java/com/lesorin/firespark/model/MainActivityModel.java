@@ -2,6 +2,7 @@ package com.lesorin.firespark.model;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.lesorin.firespark.presenter.MainActivityContract;
+import java.util.ArrayList;
 
 public class MainActivityModel implements MainActivityContract.Model
 {
@@ -37,5 +38,18 @@ public class MainActivityModel implements MainActivityContract.Model
         }
 
         _presenter.profileDataAcquired(user);
+    }
+
+    @Override
+    public void requestHomeData()
+    {
+        ArrayList<MainActivityContract.Spark> sparks = new ArrayList<>();
+
+        for(int i = 0; i < 30; i++)
+        {
+            sparks.add(new MainActivityContract.Spark());
+        }
+
+        _presenter.homeDataAcquired(sparks);
     }
 }

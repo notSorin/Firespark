@@ -11,17 +11,20 @@ public interface MainActivityContract
         void appStarted();
         void logOutButtonPressed();
         void requestProfileData();
+        void requestHomeData();
     }
 
     interface PresenterModel
     {
         void profileDataAcquired(User user);
+        void homeDataAcquired(ArrayList<Spark> sparks);
     }
 
     interface View
     {
         void openStartActivity();
         void displayProfileData(User user);
+        void displayHomeData(ArrayList<Spark> sparks);
     }
 
     interface Model
@@ -29,6 +32,7 @@ public interface MainActivityContract
         void setPresenter(MainActivityContract.PresenterModel presenter);
         void logUserOut();
         void requestProfileData();
+        void requestHomeData();
     }
 
     class User
