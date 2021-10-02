@@ -33,4 +33,7 @@
     <string name="HomePage">Home</string>
     <string name="PopularPage">Popular</string>
     <string name="LogOut">Log out</string>
+    <string name="Placeholder">Placeholder</string>
+    <string name="UserFollowing">%d Followers - Following %d</string>
+    <string name="UserName">Username</string>
 </resources>
