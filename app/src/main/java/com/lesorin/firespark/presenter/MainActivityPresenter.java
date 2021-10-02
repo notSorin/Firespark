@@ -48,6 +48,12 @@ public class MainActivityPresenter implements MainActivityContract.PresenterView
     }
 
     @Override
+    public void requestPopularData()
+    {
+        _model.requestPopularData();
+    }
+
+    @Override
     public void profileDataAcquired(MainActivityContract.User user)
     {
         _view.displayProfileData(user);
@@ -57,5 +63,11 @@ public class MainActivityPresenter implements MainActivityContract.PresenterView
     public void homeDataAcquired(ArrayList<MainActivityContract.Spark> sparks)
     {
         _view.displayHomeData(sparks);
+    }
+
+    @Override
+    public void popularDataAcquired(ArrayList<MainActivityContract.Spark> sparks)
+    {
+        _view.displayPopularData(sparks);
     }
 }

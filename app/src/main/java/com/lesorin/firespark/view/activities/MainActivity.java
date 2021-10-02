@@ -108,6 +108,12 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
         _homeFragment.setSparks(sparks);
     }
 
+    @Override
+    public void displayPopularData(ArrayList<MainActivityContract.Spark> sparks)
+    {
+        _popularFragment.setSparks(sparks);
+    }
+
     public void requestProfileData()
     {
         _presenter.requestProfileData();
@@ -116,5 +122,10 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     public void requestHomeData()
     {
         _presenter.requestHomeData();
+    }
+
+    public void requestPopularData()
+    {
+        _presenter.requestPopularData();
     }
 }

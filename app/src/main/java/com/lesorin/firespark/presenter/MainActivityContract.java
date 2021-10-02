@@ -12,12 +12,14 @@ public interface MainActivityContract
         void logOutButtonPressed();
         void requestProfileData();
         void requestHomeData();
+        void requestPopularData();
     }
 
     interface PresenterModel
     {
         void profileDataAcquired(User user);
         void homeDataAcquired(ArrayList<Spark> sparks);
+        void popularDataAcquired(ArrayList<Spark> sparks);
     }
 
     interface View
@@ -25,6 +27,7 @@ public interface MainActivityContract
         void openStartActivity();
         void displayProfileData(User user);
         void displayHomeData(ArrayList<Spark> sparks);
+        void displayPopularData(ArrayList<Spark> sparks);
     }
 
     interface Model
@@ -33,6 +36,7 @@ public interface MainActivityContract
         void logUserOut();
         void requestProfileData();
         void requestHomeData();
+        void requestPopularData();
     }
 
     class User

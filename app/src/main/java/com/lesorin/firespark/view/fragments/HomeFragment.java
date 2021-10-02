@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.lesorin.firespark.R;
 import com.lesorin.firespark.presenter.MainActivityContract;
 import com.lesorin.firespark.view.activities.MainActivity;
-
 import java.util.ArrayList;
 
 public class HomeFragment extends Fragment
@@ -54,6 +53,5 @@ public class HomeFragment extends Fragment
         _homeSparks.setLayoutManager(lm);
         _homeSparks.setItemAnimator(new DefaultItemAnimator());
         _homeSparks.setAdapter(srva);
-
     }
 }

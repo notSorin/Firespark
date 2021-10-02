@@ -28,6 +28,7 @@ public class MainActivityModel implements MainActivityContract.Model
     @Override
     public void requestProfileData()
     {
+        //todo get real data
         MainActivityContract.User user = new MainActivityContract.User();
 
         user._name = _firebaseAuth.getCurrentUser().getDisplayName();
@@ -43,6 +44,7 @@ public class MainActivityModel implements MainActivityContract.Model
     @Override
     public void requestHomeData()
     {
+        //todo get real data
         ArrayList<MainActivityContract.Spark> sparks = new ArrayList<>();
 
         for(int i = 0; i < 30; i++)
@@ -51,5 +53,19 @@ public class MainActivityModel implements MainActivityContract.Model
         }
 
         _presenter.homeDataAcquired(sparks);
+    }
+
+    @Override
+    public void requestPopularData()
+    {
+        //todo get real data
+        ArrayList<MainActivityContract.Spark> sparks = new ArrayList<>();
+
+        for(int i = 0; i < 30; i++)
+        {
+            sparks.add(new MainActivityContract.Spark());
+        }
+
+        _presenter.popularDataAcquired(sparks);
     }
 }
