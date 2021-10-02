@@ -94,4 +94,15 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
         startActivity(new Intent(this, StartActivity.class));
         finish();
     }
+
+    @Override
+    public void displayProfileData(MainActivityContract.User user)
+    {
+        _profileFragment.setUserData(user);
+    }
+
+    public void requestProfileData()
+    {
+        _presenter.requestProfileData();
+    }
 }

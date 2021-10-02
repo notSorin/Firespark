@@ -24,7 +24,6 @@ public class MainActivityPresenter implements MainActivityContract.PresenterView
     @Override
     public void appStarted()
     {
-
     }
 
     @Override
@@ -32,5 +31,17 @@ public class MainActivityPresenter implements MainActivityContract.PresenterView
     {
         _model.logUserOut();
         _view.openStartActivity();
+    }
+
+    @Override
+    public void requestProfileData()
+    {
+        _model.requestProfileData();
+    }
+
+    @Override
+    public void profileDataAcquired(MainActivityContract.User user)
+    {
+        _view.displayProfileData(user);
     }
 }
