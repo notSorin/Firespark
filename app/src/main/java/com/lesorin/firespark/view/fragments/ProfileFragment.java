@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.google.android.material.button.MaterialButton;
 import com.lesorin.firespark.R;
 import com.lesorin.firespark.presenter.MainActivityContract;
@@ -22,6 +23,7 @@ public class ProfileFragment extends Fragment
     private MaterialButton _logoutButton;
     private TextView _userName, _userFollowing;
     private RecyclerView _userSparks;
+    private SwipeRefreshLayout _swipeRefresh;
 
     public ProfileFragment()
     {
@@ -36,6 +38,7 @@ public class ProfileFragment extends Fragment
         {
             _view = inflater.inflate(R.layout.fragment_profile, container, false);
 
+            initializeSwipeRefresh();
             initializeTexts();
             initializeLogoutButton();
             initializeSparksRecycleView();
@@ -43,6 +46,17 @@ public class ProfileFragment extends Fragment
         }
 
         return _view;
+    }
+
+    private void initializeSwipeRefresh()
+    {
+        _swipeRefresh = _view.findViewById(R.id.SwipeRefresh);
+
+        _swipeRefresh.setOnRefreshListener(() ->
+        {
+            //todo
+            _swipeRefresh.setRefreshing(false);
+        });
     }
 
     private void initializeSparksRecycleView()

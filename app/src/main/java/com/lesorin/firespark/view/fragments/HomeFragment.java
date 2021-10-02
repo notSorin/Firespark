@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.lesorin.firespark.R;
 import com.lesorin.firespark.presenter.MainActivityContract;
 import com.lesorin.firespark.view.activities.MainActivity;
@@ -19,6 +20,7 @@ public class HomeFragment extends Fragment
 {
     private View _view;
     private RecyclerView _homeSparks;
+    private SwipeRefreshLayout _swipeRefresh;
 
     public HomeFragment()
     {
@@ -33,11 +35,23 @@ public class HomeFragment extends Fragment
         {
             _view = inflater.inflate(R.layout.fragment_home, container, false);
 
+            initializeSwipeRefresh();
             initializeHomeSparks();
             ((MainActivity)getContext()).requestHomeData();
         }
 
         return _view;
+    }
+
+    private void initializeSwipeRefresh()
+    {
+        _swipeRefresh = _view.findViewById(R.id.SwipeRefresh);
+
+        _swipeRefresh.setOnRefreshListener(() ->
+        {
+            //todo
+            _swipeRefresh.setRefreshing(false);
+        });
     }
 
     private void initializeHomeSparks()
