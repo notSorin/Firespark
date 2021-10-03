@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.snackbar.Snackbar;
 import com.lesorin.firespark.R;
 import com.lesorin.firespark.model.MainActivityModel;
 import com.lesorin.firespark.presenter.MainActivityContract;
@@ -12,6 +11,7 @@ import com.lesorin.firespark.presenter.MainActivityPresenter;
 import com.lesorin.firespark.view.fragments.HomeFragment;
 import com.lesorin.firespark.view.fragments.PopularFragment;
 import com.lesorin.firespark.view.fragments.ProfileFragment;
+import com.lesorin.firespark.view.fragments.SparkFragment;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements MainActivityContract.View
@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     private ProfileFragment _profileFragment;
     private HomeFragment _homeFragment;
     private PopularFragment _popularFragment;
+    private SparkFragment _sparkFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -55,6 +56,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
         _profileFragment = new ProfileFragment();
         _homeFragment = new HomeFragment();
         _popularFragment = new PopularFragment();
+        _sparkFragment = new SparkFragment();
     }
 
     private void initializeNavigationView()
