@@ -4,72 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/SparkLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="12dp"
-        android:background="@drawable/spark_background"
-        android:padding="12dp"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:id="@+id/SparkOwner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/UserName"
-            android:textAppearance="@style/TextAppearance.Firespark.Body1"
-            android:textColor="@android:color/white"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:layout_editor_absoluteX="12dp" />
-
-        <TextView
-            android:id="@+id/SparkTimestamp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/Timestamp"
-            android:textAppearance="@style/TextAppearance.Firespark.Body2"
-            android:textColor="@android:color/white"
-            android:textStyle="italic"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/SparkBody"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@string/LoremIpsum"
-            android:textAppearance="@style/TextAppearance.Firespark.Body1"
-            android:textColor="@android:color/white"
-            app:layout_constraintTop_toBottomOf="@id/SparkOwner" />
-
-        <TextView
-            android:id="@+id/SparkLikes"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/SparkLikes"
-            android:textAppearance="@style/TextAppearance.Firespark.Body2"
-            android:textColor="@android:color/white"
-            android:textStyle="italic"
-            app:layout_constraintBottom_toBottomOf="@id/SparkLike"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/SparkLike" />
-
-        <ImageView
-            android:id="@+id/SparkLike"
-            android:layout_width="60dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="8dp"
-            android:padding="6dp"
-            android:src="@drawable/thumbs_up_outline"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/SparkBody" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <include layout="@layout/spark" />
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/SwipeRefresh"
