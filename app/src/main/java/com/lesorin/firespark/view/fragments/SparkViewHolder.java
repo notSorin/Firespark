@@ -82,4 +82,9 @@ public class SparkViewHolder extends RecyclerView.ViewHolder
     {
         return _layout;
     }
+
+    public View getLikeView()
+    {
+        return _sparkLike;
+    }
 }

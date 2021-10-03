@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.snackbar.Snackbar;
 import com.lesorin.firespark.R;
 import com.lesorin.firespark.model.MainActivityModel;
 import com.lesorin.firespark.presenter.MainActivityContract;
@@ -132,5 +133,10 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     public void sparkClicked(MainActivityContract.Spark spark)
     {
         _presenter.sparkClicked(spark);
+    }
+
+    public void sparkLikeClicked(MainActivityContract.Spark spark)
+    {
+        //todo
     }
 }

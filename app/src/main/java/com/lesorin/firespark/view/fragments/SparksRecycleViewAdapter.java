@@ -41,6 +41,11 @@ public class SparksRecycleViewAdapter extends RecyclerView.Adapter<SparkViewHold
         {
             ((MainActivity)view.getContext()).sparkClicked(_sparksList.get(position));
         });
+
+        holder.getLikeView().setOnClickListener(view ->
+        {
+            ((MainActivity)view.getContext()).sparkLikeClicked(_sparksList.get(position));
+        });
     }
 
     @Override
