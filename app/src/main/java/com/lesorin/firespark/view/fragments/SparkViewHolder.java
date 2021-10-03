@@ -53,4 +53,14 @@ public class SparkViewHolder extends RecyclerView.ViewHolder
             _sparkLike.setImageResource(R.drawable.thumbs_up_outline);
         }
     }
+
+    public String getLikesTimestamp()
+    {
+        return _likesTimestamp.getText().toString();
+    }
+
+    public void setLikesTimestamp(String timestamp)
+    {
+        _likesTimestamp.setText(timestamp);
+    }
 }
