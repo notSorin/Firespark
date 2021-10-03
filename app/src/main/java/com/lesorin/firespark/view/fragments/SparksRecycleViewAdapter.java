@@ -31,11 +31,13 @@ public class SparksRecycleViewAdapter extends RecyclerView.Adapter<SparkViewHold
     @Override
     public void onBindViewHolder(@NonNull SparkViewHolder holder, int position)
     {
-        /*MainActivityContract.Spark spark = _sparksList.get(position);
+        MainActivityContract.Spark spark = _sparksList.get(position);
 
         holder.setOwnerName(spark._ownerName);
         holder.setSparkBody(spark._text);
-        holder.setSparkLiked(spark._likes.contains(spark._ownerId));*/
+        holder.setSparkLiked(spark._likes.contains(spark._ownerId));
+        holder.setDeleteButtonVisibility(spark._ownedByCurrentUser);
+        holder.setLikes(spark._likes.size() + " Likes");
 
         holder.getLayout().setOnClickListener(view ->
         {

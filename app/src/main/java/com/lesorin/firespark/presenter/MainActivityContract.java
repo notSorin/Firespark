@@ -58,7 +58,7 @@ public interface MainActivityContract
     class Spark
     {
         public String _id, _text, _ownerId, _ownerName;
-        public boolean _isDeleted;
+        public boolean _isDeleted, _ownedByCurrentUser;
         public ArrayList<String> _likes;
         public ArrayList<String> _subscribers;
         public ArrayList<Comment> _comments;
