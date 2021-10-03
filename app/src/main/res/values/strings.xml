@@ -23,7 +23,7 @@
     <string name="CreateUserUnknownError">Failed to sign up. Check your internet connection.</string>
     <string name="CreateUserVerificationEmailSent">Check your email to verify your account.</string>
     <string name="CreateUserVerificationEmailNotSent">An email could not be sent to verify this account.</string>
-    <string name="PleaseWait">Please wait...</string>
+    <string name="PleaseWait">Please wait…</string>
     <string name="UserNotVerified">Check your email to verify this account.</string>
     <string name="CannotLogIn">Incorrect email or password.</string>
     <string name="CreateUserEmptyName">Name cannot be empty.</string>
@@ -40,4 +40,5 @@
     <string name="LoremIpsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras aliquet in est ac ultricies. Nunc at varius neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</string>
     <string name="SparkLikes">Likes</string>
     <string name="Timestamp">Timestamp</string>
+    <string name="NewComment">Comment…</string>
 </resources>
