@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.lesorin.firespark.R;
 import com.lesorin.firespark.model.MainActivityModel;
 import com.lesorin.firespark.presenter.MainActivityContract;
@@ -11,6 +12,7 @@ import com.lesorin.firespark.presenter.MainActivityPresenter;
 import com.lesorin.firespark.view.fragments.HomeFragment;
 import com.lesorin.firespark.view.fragments.PopularFragment;
 import com.lesorin.firespark.view.fragments.ProfileFragment;
+import com.lesorin.firespark.view.fragments.SendSparkFragment;
 import com.lesorin.firespark.view.fragments.SparkFragment;
 import java.util.ArrayList;
 
@@ -22,6 +24,8 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     private HomeFragment _homeFragment;
     private PopularFragment _popularFragment;
     private SparkFragment _sparkFragment;
+    private FloatingActionButton _createNewSpark;
+    private SendSparkFragment _sendSparkFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -32,6 +36,18 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
         initializeMVP();
         initializeFragments();
         initializeNavigationView();
+        initializeCreateNewSpark();
+    }
+
+    private void initializeCreateNewSpark()
+    {
+        _createNewSpark = findViewById(R.id.NewSparkFAB);
+
+        _createNewSpark.setOnClickListener(view ->
+        {
+            getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.fade_in, R.anim.fade_out).
+                    replace(R.id.FragmentContainer, _sendSparkFragment).commit();
+        });
     }
 
     private void initializeMVP()
@@ -57,6 +73,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
         _homeFragment = new HomeFragment();
         _popularFragment = new PopularFragment();
         _sparkFragment = new SparkFragment();
+        _sendSparkFragment = new SendSparkFragment();
     }
 
     private void initializeNavigationView()
