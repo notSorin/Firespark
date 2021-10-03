@@ -9,7 +9,7 @@ import com.lesorin.firespark.R;
 
 public class SparkViewHolder extends RecyclerView.ViewHolder
 {
-    private TextView _ownerName, _sparkBody, _likesTimestamp;
+    private TextView _ownerName, _sparkBody, _likes, _timestmap;
     private ImageView _sparkLike;
 
     public SparkViewHolder(@NonNull View view)
@@ -18,7 +18,8 @@ public class SparkViewHolder extends RecyclerView.ViewHolder
 
         _ownerName = view.findViewById(R.id.SparkOwner);
         _sparkBody = view.findViewById(R.id.SparkBody);
-        _likesTimestamp = view.findViewById(R.id.SparkLikesTimestamp);
+        _likes = view.findViewById(R.id.SparkLikes);
+        _timestmap = view.findViewById(R.id.SparkTimestamp);
         _sparkLike = view.findViewById(R.id.SparkLike);
     }
 
@@ -54,13 +55,23 @@ public class SparkViewHolder extends RecyclerView.ViewHolder
         }
     }
 
-    public String getLikesTimestamp()
+    public String getLikes()
     {
-        return _likesTimestamp.getText().toString();
+        return _likes.getText().toString();
     }
 
-    public void setLikesTimestamp(String timestamp)
+    public void setLikes(String likes)
     {
-        _likesTimestamp.setText(timestamp);
+        _likes.setText(likes);
+    }
+
+    public String getTimestamp()
+    {
+        return _timestmap.getText().toString();
+    }
+
+    public void setTimestamp(String timestamp)
+    {
+        _timestmap.setText(timestamp);
     }
 }
