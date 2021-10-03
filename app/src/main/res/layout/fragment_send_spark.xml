@@ -28,25 +28,32 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:layout_editor_absoluteX="12dp" />
 
-        <EditText
-            android:id="@+id/SparkBody"
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="150dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="12dp"
-            android:background="@android:color/transparent"
-            android:maxLength="150"
-            android:textAppearance="@style/TextAppearance.Firespark.Body1"
-            android:textColor="@android:color/white"
+            android:hint="@string/NewSpark"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/UpToSend"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/SparkOwner" />
+            app:layout_constraintTop_toBottomOf="@id/SparkOwner">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/SparkBody"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="textMultiLine"
+                android:maxLength="150" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <LinearLayout
             android:id="@+id/UpToSend"
             android:layout_width="40dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:gravity="center"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

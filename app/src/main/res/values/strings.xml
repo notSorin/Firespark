@@ -41,5 +41,6 @@
     <string name="SparkLikes">Likes</string>
     <string name="Timestamp">Timestamp</string>
     <string name="NewComment">Comment…</string>
-    <string name="UpToSend">Up to Send</string>
+    <string name="UpToSend">Swipe up to send</string>
+    <string name="NewSpark">What are you thinking about?</string>
 </resources>
