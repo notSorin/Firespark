@@ -43,4 +43,5 @@
     <string name="NewComment">Comment…</string>
     <string name="UpToSend">Swipe up to send</string>
     <string name="NewSpark">What are you thinking about?</string>
+    <string name="ReleaseHereToSend">Release here to send!</string>
 </resources>
