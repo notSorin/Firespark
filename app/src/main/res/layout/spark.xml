@@ -46,20 +46,23 @@
         android:id="@+id/SparkLikes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:text="@string/SparkLikes"
         android:textAppearance="@style/TextAppearance.Firespark.Body2"
         android:textColor="@android:color/white"
         android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="@id/SparkLike"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/SparkBody" />
+        app:layout_constraintTop_toTopOf="@id/SparkLike" />
 
     <ImageView
         android:id="@+id/SparkLike"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="60dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
+        android:padding="6dp"
         android:src="@drawable/thumbs_up_outline"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/SparkLikes" />
+        app:layout_constraintTop_toBottomOf="@id/SparkBody" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
