@@ -4,6 +4,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import com.lesorin.firespark.R;
 
@@ -11,6 +12,7 @@ public class SparkViewHolder extends RecyclerView.ViewHolder
 {
     private TextView _ownerName, _sparkBody, _likes, _timestmap;
     private ImageView _sparkLike;
+    private ConstraintLayout _layout;
 
     public SparkViewHolder(@NonNull View view)
     {
@@ -21,6 +23,7 @@ public class SparkViewHolder extends RecyclerView.ViewHolder
         _likes = view.findViewById(R.id.SparkLikes);
         _timestmap = view.findViewById(R.id.SparkTimestamp);
         _sparkLike = view.findViewById(R.id.SparkLike);
+        _layout = view.findViewById(R.id.SparkLayout);
     }
 
     public String getOwnerName()
@@ -73,5 +76,10 @@ public class SparkViewHolder extends RecyclerView.ViewHolder
     public void setTimestamp(String timestamp)
     {
         _timestmap.setText(timestamp);
+    }
+
+    public ConstraintLayout getLayout()
+    {
+        return _layout;
     }
 }

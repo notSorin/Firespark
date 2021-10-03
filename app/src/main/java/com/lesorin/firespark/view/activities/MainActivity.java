@@ -128,4 +128,9 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     {
         _presenter.requestPopularData();
     }
+
+    public void sparkClicked(MainActivityContract.Spark spark)
+    {
+        _presenter.sparkClicked(spark);
+    }
 }

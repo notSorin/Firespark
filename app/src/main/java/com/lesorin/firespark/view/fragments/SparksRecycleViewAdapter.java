@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.lesorin.firespark.R;
 import com.lesorin.firespark.presenter.MainActivityContract;
+import com.lesorin.firespark.view.activities.MainActivity;
 import java.util.ArrayList;
 
 public class SparksRecycleViewAdapter extends RecyclerView.Adapter<SparkViewHolder>
@@ -35,6 +36,11 @@ public class SparksRecycleViewAdapter extends RecyclerView.Adapter<SparkViewHold
         holder.setOwnerName(spark._ownerName);
         holder.setSparkBody(spark._text);
         holder.setSparkLiked(spark._likes.contains(spark._ownerId));*/
+
+        holder.getLayout().setOnClickListener(view ->
+        {
+            ((MainActivity)view.getContext()).sparkClicked(_sparksList.get(position));
+        });
     }
 
     @Override

@@ -13,6 +13,7 @@ public interface MainActivityContract
         void requestProfileData();
         void requestHomeData();
         void requestPopularData();
+        void sparkClicked(Spark spark);
     }
 
     interface PresenterModel

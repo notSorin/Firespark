@@ -54,6 +54,12 @@ public class MainActivityPresenter implements MainActivityContract.PresenterView
     }
 
     @Override
+    public void sparkClicked(MainActivityContract.Spark spark)
+    {
+        //todo
+    }
+
+    @Override
     public void profileDataAcquired(MainActivityContract.User user)
     {
         _view.displayProfileData(user);
