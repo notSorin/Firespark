@@ -11,6 +11,7 @@
         android:id="@+id/CommentOwner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:padding="4dp"
         android:text="@string/UserName"
         android:textAppearance="@style/TextAppearance.Firespark.Body1"
         android:textColor="@android:color/white"
