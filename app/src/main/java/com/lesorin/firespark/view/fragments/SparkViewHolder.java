@@ -79,7 +79,7 @@ public class SparkViewHolder extends RecyclerView.ViewHolder
         _timestmap.setText(timestamp);
     }
 
-    public ConstraintLayout getLayout()
+    public View getLayoutView()
     {
         return _layout;
     }
@@ -92,5 +92,10 @@ public class SparkViewHolder extends RecyclerView.ViewHolder
     public void setDeleteButtonVisibility(boolean visible)
     {
         _deleteLike.setVisibility(visible ? View.VISIBLE : View.GONE);
+    }
+
+    public View getOwnerView()
+    {
+        return _ownerName;
     }
 }

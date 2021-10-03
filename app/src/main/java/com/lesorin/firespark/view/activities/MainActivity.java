@@ -139,4 +139,9 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     {
         //todo
     }
+
+    public void sparkOwnerClicked(MainActivityContract.Spark spark)
+    {
+        //todo
+    }
 }

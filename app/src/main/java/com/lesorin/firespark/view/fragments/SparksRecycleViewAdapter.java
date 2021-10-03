@@ -39,7 +39,7 @@ public class SparksRecycleViewAdapter extends RecyclerView.Adapter<SparkViewHold
         holder.setDeleteButtonVisibility(spark._ownedByCurrentUser);
         holder.setLikes(spark._likes.size() + " Likes");
 
-        holder.getLayout().setOnClickListener(view ->
+        holder.getLayoutView().setOnClickListener(view ->
         {
             ((MainActivity)view.getContext()).sparkClicked(_sparksList.get(position));
         });
@@ -47,6 +47,11 @@ public class SparksRecycleViewAdapter extends RecyclerView.Adapter<SparkViewHold
         holder.getLikeView().setOnClickListener(view ->
         {
             ((MainActivity)view.getContext()).sparkLikeClicked(_sparksList.get(position));
+        });
+
+        holder.getOwnerView().setOnClickListener(view ->
+        {
+            ((MainActivity)view.getContext()).sparkOwnerClicked(_sparksList.get(position));
         });
     }
 
