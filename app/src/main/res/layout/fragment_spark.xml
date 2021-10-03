@@ -4,7 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include layout="@layout/spark" />
+    <include
+        layout="@layout/spark"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/SwipeRefresh"
@@ -23,7 +29,7 @@
         android:id="@+id/SendComment"
         android:layout_width="60dp"
         android:layout_height="40dp"
-        android:layout_marginRight="12dp"
+        android:layout_marginEnd="12dp"
         android:src="@drawable/icon_send"
         app:layout_constraintBottom_toBottomOf="@id/NewCommentLayout"
         app:layout_constraintEnd_toEndOf="parent"
