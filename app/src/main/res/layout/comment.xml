@@ -24,7 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="@string/SparkBody"
+        android:text="@string/LoremIpsum"
         android:textAppearance="@style/TextAppearance.Firespark.Body1"
         android:textColor="@android:color/white"
         app:layout_constraintTop_toBottomOf="@id/CommentOwner" />
@@ -33,7 +33,7 @@
         android:id="@+id/CommentTimestamp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/Placeholder"
+        android:text="@string/Timestamp"
         android:textAppearance="@style/TextAppearance.Firespark.Body2"
         android:textColor="@android:color/white"
         android:textStyle="italic"

@@ -37,5 +37,7 @@
     <string name="UserFollowing">%d Followers - Following %d</string>
     <string name="UserName">Username</string>
     <string name="SparkLikesTimestamp">%d Likes - %s</string>
-    <string name="SparkBody">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras aliquet in est ac ultricies. Nunc at varius neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</string>
+    <string name="LoremIpsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras aliquet in est ac ultricies. Nunc at varius neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</string>
+    <string name="SparkLikes">Likes</string>
+    <string name="Timestamp">Timestamp</string>
 </resources>
