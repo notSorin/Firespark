@@ -23,10 +23,14 @@ public class HomeFragment extends Fragment
     private RecyclerView _homeSparks;
     private SwipeRefreshLayout _swipeRefresh;
     private TextView _backgroundText;
+    private SparksRecycleViewAdapter _sparksRVAdapter;
+    private RecyclerView.LayoutManager _rvLayoutManager;
 
     public HomeFragment()
     {
         _view = null;
+        _sparksRVAdapter = new SparksRecycleViewAdapter();
+        _rvLayoutManager = new LinearLayoutManager(getContext());
     }
 
     @Nullable
@@ -57,24 +61,23 @@ public class HomeFragment extends Fragment
 
         _swipeRefresh.setOnRefreshListener(() ->
         {
-            //todo
-            _swipeRefresh.setRefreshing(false);
+            _sparksRVAdapter.emptyElements();
+            ((MainActivity)getContext()).requestHomeData();
         });
     }
 
     private void initializeHomeSparks()
     {
         _homeSparks = _view.findViewById(R.id.HomeSparks);
+
+        _homeSparks.setLayoutManager(_rvLayoutManager);
+        _homeSparks.setItemAnimator(new DefaultItemAnimator());
+        _homeSparks.setAdapter(_sparksRVAdapter);
     }
 
     public void setSparks(ArrayList<MainActivityContract.Spark> sparks)
     {
-        SparksRecycleViewAdapter srva = new SparksRecycleViewAdapter(sparks);
-        RecyclerView.LayoutManager lm = new LinearLayoutManager(getContext());
-
-        _homeSparks.setLayoutManager(lm);
-        _homeSparks.setItemAnimator(new DefaultItemAnimator());
-        _homeSparks.setAdapter(srva);
+        _sparksRVAdapter.setSparks(sparks);
 
         if(!sparks.isEmpty())
         {
@@ -84,6 +87,8 @@ public class HomeFragment extends Fragment
         {
             _backgroundText.setText(R.string.NoDataText);
         }
+
+        _swipeRefresh.setRefreshing(false);
     }
 
     public void setBackGroundText(String text)

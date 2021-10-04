@@ -14,9 +14,9 @@ public class SparksRecycleViewAdapter extends RecyclerView.Adapter<SparkViewHold
 {
     private ArrayList<MainActivityContract.Spark> _sparksList;
 
-    public SparksRecycleViewAdapter(ArrayList<MainActivityContract.Spark> sparks)
+    public SparksRecycleViewAdapter()
     {
-        _sparksList = sparks;
+        _sparksList = new ArrayList<>();
     }
 
     @NonNull
@@ -61,5 +61,18 @@ public class SparksRecycleViewAdapter extends RecyclerView.Adapter<SparkViewHold
     public int getItemCount()
     {
         return _sparksList.size();
+    }
+
+    public void setSparks(ArrayList<MainActivityContract.Spark> sparks)
+    {
+        _sparksList = sparks;
+
+        notifyDataSetChanged();
+    }
+
+    public void emptyElements()
+    {
+        _sparksList.clear();
+        notifyDataSetChanged();
     }
 }
