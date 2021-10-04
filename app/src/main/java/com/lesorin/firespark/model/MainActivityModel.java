@@ -91,6 +91,8 @@ public class MainActivityModel implements MainActivityContract.Model
     {
         HashMap<String, Object> toInsert = sparkToInsertMap(spark);
 
+        //todo need to get the followers of the current user and add them to the spark's subscribers list
+
         /*_firestore.collection(SPARKS_COLLECTION).add(toInsert).addOnCompleteListener(task ->
         {
             if(task.isSuccessful())
