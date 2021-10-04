@@ -106,4 +106,10 @@ public class MainActivityPresenter implements MainActivityContract.PresenterView
     {
         _view.displayPopularData(sparks);
     }
+
+    @Override
+    public void sendSparkFailure()
+    {
+        //todo
+    }
 }

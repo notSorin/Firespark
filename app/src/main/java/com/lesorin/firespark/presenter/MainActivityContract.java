@@ -24,6 +24,7 @@ public interface MainActivityContract
         void profileDataAcquired(User user);
         void homeDataAcquired(ArrayList<Spark> sparks);
         void popularDataAcquired(ArrayList<Spark> sparks);
+        void sendSparkFailure();
     }
 
     interface View
