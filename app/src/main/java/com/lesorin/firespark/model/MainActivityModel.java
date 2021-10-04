@@ -1,12 +1,15 @@
 package com.lesorin.firespark.model;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.lesorin.firespark.presenter.MainActivityContract;
-import java.util.ArrayList;
+import java.util.HashMap;
 
 public class MainActivityModel implements MainActivityContract.Model
 {
+    private final String SPARKS_COLLECTION = "sparks";
+
     private MainActivityContract.PresenterModel _presenter;
     private FirebaseAuth _firebaseAuth;
     private FirebaseFirestore _firestore;
@@ -44,5 +47,43 @@ public class MainActivityModel implements MainActivityContract.Model
     public void requestPopularData()
     {
         //todo get real data
+    }
+
+    @Override
+    public String getUserName()
+    {
+        return _firebaseAuth.getCurrentUser().getDisplayName();
+    }
+
+    @Override
+    public void sendSpark(MainActivityContract.Spark spark)
+    {
+        HashMap<String, Object> toInsert = sparkToInsertMap(spark);
+
+        _firestore.collection(SPARKS_COLLECTION).add(toInsert).addOnCompleteListener(task ->
+        {
+            if(task.isSuccessful())
+            {
+                //todo
+            }
+            else
+            {
+                //todo
+            }
+        });
+    }
+
+    private HashMap<String, Object> sparkToInsertMap(MainActivityContract.Spark spark)
+    {
+        HashMap<String, Object> ret = new HashMap<>();
+
+        ret.put("body", spark._text);
+        ret.put("created", FieldValue.serverTimestamp());
+        ret.put("owner", _firebaseAuth.getCurrentUser().getUid());
+        ret.put("likes", spark._likes);
+        ret.put("subscribers", spark._subscribers);
+        ret.put("isDeleted", false);
+
+        return ret;
     }
 }

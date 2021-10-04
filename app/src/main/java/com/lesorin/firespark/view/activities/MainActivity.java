@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.lesorin.firespark.R;
 import com.lesorin.firespark.model.MainActivityModel;
 import com.lesorin.firespark.presenter.MainActivityContract;
@@ -134,6 +135,13 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
         _popularFragment.setSparks(sparks);
     }
 
+    @Override
+    public void errorSendSparkEmpty()
+    {
+        Snackbar.make(_navigationView, R.string.SendSparkEmpty, Snackbar.LENGTH_LONG).show();
+        _sendSparkFragment.resetSparkPosition();
+    }
+
     public void requestProfileData()
     {
         _presenter.requestProfileData();
@@ -162,5 +170,10 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     public void sparkOwnerClicked(MainActivityContract.Spark spark)
     {
         //todo
+    }
+
+    public void sendSparkRequested(String sparkBody)
+    {
+        _presenter.sendSparkRequested(sparkBody);
     }
 }

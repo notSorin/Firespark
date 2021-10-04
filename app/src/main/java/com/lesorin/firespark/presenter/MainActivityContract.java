@@ -14,6 +14,7 @@ public interface MainActivityContract
         void requestHomeData();
         void requestPopularData();
         void sparkClicked(Spark spark);
+        void sendSparkRequested(String sparkBody);
     }
 
     interface PresenterModel
@@ -29,6 +30,7 @@ public interface MainActivityContract
         void displayProfileData(User user);
         void displayHomeData(ArrayList<Spark> sparks);
         void displayPopularData(ArrayList<Spark> sparks);
+        void errorSendSparkEmpty();
     }
 
     interface Model
@@ -38,6 +40,8 @@ public interface MainActivityContract
         void requestProfileData();
         void requestHomeData();
         void requestPopularData();
+        String getUserName();
+        void sendSpark(Spark spark);
     }
 
     class User

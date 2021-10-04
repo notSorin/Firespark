@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 public class MainActivityPresenter implements MainActivityContract.PresenterView, MainActivityContract.PresenterModel
 {
+    private final int MAX_SPARK_LENGTH = 150;
+
     private MainActivityContract.View _view;
     private MainActivityContract.Model _model;
 
@@ -57,6 +59,34 @@ public class MainActivityPresenter implements MainActivityContract.PresenterView
     public void sparkClicked(MainActivityContract.Spark spark)
     {
         //todo
+    }
+
+    @Override
+    public void sendSparkRequested(String sparkBody)
+    {
+        if(sparkBody != null)
+        {
+            if(sparkBody.length() == 0)
+            {
+                _view.errorSendSparkEmpty();
+            }
+            else
+            {
+                if(sparkBody.length() <= MAX_SPARK_LENGTH)
+                {
+                    MainActivityContract.Spark spark = new MainActivityContract.Spark();
+
+                    spark._ownerName = _model.getUserName();
+                    spark._text = sparkBody;
+
+                    _model.sendSpark(spark);
+                }
+            }
+        }
+        else
+        {
+            _view.errorSendSparkEmpty();
+        }
     }
 
     @Override

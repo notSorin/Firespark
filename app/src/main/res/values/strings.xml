@@ -46,4 +46,5 @@
     <string name="NewSparkHint">What are you thinking about?</string>
     <string name="ReleaseHereToSend">Release here to send!</string>
     <string name="NoDataText">It\'s empty here!</string>
+    <string name="SendSparkEmpty">Cannot send an empty Spark!</string>
 </resources>

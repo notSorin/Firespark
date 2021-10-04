@@ -100,4 +100,9 @@ public class SendSparkFragment extends Fragment
             return true;
         });
     }
+
+    public void resetSparkPosition()
+    {
+        _sparkLayout.setY(_view.getHeight() / 2f - (_sparkLayout.getHeight() / 2f));
+    }
 }
