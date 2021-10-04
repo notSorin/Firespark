@@ -51,15 +51,17 @@ public interface MainActivityContract
     class User
     {
         public String _name;
+
+        @PropertyName("followers")
         public ArrayList<String> _followers;
+
+        @PropertyName("following")
         public ArrayList<String> _following;
-        public ArrayList<Spark> _sparks;
 
         public User()
         {
             _followers = new ArrayList<>();
             _following = new ArrayList<>();
-            _sparks = new ArrayList<>();
         }
     }
 
