@@ -56,15 +56,7 @@ public class MainActivityModel implements MainActivityContract.Model
 
                 for(QueryDocumentSnapshot document : task.getResult())
                 {
-                    MainActivityContract.Spark spark = document.toObject(MainActivityContract.Spark.class);
-                    Map<String, Object> m = document.getData();
-                    Timestamp t = (Timestamp)m.get("created");
-                    Date date = t.toDate();
-                    String formattedDate = new SimpleDateFormat(DATE_FORMAT).format(date);
-
-                    spark._id = document.getId();
-                    spark._ownedByCurrentUser = spark._ownerId.equals(_firebaseAuth.getUid());
-                    spark._created = formattedDate;
+                    MainActivityContract.Spark spark = createSparkFromDocumentSpark(document);
 
                     sparks.add(spark);
                 }
@@ -122,5 +114,20 @@ public class MainActivityModel implements MainActivityContract.Model
         ret.put("isdeleted", false);
 
         return ret;
+    }
+
+    private MainActivityContract.Spark createSparkFromDocumentSpark(QueryDocumentSnapshot document)
+    {
+        MainActivityContract.Spark spark = document.toObject(MainActivityContract.Spark.class);
+        Map<String, Object> data = document.getData();
+        Timestamp timestamp = (Timestamp)data.get("created");
+        Date date = timestamp.toDate();
+        String formattedDate = new SimpleDateFormat(DATE_FORMAT).format(date);
+
+        spark._id = document.getId();
+        spark._ownedByCurrentUser = spark._ownerId.equals(_firebaseAuth.getUid());
+        spark._created = formattedDate;
+
+        return spark;
     }
 }
