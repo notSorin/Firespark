@@ -20,7 +20,7 @@ public class SendSparkFragment extends Fragment
     private View _view;
     private LinearLayout _upToSend;
     private ConstraintLayout _sparkLayout;
-    private float _touchX, _touchY, _differenceX, _differenceY;
+    private float _differenceY;
     private TextInputEditText _sparkBody;
 
     public SendSparkFragment()
@@ -56,18 +56,11 @@ public class SendSparkFragment extends Fragment
 
         _upToSend.setOnTouchListener((view, event) ->
         {
-            if(event.getAction() == MotionEvent.ACTION_DOWN)
-            {
-                _touchX = _sparkLayout.getX();
-                _touchY = _sparkLayout.getY();
-            }
-
             if(event.getAction() == MotionEvent.ACTION_DOWN || event.getAction() == MotionEvent.ACTION_MOVE)
             {
                 //Action down initializes some data.
                 if(event.getAction() == MotionEvent.ACTION_DOWN)
                 {
-                    _differenceX = event.getX();
                     _differenceY = event.getY();
                 }
 
@@ -103,6 +96,17 @@ public class SendSparkFragment extends Fragment
 
     public void resetSparkPosition()
     {
-        _sparkLayout.setY(_view.getHeight() / 2f - (_sparkLayout.getHeight() / 2f));
+        if(_view != null)
+        {
+            _sparkLayout.setY(_view.getHeight() / 2f - (_sparkLayout.getHeight() / 2f));
+        }
+    }
+
+    public void emptySparkBody()
+    {
+        if(_view != null)
+        {
+            _sparkBody.setText("");
+        }
     }
 }
