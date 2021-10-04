@@ -1,6 +1,8 @@
 package com.lesorin.firespark.presenter;
 
+import com.google.firebase.firestore.PropertyName;
 import java.util.ArrayList;
+import java.util.List;
 
 public interface MainActivityContract
 {
@@ -62,17 +64,26 @@ public interface MainActivityContract
 
     class Spark
     {
-        public String _id, _text, _ownerId, _ownerName;
-        public boolean _isDeleted, _ownedByCurrentUser;
-        public ArrayList<String> _likes;
-        public ArrayList<String> _subscribers;
-        public ArrayList<Comment> _comments;
+        public String _id, _created;
+        public boolean _ownedByCurrentUser;
+
+        @PropertyName("body")
+        public String _text;
+
+        @PropertyName("ownerid")
+        public String _ownerId;
+
+        @PropertyName("ownername")
+        public String _ownerName;
+
+        @PropertyName("likes")
+        public List<String> _likes;
+
+        @PropertyName("subscribers")
+        public List<String> _subscribers;
 
         public Spark()
         {
-            _likes = new ArrayList<>();
-            _subscribers = new ArrayList<>();
-            _comments = new ArrayList<>();
         }
     }
 

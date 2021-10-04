@@ -1,14 +1,21 @@
 package com.lesorin.firespark.model;
 
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.lesorin.firespark.presenter.MainActivityContract;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivityModel implements MainActivityContract.Model
 {
     private final String SPARKS_COLLECTION = "sparks";
+    private final String DATE_FORMAT = "d MMM yyyy\nHH:mm";
 
     private MainActivityContract.PresenterModel _presenter;
     private FirebaseAuth _firebaseAuth;
@@ -40,7 +47,31 @@ public class MainActivityModel implements MainActivityContract.Model
     @Override
     public void requestHomeData()
     {
-        //todo get real data
+        _firestore.collection(SPARKS_COLLECTION).whereArrayContains("subscribers", _firebaseAuth.getCurrentUser().getUid()).
+                whereEqualTo("isdeleted", false).get().addOnCompleteListener(task ->
+        {
+            if(task.isSuccessful())
+            {
+                ArrayList<MainActivityContract.Spark> sparks = new ArrayList<>();
+
+                for(QueryDocumentSnapshot document : task.getResult())
+                {
+                    MainActivityContract.Spark spark = document.toObject(MainActivityContract.Spark.class);
+                    Map<String, Object> m = document.getData();
+                    Timestamp t = (Timestamp)m.get("created");
+                    Date date = t.toDate();
+                    String formattedDate = new SimpleDateFormat(DATE_FORMAT).format(date);
+
+                    spark._id = document.getId();
+                    spark._ownedByCurrentUser = spark._ownerId.equals(_firebaseAuth.getUid());
+                    spark._created = formattedDate;
+
+                    sparks.add(spark);
+                }
+
+                _presenter.homeDataAcquired(sparks);
+            }
+        });
     }
 
     @Override
@@ -83,9 +114,10 @@ public class MainActivityModel implements MainActivityContract.Model
         ret.put("body", spark._text);
         ret.put("created", FieldValue.serverTimestamp());
         ret.put("owner", currentUserId);
+        ret.put("ownername", _firebaseAuth.getCurrentUser().getDisplayName());
         ret.put("likes", spark._likes);
         ret.put("subscribers", spark._subscribers);
-        ret.put("isDeleted", false);
+        ret.put("isdeleted", false);
 
         return ret;
     }
