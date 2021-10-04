@@ -60,7 +60,7 @@ public class MainActivityModel implements MainActivityContract.Model
     {
         HashMap<String, Object> toInsert = sparkToInsertMap(spark);
 
-        _firestore.collection(SPARKS_COLLECTION).add(toInsert).addOnCompleteListener(task ->
+        /*_firestore.collection(SPARKS_COLLECTION).add(toInsert).addOnCompleteListener(task ->
         {
             if(task.isSuccessful())
             {
@@ -70,16 +70,19 @@ public class MainActivityModel implements MainActivityContract.Model
             {
                 //todo
             }
-        });
+        });*/
     }
 
     private HashMap<String, Object> sparkToInsertMap(MainActivityContract.Spark spark)
     {
         HashMap<String, Object> ret = new HashMap<>();
+        String currentUserId = _firebaseAuth.getCurrentUser().getUid();
+
+        spark._subscribers.add(currentUserId);
 
         ret.put("body", spark._text);
         ret.put("created", FieldValue.serverTimestamp());
-        ret.put("owner", _firebaseAuth.getCurrentUser().getUid());
+        ret.put("owner", currentUserId);
         ret.put("likes", spark._likes);
         ret.put("subscribers", spark._subscribers);
         ret.put("isDeleted", false);
