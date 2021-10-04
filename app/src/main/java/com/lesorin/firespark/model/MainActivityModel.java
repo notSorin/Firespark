@@ -56,7 +56,7 @@ public class MainActivityModel implements MainActivityContract.Model
 
                 for(QueryDocumentSnapshot document : task.getResult())
                 {
-                    MainActivityContract.Spark spark = createSparkFromDocumentSpark(document);
+                    MainActivityContract.Spark spark = createSparkFromDocumentSnapshot(document);
 
                     sparks.add(spark);
                 }
@@ -116,7 +116,7 @@ public class MainActivityModel implements MainActivityContract.Model
         return ret;
     }
 
-    private MainActivityContract.Spark createSparkFromDocumentSpark(QueryDocumentSnapshot document)
+    private MainActivityContract.Spark createSparkFromDocumentSnapshot(QueryDocumentSnapshot document)
     {
         MainActivityContract.Spark spark = document.toObject(MainActivityContract.Spark.class);
         Map<String, Object> data = document.getData();
