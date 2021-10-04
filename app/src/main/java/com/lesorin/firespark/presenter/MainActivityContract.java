@@ -84,6 +84,8 @@ public interface MainActivityContract
 
         public Spark()
         {
+            _likes = new ArrayList<>();
+            _subscribers = new ArrayList<>();
         }
     }
 
