@@ -11,7 +11,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+import com.google.android.material.textfield.TextInputEditText;
 import com.lesorin.firespark.R;
+import com.lesorin.firespark.view.activities.MainActivity;
 
 public class SendSparkFragment extends Fragment
 {
@@ -19,6 +21,7 @@ public class SendSparkFragment extends Fragment
     private LinearLayout _upToSend;
     private ConstraintLayout _sparkLayout;
     private float _touchX, _touchY, _differenceX, _differenceY;
+    private TextInputEditText _sparkBody;
 
     public SendSparkFragment()
     {
@@ -43,6 +46,7 @@ public class SendSparkFragment extends Fragment
     private void initializeSparkLayout()
     {
         _sparkLayout = _view.findViewById(R.id.SparkLayout);
+        _sparkBody = _view.findViewById(R.id.SparkBody);
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -82,6 +86,14 @@ public class SendSparkFragment extends Fragment
                         y = _view.getY() + _view.getHeight() - _sparkLayout.getHeight();
 
                     _sparkLayout.setY(y);
+                }
+            }
+
+            if(event.getAction() == MotionEvent.ACTION_UP)
+            {
+                if((int)_sparkLayout.getY() == (int)_view.getY())
+                {
+                    ((MainActivity)getContext()).sendSparkRequested(_sparkBody.getText().toString());
                 }
             }
 
