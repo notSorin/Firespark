@@ -83,12 +83,15 @@
                 android:layout_height="40dp"
                 android:src="@drawable/icon_up" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/UpToSend"
-                android:textAppearance="@style/TextAppearance.Firespark.Body2" />
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/icon_up" />
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/icon_up" />
 
         </LinearLayout>
 
