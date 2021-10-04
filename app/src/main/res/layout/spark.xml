@@ -26,6 +26,7 @@
         android:id="@+id/SparkTimestamp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="right"
         android:text="@string/Timestamp"
         android:textAppearance="@style/TextAppearance.Firespark.Body2"
         android:textColor="@android:color/white"
