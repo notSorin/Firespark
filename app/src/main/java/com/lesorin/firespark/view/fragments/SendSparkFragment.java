@@ -72,6 +72,9 @@ public class SendSparkFragment extends Fragment
                 {
                     float y = _sparkLayout.getY() + (event.getY() - _differenceY);
 
+                    if(y - _view.getY() < 40)
+                        y = _view.getY();
+
                     if(y < _view.getY())
                         y = _view.getY();
 
