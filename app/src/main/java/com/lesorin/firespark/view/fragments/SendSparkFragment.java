@@ -60,8 +60,6 @@ public class SendSparkFragment extends Fragment
 
             if(event.getAction() == MotionEvent.ACTION_DOWN || event.getAction() == MotionEvent.ACTION_MOVE)
             {
-                final View parent = (View)_sparkLayout.getParent();
-
                 //Action down initializes some data.
                 if(event.getAction() == MotionEvent.ACTION_DOWN)
                 {
@@ -74,10 +72,13 @@ public class SendSparkFragment extends Fragment
                 {
                     float y = _sparkLayout.getY() + (event.getY() - _differenceY);
 
-                    if(y > _view.getY() - 100 && y < _view.getY() + _view.getHeight() - 300)
-                    {
-                        _sparkLayout.setY(y);
-                    }
+                    if(y < _view.getY())
+                        y = _view.getY();
+
+                    if(y + _sparkLayout.getHeight() > _view.getY() + _view.getHeight())
+                        y = _view.getY() + _view.getHeight() - _sparkLayout.getHeight();
+
+                    _sparkLayout.setY(y);
                 }
             }
 
