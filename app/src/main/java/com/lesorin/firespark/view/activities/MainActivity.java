@@ -167,7 +167,6 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
 
     public void requestHomeData()
     {
-        _homeFragment.setBackGroundText(getString(R.string.LoadingData));
         _presenter.requestHomeData();
     }
 
