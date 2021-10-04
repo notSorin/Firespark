@@ -78,6 +78,7 @@ public class MainActivityPresenter implements MainActivityContract.PresenterView
 
                     spark._text = sparkBody.replaceAll("\\s+", " "); //Remove all newlines and consecutive spaces.
 
+                    _view.informSendingSpark();
                     _model.sendSpark(spark);
                 }
             }

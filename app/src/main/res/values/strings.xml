@@ -47,4 +47,5 @@
     <string name="ReleaseHereToSend">Release here to send!</string>
     <string name="NoDataText">It\'s empty here!</string>
     <string name="SendSparkEmpty">Cannot send an empty Spark!</string>
+    <string name="SendingSpark">Sending Spark. Please wait...</string>
 </resources>

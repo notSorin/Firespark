@@ -3,6 +3,7 @@ package com.lesorin.firespark.view.activities;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.inputmethod.InputMethodManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -46,6 +47,8 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
 
         _createNewSpark.setOnClickListener(view ->
         {
+            _sendSparkFragment.resetSparkPosition();
+            _sendSparkFragment.emptySparkBody();
             getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.fade_in, R.anim.fade_out).
                     replace(R.id.FragmentContainer, _sendSparkFragment).commit();
         });
@@ -140,6 +143,21 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     {
         Snackbar.make(_navigationView, R.string.SendSparkEmpty, Snackbar.LENGTH_LONG).show();
         _sendSparkFragment.resetSparkPosition();
+    }
+
+    @Override
+    public void informSendingSpark()
+    {
+        hideKeyboard();
+        _navigationView.setSelectedItemId(R.id.HomePage);
+        Snackbar.make(_navigationView, R.string.SendingSpark, Snackbar.LENGTH_LONG).show();
+    }
+
+    private void hideKeyboard()
+    {
+        InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
+
+        imm.hideSoftInputFromWindow(_navigationView.getWindowToken(), 0);
     }
 
     public void requestProfileData()

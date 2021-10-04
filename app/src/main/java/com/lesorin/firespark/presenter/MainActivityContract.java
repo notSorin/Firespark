@@ -31,6 +31,7 @@ public interface MainActivityContract
         void displayHomeData(ArrayList<Spark> sparks);
         void displayPopularData(ArrayList<Spark> sparks);
         void errorSendSparkEmpty();
+        void informSendingSpark();
     }
 
     interface Model
