@@ -67,21 +67,18 @@ public class SendSparkFragment extends Fragment
                 //Action move moves the view around.
                 if(event.getAction() == MotionEvent.ACTION_MOVE)
                 {
-                    final int parentTop = (int)_view.getY();
-                    final int parentHeight = _view.getHeight();
-                    final int oldSparkY = (int)_sparkLayout.getY();
-                    int newSparkY = (int)(oldSparkY + (event.getY() - _differenceY));
+                    float y = _sparkLayout.getY() + (event.getY() - _differenceY);
 
-                    if(newSparkY - parentTop < 40)
-                        newSparkY = parentTop;
+                    if(y - _view.getY() < 40)
+                        y = _view.getY();
 
-                    if(newSparkY < parentTop)
-                        newSparkY = parentTop;
+                    if(y < _view.getY())
+                        y = _view.getY();
 
-                    if(newSparkY + _sparkLayout.getHeight() > parentTop + parentHeight)
-                        newSparkY = parentTop + parentHeight - _sparkLayout.getHeight();
+                    if(y + _sparkLayout.getHeight() > _view.getY() + _view.getHeight())
+                        y = _view.getY() + _view.getHeight() - _sparkLayout.getHeight();
 
-                    _sparkLayout.setY(newSparkY);
+                    _sparkLayout.setY(y);
                 }
             }
 
