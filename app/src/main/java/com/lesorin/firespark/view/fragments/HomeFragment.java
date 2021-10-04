@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -21,6 +22,7 @@ public class HomeFragment extends Fragment
     private View _view;
     private RecyclerView _homeSparks;
     private SwipeRefreshLayout _swipeRefresh;
+    private TextView _backgroundText;
 
     public HomeFragment()
     {
@@ -35,12 +37,18 @@ public class HomeFragment extends Fragment
         {
             _view = inflater.inflate(R.layout.fragment_home, container, false);
 
+            initializeBackgroundText();
             initializeSwipeRefresh();
             initializeHomeSparks();
             ((MainActivity)getContext()).requestHomeData();
         }
 
         return _view;
+    }
+
+    private void initializeBackgroundText()
+    {
+        _backgroundText = _view.findViewById(R.id.BackgroundText);
     }
 
     private void initializeSwipeRefresh()
@@ -67,5 +75,19 @@ public class HomeFragment extends Fragment
         _homeSparks.setLayoutManager(lm);
         _homeSparks.setItemAnimator(new DefaultItemAnimator());
         _homeSparks.setAdapter(srva);
+
+        if(!sparks.isEmpty())
+        {
+            _backgroundText.setText("");
+        }
+        else
+        {
+            _backgroundText.setText(R.string.NoDataText);
+        }
+    }
+
+    public void setBackGroundText(String text)
+    {
+        _backgroundText.setText(text);
     }
 }
