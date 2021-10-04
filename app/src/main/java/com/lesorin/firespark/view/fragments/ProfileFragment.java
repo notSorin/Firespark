@@ -82,14 +82,15 @@ public class ProfileFragment extends Fragment
 
     public void setUserData(MainActivityContract.User user)
     {
-        _userName.setText(user._name);
+        //todo split into 2 functions: 1 for user info, another for sparks
+        /*_userName.setText(user._name);
         _userFollowing.setText(String.format(getResources().getString(R.string.UserFollowing), user._followers.size(), user._following.size()));
 
-        SparksRecycleViewAdapter srva = new SparksRecycleViewAdapter(user._sparks);
+        SparksRecycleViewAdapter srva = new SparksRecycleViewAdapter();
         RecyclerView.LayoutManager lm = new LinearLayoutManager(getContext());
 
         _userSparks.setLayoutManager(lm);
         _userSparks.setItemAnimator(new DefaultItemAnimator());
-        _userSparks.setAdapter(srva);
+        _userSparks.setAdapter(srva);*/
     }
 }

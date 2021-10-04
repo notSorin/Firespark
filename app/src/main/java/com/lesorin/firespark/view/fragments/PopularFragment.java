@@ -61,11 +61,12 @@ public class PopularFragment extends Fragment
 
     public void setSparks(ArrayList<MainActivityContract.Spark> sparks)
     {
-        SparksRecycleViewAdapter srva = new SparksRecycleViewAdapter(sparks);
+        //todo
+        /*SparksRecycleViewAdapter srva = new SparksRecycleViewAdapter();
         RecyclerView.LayoutManager lm = new LinearLayoutManager(getContext());
 
         _popularSparks.setLayoutManager(lm);
         _popularSparks.setItemAnimator(new DefaultItemAnimator());
-        _popularSparks.setAdapter(srva);
+        _popularSparks.setAdapter(srva);*/
     }
 }
