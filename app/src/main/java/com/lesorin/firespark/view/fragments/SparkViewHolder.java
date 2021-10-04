@@ -1,5 +1,6 @@
 package com.lesorin.firespark.view.fragments;
 
+import android.graphics.Color;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -97,5 +98,22 @@ public class SparkViewHolder extends RecyclerView.ViewHolder
     public View getOwnerView()
     {
         return _ownerName;
+    }
+
+    public void setCreated(String created)
+    {
+        _timestmap.setText(created);
+    }
+
+    public void setSpecialOwnerName(boolean special)
+    {
+        if(special)
+        {
+            _ownerName.setBackgroundResource(R.drawable.spark_owner_background);
+        }
+        else
+        {
+            _ownerName.setBackgroundColor(Color.TRANSPARENT);
+        }
     }
 }
