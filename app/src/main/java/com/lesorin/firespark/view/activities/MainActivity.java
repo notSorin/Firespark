@@ -3,6 +3,7 @@ package com.lesorin.firespark.view.activities;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.view.inputmethod.InputMethodManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -28,12 +29,15 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     private SparkFragment _sparkFragment;
     private FloatingActionButton _createNewSpark;
     private SendSparkFragment _sendSparkFragment;
+    private Vibrator _vibrator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        _vibrator = (Vibrator)getSystemService(VIBRATOR_SERVICE);
 
         initializeMVP();
         initializeFragments();
@@ -151,6 +155,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
         hideKeyboard();
         _navigationView.setSelectedItemId(R.id.HomePage);
         Snackbar.make(_navigationView, R.string.SendingSpark, Snackbar.LENGTH_LONG).show();
+        _vibrator.vibrate(200);
     }
 
     private void hideKeyboard()
