@@ -44,6 +44,7 @@ public class HomeFragment extends Fragment
             initializeBackgroundText();
             initializeSwipeRefresh();
             initializeHomeSparks();
+            _swipeRefresh.setRefreshing(true);
             ((MainActivity)getContext()).requestHomeData();
         }
 
@@ -61,7 +62,6 @@ public class HomeFragment extends Fragment
 
         _swipeRefresh.setOnRefreshListener(() ->
         {
-            _sparksRVAdapter.emptyElements();
             ((MainActivity)getContext()).requestHomeData();
         });
     }
