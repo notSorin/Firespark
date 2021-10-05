@@ -119,8 +119,7 @@ public class MainActivityModel implements MainActivityContract.Model
     private MainActivityContract.Spark createSparkFromDocumentSnapshot(QueryDocumentSnapshot document)
     {
         MainActivityContract.Spark spark = document.toObject(MainActivityContract.Spark.class);
-        Map<String, Object> data = document.getData();
-        Timestamp timestamp = (Timestamp)data.get("created");
+        Timestamp timestamp = document.getTimestamp("created");
         Date date = timestamp.toDate();
         String formattedDate = new SimpleDateFormat(DATE_FORMAT).format(date);
 
