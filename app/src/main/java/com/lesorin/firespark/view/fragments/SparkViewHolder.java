@@ -12,7 +12,7 @@ import com.lesorin.firespark.R;
 public class SparkViewHolder extends RecyclerView.ViewHolder
 {
     private TextView _ownerName, _sparkBody, _likes, _timestmap;
-    private ImageView _sparkLike, _deleteLike;
+    private ImageView _sparkLike, _sparkDelete;
     private ConstraintLayout _layout;
 
     public SparkViewHolder(@NonNull View view)
@@ -25,7 +25,7 @@ public class SparkViewHolder extends RecyclerView.ViewHolder
         _timestmap = view.findViewById(R.id.SparkTimestamp);
         _sparkLike = view.findViewById(R.id.SparkLike);
         _layout = view.findViewById(R.id.SparkLayout);
-        _deleteLike = view.findViewById(R.id.SparkDelete);
+        _sparkDelete = view.findViewById(R.id.SparkDelete);
     }
 
     public String getOwnerName()
@@ -92,7 +92,7 @@ public class SparkViewHolder extends RecyclerView.ViewHolder
 
     public void setDeleteButtonVisibility(boolean visible)
     {
-        _deleteLike.setVisibility(visible ? View.VISIBLE : View.GONE);
+        _sparkDelete.setVisibility(visible ? View.VISIBLE : View.GONE);
     }
 
     public View getOwnerView()
