@@ -92,4 +92,10 @@ public class SparksRecycleViewAdapter extends RecyclerView.Adapter<SparkViewHold
         _sparksList.add(0, spark);
         notifyDataSetChanged();
     }
+
+    public void deleteSpark(Spark spark)
+    {
+        _sparksList.remove(spark);
+        notifyDataSetChanged();
+    }
 }
