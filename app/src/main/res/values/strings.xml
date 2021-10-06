@@ -55,4 +55,8 @@
     <string name="CreateUserEmptyEmail">Email cannot be empty.</string>
     <string name="SendSparkTooLong">Sparks body is too long.</string>
     <string name="SendSparkUnknown">An error occurred while sending your spark.</string>
+    <string name="DeleteSparkTitle">Delete Spark?</string>
+    <string name="DeleteSparkMessage">Are you sure you want to delete this Spark? This action cannot be undone.</string>
+    <string name="Cancel">Cancel</string>
+    <string name="Delete">Delete</string>
 </resources>

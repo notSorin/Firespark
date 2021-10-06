@@ -61,6 +61,11 @@ public class SparksRecycleViewAdapter extends RecyclerView.Adapter<SparkViewHold
         {
             ((MainActivity)view.getContext()).sparkOwnerClicked(_sparksList.get(position));
         });
+
+        holder.getDeleteSparkView().setOnClickListener(view ->
+        {
+            ((MainActivity)view.getContext()).sparkDeleteClicked(_sparksList.get(position));
+        });
     }
 
     @Override

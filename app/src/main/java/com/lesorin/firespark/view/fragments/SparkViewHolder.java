@@ -116,4 +116,9 @@ public class SparkViewHolder extends RecyclerView.ViewHolder
             _ownerName.setBackgroundColor(Color.TRANSPARENT);
         }
     }
+
+    public View getDeleteSparkView()
+    {
+        return _sparkDelete;
+    }
 }

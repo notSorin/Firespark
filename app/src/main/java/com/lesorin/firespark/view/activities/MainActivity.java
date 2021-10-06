@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Vibrator;
 import android.view.inputmethod.InputMethodManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.lesorin.firespark.R;
@@ -219,5 +220,19 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     public void sendSparkRequested(String sparkBody)
     {
         _presenter.sendSparkRequested(sparkBody);
+    }
+
+    public void sparkDeleteClicked(Spark spark)
+    {
+        MaterialAlertDialogBuilder madb = new MaterialAlertDialogBuilder(this);
+
+        madb.setTitle(getString(R.string.DeleteSparkTitle)).setMessage(getString(R.string.DeleteSparkMessage)).
+            setNegativeButton(getString(R.string.Cancel), (dialogInterface, i) ->
+            {
+
+            }).setPositiveButton(getString(R.string.Delete), (dialogInterface, i) ->
+            {
+                _presenter.sparkDeleteClicked(spark);
+            }).show();
     }
 }

@@ -15,6 +15,7 @@ public interface MainActivityContract
         void requestPopularData();
         void sparkClicked(Spark spark);
         void sendSparkRequested(String sparkBody);
+        void sparkDeleteClicked(Spark spark);
     }
 
     interface PresenterModel
