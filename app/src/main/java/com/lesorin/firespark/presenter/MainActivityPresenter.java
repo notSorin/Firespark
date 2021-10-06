@@ -97,7 +97,7 @@ public class MainActivityPresenter implements MainActivityContract.PresenterView
     @Override
     public void sparkDeleteClicked(Spark spark)
     {
-        //todo
+        _model.deleteSpark(spark);
     }
 
     @Override
@@ -130,5 +130,17 @@ public class MainActivityPresenter implements MainActivityContract.PresenterView
         {
             _view.errorSendSparkUnknown();
         }
+    }
+
+    @Override
+    public void deleteSparkFailure()
+    {
+        _view.deleteSparkError();
+    }
+
+    @Override
+    public void deleteSparkSuccess(Spark spark)
+    {
+        _view.deleteSparkSuccess(spark);
     }
 }

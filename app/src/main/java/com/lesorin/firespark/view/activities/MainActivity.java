@@ -1,6 +1,7 @@
 package com.lesorin.firespark.view.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Vibrator;
@@ -21,6 +22,7 @@ import com.lesorin.firespark.view.fragments.ProfileFragment;
 import com.lesorin.firespark.view.fragments.SendSparkFragment;
 import com.lesorin.firespark.view.fragments.SparkFragment;
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements MainActivityContract.View
 {
@@ -96,16 +98,13 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
             switch (item.getItemId())
             {
                 case R.id.ProfilePage:
-                    getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.fade_in, R.anim.fade_out).
-                            replace(R.id.FragmentContainer, _profileFragment).commit();
+                    openProfileFragment();
                     break;
                 case R.id.HomePage:
-                    getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.fade_in, R.anim.fade_out).
-                            replace(R.id.FragmentContainer, _homeFragment).commit();
+                    openHomeFragment();
                     break;
                 case R.id.PopularPage:
-                    getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.fade_in, R.anim.fade_out).
-                            replace(R.id.FragmentContainer, _popularFragment).commit();
+                    openPopularFragment();
                     break;
             }
 
@@ -113,6 +112,24 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
         });
 
         _navigationView.setSelectedItemId(R.id.HomePage);
+    }
+
+    private void openProfileFragment()
+    {
+        getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.fade_in, R.anim.fade_out).
+                replace(R.id.FragmentContainer, _profileFragment).commit();
+    }
+
+    private void openHomeFragment()
+    {
+        getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.fade_in, R.anim.fade_out).
+                replace(R.id.FragmentContainer, _homeFragment).commit();
+    }
+
+    private void openPopularFragment()
+    {
+        getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.fade_in, R.anim.fade_out).
+                replace(R.id.FragmentContainer, _popularFragment).commit();
     }
 
     public void logOutButtonPressed()
@@ -178,6 +195,32 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     public void sparkSentSuccessfully(Spark spark)
     {
         _homeFragment.addSpark(spark);
+    }
+
+    @Override
+    public void deleteSparkError()
+    {
+        Snackbar.make(_navigationView, R.string.DeleteSparkError, Snackbar.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void deleteSparkSuccess(Spark spark)
+    {
+        List<Fragment> fragments = getSupportFragmentManager().getFragments();
+        Fragment visibleFragment = fragments.get(0);
+
+        //Need to update some fragments so they don't show the spark anymore.
+        _profileFragment.deleteSpark(spark);
+        _homeFragment.deleteSpark(spark);
+        _popularFragment.deleteSpark(spark);
+
+        //Go to the home fragment if the user wasn't already on one of the main fragments.
+        if(visibleFragment != _profileFragment && visibleFragment != _homeFragment && visibleFragment != _popularFragment)
+        {
+            openHomeFragment();
+        }
+
+        Snackbar.make(_navigationView, R.string.DeleteSparkSuccess, Snackbar.LENGTH_LONG).show();
     }
 
     private void hideKeyboard()

@@ -126,6 +126,33 @@ public class MainActivityModel implements MainActivityContract.Model
 
     }
 
+    @Override
+    public void deleteSpark(Spark spark)
+    {
+        if(spark.isOwnedByCurrentUser())
+        {
+            HashMap<String, Object> updateFields = new HashMap<>();
+
+            updateFields.put("isdeleted", true);
+
+            _firestore.collection(SPARKS_COLLECTION).document(spark.getId()).update(updateFields).addOnCompleteListener(task ->
+            {
+                if(task.isSuccessful())
+                {
+                    _presenter.deleteSparkSuccess(spark);
+                }
+                else
+                {
+                    _presenter.deleteSparkFailure();
+                }
+            });
+        }
+        else
+        {
+            _presenter.deleteSparkFailure();
+        }
+    }
+
     private HashMap<String, Object> createSparkMapForInserting(String sparkBody, User user)
     {
         HashMap<String, Object> ret = new HashMap<>();

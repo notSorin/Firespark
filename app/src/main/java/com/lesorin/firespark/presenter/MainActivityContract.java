@@ -24,6 +24,8 @@ public interface MainActivityContract
         void homeDataAcquired(ArrayList<Spark> sparks);
         void popularDataAcquired(ArrayList<Spark> sparks);
         void sendSparkResult(Spark spark);
+        void deleteSparkFailure();
+        void deleteSparkSuccess(Spark spark);
     }
 
     interface View
@@ -37,6 +39,8 @@ public interface MainActivityContract
         void errorSendSparkTooLong();
         void errorSendSparkUnknown();
         void sparkSentSuccessfully(Spark spark);
+        void deleteSparkError();
+        void deleteSparkSuccess(Spark spark);
     }
 
     interface Model
@@ -48,5 +52,6 @@ public interface MainActivityContract
         void requestPopularData();
         String getUserName();
         void sendSpark(String sparkBody);
+        void deleteSpark(Spark spark);
     }
 }
