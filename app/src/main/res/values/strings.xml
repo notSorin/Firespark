@@ -9,9 +9,9 @@
     <string name="Signup">Sign up</string>
     <string name="Email">Email</string>
     <string name="Password">Password</string>
-    <string name="RepeatPassword">Repeat password</string>
+    <string name="RepeatPassword">Repeat Password</string>
     <string name="SignupPassword">Password</string>
-    <string name="DisplayName">Name (min. 1 character)</string>
+    <string name="DisplayName">First and Last Name</string>
     <string name="NotYetImplemented">Action not yet implemented.</string>
     <string name="NameTooShort">Name must  be at least 1 character long.</string>
     <string name="PasswordsDoNotMatch">Passwords do not match.</string>
@@ -49,4 +49,5 @@
     <string name="SendSparkEmpty">Cannot send an empty Spark!</string>
     <string name="SendingSpark">Sending Spark. Please wait…</string>
     <string name="LoadingData">Loading…</string>
+    <string name="Username">Username</string>
 </resources>
