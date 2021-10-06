@@ -43,7 +43,7 @@ public class HomeFragment extends Fragment
 
             initializeBackgroundText();
             initializeSwipeRefresh();
-            initializeHomeSparks();
+            initializeHomeSparksRecyclerView();
             _swipeRefresh.setRefreshing(true);
             ((MainActivity)getContext()).requestHomeData();
         }
@@ -66,7 +66,7 @@ public class HomeFragment extends Fragment
         });
     }
 
-    private void initializeHomeSparks()
+    private void initializeHomeSparksRecyclerView()
     {
         _homeSparks = _view.findViewById(R.id.HomeSparks);
 
@@ -99,5 +99,10 @@ public class HomeFragment extends Fragment
     public void addSpark(Spark spark)
     {
         _sparksRVAdapter.addSpark(spark);
+    }
+
+    public void deleteSpark(Spark spark)
+    {
+        _sparksRVAdapter.deleteSpark(spark);
     }
 }
