@@ -54,7 +54,7 @@ public class SignupFragment extends Fragment
         _signupButton.setOnClickListener(view ->
         {
             ((StartActivity)getContext()).signUpButtonPressed(_firstLastName.getText().toString(),
-                    _username.toString(), _email.getText().toString(), _password.getText().toString(),
+                    _username.getText().toString(), _email.getText().toString(), _password.getText().toString(),
                     _passwordRepeat.getText().toString());
         });
     }
