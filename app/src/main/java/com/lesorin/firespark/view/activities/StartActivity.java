@@ -227,4 +227,25 @@ public class StartActivity extends AppCompatActivity implements StartActivityCon
         _signUpFragment.setElementsState(true);
         Snackbar.make(_viewPager, R.string.CreateUserInvalidEmail, Snackbar.LENGTH_LONG).show();
     }
+
+    @Override
+    public void errorInvalidFirstLastName()
+    {
+        _signUpFragment.setElementsState(true);
+        Snackbar.make(_viewPager, R.string.CreateUserInvalidFirstLastName, Snackbar.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void errorInvalidUsername()
+    {
+        _signUpFragment.setElementsState(true);
+        Snackbar.make(_viewPager, R.string.CreateUserInvalidUsername, Snackbar.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void errorEmptyEmail()
+    {
+        _signUpFragment.setElementsState(true);
+        Snackbar.make(_viewPager, R.string.CreateUserEmptyEmail, Snackbar.LENGTH_LONG).show();
+    }
 }

@@ -2,6 +2,9 @@ package com.lesorin.firespark.presenter;
 
 public interface StartActivityContract
 {
+    String FIRST_LAST_NAME_REGEX = "^[a-zA-Z0-9 ]{1,30}$";
+    String USERNAME_REGEX = "^[a-zA-Z0-9]{1,20}$";
+
     interface PresenterView
     {
         void setView(View view);
@@ -43,6 +46,9 @@ public interface StartActivityContract
         void errorCreateUserEmptyName();
         void errorCreateUserEmptyEmailOrPassword();
         void errorCreateUserInvalidEmail();
+        void errorInvalidFirstLastName();
+        void errorInvalidUsername();
+        void errorEmptyEmail();
     }
 
     interface Model

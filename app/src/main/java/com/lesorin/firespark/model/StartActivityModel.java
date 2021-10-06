@@ -6,16 +6,21 @@ import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.lesorin.firespark.presenter.StartActivityContract;
+import java.util.Arrays;
+import java.util.HashMap;
 
 public class StartActivityModel implements StartActivityContract.Model
 {
     private StartActivityContract.PresenterModel _presenter;
     private FirebaseAuth _firebaseAuth;
+    private FirebaseFirestore _firestore;
 
     public StartActivityModel()
     {
         _firebaseAuth = FirebaseAuth.getInstance();
+        _firestore = FirebaseFirestore.getInstance();
     }
 
     public void setPresenter(StartActivityContract.PresenterModel presenter)
@@ -26,31 +31,42 @@ public class StartActivityModel implements StartActivityContract.Model
     @Override
     public void createUser(String firstLastName, String username, String email, String password)
     {
-        if(!firstLastName.isEmpty())
+        if(!email.isEmpty() && !password.isEmpty())
         {
-            if(!email.isEmpty() && !password.isEmpty())
+            _firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task ->
             {
-                _firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task ->
+                if(task.isSuccessful())
                 {
-                    if(task.isSuccessful())
-                    {
-                        setUserName(firstLastName);
-                        sendVerificationEmail();
-                    }
-                    else
-                    {
-                        handleCreateUserException(task.getException());
-                    }
-                });
-            }
-            else
-            {
-                _presenter.failedToCreateUserEmptyEmailOrPassword();
-            }
+                    createUserInFirestore(firstLastName, username);
+                    sendVerificationEmail();
+                }
+                else
+                {
+                    handleCreateUserException(task.getException());
+                }
+            });
         }
         else
         {
-            _presenter.failedToCreateUserEmptyName();
+            _presenter.failedToCreateUserEmptyEmailOrPassword();
+        }
+    }
+
+    private void createUserInFirestore(String firstLastName, String username)
+    {
+        FirebaseUser user = _firebaseAuth.getCurrentUser();
+
+        if(user != null)
+        {
+            HashMap<String, Object> userMap = new HashMap<>();
+
+            userMap.put("firstlastname", firstLastName);
+            userMap.put("username", username);
+            userMap.put("usernameinsensitive", username.toLowerCase());
+            userMap.put("followers", Arrays.asList());
+            userMap.put("following", Arrays.asList());
+
+            _firestore.collection("users").document(user.getUid()).set(userMap);
         }
     }
 
@@ -135,7 +151,7 @@ public class StartActivityModel implements StartActivityContract.Model
     @Override
     public boolean isUserSignedIn()
     {
-        return _firebaseAuth.getCurrentUser() != null;
+        return _firebaseAuth.getCurrentUser() != null && _firebaseAuth.getCurrentUser().isEmailVerified();
     }
 
     private void sendVerificationEmail()

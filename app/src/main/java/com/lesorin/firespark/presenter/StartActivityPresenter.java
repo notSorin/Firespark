@@ -1,12 +1,10 @@
 package com.lesorin.firespark.presenter;
 
+import static com.lesorin.firespark.presenter.StartActivityContract.FIRST_LAST_NAME_REGEX;
+import static com.lesorin.firespark.presenter.StartActivityContract.USERNAME_REGEX;
+
 public class StartActivityPresenter implements StartActivityContract.PresenterView, StartActivityContract.PresenterModel
 {
-    private String FIRST_LAST_NAME_REGEX = "^[a-zA-Z0-9 ]{1,30}$";
-    private String USERNAME_REGEX = "^[a-zA-Z0-9]{1,10}$";
-    private int MAX_EMAIL_LENGTH = 48;
-    private int MAX_PASSWORD_LENGTH = 48;
-
     private StartActivityContract.View _view;
     private StartActivityContract.Model _model;
 
@@ -29,13 +27,27 @@ public class StartActivityPresenter implements StartActivityContract.PresenterVi
     @Override
     public void signUpButtonPressed(String firstLastName, String username, String email, String password, String passwordRepeat)
     {
-        if(password.equals(passwordRepeat))
+        if(firstLastName.matches(FIRST_LAST_NAME_REGEX))
         {
-            _model.createUser(firstLastName, username, email, password);
+            if(username.matches(USERNAME_REGEX))
+            {
+                if(password.equals(passwordRepeat))
+                {
+                    _model.createUser(firstLastName, username, email, password);
+                }
+                else
+                {
+                    _view.errorPasswordsDoNotMatch();
+                }
+            }
+            else
+            {
+                _view.errorInvalidUsername();
+            }
         }
         else
         {
-            _view.errorPasswordsDoNotMatch();
+            _view.errorInvalidFirstLastName();
         }
     }
 
