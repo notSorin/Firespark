@@ -24,9 +24,9 @@ public class StartActivityModel implements StartActivityContract.Model
     }
 
     @Override
-    public void createUser(String name, String email, String password)
+    public void createUser(String firstLastName, String username, String email, String password)
     {
-        if(!name.isEmpty())
+        if(!firstLastName.isEmpty())
         {
             if(!email.isEmpty() && !password.isEmpty())
             {
@@ -34,7 +34,7 @@ public class StartActivityModel implements StartActivityContract.Model
                 {
                     if(task.isSuccessful())
                     {
-                        setUserName(name);
+                        setUserName(firstLastName);
                         sendVerificationEmail();
                     }
                     else

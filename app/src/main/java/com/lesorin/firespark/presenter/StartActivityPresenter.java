@@ -22,11 +22,11 @@ public class StartActivityPresenter implements StartActivityContract.PresenterVi
     }
 
     @Override
-    public void signUpButtonPressed(String name, String email, String password, String passwordRepeat)
+    public void signUpButtonPressed(String firstLastName, String username, String email, String password, String passwordRepeat)
     {
         if(password.equals(passwordRepeat))
         {
-            _model.createUser(name, email, password);
+            _model.createUser(firstLastName, username, email, password);
         }
         else
         {

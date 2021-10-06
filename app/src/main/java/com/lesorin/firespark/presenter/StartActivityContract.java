@@ -6,7 +6,7 @@ public interface StartActivityContract
     {
         void setView(View view);
         void setModel(Model model);
-        void signUpButtonPressed(String name, String email, String password, String passwordRepeat);
+        void signUpButtonPressed(String firstLastName, String username, String email, String password, String passwordRepeat);
         void logInButtonPressed(String email, String password);
         void appStarted();
     }
@@ -48,7 +48,7 @@ public interface StartActivityContract
     interface Model
     {
         void setPresenter(PresenterModel presenter);
-        void createUser(String name, String email, String password);
+        void createUser(String firstLastName, String username, String email, String password);
         void logUserIn(String email, String password);
         boolean isUserSignedIn();
     }
