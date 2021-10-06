@@ -2,6 +2,11 @@ package com.lesorin.firespark.presenter;
 
 public class StartActivityPresenter implements StartActivityContract.PresenterView, StartActivityContract.PresenterModel
 {
+    private String FIRST_LAST_NAME_REGEX = "^[a-zA-Z0-9 ]{1,30}$";
+    private String USERNAME_REGEX = "^[a-zA-Z0-9]{1,10}$";
+    private int MAX_EMAIL_LENGTH = 48;
+    private int MAX_PASSWORD_LENGTH = 48;
+
     private StartActivityContract.View _view;
     private StartActivityContract.Model _model;
 
