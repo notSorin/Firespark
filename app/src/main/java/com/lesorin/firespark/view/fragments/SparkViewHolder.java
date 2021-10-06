@@ -11,7 +11,7 @@ import com.lesorin.firespark.R;
 
 public class SparkViewHolder extends RecyclerView.ViewHolder
 {
-    private TextView _ownerName, _sparkBody, _likes, _timestmap;
+    private TextView _ownerName, _ownerUsername, _sparkBody, _likes, _timestmap;
     private ImageView _sparkLike, _sparkDelete;
     private ConstraintLayout _layout;
 
@@ -20,6 +20,7 @@ public class SparkViewHolder extends RecyclerView.ViewHolder
         super(view);
 
         _ownerName = view.findViewById(R.id.SparkOwner);
+        _ownerUsername = view.findViewById(R.id.SparkOwnerUsername);
         _sparkBody = view.findViewById(R.id.SparkBody);
         _likes = view.findViewById(R.id.SparkLikes);
         _timestmap = view.findViewById(R.id.SparkTimestamp);
@@ -120,5 +121,10 @@ public class SparkViewHolder extends RecyclerView.ViewHolder
     public View getDeleteSparkView()
     {
         return _sparkDelete;
+    }
+
+    public void setOwnerUsername(String username)
+    {
+        _ownerUsername.setText("@" + username);
     }
 }

@@ -98,4 +98,9 @@ public class Spark
     {
         return _created;
     }
+
+    public String getOwnerUsername()
+    {
+        return _ownerUsername;
+    }
 }
