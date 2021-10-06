@@ -48,11 +48,11 @@
                 android:hint="@string/DisplayName">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/SignupName"
+                    android:id="@+id/SignupFirstLastName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName"
-                    android:maxLength="24" />
+                    android:maxLength="20" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -64,11 +64,11 @@
                 android:hint="@string/Username">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/UserHandle"
+                    android:id="@+id/SignupUsername"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName"
-                    android:maxLength="24" />
+                    android:maxLength="10" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -101,7 +101,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
-                    android:maxLength="48" />
+                    android:maxLength="20" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -118,7 +118,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
-                    android:maxLength="48" />
+                    android:maxLength="20" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
