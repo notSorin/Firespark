@@ -50,6 +50,8 @@ public class ProfileFragment extends Fragment
             initializeTexts();
             initializeLogoutButton();
             initializeSparksRecycleView();
+
+            //todo probably can't call requestProfileData from here because what if the user requests to view another user's profile before this fragment is created...
             ((MainActivity)getContext()).requestProfileData();
         }
 
