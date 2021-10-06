@@ -16,7 +16,7 @@ public class SignupFragment extends Fragment
 {
     private View _view;
     private MaterialButton _signupButton;
-    private TextInputEditText _name, _email, _password, _passwordRepeat;
+    private TextInputEditText _firstLastName, _username, _email, _password, _passwordRepeat;
 
     public SignupFragment()
     {
@@ -40,7 +40,8 @@ public class SignupFragment extends Fragment
 
     private void initializeInputs()
     {
-        _name = _view.findViewById(R.id.SignupName);
+        _firstLastName = _view.findViewById(R.id.SignupFirstLastName);
+        _username = _view.findViewById(R.id.SignupUsername);
         _email = _view.findViewById(R.id.SignupEmail);
         _password = _view.findViewById(R.id.SignupPassword);
         _passwordRepeat = _view.findViewById(R.id.SignupPasswordRepeat);
@@ -52,15 +53,16 @@ public class SignupFragment extends Fragment
 
         _signupButton.setOnClickListener(view ->
         {
-            ((StartActivity)getContext()).signUpButtonPressed(_name.getText().toString(),
-                    _email.getText().toString(), _password.getText().toString(),
+            ((StartActivity)getContext()).signUpButtonPressed(_firstLastName.getText().toString(),
+                    _username.toString(), _email.getText().toString(), _password.getText().toString(),
                     _passwordRepeat.getText().toString());
         });
     }
 
     public void setElementsState(boolean enabled)
     {
-        _name.setEnabled(enabled);
+        _firstLastName.setEnabled(enabled);
+        _username.setEnabled(enabled);
         _email.setEnabled(enabled);
         _password.setEnabled(enabled);
         _passwordRepeat.setEnabled(enabled);
