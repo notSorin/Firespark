@@ -95,4 +95,9 @@ public class HomeFragment extends Fragment
     {
         _backgroundText.setText(text);
     }
+
+    public void addSpark(Spark spark)
+    {
+        _sparksRVAdapter.addSpark(spark);
+    }
 }

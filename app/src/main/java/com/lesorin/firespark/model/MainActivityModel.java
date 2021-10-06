@@ -1,17 +1,22 @@
 package com.lesorin.firespark.model;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.lesorin.firespark.presenter.MainActivityContract;
 import com.lesorin.firespark.presenter.Spark;
+import com.lesorin.firespark.presenter.User;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class MainActivityModel implements MainActivityContract.Model
 {
     private final String SPARKS_COLLECTION = "sparks";
+    private final String USERS_COLLECTION = "users";
 
     private MainActivityContract.PresenterModel _presenter;
     private FirebaseAuth _firebaseAuth;
@@ -43,8 +48,9 @@ public class MainActivityModel implements MainActivityContract.Model
     @Override
     public void requestHomeData()
     {
+        //todo probably need to limit this query in the future, and figure out how to keep requesting data after the limit
         _firestore.collection(SPARKS_COLLECTION).whereArrayContains("subscribers", _firebaseAuth.getCurrentUser().getUid()).
-                whereEqualTo("isdeleted", false).get().addOnCompleteListener(task ->
+                whereEqualTo("isdeleted", false).orderBy("created", Query.Direction.DESCENDING).get().addOnCompleteListener(task ->
         {
             if(task.isSuccessful())
             {
@@ -75,45 +81,75 @@ public class MainActivityModel implements MainActivityContract.Model
     }
 
     @Override
-    public void sendSpark(Spark spark)
+    public void sendSpark(String sparkBody)
     {
-        HashMap<String, Object> toInsert = sparkToInsertMap(spark);
+        String userId = _firebaseAuth.getCurrentUser().getUid();
 
-        //todo need to get the followers of the current user and add them to the spark's subscribers list
-
-        /*_firestore.collection(SPARKS_COLLECTION).add(toInsert).addOnCompleteListener(task ->
+        _firestore.collection(USERS_COLLECTION).document(userId).get().addOnCompleteListener(task ->
         {
             if(task.isSuccessful())
             {
-                //todo
+                DocumentSnapshot ds = task.getResult();
+                User user = createUserFromDocumentSnapshot(ds);
+                HashMap<String, Object> toInsert = createSparkMapForInserting(sparkBody, user);
+
+                _firestore.collection(SPARKS_COLLECTION).add(toInsert).addOnCompleteListener(task2 ->
+                {
+                    if(task2.isSuccessful())
+                    {
+                        _firestore.collection(SPARKS_COLLECTION).document(task2.getResult().getId()).
+                                get().addOnCompleteListener(task3 ->
+                        {
+                            if(task3.isSuccessful())
+                            {
+                                Spark spark = createSparkFromDocumentSnapshot(task3.getResult());
+
+                                _presenter.sendSparkResult(spark);
+                            }
+                            else
+                            {
+                                _presenter.sendSparkResult(null);
+                            }
+                        });
+                    }
+                    else
+                    {
+                        _presenter.sendSparkResult(null);
+                    }
+                });
             }
             else
             {
-                //todo
+                _presenter.sendSparkResult(null);
             }
-        });*/
+        });
+
     }
 
-    private HashMap<String, Object> sparkToInsertMap(Spark spark)
+    private HashMap<String, Object> createSparkMapForInserting(String sparkBody, User user)
     {
         HashMap<String, Object> ret = new HashMap<>();
-        String currentUserId = _firebaseAuth.getCurrentUser().getUid();
 
-        spark.addSubscriber(currentUserId);
-
-        //todo fix
-        ret.put("body", spark.getBody());
+        ret.put("ownerid", _firebaseAuth.getCurrentUser().getUid());
+        ret.put("ownerfirstlastname", user.getFirstlastname());
+        ret.put("ownerusername", user.getUsername());
+        ret.put("body", sparkBody);
         ret.put("created", FieldValue.serverTimestamp());
-        ret.put("owner", currentUserId);
-        ret.put("ownername", _firebaseAuth.getCurrentUser().getDisplayName());
-        ret.put("likes", spark.getLikes());
-        ret.put("subscribers", spark.getSubscribers());
         ret.put("isdeleted", false);
+        ret.put("likes", Arrays.asList());
+
+        ArrayList<String> subscribers = user.getFollowers();
+
+        //Need to add the current user to the subscribers list so they can too be able to view
+        //their own sparks on the home feed.
+        subscribers.add(_firebaseAuth.getCurrentUser().getUid());
+
+        ret.put("subscribers", subscribers);
 
         return ret;
     }
 
-    private Spark createSparkFromDocumentSnapshot(QueryDocumentSnapshot document)
+    private Spark createSparkFromDocumentSnapshot(DocumentSnapshot document)
     {
         Spark spark = document.toObject(Spark.class);
 
@@ -121,5 +157,14 @@ public class MainActivityModel implements MainActivityContract.Model
         spark.setOwnedByCurrentUser(spark.getOwnerId().equals(_firebaseAuth.getUid()));
 
         return spark;
+    }
+
+    private User createUserFromDocumentSnapshot(DocumentSnapshot document)
+    {
+        User user = document.toObject(User.class);
+
+        user.setId(document.getId());
+
+        return user;
     }
 }

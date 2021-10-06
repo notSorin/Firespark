@@ -160,6 +160,25 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
         _vibrator.vibrate(200);
     }
 
+    @Override
+    public void errorSendSparkTooLong()
+    {
+        Snackbar.make(_navigationView, R.string.SendSparkTooLong, Snackbar.LENGTH_LONG).show();
+        _sendSparkFragment.resetSparkPosition();
+    }
+
+    @Override
+    public void errorSendSparkUnknown()
+    {
+        Snackbar.make(_navigationView, R.string.SendSparkUnknown, Snackbar.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void sparkSentSuccessfully(Spark spark)
+    {
+        _homeFragment.addSpark(spark);
+    }
+
     private void hideKeyboard()
     {
         InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);

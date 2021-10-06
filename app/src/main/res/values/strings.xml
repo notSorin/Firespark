@@ -53,4 +53,6 @@
     <string name="CreateUserInvalidFirstLastName">Invalid First and Last Name.</string>
     <string name="CreateUserInvalidUsername">Invalid Username.</string>
     <string name="CreateUserEmptyEmail">Email cannot be empty.</string>
+    <string name="SendSparkTooLong">Sparks body is too long.</string>
+    <string name="SendSparkUnknown">An error occurred while sending your spark.</string>
 </resources>

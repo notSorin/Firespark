@@ -81,4 +81,10 @@ public class SparksRecycleViewAdapter extends RecyclerView.Adapter<SparkViewHold
         _sparksList.clear();
         notifyDataSetChanged();
     }
+
+    public void addSpark(Spark spark)
+    {
+        _sparksList.add(0, spark);
+        notifyDataSetChanged();
+    }
 }

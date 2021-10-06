@@ -6,10 +6,10 @@ import java.util.ArrayList;
 
 public class User
 {
-    public String _userId;
+    public String _id;
 
     @PropertyName("firstlastname")
-    public String _firstAndLastName;
+    public String _firstLastName;
 
     @PropertyName("username")
     public String _username;
@@ -30,5 +30,25 @@ public class User
     {
         _followers = new ArrayList<>();
         _following = new ArrayList<>();
+    }
+
+    public void setId(String id)
+    {
+        _id = id;
+    }
+
+    public String getFirstlastname()
+    {
+        return _firstLastName;
+    }
+
+    public String getUsername()
+    {
+        return _username;
+    }
+
+    public ArrayList<String> getFollowers()
+    {
+        return _followers;
     }
 }

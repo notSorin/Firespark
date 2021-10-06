@@ -22,7 +22,7 @@ public interface MainActivityContract
         void profileDataAcquired(User user);
         void homeDataAcquired(ArrayList<Spark> sparks);
         void popularDataAcquired(ArrayList<Spark> sparks);
-        void sendSparkFailure();
+        void sendSparkResult(Spark spark);
     }
 
     interface View
@@ -33,6 +33,9 @@ public interface MainActivityContract
         void displayPopularData(ArrayList<Spark> sparks);
         void errorSendSparkEmpty();
         void informSendingSpark();
+        void errorSendSparkTooLong();
+        void errorSendSparkUnknown();
+        void sparkSentSuccessfully(Spark spark);
     }
 
     interface Model
@@ -43,6 +46,6 @@ public interface MainActivityContract
         void requestHomeData();
         void requestPopularData();
         String getUserName();
-        void sendSpark(Spark spark);
+        void sendSpark(String sparkBody);
     }
 }

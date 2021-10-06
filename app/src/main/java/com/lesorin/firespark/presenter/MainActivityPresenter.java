@@ -66,21 +66,26 @@ public class MainActivityPresenter implements MainActivityContract.PresenterView
     {
         if(sparkBody != null)
         {
-            if(sparkBody.length() == 0)
+            String temp = sparkBody.replaceAll("\\s+", "");
+
+            if(!temp.isEmpty())
             {
-                _view.errorSendSparkEmpty();
+                //Remove all newlines and consecutive spaces.
+                sparkBody = sparkBody.replaceAll("\\s+", " ");
+
+                if(sparkBody.length() <= MAX_SPARK_LENGTH)
+                {
+                    _view.informSendingSpark();
+                    _model.sendSpark(sparkBody);
+                }
+                else
+                {
+                    _view.errorSendSparkTooLong();
+                }
             }
             else
             {
-                if(sparkBody.length() <= MAX_SPARK_LENGTH)
-                {
-                    Spark spark = new Spark();
-
-                    spark.setBody(sparkBody.replaceAll("\\s+", " ")); //Remove all newlines and consecutive spaces.
-
-                    _view.informSendingSpark();
-                    _model.sendSpark(spark);
-                }
+                _view.errorSendSparkEmpty();
             }
         }
         else
@@ -107,9 +112,17 @@ public class MainActivityPresenter implements MainActivityContract.PresenterView
         _view.displayPopularData(sparks);
     }
 
+
     @Override
-    public void sendSparkFailure()
+    public void sendSparkResult(Spark spark)
     {
-        //todo
+        if(spark != null)
+        {
+            _view.sparkSentSuccessfully(spark);
+        }
+        else
+        {
+            _view.errorSendSparkUnknown();
+        }
     }
 }
