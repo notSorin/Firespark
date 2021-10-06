@@ -12,6 +12,8 @@ import com.lesorin.firespark.R;
 import com.lesorin.firespark.model.MainActivityModel;
 import com.lesorin.firespark.presenter.MainActivityContract;
 import com.lesorin.firespark.presenter.MainActivityPresenter;
+import com.lesorin.firespark.presenter.Spark;
+import com.lesorin.firespark.presenter.User;
 import com.lesorin.firespark.view.fragments.HomeFragment;
 import com.lesorin.firespark.view.fragments.PopularFragment;
 import com.lesorin.firespark.view.fragments.ProfileFragment;
@@ -125,19 +127,19 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     }
 
     @Override
-    public void displayProfileData(MainActivityContract.User user)
+    public void displayProfileData(User user)
     {
         _profileFragment.setUserData(user);
     }
 
     @Override
-    public void displayHomeData(ArrayList<MainActivityContract.Spark> sparks)
+    public void displayHomeData(ArrayList<Spark> sparks)
     {
         _homeFragment.setSparks(sparks);
     }
 
     @Override
-    public void displayPopularData(ArrayList<MainActivityContract.Spark> sparks)
+    public void displayPopularData(ArrayList<Spark> sparks)
     {
         _popularFragment.setSparks(sparks);
     }
@@ -180,17 +182,17 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
         _presenter.requestPopularData();
     }
 
-    public void sparkClicked(MainActivityContract.Spark spark)
+    public void sparkClicked(Spark spark)
     {
         _presenter.sparkClicked(spark);
     }
 
-    public void sparkLikeClicked(MainActivityContract.Spark spark)
+    public void sparkLikeClicked(Spark spark)
     {
         //todo
     }
 
-    public void sparkOwnerClicked(MainActivityContract.Spark spark)
+    public void sparkOwnerClicked(Spark spark)
     {
         //todo
     }

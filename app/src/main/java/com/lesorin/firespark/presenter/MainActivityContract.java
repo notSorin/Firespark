@@ -1,8 +1,6 @@
 package com.lesorin.firespark.presenter;
 
-import com.google.firebase.firestore.PropertyName;
 import java.util.ArrayList;
-import java.util.List;
 
 public interface MainActivityContract
 {
@@ -46,54 +44,5 @@ public interface MainActivityContract
         void requestPopularData();
         String getUserName();
         void sendSpark(Spark spark);
-    }
-
-    class User
-    {
-        public String _name;
-
-        @PropertyName("followers")
-        public ArrayList<String> _followers;
-
-        @PropertyName("following")
-        public ArrayList<String> _following;
-
-        public User()
-        {
-            _followers = new ArrayList<>();
-            _following = new ArrayList<>();
-        }
-    }
-
-    class Spark
-    {
-        public String _id, _created;
-        public boolean _ownedByCurrentUser;
-
-        @PropertyName("body")
-        public String _text;
-
-        @PropertyName("ownerid")
-        public String _ownerId;
-
-        @PropertyName("ownername")
-        public String _ownerName;
-
-        @PropertyName("likes")
-        public List<String> _likes;
-
-        @PropertyName("subscribers")
-        public List<String> _subscribers;
-
-        public Spark()
-        {
-            _likes = new ArrayList<>();
-            _subscribers = new ArrayList<>();
-        }
-    }
-
-    class Comment
-    {
-        public String _text, _ownerId, _ownerName;
     }
 }

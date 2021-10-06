@@ -8,13 +8,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.google.android.material.button.MaterialButton;
 import com.lesorin.firespark.R;
-import com.lesorin.firespark.presenter.MainActivityContract;
+import com.lesorin.firespark.presenter.User;
 import com.lesorin.firespark.view.activities.MainActivity;
 
 public class ProfileFragment extends Fragment
@@ -80,7 +78,7 @@ public class ProfileFragment extends Fragment
         });
     }
 
-    public void setUserData(MainActivityContract.User user)
+    public void setUserData(User user)
     {
         //todo split into 2 functions: 1 for user info, another for sparks
         /*_userName.setText(user._name);

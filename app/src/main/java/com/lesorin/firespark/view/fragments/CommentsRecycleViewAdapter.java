@@ -6,14 +6,14 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.lesorin.firespark.R;
-import com.lesorin.firespark.presenter.MainActivityContract;
+import com.lesorin.firespark.presenter.Comment;
 import java.util.ArrayList;
 
 public class CommentsRecycleViewAdapter extends RecyclerView.Adapter<CommentViewHolder>
 {
-    private ArrayList<MainActivityContract.Comment> _commentsList;
+    private ArrayList<Comment> _commentsList;
 
-    public CommentsRecycleViewAdapter(ArrayList<MainActivityContract.Comment> comments)
+    public CommentsRecycleViewAdapter(ArrayList<Comment> comments)
     {
         _commentsList = comments;
     }

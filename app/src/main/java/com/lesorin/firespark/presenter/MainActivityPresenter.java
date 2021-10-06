@@ -56,7 +56,7 @@ public class MainActivityPresenter implements MainActivityContract.PresenterView
     }
 
     @Override
-    public void sparkClicked(MainActivityContract.Spark spark)
+    public void sparkClicked(Spark spark)
     {
         //todo
     }
@@ -74,9 +74,9 @@ public class MainActivityPresenter implements MainActivityContract.PresenterView
             {
                 if(sparkBody.length() <= MAX_SPARK_LENGTH)
                 {
-                    MainActivityContract.Spark spark = new MainActivityContract.Spark();
+                    Spark spark = new Spark();
 
-                    spark._text = sparkBody.replaceAll("\\s+", " "); //Remove all newlines and consecutive spaces.
+                    spark.setBody(sparkBody.replaceAll("\\s+", " ")); //Remove all newlines and consecutive spaces.
 
                     _view.informSendingSpark();
                     _model.sendSpark(spark);
@@ -90,19 +90,19 @@ public class MainActivityPresenter implements MainActivityContract.PresenterView
     }
 
     @Override
-    public void profileDataAcquired(MainActivityContract.User user)
+    public void profileDataAcquired(User user)
     {
         _view.displayProfileData(user);
     }
 
     @Override
-    public void homeDataAcquired(ArrayList<MainActivityContract.Spark> sparks)
+    public void homeDataAcquired(ArrayList<Spark> sparks)
     {
         _view.displayHomeData(sparks);
     }
 
     @Override
-    public void popularDataAcquired(ArrayList<MainActivityContract.Spark> sparks)
+    public void popularDataAcquired(ArrayList<Spark> sparks)
     {
         _view.displayPopularData(sparks);
     }

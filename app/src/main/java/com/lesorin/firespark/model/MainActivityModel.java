@@ -1,21 +1,17 @@
 package com.lesorin.firespark.model;
 
-import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.lesorin.firespark.presenter.MainActivityContract;
-import java.text.SimpleDateFormat;
+import com.lesorin.firespark.presenter.Spark;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.Map;
 
 public class MainActivityModel implements MainActivityContract.Model
 {
     private final String SPARKS_COLLECTION = "sparks";
-    private final String DATE_FORMAT = "d MMM yyyy\nHH:mm";
 
     private MainActivityContract.PresenterModel _presenter;
     private FirebaseAuth _firebaseAuth;
@@ -52,11 +48,11 @@ public class MainActivityModel implements MainActivityContract.Model
         {
             if(task.isSuccessful())
             {
-                ArrayList<MainActivityContract.Spark> sparks = new ArrayList<>();
+                ArrayList<Spark> sparks = new ArrayList<>();
 
                 for(QueryDocumentSnapshot document : task.getResult())
                 {
-                    MainActivityContract.Spark spark = createSparkFromDocumentSnapshot(document);
+                    Spark spark = createSparkFromDocumentSnapshot(document);
 
                     sparks.add(spark);
                 }
@@ -79,7 +75,7 @@ public class MainActivityModel implements MainActivityContract.Model
     }
 
     @Override
-    public void sendSpark(MainActivityContract.Spark spark)
+    public void sendSpark(Spark spark)
     {
         HashMap<String, Object> toInsert = sparkToInsertMap(spark);
 
@@ -98,34 +94,31 @@ public class MainActivityModel implements MainActivityContract.Model
         });*/
     }
 
-    private HashMap<String, Object> sparkToInsertMap(MainActivityContract.Spark spark)
+    private HashMap<String, Object> sparkToInsertMap(Spark spark)
     {
         HashMap<String, Object> ret = new HashMap<>();
         String currentUserId = _firebaseAuth.getCurrentUser().getUid();
 
-        spark._subscribers.add(currentUserId);
+        spark.addSubscriber(currentUserId);
 
-        ret.put("body", spark._text);
+        //todo fix
+        ret.put("body", spark.getBody());
         ret.put("created", FieldValue.serverTimestamp());
         ret.put("owner", currentUserId);
         ret.put("ownername", _firebaseAuth.getCurrentUser().getDisplayName());
-        ret.put("likes", spark._likes);
-        ret.put("subscribers", spark._subscribers);
+        ret.put("likes", spark.getLikes());
+        ret.put("subscribers", spark.getSubscribers());
         ret.put("isdeleted", false);
 
         return ret;
     }
 
-    private MainActivityContract.Spark createSparkFromDocumentSnapshot(QueryDocumentSnapshot document)
+    private Spark createSparkFromDocumentSnapshot(QueryDocumentSnapshot document)
     {
-        MainActivityContract.Spark spark = document.toObject(MainActivityContract.Spark.class);
-        Timestamp timestamp = document.getTimestamp("created");
-        Date date = timestamp.toDate();
-        String formattedDate = new SimpleDateFormat(DATE_FORMAT).format(date);
+        Spark spark = document.toObject(Spark.class);
 
-        spark._id = document.getId();
-        spark._ownedByCurrentUser = spark._ownerId.equals(_firebaseAuth.getUid());
-        spark._created = formattedDate;
+        spark.setId(document.getId());
+        spark.setOwnedByCurrentUser(spark.getOwnerId().equals(_firebaseAuth.getUid()));
 
         return spark;
     }

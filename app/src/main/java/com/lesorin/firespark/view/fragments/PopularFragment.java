@@ -7,12 +7,10 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.lesorin.firespark.R;
-import com.lesorin.firespark.presenter.MainActivityContract;
+import com.lesorin.firespark.presenter.Spark;
 import com.lesorin.firespark.view.activities.MainActivity;
 import java.util.ArrayList;
 
@@ -59,7 +57,7 @@ public class PopularFragment extends Fragment
         _popularSparks = _view.findViewById(R.id.PopularSparks);
     }
 
-    public void setSparks(ArrayList<MainActivityContract.Spark> sparks)
+    public void setSparks(ArrayList<Spark> sparks)
     {
         //todo
         /*SparksRecycleViewAdapter srva = new SparksRecycleViewAdapter();

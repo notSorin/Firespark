@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.lesorin.firespark.R;
-import com.lesorin.firespark.presenter.MainActivityContract;
+import com.lesorin.firespark.presenter.Spark;
 import com.lesorin.firespark.view.activities.MainActivity;
 import java.util.ArrayList;
 
@@ -75,7 +75,7 @@ public class HomeFragment extends Fragment
         _homeSparks.setAdapter(_sparksRVAdapter);
     }
 
-    public void setSparks(ArrayList<MainActivityContract.Spark> sparks)
+    public void setSparks(ArrayList<Spark> sparks)
     {
         _sparksRVAdapter.setSparks(sparks);
 

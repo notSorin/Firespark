@@ -6,17 +6,22 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.lesorin.firespark.R;
-import com.lesorin.firespark.presenter.MainActivityContract;
+import com.lesorin.firespark.presenter.Spark;
 import com.lesorin.firespark.view.activities.MainActivity;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class SparksRecycleViewAdapter extends RecyclerView.Adapter<SparkViewHolder>
 {
-    private ArrayList<MainActivityContract.Spark> _sparksList;
+    private final String DATE_FORMAT = "d MMM yyyy\nHH:mm";
+    private ArrayList<Spark> _sparksList;
+    private SimpleDateFormat _dateFormat;
 
     public SparksRecycleViewAdapter()
     {
         _sparksList = new ArrayList<>();
+        _dateFormat = new SimpleDateFormat(DATE_FORMAT, Locale.getDefault());
     }
 
     @NonNull
@@ -31,15 +36,16 @@ public class SparksRecycleViewAdapter extends RecyclerView.Adapter<SparkViewHold
     @Override
     public void onBindViewHolder(@NonNull SparkViewHolder holder, int position)
     {
-        MainActivityContract.Spark spark = _sparksList.get(position);
+        Spark spark = _sparksList.get(position);
 
-        holder.setOwnerName(spark._ownerName);
-        holder.setSparkBody(spark._text);
-        holder.setSparkLiked(spark._likes.contains(spark._ownerId));
-        holder.setDeleteButtonVisibility(spark._ownedByCurrentUser);
-        holder.setLikes(spark._likes.size() + " Likes");
-        holder.setCreated(spark._created);
-        holder.setSpecialOwnerName(spark._ownedByCurrentUser);
+        //todo add @ handle below first and last name
+        holder.setOwnerName(spark.getOwnerFirstLastName());
+        holder.setSparkBody(spark.getBody());
+        holder.setSparkLiked(spark.getLikes().contains(spark.getOwnerId()));
+        holder.setDeleteButtonVisibility(spark.isOwnedByCurrentUser());
+        holder.setLikes(spark.getLikes().size() + " Likes");
+        holder.setCreated(_dateFormat.format(spark.getCreated().toDate()));
+        holder.setSpecialOwnerName(spark.isOwnedByCurrentUser());
 
         holder.getLayoutView().setOnClickListener(view ->
         {
@@ -63,7 +69,7 @@ public class SparksRecycleViewAdapter extends RecyclerView.Adapter<SparkViewHold
         return _sparksList.size();
     }
 
-    public void setSparks(ArrayList<MainActivityContract.Spark> sparks)
+    public void setSparks(ArrayList<Spark> sparks)
     {
         _sparksList = sparks;
 
