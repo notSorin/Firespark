@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/SparkLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -10,27 +9,20 @@
     android:padding="12dp">
 
     <TextView
-        android:id="@+id/SparkOwner"
+        android:id="@+id/SparkUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:breakStrategy="balanced"
         android:padding="4dp"
         android:text="@string/UserName"
         android:textAppearance="@style/TextAppearance.Firespark.Body1"
         android:textColor="@android:color/white"
         android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@id/SparkTimestamp"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/SparkOwnerUsername"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/UserName"
-        android:textAppearance="@style/TextAppearance.Firespark.Body1"
-        android:textColor="#41FFFFFF"
-        android:textSize="11sp"
-        app:layout_constraintStart_toStartOf="@id/SparkOwner"
-        app:layout_constraintTop_toBottomOf="@id/SparkOwner" />
 
     <TextView
         android:id="@+id/SparkTimestamp"
@@ -41,9 +33,9 @@
         android:textAppearance="@style/TextAppearance.Firespark.Body2"
         android:textColor="#41FFFFFF"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/SparkOwnerUsername"
+        app:layout_constraintBottom_toBottomOf="@id/SparkUsername"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/SparkOwner" />
+        app:layout_constraintTop_toTopOf="@id/SparkUsername" />
 
     <TextView
         android:id="@+id/SparkBody"
@@ -53,7 +45,7 @@
         android:text="@string/LoremIpsum"
         android:textAppearance="@style/TextAppearance.Firespark.Body1"
         android:textColor="@android:color/white"
-        app:layout_constraintTop_toBottomOf="@id/SparkOwnerUsername" />
+        app:layout_constraintTop_toBottomOf="@id/SparkUsername" />
 
     <TextView
         android:id="@+id/SparkLikes"

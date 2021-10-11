@@ -11,7 +11,7 @@ import com.lesorin.firespark.R;
 
 public class SparkViewHolder extends RecyclerView.ViewHolder
 {
-    private TextView _ownerName, _ownerUsername, _sparkBody, _likes, _timestmap;
+    private TextView _ownerUsername, _sparkBody, _likes, _timestmap;
     private ImageView _sparkLike, _sparkDelete;
     private ConstraintLayout _layout;
 
@@ -19,8 +19,7 @@ public class SparkViewHolder extends RecyclerView.ViewHolder
     {
         super(view);
 
-        _ownerName = view.findViewById(R.id.SparkOwner);
-        _ownerUsername = view.findViewById(R.id.SparkOwnerUsername);
+        _ownerUsername = view.findViewById(R.id.SparkUsername);
         _sparkBody = view.findViewById(R.id.SparkBody);
         _likes = view.findViewById(R.id.SparkLikes);
         _timestmap = view.findViewById(R.id.SparkTimestamp);
@@ -29,14 +28,14 @@ public class SparkViewHolder extends RecyclerView.ViewHolder
         _sparkDelete = view.findViewById(R.id.SparkDelete);
     }
 
-    public String getOwnerName()
+    public String getOwnerUsername()
     {
-        return _ownerName.getText().toString();
+        return _ownerUsername.getText().toString();
     }
 
-    public void setOwnerName(String name)
+    public void setOwnerUsername(String firstLastName, String username)
     {
-        _ownerName.setText(name);
+        _ownerUsername.setText(firstLastName + " (@" + username + ")");
     }
 
     public String getSparkBody()
@@ -98,7 +97,7 @@ public class SparkViewHolder extends RecyclerView.ViewHolder
 
     public View getOwnerView()
     {
-        return _ownerName;
+        return _ownerUsername;
     }
 
     public void setCreated(String created)
@@ -110,21 +109,16 @@ public class SparkViewHolder extends RecyclerView.ViewHolder
     {
         if(special)
         {
-            _ownerName.setBackgroundResource(R.drawable.spark_owner_background);
+            _ownerUsername.setBackgroundResource(R.drawable.spark_owner_background);
         }
         else
         {
-            _ownerName.setBackgroundColor(Color.TRANSPARENT);
+            _ownerUsername.setBackgroundColor(Color.TRANSPARENT);
         }
     }
 
     public View getDeleteSparkView()
     {
         return _sparkDelete;
-    }
-
-    public void setOwnerUsername(String username)
-    {
-        _ownerUsername.setText("@" + username);
     }
 }
