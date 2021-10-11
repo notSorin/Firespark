@@ -1,5 +1,7 @@
 package com.lesorin.firespark.model;
 
+import static com.lesorin.firespark.model.ModelConstants.SPARKS_COLLECTION;
+import static com.lesorin.firespark.model.ModelConstants.USERS_COLLECTION;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
@@ -15,9 +17,6 @@ import java.util.HashMap;
 
 public class MainActivityModel implements MainActivityContract.Model
 {
-    private final String SPARKS_COLLECTION = "sparks";
-    private final String USERS_COLLECTION = "users";
-
     private MainActivityContract.PresenterModel _presenter;
     private FirebaseAuth _firebaseAuth;
     private FirebaseFirestore _firestore;
