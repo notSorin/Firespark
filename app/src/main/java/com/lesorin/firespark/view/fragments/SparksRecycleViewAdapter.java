@@ -100,11 +100,21 @@ public class SparksRecycleViewAdapter extends RecyclerView.Adapter<SparkViewHold
 
     public void sparkLiked(Spark spark)
     {
+        sparkChanged(spark);
+    }
+
+    private void sparkChanged(Spark spark)
+    {
         int sparkIndex = _sparksList.indexOf(spark);
 
         if(sparkIndex != -1)
         {
             notifyItemChanged(sparkIndex);
         }
+    }
+
+    public void sparkLikeRemoved(Spark spark)
+    {
+        sparkChanged(spark);
     }
 }

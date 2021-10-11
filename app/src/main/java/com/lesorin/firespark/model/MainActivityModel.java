@@ -180,6 +180,7 @@ public class MainActivityModel implements MainActivityContract.Model
                 if(task.isSuccessful())
                 {
                     spark.getLikes().add(userId);
+                    spark.setLikedByCurrentUser(true);
                     _presenter.addSparkLikeSuccess(spark);
                 }
                 else
@@ -191,7 +192,26 @@ public class MainActivityModel implements MainActivityContract.Model
 
     private void removeLikeFromSpark(Spark spark)
     {
+        String sparkId = spark.getId();
+        String userId = _firebaseAuth.getUid();
+        HashMap<String, Object> updateFields = new HashMap<>();
 
+        updateFields.put(SPARK_LIKES, FieldValue.arrayRemove(userId));
+
+        _firestore.collection(SPARKS_COLLECTION).document(sparkId).update(updateFields).
+            addOnCompleteListener(task ->
+            {
+                if(task.isSuccessful())
+                {
+                    spark.getLikes().remove(userId);
+                    spark.setLikedByCurrentUser(false);
+                    _presenter.removeSparkLikeSuccess(spark);
+                }
+                else
+                {
+                    _presenter.removeSparkLikeFailure(spark);
+                }
+            });
     }
 
     private HashMap<String, Object> createSparkMapForInserting(String sparkBody, User user)

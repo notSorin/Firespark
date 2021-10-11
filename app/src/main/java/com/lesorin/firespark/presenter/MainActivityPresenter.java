@@ -161,4 +161,16 @@ public class MainActivityPresenter implements MainActivityContract.PresenterView
     {
         _view.addSparkLikeFailure(spark);
     }
+
+    @Override
+    public void removeSparkLikeSuccess(Spark spark)
+    {
+        _view.removeSparkLikeSuccess(spark);
+    }
+
+    @Override
+    public void removeSparkLikeFailure(Spark spark)
+    {
+        _view.removeSparkLikeFailure(spark);
+    }
 }

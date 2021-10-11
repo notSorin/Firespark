@@ -74,4 +74,9 @@ public abstract class FragmentWithSparks extends Fragment
     {
         _sparksRVAdapter.sparkLiked(spark);
     }
+
+    public void sparkLikeRemoved(Spark spark)
+    {
+        _sparksRVAdapter.sparkLikeRemoved(spark);
+    }
 }

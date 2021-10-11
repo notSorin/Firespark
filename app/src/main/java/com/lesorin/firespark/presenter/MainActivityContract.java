@@ -29,6 +29,8 @@ public interface MainActivityContract
         void deleteSparkSuccess(Spark spark);
         void addSparkLikeSuccess(Spark spark);
         void addSparkLikeFailure(Spark spark);
+        void removeSparkLikeSuccess(Spark spark);
+        void removeSparkLikeFailure(Spark spark);
     }
 
     interface View
@@ -46,6 +48,8 @@ public interface MainActivityContract
         void deleteSparkSuccess(Spark spark);
         void addSparkLikeSuccess(Spark spark);
         void addSparkLikeFailure(Spark spark);
+        void removeSparkLikeSuccess(Spark spark);
+        void removeSparkLikeFailure(Spark spark);
     }
 
     interface Model
