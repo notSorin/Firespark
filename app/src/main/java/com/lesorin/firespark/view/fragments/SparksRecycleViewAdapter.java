@@ -37,12 +37,13 @@ public class SparksRecycleViewAdapter extends RecyclerView.Adapter<SparkViewHold
     public void onBindViewHolder(@NonNull SparkViewHolder holder, int position)
     {
         Spark spark = _sparksList.get(position);
+        int likesAmount = spark.getLikes().size();
 
         holder.setOwnerUsername(spark.getOwnerFirstLastName(), spark.getOwnerUsername());
         holder.setSparkBody(spark.getBody());
         holder.setSparkLiked(spark.isLikedByCurrentUser());
         holder.setDeleteButtonVisibility(spark.isOwnedByCurrentUser());
-        holder.setLikes(spark.getLikes().size() + " Likes");
+        holder.setLikes(likesAmount == 1 ? likesAmount + " Like" : likesAmount + " Likes");
         holder.setCreated(_dateFormat.format(spark.getCreated().toDate()));
         holder.setSpecialOwnerName(spark.isOwnedByCurrentUser());
 
