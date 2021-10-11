@@ -223,6 +223,7 @@ public class MainActivityModel implements MainActivityContract.Model
 
         spark.setId(document.getId());
         spark.setOwnedByCurrentUser(spark.getOwnerId().equals(_firebaseAuth.getUid()));
+        spark.setLikedByCurrentUser(spark.getLikes().contains(_firebaseAuth.getUid()));
 
         return spark;
     }

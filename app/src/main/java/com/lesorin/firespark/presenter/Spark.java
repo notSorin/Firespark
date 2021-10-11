@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class Spark
 {
     private String _id;
-    private boolean _ownedByCurrentUser;
+    private boolean _ownedByCurrentUser, _likedByCurrentUser;
 
     @PropertyName(SPARK_OWNERID)
     private String _ownerId;
@@ -103,5 +103,15 @@ public class Spark
     public String getOwnerUsername()
     {
         return _ownerUsername;
+    }
+
+    public boolean isLikedByCurrentUser()
+    {
+        return _likedByCurrentUser;
+    }
+
+    public void setLikedByCurrentUser(boolean likedByCurrentUser)
+    {
+        _likedByCurrentUser = likedByCurrentUser;
     }
 }
