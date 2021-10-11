@@ -282,6 +282,30 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
         Snackbar.make(_navigationView, R.string.RequestProfileSparksFailure, Snackbar.LENGTH_LONG).show();
     }
 
+    @Override
+    public void followUserSuccess(User user)
+    {
+        _profileFragment.setUser(user);
+    }
+
+    @Override
+    public void followUserFailure()
+    {
+        Snackbar.make(_navigationView, R.string.FollowUserFailure, Snackbar.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void unfollowUserSuccess(User user)
+    {
+        _profileFragment.setUser(user);
+    }
+
+    @Override
+    public void unfollowUserFailure()
+    {
+        Snackbar.make(_navigationView, R.string.UnfollowUserFailure, Snackbar.LENGTH_LONG).show();
+    }
+
     private void hideKeyboard()
     {
         InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
@@ -337,5 +361,10 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
             {
                 _presenter.sparkDeleteClicked(spark);
             }).show();
+    }
+
+    public void userFollowClicked(User user)
+    {
+        _presenter.userFollowClicked(user);
     }
 }

@@ -63,7 +63,7 @@ public class ProfileFragment extends FragmentWithSparks
 
         _followButton.setOnClickListener(view ->
         {
-            //todo
+            ((MainActivity)view.getContext()).userFollowClicked(_user);
         });
     }
 

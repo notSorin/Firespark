@@ -2,11 +2,13 @@ package com.lesorin.firespark.model;
 
 import static com.lesorin.firespark.model.ModelConstants.*;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.WriteBatch;
 import com.lesorin.firespark.presenter.MainActivityContract;
 import com.lesorin.firespark.presenter.Spark;
 import com.lesorin.firespark.presenter.User;
@@ -245,6 +247,91 @@ public class MainActivityModel implements MainActivityContract.Model
         {
             addLikeToSpark(spark);
         }
+    }
+
+    @Override
+    public void followUnfollowUser(User user)
+    {
+        String userId = _firebaseAuth.getUid();
+
+        if(user.getFollowers().contains(userId)) //Current user is following the other user: unfollow them.
+        {
+            unfollowUser(user);
+        }
+        else //Current user is not following the other user: follow them.
+        {
+            followUser(user);
+        }
+    }
+
+    private void followUser(User user)
+    {
+        String currentUserId = _firebaseAuth.getUid();
+        String otherUserId = user.getId();
+        HashMap<String, Object> currentUserUpdate = new HashMap<>();
+        HashMap<String, Object> otherUserUpdate = new HashMap<>();
+
+        //Add the other user to the current user's following list.
+        currentUserUpdate.put(USER_FOLLOWING, FieldValue.arrayUnion(otherUserId));
+
+        //Add the current user to the other user's followers list.
+        otherUserUpdate.put(USER_FOLLOWERS, FieldValue.arrayUnion(currentUserId));
+
+        WriteBatch batch = _firestore.batch();
+        DocumentReference currentUserRef = _firestore.collection(USERS_COLLECTION).document(currentUserId);
+        DocumentReference otherUserRef = _firestore.collection(USERS_COLLECTION).document(otherUserId);
+
+        batch.update(currentUserRef, currentUserUpdate);
+        batch.update(otherUserRef, otherUserUpdate);
+
+        batch.commit().addOnCompleteListener(task ->
+        {
+            if(task.isSuccessful())
+            {
+                user.setFollowedByCurrentUser(true);
+                user.getFollowers().add(currentUserId);
+                _presenter.followUserSuccess(user);
+            }
+            else
+            {
+                _presenter.followUserFailure();
+            }
+        });
+    }
+
+    private void unfollowUser(User user)
+    {
+        String currentUserId = _firebaseAuth.getUid();
+        String otherUserId = user.getId();
+        HashMap<String, Object> currentUserUpdate = new HashMap<>();
+        HashMap<String, Object> otherUserUpdate = new HashMap<>();
+
+        //Add the other user to the current user's following list.
+        currentUserUpdate.put(USER_FOLLOWING, FieldValue.arrayRemove(otherUserId));
+
+        //Add the current user to the other user's followers list.
+        otherUserUpdate.put(USER_FOLLOWERS, FieldValue.arrayRemove(currentUserId));
+
+        WriteBatch batch = _firestore.batch();
+        DocumentReference currentUserRef = _firestore.collection(USERS_COLLECTION).document(currentUserId);
+        DocumentReference otherUserRef = _firestore.collection(USERS_COLLECTION).document(otherUserId);
+
+        batch.update(currentUserRef, currentUserUpdate);
+        batch.update(otherUserRef, otherUserUpdate);
+
+        batch.commit().addOnCompleteListener(task ->
+        {
+            if(task.isSuccessful())
+            {
+                user.setFollowedByCurrentUser(false);
+                user.getFollowers().remove(currentUserId);
+                _presenter.unfollowUserSuccess(user);
+            }
+            else
+            {
+                _presenter.unfollowUserFailure();
+            }
+        });
     }
 
     private void addLikeToSpark(Spark spark)

@@ -17,6 +17,7 @@ public interface MainActivityContract
         void sendSparkRequested(String sparkBody);
         void sparkDeleteClicked(Spark spark);
         void sparkLikeClicked(Spark spark);
+        void userFollowClicked(User user);
     }
 
     interface PresenterModel
@@ -33,6 +34,10 @@ public interface MainActivityContract
         void removeSparkLikeFailure(Spark spark);
         void requestProfileUserResult(User user);
         void requestProfileSparksResult(ArrayList<Spark> sparks);
+        void followUserSuccess(User user);
+        void followUserFailure();
+        void unfollowUserSuccess(User user);
+        void unfollowUserFailure();
     }
 
     interface View
@@ -56,6 +61,10 @@ public interface MainActivityContract
         void requestProfileUserFailure();
         void requestProfileSparksSuccess(ArrayList<Spark> sparks);
         void requestProfileSparksFailure();
+        void followUserSuccess(User user);
+        void followUserFailure();
+        void unfollowUserSuccess(User user);
+        void unfollowUserFailure();
     }
 
     interface Model
@@ -69,5 +78,6 @@ public interface MainActivityContract
         void sendSpark(String sparkBody);
         void deleteSpark(Spark spark);
         void likeDislikeSpark(Spark spark);
+        void followUnfollowUser(User user);
     }
 }

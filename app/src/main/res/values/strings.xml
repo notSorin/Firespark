@@ -69,4 +69,6 @@
     <string name="Unfollow">Unfollow</string>
     <string name="RequestProfileUserFailure">Could not retrieve user data.</string>
     <string name="RequestProfileSparksFailure">Could not retrieve user sparks.</string>
+    <string name="FollowUserFailure">User cannot be followed at the moment.</string>
+    <string name="UnfollowUserFailure">User cannot be unfollowed at the moment.</string>
 </resources>

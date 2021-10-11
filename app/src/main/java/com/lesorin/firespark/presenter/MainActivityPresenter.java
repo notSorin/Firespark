@@ -108,6 +108,12 @@ public class MainActivityPresenter implements MainActivityContract.PresenterView
     }
 
     @Override
+    public void userFollowClicked(User user)
+    {
+        _model.followUnfollowUser(user);
+    }
+
+    @Override
     public void profileDataAcquired(User user)
     {
         _view.displayProfileData(user);
@@ -199,5 +205,29 @@ public class MainActivityPresenter implements MainActivityContract.PresenterView
         {
             _view.requestProfileSparksFailure();
         }
+    }
+
+    @Override
+    public void followUserSuccess(User user)
+    {
+        _view.followUserSuccess(user);
+    }
+
+    @Override
+    public void followUserFailure()
+    {
+        _view.followUserFailure();
+    }
+
+    @Override
+    public void unfollowUserSuccess(User user)
+    {
+        _view.unfollowUserSuccess(user);
+    }
+
+    @Override
+    public void unfollowUserFailure()
+    {
+        _view.unfollowUserFailure();
     }
 }
