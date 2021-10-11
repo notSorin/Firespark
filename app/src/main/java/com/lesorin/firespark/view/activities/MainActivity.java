@@ -226,7 +226,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
         //Go to the home fragment if the user wasn't already on one of the main fragments.
         if(visibleFragment != _profileFragment && visibleFragment != _homeFragment && visibleFragment != _popularFragment)
         {
-            openHomeFragment();
+            _navigationView.setSelectedItemId(R.id.HomePage);
         }
 
         Snackbar.make(_navigationView, R.string.DeleteSparkSuccess, Snackbar.LENGTH_LONG).show();
