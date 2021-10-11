@@ -19,11 +19,13 @@ public class MainActivityModel implements MainActivityContract.Model
     private MainActivityContract.PresenterModel _presenter;
     private FirebaseAuth _firebaseAuth;
     private FirebaseFirestore _firestore;
+    private HashMap<String, Spark> _sparksCache;
 
     public MainActivityModel()
     {
         _firebaseAuth = FirebaseAuth.getInstance();
         _firestore = FirebaseFirestore.getInstance();
+        _sparksCache = new HashMap<>();
     }
 
     public void setPresenter(MainActivityContract.PresenterModel presenter)
@@ -60,6 +62,8 @@ public class MainActivityModel implements MainActivityContract.Model
                 for(QueryDocumentSnapshot document : task.getResult())
                 {
                     Spark spark = createSparkFromDocumentSnapshot(document);
+
+                    spark = updateSparksCache(spark);
 
                     sparks.add(spark);
                 }
@@ -105,12 +109,39 @@ public class MainActivityModel implements MainActivityContract.Model
                 {
                     Spark spark = createSparkFromDocumentSnapshot(document);
 
+                    spark = updateSparksCache(spark);
+
                     sparks.add(spark);
                 }
 
                 _presenter.homeDataAcquired(sparks);
             }
         });
+    }
+
+    //Inserts the parameter spark into the cache map.
+    //If a spark with the same id as the parameter spark already exists in the cache map, then the map spark
+    //is updated and returned.
+    //If a spark with the same id as the parameter spark is not contained in the cache map, then the
+    //parameter map is inserted into the map and returned.
+    private Spark updateSparksCache(Spark spark)
+    {
+        Spark sparkInMap = _sparksCache.get(spark.getId());
+
+        //If it is in the cache, then update it with the latest data read
+        //from the database, because the cache might contain old values.
+        if(sparkInMap != null)
+        {
+           sparkInMap.update(spark);
+        }
+        else //If the spark is not in cache, insert it.
+        {
+            _sparksCache.put(spark.getId(), spark);
+
+            sparkInMap = spark;
+        }
+
+        return sparkInMap;
     }
 
     @Override
@@ -149,6 +180,8 @@ public class MainActivityModel implements MainActivityContract.Model
                             {
                                 Spark spark = createSparkFromDocumentSnapshot(task3.getResult());
 
+                                spark = updateSparksCache(spark);
+
                                 _presenter.sendSparkResult(spark);
                             }
                             else
@@ -184,6 +217,7 @@ public class MainActivityModel implements MainActivityContract.Model
             {
                 if(task.isSuccessful())
                 {
+                    _sparksCache.remove(spark.getId());
                     _presenter.deleteSparkSuccess(spark);
                 }
                 else
