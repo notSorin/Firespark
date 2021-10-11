@@ -318,7 +318,8 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
 
     public void sparkOwnerClicked(Spark spark)
     {
-        //todo
+        _presenter.requestProfileData(spark.getOwnerId());
+        openProfileFragment();
     }
 
     public void sendSparkRequested(String sparkBody)
