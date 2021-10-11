@@ -7,25 +7,26 @@ import java.util.ArrayList;
 
 public class User
 {
-    public String _id;
+    private String _id;
+    private boolean _isCurrentUser;
 
     @PropertyName(USER_FIRSTLASTNAME)
-    public String _firstLastName;
+    private String _firstLastName;
 
     @PropertyName(USER_USERNAME)
-    public String _username;
+    private String _username;
 
     @PropertyName(USER_USERNAMEINSENSITIVE)
-    public String _usernameInsensitive;
+    private String _usernameInsensitive;
 
     @PropertyName(USER_JOINED)
-    public Timestamp joined;
+    private Timestamp _joined;
 
     @PropertyName(USER_FOLLOWERS)
-    public ArrayList<String> _followers;
+    private ArrayList<String> _followers;
 
     @PropertyName(USER_FOLLOWING)
-    public ArrayList<String> _following;
+    private ArrayList<String> _following;
 
     public User()
     {
@@ -51,5 +52,25 @@ public class User
     public ArrayList<String> getFollowers()
     {
         return _followers;
+    }
+
+    public ArrayList<String> getFollowing()
+    {
+        return _following;
+    }
+
+    public Timestamp getJoined()
+    {
+        return _joined;
+    }
+
+    public void setCurrentUser(boolean isCurrentUser)
+    {
+        _isCurrentUser = isCurrentUser;
+    }
+
+    public boolean isCurrentUser()
+    {
+        return _isCurrentUser;
     }
 }
