@@ -18,7 +18,7 @@
     <string name="UserCreateSuccess">Your account has been created.</string>
     <string name="PasswordTooShort">Your password is too short.</string>
     <string name="SignUpFailed">Sign up failed. Check email and try again…</string>
-    <string name="CreateUserAlreadyExists">This email is already in use.</string>
+    <string name="CreateUserEmailAlreadyExists">This email is already in use.</string>
     <string name="CreateUserWeakPassword">Your password is too weak.</string>
     <string name="CreateUserUnknownError">Failed to sign up. Check your internet connection.</string>
     <string name="CreateUserVerificationEmailSent">Check your email to verify your account.</string>
@@ -61,4 +61,5 @@
     <string name="Delete">Delete</string>
     <string name="DeleteSparkError">The Spark could not be deleted.</string>
     <string name="DeleteSparkSuccess">The Spark has been deleted.</string>
+    <string name="CreateUserUsernameExists">This username is not available.</string>
 </resources>

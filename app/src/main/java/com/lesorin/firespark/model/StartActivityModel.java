@@ -34,16 +34,34 @@ public class StartActivityModel implements StartActivityContract.Model
     {
         if(!email.isEmpty() && !password.isEmpty())
         {
-            _firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task ->
+            _firestore.collection(USERS_COLLECTION).whereEqualTo(USER_USERNAMEINSENSITIVE, username.toLowerCase()).
+                    get().addOnCompleteListener(task ->
             {
                 if(task.isSuccessful())
                 {
-                    createUserInFirestore(firstLastName, username);
-                    sendVerificationEmail();
+                    if(task.getResult().size() == 0)
+                    {
+                        _firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task2 ->
+                        {
+                            if(task2.isSuccessful())
+                            {
+                                createUserInFirestore(firstLastName, username);
+                                sendVerificationEmail();
+                            }
+                            else
+                            {
+                                handleCreateUserException(task2.getException());
+                            }
+                        });
+                    }
+                    else
+                    {
+                        _presenter.failedToCreateUserUsernameAlreadyExists();
+                    }
                 }
                 else
                 {
-                    handleCreateUserException(task.getException());
+                    _presenter.failedToCreateUserUnknownError();
                 }
             });
         }
@@ -98,7 +116,7 @@ public class StartActivityModel implements StartActivityContract.Model
         }
         catch(FirebaseAuthUserCollisionException e)
         {
-            _presenter.failedToCreateUserAlreadyExists();
+            _presenter.failedToCreateUserEmailAlreadyExists();
         }
         catch (FirebaseAuthWeakPasswordException wpe)
         {

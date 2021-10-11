@@ -148,10 +148,10 @@ public class StartActivity extends AppCompatActivity implements StartActivityCon
     }
 
     @Override
-    public void errorCreateUserAlreadyExists()
+    public void errorCreateUserEmailAlreadyExists()
     {
         _signUpFragment.setElementsState(true);
-        Snackbar.make(_viewPager, R.string.CreateUserAlreadyExists, Snackbar.LENGTH_LONG).show();
+        Snackbar.make(_viewPager, R.string.CreateUserEmailAlreadyExists, Snackbar.LENGTH_LONG).show();
     }
 
     @Override
@@ -247,5 +247,12 @@ public class StartActivity extends AppCompatActivity implements StartActivityCon
     {
         _signUpFragment.setElementsState(true);
         Snackbar.make(_viewPager, R.string.CreateUserEmptyEmail, Snackbar.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void errorCreateUserUsernameAlreadyExists()
+    {
+        _signUpFragment.setElementsState(true);
+        Snackbar.make(_viewPager, R.string.CreateUserUsernameExists, Snackbar.LENGTH_LONG).show();
     }
 }

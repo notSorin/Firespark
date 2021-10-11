@@ -17,7 +17,7 @@ public interface StartActivityContract
     interface PresenterModel
     {
         void userCreatedSuccessfully();
-        void failedToCreateUserAlreadyExists();
+        void failedToCreateUserEmailAlreadyExists();
         void failedToCreateUserWeakPassword();
         void failedToCreateUserUnknownError();
         void createUserVerificationEmailSent();
@@ -28,13 +28,14 @@ public interface StartActivityContract
         void failedToCreateUserEmptyName();
         void failedToCreateUserEmptyEmailOrPassword();
         void failedToCreateUserInvalidEmail();
+        void failedToCreateUserUsernameAlreadyExists();
     }
 
     interface View
     {
         void errorPasswordsDoNotMatch();
         void userCreatedSuccessfully();
-        void errorCreateUserAlreadyExists();
+        void errorCreateUserEmailAlreadyExists();
         void errorCreateUserWeakPassword();
         void errorCreateUserUnknownError();
         void notifyVerificationEmailSent();
@@ -49,6 +50,7 @@ public interface StartActivityContract
         void errorInvalidFirstLastName();
         void errorInvalidUsername();
         void errorEmptyEmail();
+        void errorCreateUserUsernameAlreadyExists();
     }
 
     interface Model

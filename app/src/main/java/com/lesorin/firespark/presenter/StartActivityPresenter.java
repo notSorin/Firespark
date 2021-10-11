@@ -73,9 +73,9 @@ public class StartActivityPresenter implements StartActivityContract.PresenterVi
     }
 
     @Override
-    public void failedToCreateUserAlreadyExists()
+    public void failedToCreateUserEmailAlreadyExists()
     {
-        _view.errorCreateUserAlreadyExists();
+        _view.errorCreateUserEmailAlreadyExists();
     }
 
     @Override
@@ -137,5 +137,11 @@ public class StartActivityPresenter implements StartActivityContract.PresenterVi
     public void failedToCreateUserInvalidEmail()
     {
         _view.errorCreateUserInvalidEmail();
+    }
+
+    @Override
+    public void failedToCreateUserUsernameAlreadyExists()
+    {
+        _view.errorCreateUserUsernameAlreadyExists();
     }
 }
