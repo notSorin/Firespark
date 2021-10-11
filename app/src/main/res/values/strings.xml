@@ -62,4 +62,5 @@
     <string name="DeleteSparkError">The Spark could not be deleted.</string>
     <string name="DeleteSparkSuccess">The Spark has been deleted.</string>
     <string name="CreateUserUsernameExists">This username is not available.</string>
+    <string name="AddSparkLikeFailure">Failed to like the Spark...</string>
 </resources>

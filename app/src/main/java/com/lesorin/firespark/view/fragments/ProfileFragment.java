@@ -17,7 +17,6 @@ import com.lesorin.firespark.R;
 import com.lesorin.firespark.presenter.Spark;
 import com.lesorin.firespark.presenter.User;
 import com.lesorin.firespark.view.activities.MainActivity;
-
 import java.util.ArrayList;
 
 public class ProfileFragment extends Fragment
@@ -137,5 +136,10 @@ public class ProfileFragment extends Fragment
     public void deleteSpark(Spark spark)
     {
         _sparksRVAdapter.deleteSpark(spark);
+    }
+
+    public void sparkLiked(Spark spark)
+    {
+        _sparksRVAdapter.sparkLiked(spark);
     }
 }

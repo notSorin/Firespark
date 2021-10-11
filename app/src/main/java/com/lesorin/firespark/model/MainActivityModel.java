@@ -151,6 +151,49 @@ public class MainActivityModel implements MainActivityContract.Model
         }
     }
 
+    @Override
+    public void likeDislikeSpark(Spark spark)
+    {
+        String userId = _firebaseAuth.getUid();
+
+        if(spark.getLikes().contains(userId)) //Current user already likes this spark, so remove their like.
+        {
+            removeLikeFromSpark(spark);
+        }
+        else
+        {
+            addLikeToSpark(spark);
+        }
+    }
+
+    private void addLikeToSpark(Spark spark)
+    {
+        String sparkId = spark.getId();
+        String userId = _firebaseAuth.getUid();
+        HashMap<String, Object> updateFields = new HashMap<>();
+
+        updateFields.put(SPARK_LIKES, FieldValue.arrayUnion(userId));
+
+        _firestore.collection(SPARKS_COLLECTION).document(sparkId).update(updateFields).
+            addOnCompleteListener(task ->
+            {
+                if(task.isSuccessful())
+                {
+                    spark.getLikes().add(userId);
+                    _presenter.addSparkLikeSuccess(spark);
+                }
+                else
+                {
+                    _presenter.addSparkLikeFailure(spark);
+                }
+            });
+    }
+
+    private void removeLikeFromSpark(Spark spark)
+    {
+
+    }
+
     private HashMap<String, Object> createSparkMapForInserting(String sparkBody, User user)
     {
         HashMap<String, Object> ret = new HashMap<>();

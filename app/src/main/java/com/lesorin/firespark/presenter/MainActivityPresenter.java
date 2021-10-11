@@ -101,6 +101,12 @@ public class MainActivityPresenter implements MainActivityContract.PresenterView
     }
 
     @Override
+    public void sparkLikeClicked(Spark spark)
+    {
+        _model.likeDislikeSpark(spark);
+    }
+
+    @Override
     public void profileDataAcquired(User user)
     {
         _view.displayProfileData(user);
@@ -142,5 +148,17 @@ public class MainActivityPresenter implements MainActivityContract.PresenterView
     public void deleteSparkSuccess(Spark spark)
     {
         _view.deleteSparkSuccess(spark);
+    }
+
+    @Override
+    public void addSparkLikeSuccess(Spark spark)
+    {
+        _view.addSparkLikeSuccess(spark);
+    }
+
+    @Override
+    public void addSparkLikeFailure(Spark spark)
+    {
+        _view.addSparkLikeFailure(spark);
     }
 }

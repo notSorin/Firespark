@@ -100,4 +100,9 @@ public class PopularFragment extends Fragment
     {
         _sparksRVAdapter.deleteSpark(spark);
     }
+
+    public void sparkLiked(Spark spark)
+    {
+        _sparksRVAdapter.sparkLiked(spark);
+    }
 }

@@ -223,6 +223,20 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
         Snackbar.make(_navigationView, R.string.DeleteSparkSuccess, Snackbar.LENGTH_LONG).show();
     }
 
+    @Override
+    public void addSparkLikeSuccess(Spark spark)
+    {
+        _profileFragment.sparkLiked(spark);
+        _homeFragment.sparkLiked(spark);
+        _popularFragment.sparkLiked(spark);
+    }
+
+    @Override
+    public void addSparkLikeFailure(Spark spark)
+    {
+        Snackbar.make(_navigationView, R.string.AddSparkLikeFailure, Snackbar.LENGTH_LONG).show();
+    }
+
     private void hideKeyboard()
     {
         InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
@@ -252,7 +266,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
 
     public void sparkLikeClicked(Spark spark)
     {
-        //todo
+        _presenter.sparkLikeClicked(spark);
     }
 
     public void sparkOwnerClicked(Spark spark)

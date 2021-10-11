@@ -40,7 +40,7 @@ public class SparksRecycleViewAdapter extends RecyclerView.Adapter<SparkViewHold
 
         holder.setOwnerUsername(spark.getOwnerFirstLastName(), spark.getOwnerUsername());
         holder.setSparkBody(spark.getBody());
-        holder.setSparkLiked(spark.getLikes().contains(spark.getOwnerId()));
+        holder.setSparkLiked(spark.isLikedByCurrentUser());
         holder.setDeleteButtonVisibility(spark.isOwnedByCurrentUser());
         holder.setLikes(spark.getLikes().size() + " Likes");
         holder.setCreated(_dateFormat.format(spark.getCreated().toDate()));
@@ -96,5 +96,15 @@ public class SparksRecycleViewAdapter extends RecyclerView.Adapter<SparkViewHold
     {
         _sparksList.remove(spark);
         notifyDataSetChanged();
+    }
+
+    public void sparkLiked(Spark spark)
+    {
+        int sparkIndex = _sparksList.indexOf(spark);
+
+        if(sparkIndex != -1)
+        {
+            notifyItemChanged(sparkIndex);
+        }
     }
 }
