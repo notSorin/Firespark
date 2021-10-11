@@ -53,10 +53,12 @@ public class SparkViewHolder extends RecyclerView.ViewHolder
         if(liked)
         {
             _sparkLike.setImageResource(R.drawable.thumbs_up_fill);
+            _sparkLike.setColorFilter(Color.GREEN);
         }
         else
         {
             _sparkLike.setImageResource(R.drawable.thumbs_up_outline);
+            _sparkLike.clearColorFilter();
         }
     }
 
