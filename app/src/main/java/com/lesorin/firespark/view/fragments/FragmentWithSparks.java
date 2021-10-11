@@ -19,12 +19,14 @@ public abstract class FragmentWithSparks extends Fragment
     protected SwipeRefreshLayout _swipeRefresh;
     protected SparksRecycleViewAdapter _sparksRVAdapter;
     protected RecyclerView.LayoutManager _rvLayoutManager;
+    protected ArrayList<Spark> _sparksList;
 
     public FragmentWithSparks()
     {
         _view = null;
         _sparksRVAdapter = new SparksRecycleViewAdapter();
         _rvLayoutManager = new LinearLayoutManager(getContext());
+        _sparksList = null;
     }
 
     protected void initializeBackgroundText()
@@ -50,14 +52,34 @@ public abstract class FragmentWithSparks extends Fragment
 
     public void setSparks(ArrayList<Spark> sparks)
     {
-        _sparksRVAdapter.setSparks(sparks);
-        setBackGroundText(sparks.isEmpty() ? getString(R.string.NoDataText) : "");
-        _swipeRefresh.setRefreshing(false);
+        _sparksList = sparks;
+
+        displaySparks();
+    }
+
+    protected void displaySparks()
+    {
+        if(_sparksList != null)
+        {
+            if(_sparksRVAdapter != null)
+            {
+                _sparksRVAdapter.setSparks(_sparksList);
+                setBackGroundText(_sparksList.isEmpty() ? getString(R.string.NoDataText) : "");
+            }
+
+            if(_swipeRefresh != null)
+            {
+                _swipeRefresh.setRefreshing(false);
+            }
+        }
     }
 
     public void setBackGroundText(String text)
     {
-        _backgroundText.setText(text);
+        if(_backgroundText != null)
+        {
+            _backgroundText.setText(text);
+        }
     }
 
     public void addSpark(Spark spark)

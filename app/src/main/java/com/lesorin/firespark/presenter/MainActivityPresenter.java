@@ -28,6 +28,7 @@ public class MainActivityPresenter implements MainActivityContract.PresenterView
     @Override
     public void appStarted()
     {
+        _model.requestHomeData();
     }
 
     @Override

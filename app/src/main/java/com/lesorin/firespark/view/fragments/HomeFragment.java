@@ -23,7 +23,7 @@ public class HomeFragment extends FragmentWithSparks
             initializeSwipeRefresh(() -> ((MainActivity)getContext()).requestHomeData());
             initializeSparksRecycleView();
             _swipeRefresh.setRefreshing(true);
-            ((MainActivity)getContext()).requestHomeData();
+            displaySparks();
         }
 
         return _view;

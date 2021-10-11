@@ -50,6 +50,14 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
         initializeCreateNewSpark();
     }
 
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+
+        _presenter.appStarted();
+    }
+
     private void initializeCreateNewSpark()
     {
         _createNewSpark = findViewById(R.id.NewSparkFAB);
