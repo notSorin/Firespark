@@ -22,6 +22,7 @@ import com.lesorin.firespark.presenter.User;
 import com.lesorin.firespark.view.fragments.HomeFragment;
 import com.lesorin.firespark.view.fragments.PopularFragment;
 import com.lesorin.firespark.view.fragments.ProfileFragment;
+import com.lesorin.firespark.view.fragments.SearchUserFragment;
 import com.lesorin.firespark.view.fragments.SendSparkFragment;
 import com.lesorin.firespark.view.fragments.SparkFragment;
 import java.util.ArrayList;
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     private HomeFragment _homeFragment;
     private PopularFragment _popularFragment;
     private SparkFragment _sparkFragment;
+    private SearchUserFragment _searchUserFragment;
     private FloatingActionButton _mainFab, _newSparkFab, _searchFab;
     private SendSparkFragment _sendSparkFragment;
     private Vibrator _vibrator;
@@ -64,13 +66,46 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
 
     private void initializeFABS()
     {
+        initializeFABAnimations();
+        initializeMainFAB();
+        initializeNewSparkFab();
+        initializeSearchFab();
+    }
+
+    private void initializeSearchFab()
+    {
+        _searchFab = findViewById(R.id.SearchFAB);
+
+        _searchFab.setOnClickListener(view ->
+        {
+            openSearchUserFragment();
+        });
+    }
+
+    private void initializeNewSparkFab()
+    {
+        _newSparkFab = findViewById(R.id.NewSparkFAB);
+
+        _newSparkFab.setOnClickListener(view ->
+        {
+            _sendSparkFragment.resetSparkPosition();
+            _sendSparkFragment.emptySparkBody();
+            getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.fade_in, R.anim.fade_out).
+                    replace(R.id.FragmentContainer, _sendSparkFragment).commit();
+        });
+    }
+
+    private void initializeFABAnimations()
+    {
         _fabOpen = AnimationUtils.loadAnimation(this, R.anim.fab_rotate_open);
         _fabClose = AnimationUtils.loadAnimation(this, R.anim.fab_rotate_close);
         _fabFromBottom = AnimationUtils.loadAnimation(this, R.anim.fab_from_bottom);
         _fabToBottom = AnimationUtils.loadAnimation(this, R.anim.fab_to_bottom);
+    }
+
+    private void initializeMainFAB()
+    {
         _mainFab = findViewById(R.id.MainFAB);
-        _newSparkFab = findViewById(R.id.NewSparkFAB);
-        _searchFab = findViewById(R.id.SearchFAB);
 
         _mainFab.setOnClickListener(view ->
         {
@@ -93,14 +128,6 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
 
             _newSparkFab.setVisibility(_newSparkFab.getVisibility() == View.INVISIBLE ? View.VISIBLE : View.INVISIBLE);
             _searchFab.setVisibility(_searchFab.getVisibility() == View.INVISIBLE ? View.VISIBLE : View.INVISIBLE);
-        });
-
-        _newSparkFab.setOnClickListener(view ->
-        {
-            _sendSparkFragment.resetSparkPosition();
-            _sendSparkFragment.emptySparkBody();
-            getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.fade_in, R.anim.fade_out).
-                    replace(R.id.FragmentContainer, _sendSparkFragment).commit();
         });
     }
 
@@ -128,6 +155,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
         _popularFragment = new PopularFragment();
         _sparkFragment = new SparkFragment();
         _sendSparkFragment = new SendSparkFragment();
+        _searchUserFragment = new SearchUserFragment();
     }
 
     private void initializeNavigationView()
@@ -172,6 +200,12 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     {
         getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.fade_in, R.anim.fade_out).
                 replace(R.id.FragmentContainer, _popularFragment).commit();
+    }
+
+    private void openSearchUserFragment()
+    {
+        getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.fade_in, R.anim.fade_out).
+                replace(R.id.FragmentContainer, _searchUserFragment).commit();
     }
 
     public void logOutButtonPressed()
