@@ -89,14 +89,21 @@ public class SparksRecycleViewAdapter extends RecyclerView.Adapter<SparkViewHold
 
     public void addSpark(Spark spark)
     {
-        _sparksList.add(0, spark);
-        notifyDataSetChanged();
+        int index = _sparksList.indexOf(spark);
+
+        if(index == -1) //Only add the spark if it is not already present.
+        {
+            _sparksList.add(0, spark);
+            notifyDataSetChanged();
+        }
     }
 
     public void deleteSpark(Spark spark)
     {
-        _sparksList.remove(spark);
-        notifyDataSetChanged();
+        if(_sparksList.remove(spark))
+        {
+            notifyDataSetChanged();
+        }
     }
 
     public void sparkLiked(Spark spark)
