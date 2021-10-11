@@ -24,13 +24,35 @@
         app:menu="@menu/bottom_navigation_menu" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/NewSparkFAB"
+        android:id="@+id/MainFAB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:backgroundTint="@color/primaryColor"
         android:src="@drawable/add_icon"
         app:layout_constraintBottom_toTopOf="@id/NavigationView"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/NewSparkFAB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:backgroundTint="@color/primaryColor"
+        android:src="@drawable/icon_edit"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@id/MainFAB"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/SearchFAB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:backgroundTint="@color/primaryColor"
+        android:src="@drawable/icon_search"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@id/NewSparkFAB"
         app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,6 +5,9 @@ import androidx.fragment.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -32,9 +35,10 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     private HomeFragment _homeFragment;
     private PopularFragment _popularFragment;
     private SparkFragment _sparkFragment;
-    private FloatingActionButton _createNewSpark;
+    private FloatingActionButton _mainFab, _newSparkFab, _searchFab;
     private SendSparkFragment _sendSparkFragment;
     private Vibrator _vibrator;
+    private Animation _fabOpen, _fabClose, _fabFromBottom, _fabToBottom;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -47,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
         initializeMVP();
         initializeFragments();
         initializeNavigationView();
-        initializeCreateNewSpark();
+        initializeFABS();
     }
 
     @Override
@@ -58,11 +62,40 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
         _presenter.appStarted();
     }
 
-    private void initializeCreateNewSpark()
+    private void initializeFABS()
     {
-        _createNewSpark = findViewById(R.id.NewSparkFAB);
+        _fabOpen = AnimationUtils.loadAnimation(this, R.anim.fab_rotate_open);
+        _fabClose = AnimationUtils.loadAnimation(this, R.anim.fab_rotate_close);
+        _fabFromBottom = AnimationUtils.loadAnimation(this, R.anim.fab_from_bottom);
+        _fabToBottom = AnimationUtils.loadAnimation(this, R.anim.fab_to_bottom);
+        _mainFab = findViewById(R.id.MainFAB);
+        _newSparkFab = findViewById(R.id.NewSparkFAB);
+        _searchFab = findViewById(R.id.SearchFAB);
 
-        _createNewSpark.setOnClickListener(view ->
+        _mainFab.setOnClickListener(view ->
+        {
+            if(_searchFab.getVisibility() == View.INVISIBLE)
+            {
+                _newSparkFab.startAnimation(_fabFromBottom);
+                _newSparkFab.setClickable(true);
+                _searchFab.startAnimation(_fabFromBottom);
+                _searchFab.setClickable(true);
+                _mainFab.startAnimation(_fabOpen);
+            }
+            else
+            {
+                _newSparkFab.startAnimation(_fabToBottom);
+                _newSparkFab.setClickable(false);
+                _searchFab.startAnimation(_fabToBottom);
+                _searchFab.setClickable(false);
+                _mainFab.startAnimation(_fabClose);
+            }
+
+            _newSparkFab.setVisibility(_newSparkFab.getVisibility() == View.INVISIBLE ? View.VISIBLE : View.INVISIBLE);
+            _searchFab.setVisibility(_searchFab.getVisibility() == View.INVISIBLE ? View.VISIBLE : View.INVISIBLE);
+        });
+
+        _newSparkFab.setOnClickListener(view ->
         {
             _sendSparkFragment.resetSparkPosition();
             _sendSparkFragment.emptySparkBody();
