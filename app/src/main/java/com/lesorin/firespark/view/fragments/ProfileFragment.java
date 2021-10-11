@@ -7,27 +7,16 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.google.android.material.button.MaterialButton;
 import com.lesorin.firespark.R;
-import com.lesorin.firespark.presenter.Spark;
 import com.lesorin.firespark.presenter.User;
 import com.lesorin.firespark.view.activities.MainActivity;
-import java.util.ArrayList;
 
-public class ProfileFragment extends Fragment
+public class ProfileFragment extends FragmentWithSparks
 {
-    private View _view;
     private MaterialButton _logoutButton;
-    private TextView _userName, _userFollowing, _backgroundText;
-    private RecyclerView _userSparks;
-    private SwipeRefreshLayout _swipeRefresh;
-    private SparksRecycleViewAdapter _sparksRVAdapter;
-    private RecyclerView.LayoutManager _rvLayoutManager;
+    private TextView _userName, _userFollowing;
 
     public ProfileFragment()
     {
@@ -45,7 +34,9 @@ public class ProfileFragment extends Fragment
             _view = inflater.inflate(R.layout.fragment_profile, container, false);
 
             initializeBackgroundText();
-            initializeSwipeRefresh();
+            initializeSwipeRefresh(() -> {
+                //todo
+            });
             initializeTexts();
             initializeLogoutButton();
             initializeSparksRecycleView();
@@ -55,47 +46,6 @@ public class ProfileFragment extends Fragment
         }
 
         return _view;
-    }
-
-    private void initializeBackgroundText()
-    {
-        _backgroundText = _view.findViewById(R.id.BackgroundText);
-    }
-
-    private void initializeSwipeRefresh()
-    {
-        _swipeRefresh = _view.findViewById(R.id.SwipeRefresh);
-
-        _swipeRefresh.setOnRefreshListener(() ->
-        {
-            //todo
-            _swipeRefresh.setRefreshing(false);
-        });
-    }
-
-    private void initializeSparksRecycleView()
-    {
-        _userSparks = _view.findViewById(R.id.UserSparks);
-
-        _userSparks.setLayoutManager(_rvLayoutManager);
-        _userSparks.setItemAnimator(new DefaultItemAnimator());
-        _userSparks.setAdapter(_sparksRVAdapter);
-    }
-
-    public void setSparks(ArrayList<Spark> sparks)
-    {
-        _sparksRVAdapter.setSparks(sparks);
-
-        if(!sparks.isEmpty())
-        {
-            _backgroundText.setText("");
-        }
-        else
-        {
-            _backgroundText.setText(R.string.NoDataText);
-        }
-
-        _swipeRefresh.setRefreshing(false);
     }
 
     private void initializeTexts()
@@ -126,20 +76,5 @@ public class ProfileFragment extends Fragment
         _userSparks.setLayoutManager(lm);
         _userSparks.setItemAnimator(new DefaultItemAnimator());
         _userSparks.setAdapter(srva);*/
-    }
-
-    public void addSpark(Spark spark)
-    {
-        _sparksRVAdapter.addSpark(spark);
-    }
-
-    public void deleteSpark(Spark spark)
-    {
-        _sparksRVAdapter.deleteSpark(spark);
-    }
-
-    public void sparkLiked(Spark spark)
-    {
-        _sparksRVAdapter.sparkLiked(spark);
     }
 }
