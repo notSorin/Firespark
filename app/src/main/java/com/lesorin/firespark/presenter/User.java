@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class User
 {
     private String _id;
-    private boolean _isCurrentUser;
+    private boolean _isCurrentUser, _isFollowedByCurrentUser;
 
     @PropertyName(USER_FIRSTLASTNAME)
     private String _firstLastName;
@@ -77,5 +77,15 @@ public class User
     public String getId()
     {
         return _id;
+    }
+
+    public boolean isFollowedByCurrentUser()
+    {
+        return _isFollowedByCurrentUser;
+    }
+
+    public void setFollowedByCurrentUser(boolean followedByCurrentUser)
+    {
+        _isFollowedByCurrentUser = followedByCurrentUser;
     }
 }

@@ -81,6 +81,7 @@ public class ProfileFragment extends FragmentWithSparks
                 _userJoined.setText(String.format(getResources().getString(R.string.UserJoined),
                         _dateFormat.format(_user.getJoined().toDate())));
                 _followButton.setVisibility(_user.isCurrentUser() ? View.GONE : View.VISIBLE);
+                _followButton.setText(_user.isFollowedByCurrentUser() ? R.string.Unfollow : R.string.Follow);
                 _logoutButton.setVisibility(_user.isCurrentUser() ? View.VISIBLE : View.GONE);
             }
         }

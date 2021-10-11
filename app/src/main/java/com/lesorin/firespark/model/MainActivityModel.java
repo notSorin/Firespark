@@ -301,6 +301,7 @@ public class MainActivityModel implements MainActivityContract.Model
 
         user.setId(document.getId());
         user.setCurrentUser(document.getId().equals(_firebaseAuth.getUid()));
+        user.setFollowedByCurrentUser(user.getFollowers().contains(_firebaseAuth.getUid()));
 
         return user;
     }
