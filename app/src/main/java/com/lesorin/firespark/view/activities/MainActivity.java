@@ -228,8 +228,6 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
         {
             _navigationView.setSelectedItemId(R.id.HomePage);
         }
-
-        Snackbar.make(_navigationView, R.string.DeleteSparkSuccess, Snackbar.LENGTH_LONG).show();
     }
 
     @Override
