@@ -73,4 +73,9 @@ public class User
     {
         return _isCurrentUser;
     }
+
+    public String getId()
+    {
+        return _id;
+    }
 }

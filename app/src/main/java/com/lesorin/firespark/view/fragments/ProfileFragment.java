@@ -41,8 +41,10 @@ public class ProfileFragment extends FragmentWithSparks
             _view = inflater.inflate(R.layout.fragment_profile, container, false);
 
             initializeBackgroundText();
-            initializeSwipeRefresh(() -> {
-                //todo
+            initializeSwipeRefresh(() ->
+            {
+                _swipeRefresh.setRefreshing(true);
+                ((MainActivity)getContext()).requestProfileData(_user == null ? null : _user.getId());
             });
             initializeTexts();
             initializeLogoutButton();
