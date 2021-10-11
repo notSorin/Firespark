@@ -12,17 +12,24 @@ import com.google.android.material.button.MaterialButton;
 import com.lesorin.firespark.R;
 import com.lesorin.firespark.presenter.User;
 import com.lesorin.firespark.view.activities.MainActivity;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 public class ProfileFragment extends FragmentWithSparks
 {
-    private MaterialButton _logoutButton;
-    private TextView _userName, _userFollowing;
+    private final String JOINED_FORMAT = "d MMM yyyy";
+    private MaterialButton _logoutButton, _followButton;
+    private TextView _firstLastName, _username, _userFollowing, _userJoined;
+    private User _user;
+    private SimpleDateFormat _dateFormat;
 
     public ProfileFragment()
     {
         _view = null;
         _sparksRVAdapter = new SparksRecycleViewAdapter();
         _rvLayoutManager = new LinearLayoutManager(getContext());
+        _user = null;
+        _dateFormat = new SimpleDateFormat(JOINED_FORMAT, Locale.getDefault());
     }
 
     @Nullable
@@ -39,19 +46,50 @@ public class ProfileFragment extends FragmentWithSparks
             });
             initializeTexts();
             initializeLogoutButton();
+            initializeFollowButton();
             initializeSparksRecycleView();
-
-            //todo probably can't call requestProfileData from here because what if the user requests to view another user's profile before this fragment is created...
-            ((MainActivity)getContext()).requestProfileData();
+            displayUserInfo();
+            displaySparks();
         }
 
         return _view;
     }
 
+    private void initializeFollowButton()
+    {
+        _followButton = _view.findViewById(R.id.FollowButton);
+
+        _followButton.setOnClickListener(view ->
+        {
+            //todo
+        });
+    }
+
+    private void displayUserInfo()
+    {
+        if(_user != null)
+        {
+            if(_firstLastName != null && _username != null && _userFollowing != null && _userJoined != null &&
+                _followButton != null && _logoutButton != null)
+            {
+                _firstLastName.setText(_user.getFirstlastname());
+                _username.setText("@" + _user.getUsername());
+                _userFollowing.setText(String.format(getResources().getString(R.string.UserFollowing),
+                    _user.getFollowers().size(), _user.getFollowing().size()));
+                _userJoined.setText(String.format(getResources().getString(R.string.UserJoined),
+                        _dateFormat.format(_user.getJoined().toDate())));
+                _followButton.setVisibility(_user.isCurrentUser() ? View.GONE : View.VISIBLE);
+                _logoutButton.setVisibility(_user.isCurrentUser() ? View.VISIBLE : View.INVISIBLE);
+            }
+        }
+    }
+
     private void initializeTexts()
     {
-        _userName = _view.findViewById(R.id.UserName);
+        _firstLastName = _view.findViewById(R.id.FirstLastName);
+        _username = _view.findViewById(R.id.Username);
         _userFollowing = _view.findViewById(R.id.UserFollowing);
+        _userJoined = _view.findViewById(R.id.UserJoined);
     }
 
     private void initializeLogoutButton()
@@ -64,17 +102,10 @@ public class ProfileFragment extends FragmentWithSparks
         });
     }
 
-    public void setUserData(User user)
+    public void setUser(User user)
     {
-        //todo split into 2 functions: 1 for user info, another for sparks
-        /*_userName.setText(user._name);
-        _userFollowing.setText(String.format(getResources().getString(R.string.UserFollowing), user._followers.size(), user._following.size()));
+        _user = user;
 
-        SparksRecycleViewAdapter srva = new SparksRecycleViewAdapter();
-        RecyclerView.LayoutManager lm = new LinearLayoutManager(getContext());
-
-        _userSparks.setLayoutManager(lm);
-        _userSparks.setItemAnimator(new DefaultItemAnimator());
-        _userSparks.setAdapter(srva);*/
+        displayUserInfo();
     }
 }
