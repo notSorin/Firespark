@@ -1,7 +1,6 @@
 package com.lesorin.firespark.model;
 
-import static com.lesorin.firespark.model.ModelConstants.SPARKS_COLLECTION;
-import static com.lesorin.firespark.model.ModelConstants.USERS_COLLECTION;
+import static com.lesorin.firespark.model.ModelConstants.*;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
@@ -48,8 +47,8 @@ public class MainActivityModel implements MainActivityContract.Model
     public void requestHomeData()
     {
         //todo probably need to limit this query in the future, and figure out how to keep requesting data after the limit
-        _firestore.collection(SPARKS_COLLECTION).whereArrayContains("subscribers", _firebaseAuth.getCurrentUser().getUid()).
-                whereEqualTo("isdeleted", false).orderBy("created", Query.Direction.DESCENDING).get().addOnCompleteListener(task ->
+        _firestore.collection(SPARKS_COLLECTION).whereArrayContains(SPARK_SUBSCRIBERS, _firebaseAuth.getCurrentUser().getUid()).
+                whereEqualTo(SPARK_ISDELETED, false).orderBy(SPARK_CREATED, Query.Direction.DESCENDING).get().addOnCompleteListener(task ->
         {
             if(task.isSuccessful())
             {
@@ -132,7 +131,7 @@ public class MainActivityModel implements MainActivityContract.Model
         {
             HashMap<String, Object> updateFields = new HashMap<>();
 
-            updateFields.put("isdeleted", true);
+            updateFields.put(SPARK_ISDELETED, true);
 
             _firestore.collection(SPARKS_COLLECTION).document(spark.getId()).update(updateFields).addOnCompleteListener(task ->
             {
@@ -156,13 +155,13 @@ public class MainActivityModel implements MainActivityContract.Model
     {
         HashMap<String, Object> ret = new HashMap<>();
 
-        ret.put("ownerid", _firebaseAuth.getCurrentUser().getUid());
-        ret.put("ownerfirstlastname", user.getFirstlastname());
-        ret.put("ownerusername", user.getUsername());
-        ret.put("body", sparkBody);
-        ret.put("created", FieldValue.serverTimestamp());
-        ret.put("isdeleted", false);
-        ret.put("likes", Arrays.asList());
+        ret.put(SPARK_OWNERID, _firebaseAuth.getCurrentUser().getUid());
+        ret.put(SPARK_OWNERFIRSTLASTNAME, user.getFirstlastname());
+        ret.put(SPARK_OWNERUSERNAME, user.getUsername());
+        ret.put(SPARK_BODY, sparkBody);
+        ret.put(SPARK_CREATED, FieldValue.serverTimestamp());
+        ret.put(SPARK_ISDELETED, false);
+        ret.put(SPARK_LIKES, Arrays.asList());
 
         ArrayList<String> subscribers = user.getFollowers();
 
@@ -170,7 +169,7 @@ public class MainActivityModel implements MainActivityContract.Model
         //their own sparks on the home feed.
         subscribers.add(_firebaseAuth.getCurrentUser().getUid());
 
-        ret.put("subscribers", subscribers);
+        ret.put(SPARK_SUBSCRIBERS, subscribers);
 
         return ret;
     }

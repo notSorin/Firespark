@@ -1,5 +1,6 @@
 package com.lesorin.firespark.presenter;
 
+import static com.lesorin.firespark.model.ModelConstants.*;
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.PropertyName;
 import java.util.ArrayList;
@@ -9,25 +10,25 @@ public class Comment
     private String _id;
     private boolean _ownedByCurrentUser;
 
-    @PropertyName("ownerid")
+    @PropertyName(COMMENT_OWNERID)
     private String _ownerId;
 
-    @PropertyName("ownerfirstlastname")
+    @PropertyName(COMMENT_OWNERFIRSTLASTNAME)
     private String _ownerFirstLastName;
 
-    @PropertyName("ownerusername")
+    @PropertyName(COMMENT_OWNERUSERNAME)
     private String _ownerUsername;
 
-    @PropertyName("body")
+    @PropertyName(COMMENT_BODY)
     private String _body;
 
-    @PropertyName("created")
+    @PropertyName(COMMENT_CREATED)
     private Timestamp _created;
 
-    @PropertyName("isdeleted")
+    @PropertyName(COMMENT_ISDELETED)
     private Timestamp _isDeleted;
 
-    @PropertyName("likes")
+    @PropertyName(COMMENT_LIKES)
     private ArrayList<String> _likes;
 
     public Comment()

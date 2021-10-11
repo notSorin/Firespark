@@ -1,5 +1,6 @@
 package com.lesorin.firespark.presenter;
 
+import static com.lesorin.firespark.model.ModelConstants.*;
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.PropertyName;
 import java.util.ArrayList;
@@ -9,28 +10,28 @@ public class Spark
     private String _id;
     private boolean _ownedByCurrentUser;
 
-    @PropertyName("ownerid")
+    @PropertyName(SPARK_OWNERID)
     private String _ownerId;
 
-    @PropertyName("ownerfirstlastname")
+    @PropertyName(SPARK_OWNERFIRSTLASTNAME)
     private String _ownerFirstLastName;
 
-    @PropertyName("ownerusername")
+    @PropertyName(SPARK_OWNERUSERNAME)
     private String _ownerUsername;
 
-    @PropertyName("body")
+    @PropertyName(SPARK_BODY)
     private String _body;
 
-    @PropertyName("created")
+    @PropertyName(SPARK_CREATED)
     private Timestamp _created;
 
-    @PropertyName("isdeleted")
+    @PropertyName(SPARK_ISDELETED)
     private Timestamp _isDeleted;
 
-    @PropertyName("likes")
+    @PropertyName(SPARK_LIKES)
     private ArrayList<String> _likes;
 
-    @PropertyName("subscribers")
+    @PropertyName(SPARK_SUBSCRIBERS)
     private ArrayList<String> _subscribers;
 
     public Spark()

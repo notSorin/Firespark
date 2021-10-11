@@ -1,6 +1,6 @@
 package com.lesorin.firespark.model;
 
-import static com.lesorin.firespark.model.ModelConstants.USERS_COLLECTION;
+import static com.lesorin.firespark.model.ModelConstants.*;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
@@ -61,11 +61,11 @@ public class StartActivityModel implements StartActivityContract.Model
         {
             HashMap<String, Object> userMap = new HashMap<>();
 
-            userMap.put("firstlastname", firstLastName);
-            userMap.put("username", username);
-            userMap.put("usernameinsensitive", username.toLowerCase());
-            userMap.put("followers", Arrays.asList());
-            userMap.put("following", Arrays.asList());
+            userMap.put(USER_FIRSTLASTNAME, firstLastName);
+            userMap.put(USER_USERNAME, username);
+            userMap.put(USER_USERNAMEINSENSITIVE, username.toLowerCase());
+            userMap.put(USER_FOLLOWERS, Arrays.asList());
+            userMap.put(USER_FOLLOWING, Arrays.asList());
 
             _firestore.collection(USERS_COLLECTION).document(user.getUid()).set(userMap);
         }

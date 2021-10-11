@@ -1,5 +1,6 @@
 package com.lesorin.firespark.presenter;
 
+import static com.lesorin.firespark.model.ModelConstants.*;
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.PropertyName;
 import java.util.ArrayList;
@@ -8,22 +9,22 @@ public class User
 {
     public String _id;
 
-    @PropertyName("firstlastname")
+    @PropertyName(USER_FIRSTLASTNAME)
     public String _firstLastName;
 
-    @PropertyName("username")
+    @PropertyName(USER_USERNAME)
     public String _username;
 
-    @PropertyName("usernameinsensitive")
+    @PropertyName(USER_USERNAMEINSENSITIVE)
     public String _usernameInsensitive;
 
-    @PropertyName("joined")
+    @PropertyName(USER_JOINED)
     public Timestamp joined;
 
-    @PropertyName("followers")
+    @PropertyName(USER_FOLLOWERS)
     public ArrayList<String> _followers;
 
-    @PropertyName("following")
+    @PropertyName(USER_FOLLOWING)
     public ArrayList<String> _following;
 
     public User()
