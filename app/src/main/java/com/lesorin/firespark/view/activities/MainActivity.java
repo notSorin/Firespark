@@ -272,6 +272,18 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
         Snackbar.make(_navigationView, R.string.RequestProfileUserFailure, Snackbar.LENGTH_LONG).show();
     }
 
+    @Override
+    public void requestProfileSparksSuccess(ArrayList<Spark> sparks)
+    {
+        _profileFragment.setSparks(sparks);
+    }
+
+    @Override
+    public void requestProfileSparksFailure()
+    {
+        Snackbar.make(_navigationView, R.string.RequestProfileSparksFailure, Snackbar.LENGTH_LONG).show();
+    }
+
     private void hideKeyboard()
     {
         InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);

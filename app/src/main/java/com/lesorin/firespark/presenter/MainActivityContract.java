@@ -32,6 +32,7 @@ public interface MainActivityContract
         void removeSparkLikeSuccess(Spark spark);
         void removeSparkLikeFailure(Spark spark);
         void requestProfileUserResult(User user);
+        void requestProfileSparksResult(ArrayList<Spark> sparks);
     }
 
     interface View
@@ -53,6 +54,8 @@ public interface MainActivityContract
         void removeSparkLikeFailure(Spark spark);
         void requestProfileUserSuccess(User user);
         void requestProfileUserFailure();
+        void requestProfileSparksSuccess(ArrayList<Spark> sparks);
+        void requestProfileSparksFailure();
     }
 
     interface Model

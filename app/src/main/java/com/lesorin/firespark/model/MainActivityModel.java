@@ -49,7 +49,28 @@ public class MainActivityModel implements MainActivityContract.Model
 
     private void requestProfileSparks(String userId)
     {
+        //todo probably need to limit this query in the future, and figure out how to keep requesting data after the limit
+        _firestore.collection(SPARKS_COLLECTION).whereEqualTo(SPARK_OWNERID, userId).
+                whereEqualTo(SPARK_ISDELETED, false).orderBy(SPARK_CREATED, Query.Direction.DESCENDING).get().addOnCompleteListener(task ->
+        {
+            if(task.isSuccessful())
+            {
+                ArrayList<Spark> sparks = new ArrayList<>();
 
+                for(QueryDocumentSnapshot document : task.getResult())
+                {
+                    Spark spark = createSparkFromDocumentSnapshot(document);
+
+                    sparks.add(spark);
+                }
+
+                _presenter.requestProfileSparksResult(sparks);
+            }
+            else
+            {
+                _presenter.requestProfileSparksResult(null);
+            }
+        });
     }
 
     private void requestProfileUser(String userId)

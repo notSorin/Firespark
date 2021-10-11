@@ -187,4 +187,17 @@ public class MainActivityPresenter implements MainActivityContract.PresenterView
             _view.requestProfileUserFailure();
         }
     }
+
+    @Override
+    public void requestProfileSparksResult(ArrayList<Spark> sparks)
+    {
+        if(sparks != null)
+        {
+            _view.requestProfileSparksSuccess(sparks);
+        }
+        else
+        {
+            _view.requestProfileSparksFailure();
+        }
+    }
 }
