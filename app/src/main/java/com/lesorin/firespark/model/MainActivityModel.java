@@ -38,9 +38,35 @@ public class MainActivityModel implements MainActivityContract.Model
     }
 
     @Override
-    public void requestProfileData()
+    public void requestProfileData(String userId)
     {
-        //todo get real data
+        if(userId == null)
+            userId = _firebaseAuth.getUid();
+
+        requestProfileUser(userId);
+        requestProfileSparks(userId);
+    }
+
+    private void requestProfileSparks(String userId)
+    {
+
+    }
+
+    private void requestProfileUser(String userId)
+    {
+        _firestore.collection(USERS_COLLECTION).document(userId).get().addOnCompleteListener(task ->
+        {
+            if(task.isSuccessful())
+            {
+                User user = createUserFromDocumentSnapshot(task.getResult());
+
+                _presenter.requestProfileUserResult(user);
+            }
+            else
+            {
+                _presenter.requestProfileUserResult(null);
+            }
+        });
     }
 
     @Override
@@ -253,6 +279,7 @@ public class MainActivityModel implements MainActivityContract.Model
         User user = document.toObject(User.class);
 
         user.setId(document.getId());
+        user.setCurrentUser(document.getId().equals(_firebaseAuth.getUid()));
 
         return user;
     }

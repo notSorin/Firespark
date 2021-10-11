@@ -10,7 +10,7 @@ public interface MainActivityContract
         void setModel(Model model);
         void appStarted();
         void logOutButtonPressed();
-        void requestProfileData();
+        void requestProfileData(String userId);
         void requestHomeData();
         void requestPopularData();
         void sparkClicked(Spark spark);
@@ -31,6 +31,7 @@ public interface MainActivityContract
         void addSparkLikeFailure(Spark spark);
         void removeSparkLikeSuccess(Spark spark);
         void removeSparkLikeFailure(Spark spark);
+        void requestProfileUserResult(User user);
     }
 
     interface View
@@ -50,13 +51,15 @@ public interface MainActivityContract
         void addSparkLikeFailure(Spark spark);
         void removeSparkLikeSuccess(Spark spark);
         void removeSparkLikeFailure(Spark spark);
+        void requestProfileUserSuccess(User user);
+        void requestProfileUserFailure();
     }
 
     interface Model
     {
         void setPresenter(MainActivityContract.PresenterModel presenter);
         void logUserOut();
-        void requestProfileData();
+        void requestProfileData(String userId);
         void requestHomeData();
         void requestPopularData();
         String getUserName();

@@ -39,9 +39,9 @@ public class MainActivityPresenter implements MainActivityContract.PresenterView
     }
 
     @Override
-    public void requestProfileData()
+    public void requestProfileData(String userId)
     {
-        _model.requestProfileData();
+        _model.requestProfileData(userId);
     }
 
     @Override
@@ -173,5 +173,18 @@ public class MainActivityPresenter implements MainActivityContract.PresenterView
     public void removeSparkLikeFailure(Spark spark)
     {
         _view.removeSparkLikeFailure(spark);
+    }
+
+    @Override
+    public void requestProfileUserResult(User user)
+    {
+        if(user != null)
+        {
+            _view.requestProfileUserSuccess(user);
+        }
+        else
+        {
+            _view.requestProfileUserFailure();
+        }
     }
 }

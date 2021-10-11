@@ -107,6 +107,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
             {
                 case R.id.ProfilePage:
                     openProfileFragment();
+                    requestProfileData(null);
                     break;
                 case R.id.HomePage:
                     openHomeFragment();
@@ -155,7 +156,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     @Override
     public void displayProfileData(User user)
     {
-        _profileFragment.setUserData(user);
+        _profileFragment.setUser(user);
     }
 
     @Override
@@ -259,6 +260,18 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
         Snackbar.make(_navigationView, R.string.RemoveSparkLikeFailure, Snackbar.LENGTH_LONG).show();
     }
 
+    @Override
+    public void requestProfileUserSuccess(User user)
+    {
+        _profileFragment.setUser(user);
+    }
+
+    @Override
+    public void requestProfileUserFailure()
+    {
+        Snackbar.make(_navigationView, R.string.RequestProfileUserFailure, Snackbar.LENGTH_LONG).show();
+    }
+
     private void hideKeyboard()
     {
         InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
@@ -266,9 +279,9 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
         imm.hideSoftInputFromWindow(_navigationView.getWindowToken(), 0);
     }
 
-    public void requestProfileData()
+    public void requestProfileData(String userId)
     {
-        _presenter.requestProfileData();
+        _presenter.requestProfileData(userId);
     }
 
     public void requestHomeData()

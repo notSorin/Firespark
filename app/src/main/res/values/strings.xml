@@ -64,4 +64,8 @@
     <string name="CreateUserUsernameExists">This username is not available.</string>
     <string name="AddSparkLikeFailure">Failed to like the Spark…</string>
     <string name="RemoveSparkLikeFailure">Failed to remove like from the Spark…</string>
+    <string name="UserJoined">Joined on %s</string>
+    <string name="Follow">Follow</string>
+    <string name="Unfollow">Unfollow</string>
+    <string name="RequestProfileUserFailure">Could not retrieve user data.</string>
 </resources>
