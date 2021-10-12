@@ -48,7 +48,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/LoginEmail"
+            android:id="@+id/NewCommentInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
