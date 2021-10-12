@@ -7,15 +7,16 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.lesorin.firespark.R;
 import com.lesorin.firespark.presenter.Comment;
+import com.lesorin.firespark.presenter.Spark;
 import java.util.ArrayList;
 
 public class CommentsRecycleViewAdapter extends RecyclerView.Adapter<CommentViewHolder>
 {
     private ArrayList<Comment> _commentsList;
 
-    public CommentsRecycleViewAdapter(ArrayList<Comment> comments)
+    public CommentsRecycleViewAdapter()
     {
-        _commentsList = comments;
+        _commentsList = null;
     }
 
     @NonNull
@@ -37,5 +38,31 @@ public class CommentsRecycleViewAdapter extends RecyclerView.Adapter<CommentView
     public int getItemCount()
     {
         return _commentsList.size();
+    }
+
+    public void setComments(ArrayList<Comment> comments)
+    {
+        _commentsList = comments;
+
+        notifyDataSetChanged();
+    }
+
+    public void addComment(Comment comment)
+    {
+        int index = _commentsList.indexOf(comment);
+
+        if(index == -1) //Only add the comment if it is not already present.
+        {
+            _commentsList.add(0, comment);
+            notifyDataSetChanged();
+        }
+    }
+
+    public void deleteSpark(Spark spark)
+    {
+        if(_commentsList.remove(spark))
+        {
+            notifyDataSetChanged();
+        }
     }
 }
