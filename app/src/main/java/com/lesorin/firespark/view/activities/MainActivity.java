@@ -15,6 +15,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.lesorin.firespark.R;
 import com.lesorin.firespark.model.MainActivityModel;
+import com.lesorin.firespark.presenter.Comment;
 import com.lesorin.firespark.presenter.MainActivityContract;
 import com.lesorin.firespark.presenter.MainActivityPresenter;
 import com.lesorin.firespark.presenter.Spark;
@@ -234,6 +235,12 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
                 replace(R.id.FragmentContainer, _searchUserFragment).commitNow();
     }
 
+    private void openSparkFragment()
+    {
+        getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.fade_in, R.anim.fade_out).
+                replace(R.id.FragmentContainer, _sparkFragment).commitNow();
+    }
+
     public void logOutButtonPressed()
     {
         _presenter.logOutButtonPressed();
@@ -404,6 +411,14 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
         Snackbar.make(_navigationView, R.string.RequestProfileDataFailure, Snackbar.LENGTH_LONG).show();
     }
 
+    @Override
+    public void requestSparkDataSuccess(Spark spark, ArrayList<Comment> comments)
+    {
+        openSparkFragment();
+        _sparkFragment.setSpark(spark);
+        _sparkFragment.setComments(comments);
+    }
+
     private void hideKeyboard()
     {
         InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
@@ -428,7 +443,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
 
     public void sparkClicked(Spark spark)
     {
-        _presenter.sparkClicked(spark);
+        _presenter.requestSparkData(spark);
     }
 
     public void sparkLikeClicked(Spark spark)

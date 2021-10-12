@@ -9,6 +9,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.WriteBatch;
+import com.lesorin.firespark.presenter.Comment;
 import com.lesorin.firespark.presenter.MainActivityContract;
 import com.lesorin.firespark.presenter.Spark;
 import com.lesorin.firespark.presenter.User;
@@ -307,6 +308,13 @@ public class MainActivityModel implements MainActivityContract.Model
         {
             _presenter.searchUserFailure();
         }
+    }
+
+    @Override
+    public void requestSparkData(Spark spark)
+    {
+        //todo
+        _presenter.requestSparkDataSuccess(spark, new ArrayList<Comment>());
     }
 
     private void followUser(User user)

@@ -13,7 +13,7 @@ public interface MainActivityContract
         void requestProfileData(String userId);
         void requestHomeData();
         void requestPopularData();
-        void sparkClicked(Spark spark);
+        void requestSparkData(Spark spark);
         void sendSparkRequested(String sparkBody);
         void sparkDeleteClicked(Spark spark);
         void sparkLikeClicked(Spark spark);
@@ -41,6 +41,7 @@ public interface MainActivityContract
         void searchUserSuccess(User user, ArrayList<Spark> sparks);
         void requestProfileDataSuccess(User user, ArrayList<Spark> sparks);
         void requestProfileDataFailure();
+        void requestSparkDataSuccess(Spark spark, ArrayList<Comment> comments);
     }
 
     interface View
@@ -68,6 +69,7 @@ public interface MainActivityContract
         void searchUserByUsernameSuccess(User user, ArrayList<Spark> sparks);
         void requestProfileDataSuccess(User user, ArrayList<Spark> sparks);
         void requestProfileDataFailure();
+        void requestSparkDataSuccess(Spark spark, ArrayList<Comment> comments);
     }
 
     interface Model
@@ -83,5 +85,6 @@ public interface MainActivityContract
         void likeDislikeSpark(Spark spark);
         void followUnfollowUser(User user);
         void searchUserByUsername(String userName);
+        void requestSparkData(Spark spark);
     }
 }

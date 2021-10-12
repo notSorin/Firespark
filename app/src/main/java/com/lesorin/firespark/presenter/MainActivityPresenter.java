@@ -58,9 +58,9 @@ public class MainActivityPresenter implements MainActivityContract.PresenterView
     }
 
     @Override
-    public void sparkClicked(Spark spark)
+    public void requestSparkData(Spark spark)
     {
-        //todo
+        _model.requestSparkData(spark);
     }
 
     @Override
@@ -241,5 +241,11 @@ public class MainActivityPresenter implements MainActivityContract.PresenterView
     public void requestProfileDataFailure()
     {
         _view.requestProfileDataFailure();
+    }
+
+    @Override
+    public void requestSparkDataSuccess(Spark spark, ArrayList<Comment> comments)
+    {
+        _view.requestSparkDataSuccess(spark, comments);
     }
 }
