@@ -57,7 +57,7 @@ public abstract class FragmentWithSparks extends Fragment
         displaySparks();
     }
 
-    protected void displaySparks()
+    private void displaySparks()
     {
         if(getContext() != null && _sparksList != null)
         {
