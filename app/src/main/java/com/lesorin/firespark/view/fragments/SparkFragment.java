@@ -114,16 +114,19 @@ public class SparkFragment extends Fragment
     {
         if(getContext() != null && _spark != null)
         {
-            int likesAmount = _spark.getLikes().size();
-
             _ownerUsername.setText(_spark.getOwnerFirstLastName() + " (@" + _spark.getOwnerUsername() + ")");
             _sparkBody.setText(_spark.getBody());
             setSparkLiked(_spark.isLikedByCurrentUser());
             _sparkDelete.setVisibility(_spark.isOwnedByCurrentUser() ? View.VISIBLE : View.GONE);
-            _likes.setText(likesAmount == 1 ? likesAmount + " Like" : likesAmount + " Likes");
+            setLikesAmount(_spark.getLikes().size());
             _timestmap.setText(_dateFormat.format(_spark.getCreated().toDate()));
             setSpecialOwnerName(_spark.isOwnedByCurrentUser());
         }
+    }
+
+    private void setLikesAmount(int likesAmount)
+    {
+        _likes.setText(likesAmount == 1 ? likesAmount + " Like" : likesAmount + " Likes");
     }
 
     public void setSpecialOwnerName(boolean special)
@@ -149,6 +152,15 @@ public class SparkFragment extends Fragment
         {
             _sparkLike.setImageResource(R.drawable.thumbs_up_outline);
             _sparkLike.clearColorFilter();
+        }
+    }
+
+    public void sparkLiked(Spark spark)
+    {
+        if(spark == _spark)
+        {
+            setSparkLiked(spark.isLikedByCurrentUser());
+            setLikesAmount(spark.getLikes().size());
         }
     }
 }

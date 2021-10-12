@@ -337,6 +337,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
         _profileFragment.sparkLiked(spark);
         _homeFragment.sparkLiked(spark);
         _popularFragment.sparkLiked(spark);
+        _sparkFragment.sparkLiked(spark);
     }
 
     @Override
@@ -351,6 +352,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
         _profileFragment.sparkLikeRemoved(spark);
         _homeFragment.sparkLikeRemoved(spark);
         _popularFragment.sparkLikeRemoved(spark);
+        _sparkFragment.sparkLiked(spark);
     }
 
     @Override
