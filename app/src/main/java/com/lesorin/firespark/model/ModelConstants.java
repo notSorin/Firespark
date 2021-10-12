@@ -13,6 +13,7 @@ public class ModelConstants
     public static final String USER_JOINED = "joined";
     public static final String USER_FOLLOWERS = "followers";
     public static final String USER_FOLLOWING = "following";
+    public static final String USER_VERIFIED = "verified";
 
     //Spark fields.
     public static final String SPARK_OWNERID = "ownerid";
@@ -20,7 +21,7 @@ public class ModelConstants
     public static final String SPARK_OWNERUSERNAME = "ownerusername";
     public static final String SPARK_BODY = "body";
     public static final String SPARK_CREATED = "created";
-    public static final String SPARK_ISDELETED = "isdeleted";
+    public static final String SPARK_DELETED = "deleted";
     public static final String SPARK_LIKES = "likes";
     public static final String SPARK_SUBSCRIBERS = "subscribers";
 
@@ -31,6 +32,6 @@ public class ModelConstants
     public static final String COMMENT_OWNERUSERNAME = "ownerusername";
     public static final String COMMENT_BODY = "body";
     public static final String COMMENT_CREATED = "created";
-    public static final String COMMENT_ISDELETED = "isdeleted";
+    public static final String COMMENT_DELETED = "deleted";
     public static final String COMMENT_LIKES = "likes";
 }

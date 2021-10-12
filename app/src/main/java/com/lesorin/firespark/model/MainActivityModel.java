@@ -55,7 +55,7 @@ public class MainActivityModel implements MainActivityContract.Model
 
                 //todo probably need to limit this query in the future, and figure out how to keep requesting data after the limit
                 _firestore.collection(SPARKS_COLLECTION).whereEqualTo(SPARK_OWNERID, user.getId()).
-                        whereEqualTo(SPARK_ISDELETED, false).orderBy(SPARK_CREATED, Query.Direction.DESCENDING).get().addOnCompleteListener(task2 ->
+                        whereEqualTo(SPARK_DELETED, false).orderBy(SPARK_CREATED, Query.Direction.DESCENDING).get().addOnCompleteListener(task2 ->
                 {
                     if(task2.isSuccessful())
                     {
@@ -90,7 +90,7 @@ public class MainActivityModel implements MainActivityContract.Model
     {
         //todo probably need to limit this query in the future, and figure out how to keep requesting data after the limit
         _firestore.collection(SPARKS_COLLECTION).whereArrayContains(SPARK_SUBSCRIBERS, _firebaseAuth.getCurrentUser().getUid()).
-                whereEqualTo(SPARK_ISDELETED, false).orderBy(SPARK_CREATED, Query.Direction.DESCENDING).get().addOnCompleteListener(task ->
+                whereEqualTo(SPARK_DELETED, false).orderBy(SPARK_CREATED, Query.Direction.DESCENDING).get().addOnCompleteListener(task ->
         {
             if(task.isSuccessful())
             {
@@ -202,7 +202,7 @@ public class MainActivityModel implements MainActivityContract.Model
         {
             HashMap<String, Object> updateFields = new HashMap<>();
 
-            updateFields.put(SPARK_ISDELETED, true);
+            updateFields.put(SPARK_DELETED, true);
 
             _firestore.collection(SPARKS_COLLECTION).document(spark.getId()).update(updateFields).addOnCompleteListener(task ->
             {
@@ -269,7 +269,7 @@ public class MainActivityModel implements MainActivityContract.Model
 
                             //todo probably need to limit this query in the future, and figure out how to keep requesting data after the limit
                             _firestore.collection(SPARKS_COLLECTION).whereEqualTo(SPARK_OWNERID, user.getId()).
-                                whereEqualTo(SPARK_ISDELETED, false).orderBy(SPARK_CREATED, Query.Direction.DESCENDING).get().addOnCompleteListener(task2 ->
+                                whereEqualTo(SPARK_DELETED, false).orderBy(SPARK_CREATED, Query.Direction.DESCENDING).get().addOnCompleteListener(task2 ->
                                 {
                                     if(task2.isSuccessful())
                                     {
@@ -436,7 +436,7 @@ public class MainActivityModel implements MainActivityContract.Model
         ret.put(SPARK_OWNERUSERNAME, user.getUsername());
         ret.put(SPARK_BODY, sparkBody);
         ret.put(SPARK_CREATED, FieldValue.serverTimestamp());
-        ret.put(SPARK_ISDELETED, false);
+        ret.put(SPARK_DELETED, false);
         ret.put(SPARK_LIKES, Arrays.asList());
 
         ArrayList<String> subscribers = user.getFollowers();

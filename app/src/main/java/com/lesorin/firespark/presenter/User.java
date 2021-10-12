@@ -28,6 +28,9 @@ public class User
     @PropertyName(USER_FOLLOWING)
     private ArrayList<String> _following;
 
+    @PropertyName(USER_VERIFIED)
+    private boolean _verified;
+
     public User()
     {
         _followers = new ArrayList<>();
@@ -87,5 +90,15 @@ public class User
     public void setFollowedByCurrentUser(boolean followedByCurrentUser)
     {
         _isFollowedByCurrentUser = followedByCurrentUser;
+    }
+
+    public String getUsernameinsensitive()
+    {
+        return _usernameInsensitive;
+    }
+
+    public boolean isVerified()
+    {
+        return _verified;
     }
 }

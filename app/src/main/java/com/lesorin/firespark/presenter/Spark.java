@@ -25,8 +25,8 @@ public class Spark
     @PropertyName(SPARK_CREATED)
     private Timestamp _created;
 
-    @PropertyName(SPARK_ISDELETED)
-    private boolean _isDeleted;
+    @PropertyName(SPARK_DELETED)
+    private boolean _deleted;
 
     @PropertyName(SPARK_LIKES)
     private ArrayList<String> _likes;
@@ -125,12 +125,12 @@ public class Spark
         _ownerUsername = spark.getOwnerUsername();
         _body = spark.getBody();
         _created = spark.getCreated();
-        _isDeleted = spark.isDeleted();
+        _deleted = spark.isDeleted();
         _likes = spark.getLikes();
     }
 
-    private boolean isDeleted()
+    public boolean isDeleted()
     {
-        return _isDeleted;
+        return _deleted;
     }
 }

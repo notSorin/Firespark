@@ -25,7 +25,7 @@ public class Comment
     @PropertyName(COMMENT_CREATED)
     private Timestamp _created;
 
-    @PropertyName(COMMENT_ISDELETED)
+    @PropertyName(COMMENT_DELETED)
     private Timestamp _isDeleted;
 
     @PropertyName(COMMENT_LIKES)
