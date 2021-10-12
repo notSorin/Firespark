@@ -305,6 +305,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     public void sparkSentSuccessfully(Spark spark)
     {
         _homeFragment.addSpark(spark);
+        _profileFragment.addSpark(spark);
     }
 
     @Override
