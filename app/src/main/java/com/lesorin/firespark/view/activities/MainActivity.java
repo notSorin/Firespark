@@ -385,10 +385,9 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     @Override
     public void searchUserByUsernameSuccess(User user, ArrayList<Spark> sparks)
     {
-        //todo it's broken... fix it
-        //_profileFragment.setUser(user);
-        //_profileFragment.setSparks(sparks);
-        //openProfileFragment();
+        openProfileFragment();
+        _profileFragment.setUser(user);
+        _profileFragment.setSparks(sparks);
     }
 
     @Override
