@@ -20,7 +20,7 @@ public class ProfileFragment extends FragmentWithSparks
 {
     private final String JOINED_FORMAT = "d MMM yyyy";
     private MaterialButton _followButton;
-    private View _logoutButton;
+    private View _logoutButton, _verifiedIcon;
     private TextView _firstLastName, _username, _userFollowing, _userJoined;
     private User _user;
     private SimpleDateFormat _dateFormat;
@@ -42,6 +42,7 @@ public class ProfileFragment extends FragmentWithSparks
         {
             _view = inflater.inflate(R.layout.fragment_profile, container, false);
 
+            initializeVerifiedIcon();
             initializeBackgroundText();
             initializeSwipeRefresh(() ->
             {
@@ -55,6 +56,11 @@ public class ProfileFragment extends FragmentWithSparks
         }
 
         return _view;
+    }
+
+    private void initializeVerifiedIcon()
+    {
+        _verifiedIcon = _view.findViewById(R.id.VerifiedIcon);
     }
 
     private void initializeFollowButton()
@@ -74,6 +80,7 @@ public class ProfileFragment extends FragmentWithSparks
             if(_firstLastName != null && _username != null && _userFollowing != null && _userJoined != null &&
                 _followButton != null && _logoutButton != null)
             {
+                _verifiedIcon.setVisibility(_user.isVerified() ? View.VISIBLE : View.GONE);
                 _firstLastName.setText(_user.getFirstlastname());
                 _username.setText("@" + _user.getUsername());
                 _userFollowing.setText(String.format(getResources().getString(R.string.UserFollowing),
