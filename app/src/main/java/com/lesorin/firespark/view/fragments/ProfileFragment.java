@@ -19,7 +19,8 @@ import java.util.Locale;
 public class ProfileFragment extends FragmentWithSparks
 {
     private final String JOINED_FORMAT = "d MMM yyyy";
-    private MaterialButton _logoutButton, _followButton;
+    private MaterialButton _followButton;
+    private View _logoutButton;
     private TextView _firstLastName, _username, _userFollowing, _userJoined;
     private User _user;
     private SimpleDateFormat _dateFormat;

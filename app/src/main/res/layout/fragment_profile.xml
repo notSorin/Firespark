@@ -4,24 +4,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/ProfileInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/black"
         android:gravity="center_horizontal"
         android:orientation="vertical"
+        android:padding="12dp"
         app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/VerifiedIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_up"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/FirstLastName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
             android:gravity="center"
             android:text="@string/UserName"
             android:textAppearance="@style/TextAppearance.Firespark.Headline4"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/white"
+            app:layout_constraintTop_toBottomOf="@id/VerifiedIcon" />
 
         <TextView
             android:id="@+id/Username"
@@ -30,7 +40,8 @@
             android:gravity="center"
             android:text="@string/Username"
             android:textAppearance="@style/TextAppearance.Firespark.Body1"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/white"
+            app:layout_constraintTop_toBottomOf="@id/FirstLastName" />
 
         <TextView
             android:id="@+id/UserFollowing"
@@ -39,7 +50,8 @@
             android:gravity="center"
             android:text="@string/UserFollowing"
             android:textAppearance="@style/TextAppearance.Firespark.Body1"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/white"
+            app:layout_constraintTop_toBottomOf="@id/Username" />
 
         <TextView
             android:id="@+id/UserJoined"
@@ -48,27 +60,32 @@
             android:gravity="center"
             android:text="@string/UserJoined"
             android:textAppearance="@style/TextAppearance.Firespark.Body1"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/white"
+            app:layout_constraintTop_toBottomOf="@id/UserFollowing" />
 
-        <com.google.android.material.button.MaterialButton
+        <ImageView
             android:id="@+id/LogoutButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:layout_marginBottom="12dp"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:src="@drawable/icon_logout"
             android:text="@string/LogOut"
-            app:cornerRadius="20dp" />
+            app:cornerRadius="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/UserJoined"
+            app:tint="@color/primaryColor" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/FollowButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:layout_marginBottom="12dp"
             android:text="@string/Follow"
-            android:visibility="gone"
-            app:cornerRadius="20dp" />
-    </LinearLayout>
+            app:cornerRadius="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/UserJoined" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/SwipeRefresh"
