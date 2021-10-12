@@ -11,6 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.lesorin.firespark.R;
@@ -26,18 +28,25 @@ public class SparkFragment extends Fragment
     private final String DATE_FORMAT = "d MMM yyyy\nHH:mm";
     private View _view;
     private RecyclerView _comments;
+    private CommentsRecycleViewAdapter _commentsRVAdapter;
+    protected RecyclerView.LayoutManager _rvLayoutManager;
     private SwipeRefreshLayout _swipeRefresh;
     private Spark _spark;
     private TextView _ownerUsername, _sparkBody, _likes, _timestmap;
     private ImageView _sparkLike, _sparkDelete;
     private ConstraintLayout _layout;
     private SimpleDateFormat _dateFormat;
+    private ArrayList<Comment> _commentsList;
+    private TextView _backgroundText;
 
     public SparkFragment()
     {
         _view = null;
         _spark = null;
         _dateFormat = new SimpleDateFormat(DATE_FORMAT, Locale.getDefault());
+        _commentsRVAdapter = new CommentsRecycleViewAdapter();
+        _rvLayoutManager = new LinearLayoutManager(getContext());
+        _commentsList = null;
     }
 
     @Nullable
@@ -50,9 +59,25 @@ public class SparkFragment extends Fragment
 
             initializeSparkViews();
             initializeSwipeRefresh();
+            initializeCommentsRecycleView();
+            initializeBackgroundText();
         }
 
         return _view;
+    }
+
+    private void initializeBackgroundText()
+    {
+        _backgroundText = _view.findViewById(R.id.BackgroundText);
+    }
+
+    private void initializeCommentsRecycleView()
+    {
+        _comments = _view.findViewById(R.id.CommentsRV);
+
+        _comments.setLayoutManager(_rvLayoutManager);
+        _comments.setItemAnimator(new DefaultItemAnimator());
+        _comments.setAdapter(_commentsRVAdapter);
     }
 
     private void initializeSparkViews()
@@ -94,13 +119,34 @@ public class SparkFragment extends Fragment
 
     public void setComments(ArrayList<Comment> comments)
     {
-        //todo
-        /*CommentsRecycleViewAdapter srva = new CommentsRecycleViewAdapter(comments);
-        RecyclerView.LayoutManager lm = new LinearLayoutManager(getContext());
+        _commentsList = comments;
 
-        _comments.setLayoutManager(lm);
-        _comments.setItemAnimator(new DefaultItemAnimator());
-        _comments.setAdapter(srva);*/
+        displayComments();
+    }
+
+    private void displayComments()
+    {
+        if(getContext() != null && _commentsList != null)
+        {
+            if(_commentsRVAdapter != null)
+            {
+                _commentsRVAdapter.setComments(_commentsList);
+                setBackGroundText(_commentsList.isEmpty() ? getString(R.string.NoCommentsText) : "");
+            }
+
+            if(_swipeRefresh != null)
+            {
+                _swipeRefresh.setRefreshing(false);
+            }
+        }
+    }
+
+    public void setBackGroundText(String text)
+    {
+        if(_backgroundText != null)
+        {
+            _backgroundText.setText(text);
+        }
     }
 
     public void setSpark(Spark spark)

@@ -20,10 +20,21 @@
         app:layout_constraintTop_toBottomOf="@id/SparkLayout">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/SparkComments"
+            android:id="@+id/CommentsRV"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <TextView
+        android:id="@+id/BackgroundText"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:text=""
+        android:textAppearance="@style/TextAppearance.Firespark.Body2"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="@id/SwipeRefresh"
+        app:layout_constraintTop_toTopOf="@id/SwipeRefresh" />
 
     <ImageView
         android:id="@+id/SendComment"
