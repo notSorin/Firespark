@@ -1,5 +1,6 @@
 package com.lesorin.firespark.presenter;
 
+import static com.lesorin.firespark.presenter.StartActivityContract.USERNAME_REGEX;
 import java.util.ArrayList;
 
 public class MainActivityPresenter implements MainActivityContract.PresenterView, MainActivityContract.PresenterModel
@@ -111,6 +112,19 @@ public class MainActivityPresenter implements MainActivityContract.PresenterView
     public void userFollowClicked(User user)
     {
         _model.followUnfollowUser(user);
+    }
+
+    @Override
+    public void requestSearchUserByUsername(String userName)
+    {
+        if(userName.matches(USERNAME_REGEX))
+        {
+            _model.searchUserByUsername(userName);
+        }
+        else
+        {
+            _view.searchUserByUsernameFailure();
+        }
     }
 
     @Override
@@ -229,5 +243,17 @@ public class MainActivityPresenter implements MainActivityContract.PresenterView
     public void unfollowUserFailure()
     {
         _view.unfollowUserFailure();
+    }
+
+    @Override
+    public void searchUserFailure()
+    {
+        _view.searchUserByUsernameFailure();
+    }
+
+    @Override
+    public void searchUserSuccess(User user, ArrayList<Spark> sparks)
+    {
+        _view.searchUserByUsernameSuccess(user, sparks);
     }
 }

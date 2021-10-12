@@ -373,6 +373,21 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
         Snackbar.make(_navigationView, R.string.UnfollowUserFailure, Snackbar.LENGTH_LONG).show();
     }
 
+    @Override
+    public void searchUserByUsernameFailure()
+    {
+        Snackbar.make(_navigationView, R.string.SearchUserNotFound, Snackbar.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void searchUserByUsernameSuccess(User user, ArrayList<Spark> sparks)
+    {
+        //todo it's broken... fix it
+        //_profileFragment.setUser(user);
+        //_profileFragment.setSparks(sparks);
+        //openProfileFragment();
+    }
+
     private void hideKeyboard()
     {
         InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
@@ -433,5 +448,10 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     public void userFollowClicked(User user)
     {
         _presenter.userFollowClicked(user);
+    }
+
+    public void requestSearchUserByUsername(String userName)
+    {
+        _presenter.requestSearchUserByUsername(userName);
     }
 }

@@ -264,6 +264,62 @@ public class MainActivityModel implements MainActivityContract.Model
         }
     }
 
+    @Override
+    public void searchUserByUsername(String userName)
+    {
+        if(!userName.isEmpty())
+        {
+            _firestore.collection(USERS_COLLECTION).whereEqualTo(USER_USERNAMEINSENSITIVE, userName.toLowerCase()).
+                get().addOnCompleteListener(task ->
+                {
+                    if(task.isSuccessful())
+                    {
+                        if(task.getResult().size() >= 1)
+                        {
+                            User user = createUserFromDocumentSnapshot(task.getResult().getDocuments().get(0));
+
+                            //todo probably need to limit this query in the future, and figure out how to keep requesting data after the limit
+                            _firestore.collection(SPARKS_COLLECTION).whereEqualTo(SPARK_OWNERID, user.getId()).
+                                whereEqualTo(SPARK_ISDELETED, false).orderBy(SPARK_CREATED, Query.Direction.DESCENDING).get().addOnCompleteListener(task2 ->
+                                {
+                                    if(task2.isSuccessful())
+                                    {
+                                        ArrayList<Spark> sparks = new ArrayList<>();
+
+                                        for(QueryDocumentSnapshot document : task2.getResult())
+                                        {
+                                            Spark spark = createSparkFromDocumentSnapshot(document);
+
+                                            spark = updateSparksCache(spark);
+
+                                            sparks.add(spark);
+                                        }
+
+                                        _presenter.searchUserSuccess(user, sparks);
+                                    }
+                                    else
+                                    {
+                                        _presenter.searchUserFailure();
+                                    }
+                                });
+                        }
+                        else
+                        {
+                            _presenter.searchUserFailure();
+                        }
+                    }
+                    else
+                    {
+                        _presenter.searchUserFailure();
+                    }
+                });
+        }
+        else
+        {
+            _presenter.searchUserFailure();
+        }
+    }
+
     private void followUser(User user)
     {
         String currentUserId = _firebaseAuth.getUid();
