@@ -1,5 +1,6 @@
 package com.lesorin.firespark.view.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -50,8 +51,6 @@ public class ProfileFragment extends FragmentWithSparks
             initializeLogoutButton();
             initializeFollowButton();
             initializeSparksRecycleView();
-            displayUserInfo();
-            displaySparks();
         }
 
         return _view;
@@ -69,7 +68,7 @@ public class ProfileFragment extends FragmentWithSparks
 
     private void displayUserInfo()
     {
-        if(_user != null)
+        if(getContext() != null && _user != null)
         {
             if(_firstLastName != null && _username != null && _userFollowing != null && _userJoined != null &&
                 _followButton != null && _logoutButton != null)
@@ -110,5 +109,10 @@ public class ProfileFragment extends FragmentWithSparks
         _user = user;
 
         displayUserInfo();
+    }
+
+    public User getUser()
+    {
+        return _user;
     }
 }

@@ -167,14 +167,40 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
             switch (item.getItemId())
             {
                 case R.id.ProfilePage:
-                    openProfileFragment();
-                    requestProfileData(null);
+                    User user = _profileFragment.getUser();
+
+                    if(user == null)
+                    {
+                        requestProfileData(null);
+                    }
+                    else if(!user.isCurrentUser())
+                    {
+                        requestProfileData(null);
+                    }
+                    else
+                    {
+                        openProfileFragment();
+                    }
                     break;
                 case R.id.HomePage:
-                    openHomeFragment();
+                    if(_homeFragment.getSparksList() == null)
+                    {
+                        requestHomeData();
+                    }
+                    else
+                    {
+                        openHomeFragment();
+                    }
                     break;
                 case R.id.PopularPage:
-                    openPopularFragment();
+                    if(_homeFragment.getSparksList() == null)
+                    {
+                        requestPopularData();
+                    }
+                    else
+                    {
+                        openPopularFragment();
+                    }
                     break;
             }
 
@@ -187,25 +213,25 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     private void openProfileFragment()
     {
         getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.fade_in, R.anim.fade_out).
-                replace(R.id.FragmentContainer, _profileFragment).commit();
+                replace(R.id.FragmentContainer, _profileFragment).commitNow();
     }
 
     private void openHomeFragment()
     {
         getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.fade_in, R.anim.fade_out).
-                replace(R.id.FragmentContainer, _homeFragment).commit();
+                replace(R.id.FragmentContainer, _homeFragment).commitNow();
     }
 
     private void openPopularFragment()
     {
         getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.fade_in, R.anim.fade_out).
-                replace(R.id.FragmentContainer, _popularFragment).commit();
+                replace(R.id.FragmentContainer, _popularFragment).commitNow();
     }
 
     private void openSearchUserFragment()
     {
         getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.fade_in, R.anim.fade_out).
-                replace(R.id.FragmentContainer, _searchUserFragment).commit();
+                replace(R.id.FragmentContainer, _searchUserFragment).commitNow();
     }
 
     public void logOutButtonPressed()
@@ -229,6 +255,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     @Override
     public void displayHomeData(ArrayList<Spark> sparks)
     {
+        openHomeFragment();
         _homeFragment.setSparks(sparks);
     }
 
@@ -326,30 +353,6 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     }
 
     @Override
-    public void requestProfileUserSuccess(User user)
-    {
-        _profileFragment.setUser(user);
-    }
-
-    @Override
-    public void requestProfileUserFailure()
-    {
-        Snackbar.make(_navigationView, R.string.RequestProfileUserFailure, Snackbar.LENGTH_LONG).show();
-    }
-
-    @Override
-    public void requestProfileSparksSuccess(ArrayList<Spark> sparks)
-    {
-        _profileFragment.setSparks(sparks);
-    }
-
-    @Override
-    public void requestProfileSparksFailure()
-    {
-        Snackbar.make(_navigationView, R.string.RequestProfileSparksFailure, Snackbar.LENGTH_LONG).show();
-    }
-
-    @Override
     public void followUserSuccess(User user)
     {
         _profileFragment.setUser(user);
@@ -388,6 +391,20 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
         //openProfileFragment();
     }
 
+    @Override
+    public void requestProfileDataSuccess(User user, ArrayList<Spark> sparks)
+    {
+        openProfileFragment();
+        _profileFragment.setUser(user);
+        _profileFragment.setSparks(sparks);
+    }
+
+    @Override
+    public void requestProfileDataFailure()
+    {
+        Snackbar.make(_navigationView, R.string.RequestProfileDataFailure, Snackbar.LENGTH_LONG).show();
+    }
+
     private void hideKeyboard()
     {
         InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
@@ -423,7 +440,6 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     public void sparkOwnerClicked(Spark spark)
     {
         _presenter.requestProfileData(spark.getOwnerId());
-        openProfileFragment();
     }
 
     public void sendSparkRequested(String sparkBody)

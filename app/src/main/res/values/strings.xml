@@ -74,4 +74,5 @@
     <string name="SearchUserHelp">Search a user by their username. It is not required to use \"@\".</string>
     <string name="Search">Search</string>
     <string name="SearchUserNotFound">User not found.</string>
+    <string name="RequestProfileDataFailure">Could not retrieve user data.</string>
 </resources>

@@ -59,7 +59,7 @@ public abstract class FragmentWithSparks extends Fragment
 
     protected void displaySparks()
     {
-        if(_sparksList != null)
+        if(getContext() != null && _sparksList != null)
         {
             if(_sparksRVAdapter != null)
             {
@@ -100,5 +100,10 @@ public abstract class FragmentWithSparks extends Fragment
     public void sparkLikeRemoved(Spark spark)
     {
         _sparksRVAdapter.sparkLikeRemoved(spark);
+    }
+
+    public ArrayList<Spark> getSparksList()
+    {
+        return _sparksList;
     }
 }

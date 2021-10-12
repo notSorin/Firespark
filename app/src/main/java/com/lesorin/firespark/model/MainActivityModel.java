@@ -47,51 +47,40 @@ public class MainActivityModel implements MainActivityContract.Model
         if(userId == null)
             userId = _firebaseAuth.getUid();
 
-        requestProfileUser(userId);
-        requestProfileSparks(userId);
-    }
-
-    private void requestProfileSparks(String userId)
-    {
-        //todo probably need to limit this query in the future, and figure out how to keep requesting data after the limit
-        _firestore.collection(SPARKS_COLLECTION).whereEqualTo(SPARK_OWNERID, userId).
-                whereEqualTo(SPARK_ISDELETED, false).orderBy(SPARK_CREATED, Query.Direction.DESCENDING).get().addOnCompleteListener(task ->
-        {
-            if(task.isSuccessful())
-            {
-                ArrayList<Spark> sparks = new ArrayList<>();
-
-                for(QueryDocumentSnapshot document : task.getResult())
-                {
-                    Spark spark = createSparkFromDocumentSnapshot(document);
-
-                    spark = updateSparksCache(spark);
-
-                    sparks.add(spark);
-                }
-
-                _presenter.requestProfileSparksResult(sparks);
-            }
-            else
-            {
-                _presenter.requestProfileSparksResult(null);
-            }
-        });
-    }
-
-    private void requestProfileUser(String userId)
-    {
         _firestore.collection(USERS_COLLECTION).document(userId).get().addOnCompleteListener(task ->
         {
             if(task.isSuccessful())
             {
                 User user = createUserFromDocumentSnapshot(task.getResult());
 
-                _presenter.requestProfileUserResult(user);
+                //todo probably need to limit this query in the future, and figure out how to keep requesting data after the limit
+                _firestore.collection(SPARKS_COLLECTION).whereEqualTo(SPARK_OWNERID, user.getId()).
+                        whereEqualTo(SPARK_ISDELETED, false).orderBy(SPARK_CREATED, Query.Direction.DESCENDING).get().addOnCompleteListener(task2 ->
+                {
+                    if(task2.isSuccessful())
+                    {
+                        ArrayList<Spark> sparks = new ArrayList<>();
+
+                        for(QueryDocumentSnapshot document : task2.getResult())
+                        {
+                            Spark spark = createSparkFromDocumentSnapshot(document);
+
+                            spark = updateSparksCache(spark);
+
+                            sparks.add(spark);
+                        }
+
+                        _presenter.requestProfileDataSuccess(user, sparks);
+                    }
+                    else
+                    {
+                        _presenter.requestProfileDataFailure();
+                    }
+                });
             }
             else
             {
-                _presenter.requestProfileUserResult(null);
+                _presenter.requestProfileDataFailure();
             }
         });
     }

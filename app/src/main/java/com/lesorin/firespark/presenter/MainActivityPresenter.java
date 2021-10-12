@@ -196,32 +196,6 @@ public class MainActivityPresenter implements MainActivityContract.PresenterView
     }
 
     @Override
-    public void requestProfileUserResult(User user)
-    {
-        if(user != null)
-        {
-            _view.requestProfileUserSuccess(user);
-        }
-        else
-        {
-            _view.requestProfileUserFailure();
-        }
-    }
-
-    @Override
-    public void requestProfileSparksResult(ArrayList<Spark> sparks)
-    {
-        if(sparks != null)
-        {
-            _view.requestProfileSparksSuccess(sparks);
-        }
-        else
-        {
-            _view.requestProfileSparksFailure();
-        }
-    }
-
-    @Override
     public void followUserSuccess(User user)
     {
         _view.followUserSuccess(user);
@@ -255,5 +229,17 @@ public class MainActivityPresenter implements MainActivityContract.PresenterView
     public void searchUserSuccess(User user, ArrayList<Spark> sparks)
     {
         _view.searchUserByUsernameSuccess(user, sparks);
+    }
+
+    @Override
+    public void requestProfileDataSuccess(User user, ArrayList<Spark> sparks)
+    {
+        _view.requestProfileDataSuccess(user, sparks);
+    }
+
+    @Override
+    public void requestProfileDataFailure()
+    {
+        _view.requestProfileDataFailure();
     }
 }

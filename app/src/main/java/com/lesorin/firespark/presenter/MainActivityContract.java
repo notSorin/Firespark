@@ -33,14 +33,14 @@ public interface MainActivityContract
         void addSparkLikeFailure(Spark spark);
         void removeSparkLikeSuccess(Spark spark);
         void removeSparkLikeFailure(Spark spark);
-        void requestProfileUserResult(User user);
-        void requestProfileSparksResult(ArrayList<Spark> sparks);
         void followUserSuccess(User user);
         void followUserFailure();
         void unfollowUserSuccess(User user);
         void unfollowUserFailure();
         void searchUserFailure();
         void searchUserSuccess(User user, ArrayList<Spark> sparks);
+        void requestProfileDataSuccess(User user, ArrayList<Spark> sparks);
+        void requestProfileDataFailure();
     }
 
     interface View
@@ -60,16 +60,14 @@ public interface MainActivityContract
         void addSparkLikeFailure(Spark spark);
         void removeSparkLikeSuccess(Spark spark);
         void removeSparkLikeFailure(Spark spark);
-        void requestProfileUserSuccess(User user);
-        void requestProfileUserFailure();
-        void requestProfileSparksSuccess(ArrayList<Spark> sparks);
-        void requestProfileSparksFailure();
         void followUserSuccess(User user);
         void followUserFailure();
         void unfollowUserSuccess(User user);
         void unfollowUserFailure();
         void searchUserByUsernameFailure();
         void searchUserByUsernameSuccess(User user, ArrayList<Spark> sparks);
+        void requestProfileDataSuccess(User user, ArrayList<Spark> sparks);
+        void requestProfileDataFailure();
     }
 
     interface Model
