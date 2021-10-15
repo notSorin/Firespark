@@ -467,7 +467,7 @@ class MainModel implements MainContract.Model
         ret.put(SPARK_CREATED, FieldValue.serverTimestamp());
         ret.put(SPARK_DELETED, false);
         ret.put(SPARK_LIKES, Arrays.asList());
-        ret.put(SPARK_COMMENTSAMOUNT, 0);
+        ret.put(SPARK_COMMENTS, Arrays.asList());
 
         ArrayList<String> subscribers = user.getFollowers();
 
@@ -487,6 +487,7 @@ class MainModel implements MainContract.Model
         spark.setId(document.getId());
         spark.setOwnedByCurrentUser(spark.getOwnerId().equals(_firebaseAuth.getUid()));
         spark.setLikedByCurrentUser(spark.getLikes().contains(_firebaseAuth.getUid()));
+        spark.setContainsCommentFromCurrentUser(spark.getComments().contains(_firebaseAuth.getUid()));
 
         return spark;
     }
