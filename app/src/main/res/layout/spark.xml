@@ -92,4 +92,40 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/CommentsLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toEndOf="@id/LikesLayout"
+        app:layout_constraintTop_toTopOf="@id/LikesLayout">
+
+        <TextView
+            android:id="@+id/SparkCommentsAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:padding="4dp"
+            android:text="123"
+            android:textAppearance="@style/TextAppearance.Firespark.Body2"
+            android:textColor="#41FFFFFF"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/SparkLike"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/SparkLike" />
+
+        <ImageView
+            android:id="@+id/SparkCommentsIcon"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:padding="8dp"
+            android:src="@drawable/icon_comment"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/SparkBody" />
+
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
