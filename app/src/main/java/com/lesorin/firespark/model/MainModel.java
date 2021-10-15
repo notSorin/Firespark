@@ -112,10 +112,10 @@ class MainModel implements MainContract.Model
     }
 
     //Inserts the parameter spark into the cache map.
-    //If a spark with the same id as the parameter spark already exists in the cache map, then the map spark
+    //If a spark with the same id as the parameter already exists in the cache map, then the map spark
     //is updated and returned.
-    //If a spark with the same id as the parameter spark is not contained in the cache map, then the
-    //parameter map is inserted into the map and returned.
+    //If a spark with the same id as the parameter is not contained in the cache map, then the
+    //parameter is inserted into the map and returned.
     private Spark updateSparksCache(Spark spark)
     {
         Spark sparkInMap = _sparksCache.get(spark.getId());
