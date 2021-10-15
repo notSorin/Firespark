@@ -10,6 +10,9 @@ public class Comment
     private String _id;
     private boolean _ownedByCurrentUser, _likedByCurrentUser;
 
+    @PropertyName(COMMENT_SPARKID)
+    private String _sparkId;
+
     @PropertyName(COMMENT_OWNERID)
     private String _ownerId;
 
@@ -62,6 +65,11 @@ public class Comment
         _id = id;
     }
 
+    public String getSparkId()
+    {
+        return _sparkId;
+    }
+
     public String getOwnerId()
     {
         return _ownerId;
@@ -87,7 +95,7 @@ public class Comment
         return _ownerUsername;
     }
 
-    public void setOwnerUserName(String username)
+    public void setOwnerUsername(String username)
     {
         _ownerUsername = username;
     }
