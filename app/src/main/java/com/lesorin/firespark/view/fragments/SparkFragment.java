@@ -32,8 +32,8 @@ public class SparkFragment extends Fragment
     protected RecyclerView.LayoutManager _rvLayoutManager;
     private SwipeRefreshLayout _swipeRefresh;
     private Spark _spark;
-    private TextView _ownerUsername, _sparkBody, _likes, _timestmap;
-    private ImageView _sparkLike, _sparkDelete;
+    private TextView _ownerUsername, _sparkBody, _likes, _timestmap, _commentsAmount;
+    private ImageView _sparkLike, _sparkDelete, _commentsIcon;
     private ConstraintLayout _layout;
     private SimpleDateFormat _dateFormat;
     private ArrayList<Comment> _commentsList;
@@ -89,6 +89,8 @@ public class SparkFragment extends Fragment
         _sparkLike = _view.findViewById(R.id.SparkLike);
         _layout = _view.findViewById(R.id.SparkLayout);
         _sparkDelete = _view.findViewById(R.id.SparkDelete);
+        _commentsAmount = _view.findViewById(R.id.SparkCommentsAmount);
+        _commentsIcon = _view.findViewById(R.id.SparkCommentsIcon);
 
         _sparkLike.setOnClickListener(view ->
         {
@@ -167,6 +169,20 @@ public class SparkFragment extends Fragment
             setLikesAmount(_spark.getLikes().size());
             _timestmap.setText(_dateFormat.format(_spark.getCreated().toDate()));
             setSpecialOwnerName(_spark.isOwnedByCurrentUser());
+            _commentsAmount.setText(String.valueOf(_spark.getComments().size()));
+            setSpecialCommentIcon(_spark.containsCommentFromCurrentUser());
+        }
+    }
+
+    private void setSpecialCommentIcon(boolean special)
+    {
+        if(special)
+        {
+            _commentsIcon.setColorFilter(_commentsIcon.getContext().getColor(R.color.primaryColor));
+        }
+        else
+        {
+            _commentsIcon.clearColorFilter();
         }
     }
 

@@ -11,8 +11,8 @@ import com.lesorin.firespark.R;
 
 public class SparkViewHolder extends RecyclerView.ViewHolder
 {
-    private TextView _ownerUsername, _sparkBody, _likes, _timestmap;
-    private ImageView _sparkLike, _sparkDelete;
+    private TextView _ownerUsername, _sparkBody, _likes, _timestmap, _commentsAmount;
+    private ImageView _sparkLike, _sparkDelete, _commentsIcon;
     private ConstraintLayout _layout;
 
     public SparkViewHolder(@NonNull View view)
@@ -26,6 +26,8 @@ public class SparkViewHolder extends RecyclerView.ViewHolder
         _sparkLike = view.findViewById(R.id.SparkLike);
         _layout = view.findViewById(R.id.SparkLayout);
         _sparkDelete = view.findViewById(R.id.SparkDelete);
+        _commentsAmount = view.findViewById(R.id.SparkCommentsAmount);
+        _commentsIcon = view.findViewById(R.id.SparkCommentsIcon);
     }
 
     public String getOwnerUsername()
@@ -122,5 +124,22 @@ public class SparkViewHolder extends RecyclerView.ViewHolder
     public View getDeleteSparkView()
     {
         return _sparkDelete;
+    }
+
+    public void setCommentsAmount(int commentsAmount)
+    {
+        _commentsAmount.setText(String.valueOf(commentsAmount));
+    }
+
+    public void setSpecialCommentIcon(boolean special)
+    {
+        if(special)
+        {
+            _commentsIcon.setColorFilter(_commentsIcon.getContext().getColor(R.color.primaryColor));
+        }
+        else
+        {
+            _commentsIcon.clearColorFilter();
+        }
     }
 }

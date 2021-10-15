@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.lesorin.firespark.R;
 import com.lesorin.firespark.view.activities.MainActivity;
 import java.text.SimpleDateFormat;import com.lesorin.firespark.presenter.pojo.Spark;
-
 import java.util.ArrayList;
 import java.util.Locale;
 
@@ -46,6 +45,8 @@ public class SparksRecycleViewAdapter extends RecyclerView.Adapter<SparkViewHold
         holder.setLikes(likesAmount);
         holder.setCreated(_dateFormat.format(spark.getCreated().toDate()));
         holder.setSpecialOwnerName(spark.isOwnedByCurrentUser());
+        holder.setCommentsAmount(spark.getComments().size());
+        holder.setSpecialCommentIcon(spark.containsCommentFromCurrentUser());
 
         holder.getLayoutView().setOnClickListener(view ->
         {
