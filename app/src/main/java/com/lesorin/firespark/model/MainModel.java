@@ -48,14 +48,14 @@ class MainModel implements MainContract.Model
         if(userId == null)
             userId = _firebaseAuth.getUid();
 
-        _firestore.collection(USERS_COLLECTION).document(userId).get().addOnCompleteListener(task ->
+        _firestore.collection(COLLECTION_USERS).document(userId).get().addOnCompleteListener(task ->
         {
             if(task.isSuccessful())
             {
                 User user = createUserFromDocumentSnapshot(task.getResult());
 
                 //todo probably need to limit this query in the future, and figure out how to keep requesting data after the limit
-                _firestore.collection(SPARKS_COLLECTION).whereEqualTo(SPARK_OWNERID, user.getId()).
+                _firestore.collection(COLLECTION_SPARKS).whereEqualTo(SPARK_OWNERID, user.getId()).
                         whereEqualTo(SPARK_DELETED, false).orderBy(SPARK_CREATED, Query.Direction.DESCENDING).get().addOnCompleteListener(task2 ->
                 {
                     if(task2.isSuccessful())
@@ -90,7 +90,7 @@ class MainModel implements MainContract.Model
     public void requestHomeData()
     {
         //todo probably need to limit this query in the future, and figure out how to keep requesting data after the limit
-        _firestore.collection(SPARKS_COLLECTION).whereArrayContains(SPARK_SUBSCRIBERS, _firebaseAuth.getCurrentUser().getUid()).
+        _firestore.collection(COLLECTION_SPARKS).whereArrayContains(SPARK_SUBSCRIBERS, _firebaseAuth.getCurrentUser().getUid()).
                 whereEqualTo(SPARK_DELETED, false).orderBy(SPARK_CREATED, Query.Direction.DESCENDING).get().addOnCompleteListener(task ->
         {
             if(task.isSuccessful())
@@ -153,7 +153,7 @@ class MainModel implements MainContract.Model
     {
         String userId = _firebaseAuth.getCurrentUser().getUid();
 
-        _firestore.collection(USERS_COLLECTION).document(userId).get().addOnCompleteListener(task ->
+        _firestore.collection(COLLECTION_USERS).document(userId).get().addOnCompleteListener(task ->
         {
             if(task.isSuccessful())
             {
@@ -161,11 +161,11 @@ class MainModel implements MainContract.Model
                 User user = createUserFromDocumentSnapshot(ds);
                 HashMap<String, Object> toInsert = createSparkMapForInserting(sparkBody, user);
 
-                _firestore.collection(SPARKS_COLLECTION).add(toInsert).addOnCompleteListener(task2 ->
+                _firestore.collection(COLLECTION_SPARKS).add(toInsert).addOnCompleteListener(task2 ->
                 {
                     if(task2.isSuccessful())
                     {
-                        _firestore.collection(SPARKS_COLLECTION).document(task2.getResult().getId()).
+                        _firestore.collection(COLLECTION_SPARKS).document(task2.getResult().getId()).
                                 get().addOnCompleteListener(task3 ->
                         {
                             if(task3.isSuccessful())
@@ -205,7 +205,7 @@ class MainModel implements MainContract.Model
 
             updateFields.put(SPARK_DELETED, true);
 
-            _firestore.collection(SPARKS_COLLECTION).document(spark.getId()).update(updateFields).addOnCompleteListener(task ->
+            _firestore.collection(COLLECTION_SPARKS).document(spark.getId()).update(updateFields).addOnCompleteListener(task ->
             {
                 if(task.isSuccessful())
                 {
@@ -259,7 +259,7 @@ class MainModel implements MainContract.Model
     {
         if(!userName.isEmpty())
         {
-            _firestore.collection(USERS_COLLECTION).whereEqualTo(USER_USERNAMEINSENSITIVE, userName.toLowerCase()).
+            _firestore.collection(COLLECTION_USERS).whereEqualTo(USER_USERNAMEINSENSITIVE, userName.toLowerCase()).
                 get().addOnCompleteListener(task ->
                 {
                     if(task.isSuccessful())
@@ -269,7 +269,7 @@ class MainModel implements MainContract.Model
                             User user = createUserFromDocumentSnapshot(task.getResult().getDocuments().get(0));
 
                             //todo probably need to limit this query in the future, and figure out how to keep requesting data after the limit
-                            _firestore.collection(SPARKS_COLLECTION).whereEqualTo(SPARK_OWNERID, user.getId()).
+                            _firestore.collection(COLLECTION_SPARKS).whereEqualTo(SPARK_OWNERID, user.getId()).
                                 whereEqualTo(SPARK_DELETED, false).orderBy(SPARK_CREATED, Query.Direction.DESCENDING).get().addOnCompleteListener(task2 ->
                                 {
                                     if(task2.isSuccessful())
@@ -314,7 +314,7 @@ class MainModel implements MainContract.Model
     public void requestSparkData(Spark spark)
     {
         //todo probably need to limit this query in the future, and figure out how to keep requesting data after the limit
-        _firestore.collection(COMMENTS_COLLECTION).whereEqualTo(COMMENT_SPARKID, spark.getId()).
+        _firestore.collection(COLLECTION_COMMENTS).whereEqualTo(COMMENT_SPARKID, spark.getId()).
                 whereEqualTo(COMMENT_DELETED, false).orderBy(COMMENT_CREATED, Query.Direction.DESCENDING).get().addOnCompleteListener(task ->
         {
             if(task.isSuccessful())
@@ -352,8 +352,8 @@ class MainModel implements MainContract.Model
         otherUserUpdate.put(USER_FOLLOWERS, FieldValue.arrayUnion(currentUserId));
 
         WriteBatch batch = _firestore.batch();
-        DocumentReference currentUserRef = _firestore.collection(USERS_COLLECTION).document(currentUserId);
-        DocumentReference otherUserRef = _firestore.collection(USERS_COLLECTION).document(otherUserId);
+        DocumentReference currentUserRef = _firestore.collection(COLLECTION_USERS).document(currentUserId);
+        DocumentReference otherUserRef = _firestore.collection(COLLECTION_USERS).document(otherUserId);
 
         batch.update(currentUserRef, currentUserUpdate);
         batch.update(otherUserRef, otherUserUpdate);
@@ -387,8 +387,8 @@ class MainModel implements MainContract.Model
         otherUserUpdate.put(USER_FOLLOWERS, FieldValue.arrayRemove(currentUserId));
 
         WriteBatch batch = _firestore.batch();
-        DocumentReference currentUserRef = _firestore.collection(USERS_COLLECTION).document(currentUserId);
-        DocumentReference otherUserRef = _firestore.collection(USERS_COLLECTION).document(otherUserId);
+        DocumentReference currentUserRef = _firestore.collection(COLLECTION_USERS).document(currentUserId);
+        DocumentReference otherUserRef = _firestore.collection(COLLECTION_USERS).document(otherUserId);
 
         batch.update(currentUserRef, currentUserUpdate);
         batch.update(otherUserRef, otherUserUpdate);
@@ -416,7 +416,7 @@ class MainModel implements MainContract.Model
 
         updateFields.put(SPARK_LIKES, FieldValue.arrayUnion(userId));
 
-        _firestore.collection(SPARKS_COLLECTION).document(sparkId).update(updateFields).
+        _firestore.collection(COLLECTION_SPARKS).document(sparkId).update(updateFields).
             addOnCompleteListener(task ->
             {
                 if(task.isSuccessful())
@@ -440,7 +440,7 @@ class MainModel implements MainContract.Model
 
         updateFields.put(SPARK_LIKES, FieldValue.arrayRemove(userId));
 
-        _firestore.collection(SPARKS_COLLECTION).document(sparkId).update(updateFields).
+        _firestore.collection(COLLECTION_SPARKS).document(sparkId).update(updateFields).
             addOnCompleteListener(task ->
             {
                 if(task.isSuccessful())

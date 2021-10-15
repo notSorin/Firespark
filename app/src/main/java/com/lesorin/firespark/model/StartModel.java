@@ -34,7 +34,7 @@ class StartModel implements StartContract.Model
     {
         if(!email.isEmpty() && !password.isEmpty())
         {
-            _firestore.collection(USERS_COLLECTION).whereEqualTo(USER_USERNAMEINSENSITIVE, username.toLowerCase()).
+            _firestore.collection(COLLECTION_USERS).whereEqualTo(USER_USERNAMEINSENSITIVE, username.toLowerCase()).
                     get().addOnCompleteListener(task ->
             {
                 if(task.isSuccessful())
@@ -85,7 +85,7 @@ class StartModel implements StartContract.Model
             userMap.put(USER_FOLLOWERS, Arrays.asList());
             userMap.put(USER_FOLLOWING, Arrays.asList());
 
-            _firestore.collection(USERS_COLLECTION).document(user.getUid()).set(userMap);
+            _firestore.collection(COLLECTION_USERS).document(user.getUid()).set(userMap);
         }
     }
 
