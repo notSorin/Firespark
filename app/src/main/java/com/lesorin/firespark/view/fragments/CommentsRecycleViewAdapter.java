@@ -8,15 +8,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.lesorin.firespark.R;
 import com.lesorin.firespark.presenter.pojo.Comment;
 import com.lesorin.firespark.presenter.pojo.Spark;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class CommentsRecycleViewAdapter extends RecyclerView.Adapter<CommentViewHolder>
 {
+    private final String DATE_FORMAT = "d MMM yyyy\nHH:mm";
+    private SimpleDateFormat _dateFormat;
     private ArrayList<Comment> _commentsList;
 
     public CommentsRecycleViewAdapter()
     {
         _commentsList = null;
+        _dateFormat = new SimpleDateFormat(DATE_FORMAT, Locale.getDefault());
     }
 
     @NonNull
@@ -31,7 +36,17 @@ public class CommentsRecycleViewAdapter extends RecyclerView.Adapter<CommentView
     @Override
     public void onBindViewHolder(@NonNull CommentViewHolder holder, int position)
     {
+        Comment comment = _commentsList.get(position);
+        int likesAmount = comment.getLikes().size();
 
+        holder.setOwnerName(comment.getOwnerFirstLastName(), comment.getOwnerUsername());
+        holder.setBody(comment.getBody());
+        holder.setCommentLiked(comment.isLikedByCurrentUser());
+        holder.setDeleteButtonVisibility(comment.isOwnedByCurrentUser());
+        holder.setLikes(likesAmount);
+        holder.setCreated(_dateFormat.format(comment.getCreated().toDate()));
+        holder.setSpecialOwnerName(comment.isOwnedByCurrentUser());
+        holder.setReplyName(comment.getReplyToFirstLastName(), comment.getReplyToUsername());
     }
 
     @Override
