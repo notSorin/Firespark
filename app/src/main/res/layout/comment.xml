@@ -20,6 +20,33 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="12dp" />
 
+    <LinearLayout
+        android:id="@+id/CommentReplyLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/CommentOwner">
+
+        <ImageView
+            android:layout_width="12dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/reply"
+            app:tint="#41FFFFFF" />
+
+        <TextView
+            android:id="@+id/CommentReply"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="4dp"
+            android:text="@string/Username"
+            android:textAppearance="@style/TextAppearance.Firespark.Body2"
+            android:textColor="#41FFFFFF"
+            android:textStyle="italic"
+
+            tools:layout_editor_absoluteX="12dp" />
+    </LinearLayout>
+
     <TextView
         android:id="@+id/CommentBody"
         android:layout_width="match_parent"
@@ -28,7 +55,7 @@
         android:text="@string/LoremIpsum"
         android:textAppearance="@style/TextAppearance.Firespark.Body1"
         android:textColor="@android:color/white"
-        app:layout_constraintTop_toBottomOf="@id/CommentOwner" />
+        app:layout_constraintTop_toBottomOf="@id/CommentReplyLayout" />
 
     <TextView
         android:id="@+id/CommentTimestamp"
@@ -38,8 +65,9 @@
         android:textAppearance="@style/TextAppearance.Firespark.Body2"
         android:textColor="@android:color/white"
         android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="@id/CommentOwner"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@id/CommentOwner" />
 
     <ImageView
         android:id="@+id/CommentDelete"
