@@ -156,4 +156,9 @@ public class Comment
     {
         return _likedByCurrentUser;
     }
+
+    public void setLikedByCurrentUser(boolean liked)
+    {
+        _likedByCurrentUser = liked;
+    }
 }
