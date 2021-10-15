@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class Comment
 {
     private String _id;
-    private boolean _ownedByCurrentUser;
+    private boolean _ownedByCurrentUser, _likedByCurrentUser;
 
     @PropertyName(COMMENT_OWNERID)
     private String _ownerId;
@@ -150,5 +150,10 @@ public class Comment
     public void setReplyToUsername(String username)
     {
         _replyToUsername = username;
+    }
+
+    public boolean isLikedByCurrentUser()
+    {
+        return _likedByCurrentUser;
     }
 }
