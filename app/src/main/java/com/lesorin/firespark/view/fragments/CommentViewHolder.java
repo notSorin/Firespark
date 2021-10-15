@@ -1,6 +1,8 @@
 package com.lesorin.firespark.view.fragments;
 
+import android.graphics.Color;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -8,44 +10,85 @@ import com.lesorin.firespark.R;
 
 public class CommentViewHolder extends RecyclerView.ViewHolder
 {
-    private TextView _ownerName, _commentBody, _timestamp;
+    private TextView _ownerName, _body, _timestamp, _likes, _replyOwner;
+    private View _replyLayout;
+    private ImageView _likeButton, _deleteButton;
 
     public CommentViewHolder(@NonNull View view)
     {
         super(view);
 
         _ownerName = view.findViewById(R.id.CommentOwner);
-        _commentBody = view.findViewById(R.id.CommentBody);
+        _body = view.findViewById(R.id.CommentBody);
         _timestamp = view.findViewById(R.id.CommentTimestamp);
+        _replyLayout = view.findViewById(R.id.CommentReplyLayout);
+        _replyOwner = view.findViewById(R.id.CommentReplyOwner);
+        _likes = view.findViewById(R.id.CommentLikes);
+        _likeButton = view.findViewById(R.id.CommentLikeButton);
+        _deleteButton = view.findViewById(R.id.CommentDelete);
     }
 
-    public String getOwnerName()
+    public void setOwnerName(String firstLastName, String username)
     {
-        return _ownerName.getText().toString();
+        _ownerName.setText(firstLastName + " (@" + username + ")");
     }
 
-    public void setOwnerName(String name)
+    public void setCreated(String created)
     {
-        _ownerName.setText(name);
+        _timestamp.setText(created);
     }
 
-    public String getCommentBody()
+    public void setLikes(int likesAmount)
     {
-        return _commentBody.getText().toString();
+        _likes.setText(String.valueOf(likesAmount));
     }
 
-    public void setCommentBody(String body)
+    public void setBody(String body)
     {
-        _commentBody.setText(body);
+        _body.setText(body);
     }
 
-    public String getTimestamp()
+    public void setCommentLiked(boolean liked)
     {
-        return _timestamp.getText().toString();
+        if(liked)
+        {
+            _likeButton.setImageResource(R.drawable.thumbs_up_fill);
+            _likeButton.setColorFilter(_likeButton.getContext().getColor(R.color.primaryColor));
+        }
+        else
+        {
+            _likeButton.setImageResource(R.drawable.thumbs_up_outline);
+            _likeButton.clearColorFilter();
+        }
     }
 
-    public void setTimestamp(String timestamp)
+    public void setDeleteButtonVisibility(boolean visible)
     {
-        _timestamp.setText(timestamp);
+        _deleteButton.setVisibility(visible ? View.VISIBLE : View.GONE);
+    }
+
+    public void setSpecialOwnerName(boolean special)
+    {
+        if(special)
+        {
+            _ownerName.setBackgroundResource(R.drawable.spark_owner_background);
+        }
+        else
+        {
+            _ownerName.setBackgroundColor(Color.TRANSPARENT);
+        }
+    }
+
+    public void setReplyName(String firstLastName, String username)
+    {
+        if(firstLastName != null && username != null)
+        {
+            _replyLayout.setVisibility(View.VISIBLE);
+            _replyOwner.setText(firstLastName + " (@" + username + ")");
+        }
+        else
+        {
+            _replyLayout.setVisibility(View.GONE);
+        }
     }
 }
