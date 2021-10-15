@@ -67,9 +67,9 @@ public class SparkViewHolder extends RecyclerView.ViewHolder
         return _likes.getText().toString();
     }
 
-    public void setLikes(String likes)
+    public void setLikes(int likes)
     {
-        _likes.setText(likes);
+        _likes.setText(String.valueOf(likes));
     }
 
     public String getTimestamp()

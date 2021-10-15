@@ -172,7 +172,7 @@ public class SparkFragment extends Fragment
 
     private void setLikesAmount(int likesAmount)
     {
-        _likes.setText(likesAmount == 1 ? likesAmount + " Like" : likesAmount + " Likes");
+        _likes.setText(String.valueOf(likesAmount));
     }
 
     public void setSpecialOwnerName(boolean special)

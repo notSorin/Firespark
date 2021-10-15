@@ -43,7 +43,7 @@ public class SparksRecycleViewAdapter extends RecyclerView.Adapter<SparkViewHold
         holder.setSparkBody(spark.getBody());
         holder.setSparkLiked(spark.isLikedByCurrentUser());
         holder.setDeleteButtonVisibility(spark.isOwnedByCurrentUser());
-        holder.setLikes(likesAmount == 1 ? likesAmount + " Like" : likesAmount + " Likes");
+        holder.setLikes(likesAmount);
         holder.setCreated(_dateFormat.format(spark.getCreated().toDate()));
         holder.setSpecialOwnerName(spark.isOwnedByCurrentUser());
 
