@@ -2,13 +2,13 @@ package com.lesorin.firespark.presenter;
 
 public class PresenterFactory
 {
-    public static MainActivityContract.PresenterView getMainPresenter()
+    public static MainContract.PresenterView getMainPresenter()
     {
-        return new MainActivityPresenter();
+        return new MainPresenter();
     }
 
-    public static StartActivityContract.PresenterView getStartPresenter()
+    public static StartContract.PresenterView getStartPresenter()
     {
-        return new StartActivityPresenter();
+        return new StartPresenter();
     }
 }

@@ -17,7 +17,7 @@ import com.lesorin.firespark.R;
 import com.lesorin.firespark.model.ModelFactory;
 import com.lesorin.firespark.presenter.PresenterFactory;
 import com.lesorin.firespark.presenter.pojo.Comment;
-import com.lesorin.firespark.presenter.MainActivityContract;
+import com.lesorin.firespark.presenter.MainContract;
 import com.lesorin.firespark.presenter.pojo.Spark;
 import com.lesorin.firespark.presenter.pojo.User;
 import com.lesorin.firespark.view.fragments.HomeFragment;
@@ -29,9 +29,9 @@ import com.lesorin.firespark.view.fragments.SparkFragment;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements MainActivityContract.View
+public class MainActivity extends AppCompatActivity implements MainContract.View
 {
-    private MainActivityContract.PresenterView _presenter;
+    private MainContract.PresenterView _presenter;
     private BottomNavigationView _navigationView;
     private ProfileFragment _profileFragment;
     private HomeFragment _homeFragment;
@@ -134,9 +134,9 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
 
     private void initializeMVP()
     {
-        MainActivityContract.PresenterView presenterView = PresenterFactory.getMainPresenter();
-        MainActivityContract.Model model = ModelFactory.getMainModel();
-        MainActivityContract.PresenterModel presenterModel = (MainActivityContract.PresenterModel)presenterView;
+        MainContract.PresenterView presenterView = PresenterFactory.getMainPresenter();
+        MainContract.Model model = ModelFactory.getMainModel();
+        MainContract.PresenterModel presenterModel = (MainContract.PresenterModel)presenterView;
 
         presenterView.setView(this);
         presenterView.setModel(model);

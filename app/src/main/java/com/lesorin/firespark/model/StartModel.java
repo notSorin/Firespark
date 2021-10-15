@@ -8,23 +8,23 @@ import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.lesorin.firespark.presenter.StartActivityContract;
+import com.lesorin.firespark.presenter.StartContract;
 import java.util.Arrays;
 import java.util.HashMap;
 
-class StartActivityModel implements StartActivityContract.Model
+class StartModel implements StartContract.Model
 {
-    private StartActivityContract.PresenterModel _presenter;
+    private StartContract.PresenterModel _presenter;
     private FirebaseAuth _firebaseAuth;
     private FirebaseFirestore _firestore;
 
-    public StartActivityModel()
+    public StartModel()
     {
         _firebaseAuth = FirebaseAuth.getInstance();
         _firestore = FirebaseFirestore.getInstance();
     }
 
-    public void setPresenter(StartActivityContract.PresenterModel presenter)
+    public void setPresenter(StartContract.PresenterModel presenter)
     {
         _presenter = presenter;
     }

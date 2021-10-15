@@ -13,17 +13,17 @@ import com.google.firebase.FirebaseApp;
 import com.lesorin.firespark.R;
 import com.lesorin.firespark.model.ModelFactory;
 import com.lesorin.firespark.presenter.PresenterFactory;
-import com.lesorin.firespark.presenter.StartActivityContract;
+import com.lesorin.firespark.presenter.StartContract;
 import com.lesorin.firespark.view.fragments.AlphaPageTransformer;
 import com.lesorin.firespark.view.fragments.LoginFragment;
 import com.lesorin.firespark.view.fragments.SignupFragment;
 import com.lesorin.firespark.view.fragments.ViewPagerAdapter;
 import com.lesorin.firespark.view.fragments.WelcomeFragment;
 
-public class StartActivity extends AppCompatActivity implements StartActivityContract.View
+public class StartActivity extends AppCompatActivity implements StartContract.View
 {
     private ViewPager _viewPager;
-    private StartActivityContract.PresenterView _presenter;
+    private StartContract.PresenterView _presenter;
     private WelcomeFragment _welcomeFragment;
     private LoginFragment _loginFragment;
     private SignupFragment _signUpFragment;
@@ -47,9 +47,9 @@ public class StartActivity extends AppCompatActivity implements StartActivityCon
         //Presenter and Model, for Android apps this is a spacial case because the entry point of the app
         //is a View, therefore it is acceptable for the view to directly access a concrete presenter
         //and model to correctly instantiate the presenter.
-        StartActivityContract.PresenterView presenterView = PresenterFactory.getStartPresenter();
-        StartActivityContract.Model model = ModelFactory.getStartModel();
-        StartActivityContract.PresenterModel presenterModel = (StartActivityContract.PresenterModel)presenterView;
+        StartContract.PresenterView presenterView = PresenterFactory.getStartPresenter();
+        StartContract.Model model = ModelFactory.getStartModel();
+        StartContract.PresenterModel presenterModel = (StartContract.PresenterModel)presenterView;
 
         presenterView.setView(this);
         presenterView.setModel(model);

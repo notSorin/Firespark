@@ -10,28 +10,28 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.WriteBatch;
 import com.lesorin.firespark.presenter.pojo.Comment;
-import com.lesorin.firespark.presenter.MainActivityContract;
+import com.lesorin.firespark.presenter.MainContract;
 import com.lesorin.firespark.presenter.pojo.Spark;
 import com.lesorin.firespark.presenter.pojo.User;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
-class MainActivityModel implements MainActivityContract.Model
+class MainModel implements MainContract.Model
 {
-    private MainActivityContract.PresenterModel _presenter;
+    private MainContract.PresenterModel _presenter;
     private FirebaseAuth _firebaseAuth;
     private FirebaseFirestore _firestore;
     private HashMap<String, Spark> _sparksCache;
 
-    public MainActivityModel()
+    public MainModel()
     {
         _firebaseAuth = FirebaseAuth.getInstance();
         _firestore = FirebaseFirestore.getInstance();
         _sparksCache = new HashMap<>();
     }
 
-    public void setPresenter(MainActivityContract.PresenterModel presenter)
+    public void setPresenter(MainContract.PresenterModel presenter)
     {
         _presenter = presenter;
     }

@@ -1,6 +1,6 @@
 package com.lesorin.firespark.presenter;
 
-public interface StartActivityContract
+public interface StartContract
 {
     String FIRST_LAST_NAME_REGEX = "^[a-zA-Z0-9 ]{1,30}$";
     String USERNAME_REGEX = "^[a-zA-Z0-9]{1,20}$";

@@ -1,17 +1,17 @@
 package com.lesorin.firespark.model;
 
-import com.lesorin.firespark.presenter.MainActivityContract;
-import com.lesorin.firespark.presenter.StartActivityContract;
+import com.lesorin.firespark.presenter.MainContract;
+import com.lesorin.firespark.presenter.StartContract;
 
 public class ModelFactory
 {
-    public static MainActivityContract.Model getMainModel()
+    public static MainContract.Model getMainModel()
     {
-        return new MainActivityModel();
+        return new MainModel();
     }
 
-    public static StartActivityContract.Model getStartModel()
+    public static StartContract.Model getStartModel()
     {
-        return new StartActivityModel();
+        return new StartModel();
     }
 }

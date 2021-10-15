@@ -5,7 +5,7 @@ import com.lesorin.firespark.presenter.pojo.Spark;
 import com.lesorin.firespark.presenter.pojo.User;
 import java.util.ArrayList;
 
-public interface MainActivityContract
+public interface MainContract
 {
     interface PresenterView
     {
@@ -77,7 +77,7 @@ public interface MainActivityContract
 
     interface Model
     {
-        void setPresenter(MainActivityContract.PresenterModel presenter);
+        void setPresenter(MainContract.PresenterModel presenter);
         void logUserOut();
         void requestProfileData(String userId);
         void requestHomeData();

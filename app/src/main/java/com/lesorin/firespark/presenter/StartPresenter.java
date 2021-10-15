@@ -1,21 +1,21 @@
 package com.lesorin.firespark.presenter;
 
-import static com.lesorin.firespark.presenter.StartActivityContract.FIRST_LAST_NAME_REGEX;
-import static com.lesorin.firespark.presenter.StartActivityContract.USERNAME_REGEX;
+import static com.lesorin.firespark.presenter.StartContract.FIRST_LAST_NAME_REGEX;
+import static com.lesorin.firespark.presenter.StartContract.USERNAME_REGEX;
 
-class StartActivityPresenter implements StartActivityContract.PresenterView, StartActivityContract.PresenterModel
+class StartPresenter implements StartContract.PresenterView, StartContract.PresenterModel
 {
-    private StartActivityContract.View _view;
-    private StartActivityContract.Model _model;
+    private StartContract.View _view;
+    private StartContract.Model _model;
 
     @Override
-    public void setView(StartActivityContract.View view)
+    public void setView(StartContract.View view)
     {
         _view = view;
     }
 
     @Override
-    public void setModel(StartActivityContract.Model model)
+    public void setModel(StartContract.Model model)
     {
         _model = model;
     }

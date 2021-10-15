@@ -1,26 +1,26 @@
 package com.lesorin.firespark.presenter;
 
-import static com.lesorin.firespark.presenter.StartActivityContract.USERNAME_REGEX;
+import static com.lesorin.firespark.presenter.StartContract.USERNAME_REGEX;
 import com.lesorin.firespark.presenter.pojo.Comment;
 import com.lesorin.firespark.presenter.pojo.Spark;
 import com.lesorin.firespark.presenter.pojo.User;
 import java.util.ArrayList;
 
-class MainActivityPresenter implements MainActivityContract.PresenterView, MainActivityContract.PresenterModel
+class MainPresenter implements MainContract.PresenterView, MainContract.PresenterModel
 {
     private static final int MAX_SPARK_LENGTH = 150;
 
-    private MainActivityContract.View _view;
-    private MainActivityContract.Model _model;
+    private MainContract.View _view;
+    private MainContract.Model _model;
 
     @Override
-    public void setView(MainActivityContract.View view)
+    public void setView(MainContract.View view)
     {
         _view = view;
     }
 
     @Override
-    public void setModel(MainActivityContract.Model model)
+    public void setModel(MainContract.Model model)
     {
         _model = model;
     }
