@@ -34,4 +34,7 @@ public class ModelConstants
     public static final String COMMENT_CREATED = "created";
     public static final String COMMENT_DELETED = "deleted";
     public static final String COMMENT_LIKES = "likes";
+    public static final String COMMENT_REPLYTOFIRSTLASTNAME = "replytofirstlastname";
+    public static final String COMMENT_REPLYTOUSERNAME = "replytousername";
+
 }
