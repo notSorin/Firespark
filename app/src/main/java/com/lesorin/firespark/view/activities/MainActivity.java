@@ -243,7 +243,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     }
 
     @Override
-    public void openStartActivity()
+    public void userLoggedOutSuccessfully()
     {
         startActivity(new Intent(this, StartActivity.class));
         finish();

@@ -49,7 +49,7 @@ public interface MainContract
 
     interface View
     {
-        void openStartActivity();
+        void userLoggedOutSuccessfully();
         void displayProfileData(User user);
         void displayHomeData(ArrayList<Spark> sparks);
         void displayPopularData(ArrayList<Spark> sparks);
