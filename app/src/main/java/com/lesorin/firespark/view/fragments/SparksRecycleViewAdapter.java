@@ -14,7 +14,7 @@ import java.util.Locale;
 
 public class SparksRecycleViewAdapter extends RecyclerView.Adapter<SparkViewHolder>
 {
-    private final String DATE_FORMAT = "d MMM yyyy\nHH:mm";
+    private final String DATE_FORMAT = "d MMM yyyy\nHH:mm:ss";
     private ArrayList<Spark> _sparksList;
     private SimpleDateFormat _dateFormat;
 

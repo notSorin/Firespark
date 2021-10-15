@@ -13,7 +13,7 @@ import java.util.Locale;
 
 public class CommentsRecycleViewAdapter extends RecyclerView.Adapter<CommentViewHolder>
 {
-    private final String DATE_FORMAT = "d MMM yyyy\nHH:mm";
+    private final String DATE_FORMAT = "d MMM yyyy\nHH:mm:ss";
     private SimpleDateFormat _dateFormat;
     private ArrayList<Comment> _commentsList;
 
