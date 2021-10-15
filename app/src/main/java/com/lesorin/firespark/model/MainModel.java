@@ -479,4 +479,15 @@ class MainModel implements MainContract.Model
 
         return user;
     }
+
+    private Comment createCommentFromDocumentSnapshot(DocumentSnapshot document)
+    {
+        Comment comment = document.toObject(Comment.class);
+
+        comment.setId(document.getId());
+        comment.setOwnedByCurrentUser(comment.getOwnerId().equals(_firebaseAuth.getUid()));
+        comment.setLikedByCurrentUser(comment.getLikes().contains(_firebaseAuth.getUid()));
+
+        return comment;
+    }
 }
