@@ -50,7 +50,7 @@
         android:id="@+id/SparkDelete"
         android:layout_width="60dp"
         android:layout_height="40dp"
-        android:padding="6dp"
+        android:padding="8dp"
         android:src="@drawable/icon_delete"
         app:layout_constraintBottom_toBottomOf="@id/LikesLayout"
         app:layout_constraintEnd_toEndOf="parent"
