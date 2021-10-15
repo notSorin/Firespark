@@ -5,6 +5,7 @@ public class ModelConstants
     //Collections.
     public static final String SPARKS_COLLECTION = "sparks";
     public static final String USERS_COLLECTION = "users";
+    public static final String COMMENTS_COLLECTION = "comments";
 
     //User fields.
     public static final String USER_FIRSTLASTNAME = "firstlastname";

@@ -313,8 +313,29 @@ class MainModel implements MainContract.Model
     @Override
     public void requestSparkData(Spark spark)
     {
-        //todo
-        _presenter.requestSparkDataSuccess(spark, new ArrayList<Comment>());
+        //todo probably need to limit this query in the future, and figure out how to keep requesting data after the limit
+        _firestore.collection(COMMENTS_COLLECTION).whereEqualTo(COMMENT_SPARKID, spark.getId()).
+                whereEqualTo(COMMENT_DELETED, false).orderBy(COMMENT_CREATED, Query.Direction.DESCENDING).get().addOnCompleteListener(task ->
+        {
+            if(task.isSuccessful())
+            {
+                ArrayList<Comment> comments = new ArrayList<>();
+
+                for(QueryDocumentSnapshot document : task.getResult())
+                {
+                    Comment comment = createCommentFromDocumentSnapshot(document);
+
+                    comments.add(comment);
+                }
+
+                _presenter.requestSparkDataSuccess(spark, comments);
+            }
+            else
+            {
+                _presenter.requestSparkDataFailure();
+            }
+        });
+
     }
 
     private void followUser(User user)
