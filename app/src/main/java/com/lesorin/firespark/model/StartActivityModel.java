@@ -12,7 +12,7 @@ import com.lesorin.firespark.presenter.StartActivityContract;
 import java.util.Arrays;
 import java.util.HashMap;
 
-public class StartActivityModel implements StartActivityContract.Model
+class StartActivityModel implements StartActivityContract.Model
 {
     private StartActivityContract.PresenterModel _presenter;
     private FirebaseAuth _firebaseAuth;

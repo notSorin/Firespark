@@ -3,14 +3,10 @@ package com.lesorin.firespark.presenter;
 import static com.lesorin.firespark.presenter.StartActivityContract.FIRST_LAST_NAME_REGEX;
 import static com.lesorin.firespark.presenter.StartActivityContract.USERNAME_REGEX;
 
-public class StartActivityPresenter implements StartActivityContract.PresenterView, StartActivityContract.PresenterModel
+class StartActivityPresenter implements StartActivityContract.PresenterView, StartActivityContract.PresenterModel
 {
     private StartActivityContract.View _view;
     private StartActivityContract.Model _model;
-
-    public StartActivityPresenter()
-    {
-    }
 
     @Override
     public void setView(StartActivityContract.View view)

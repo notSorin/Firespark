@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
-public class MainActivityModel implements MainActivityContract.Model
+class MainActivityModel implements MainActivityContract.Model
 {
     private MainActivityContract.PresenterModel _presenter;
     private FirebaseAuth _firebaseAuth;

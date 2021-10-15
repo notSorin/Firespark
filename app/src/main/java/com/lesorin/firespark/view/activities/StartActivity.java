@@ -11,9 +11,9 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.FirebaseApp;
 import com.lesorin.firespark.R;
-import com.lesorin.firespark.model.StartActivityModel;
+import com.lesorin.firespark.model.ModelFactory;
+import com.lesorin.firespark.presenter.PresenterFactory;
 import com.lesorin.firespark.presenter.StartActivityContract;
-import com.lesorin.firespark.presenter.StartActivityPresenter;
 import com.lesorin.firespark.view.fragments.AlphaPageTransformer;
 import com.lesorin.firespark.view.fragments.LoginFragment;
 import com.lesorin.firespark.view.fragments.SignupFragment;
@@ -47,8 +47,8 @@ public class StartActivity extends AppCompatActivity implements StartActivityCon
         //Presenter and Model, for Android apps this is a spacial case because the entry point of the app
         //is a View, therefore it is acceptable for the view to directly access a concrete presenter
         //and model to correctly instantiate the presenter.
-        StartActivityContract.PresenterView presenterView = new StartActivityPresenter();
-        StartActivityContract.Model model = new StartActivityModel();
+        StartActivityContract.PresenterView presenterView = PresenterFactory.getStartPresenter();
+        StartActivityContract.Model model = ModelFactory.getStartModel();
         StartActivityContract.PresenterModel presenterModel = (StartActivityContract.PresenterModel)presenterView;
 
         presenterView.setView(this);

@@ -14,10 +14,10 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.lesorin.firespark.R;
-import com.lesorin.firespark.model.MainActivityModel;
+import com.lesorin.firespark.model.ModelFactory;
+import com.lesorin.firespark.presenter.PresenterFactory;
 import com.lesorin.firespark.presenter.pojo.Comment;
 import com.lesorin.firespark.presenter.MainActivityContract;
-import com.lesorin.firespark.presenter.MainActivityPresenter;
 import com.lesorin.firespark.presenter.pojo.Spark;
 import com.lesorin.firespark.presenter.pojo.User;
 import com.lesorin.firespark.view.fragments.HomeFragment;
@@ -134,12 +134,8 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
 
     private void initializeMVP()
     {
-        //Although the view in MVP should not have any knowledge about the concrete implementation of the
-        //Presenter and Model, for Android apps this is a spacial case because the entry point of the app
-        //is a View, therefore it is acceptable for the view to directly access a concrete presenter
-        //and model to correctly instantiate the presenter.
-        MainActivityContract.PresenterView presenterView = new MainActivityPresenter();
-        MainActivityContract.Model model = new MainActivityModel();
+        MainActivityContract.PresenterView presenterView = PresenterFactory.getMainPresenter();
+        MainActivityContract.Model model = ModelFactory.getMainModel();
         MainActivityContract.PresenterModel presenterModel = (MainActivityContract.PresenterModel)presenterView;
 
         presenterView.setView(this);
