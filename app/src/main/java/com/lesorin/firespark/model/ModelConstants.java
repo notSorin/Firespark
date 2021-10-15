@@ -25,7 +25,7 @@ public class ModelConstants
     public static final String SPARK_DELETED = "deleted";
     public static final String SPARK_LIKES = "likes";
     public static final String SPARK_SUBSCRIBERS = "subscribers";
-    public static final String SPARK_COMMENTSAMOUNT = "commentsamount";
+    public static final String SPARK_COMMENTS = "comments";
 
     //Comments fields.
     public static final String COMMENT_SPARKID = "sparkid";

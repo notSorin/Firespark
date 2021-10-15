@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class Spark
 {
     private String _id;
-    private boolean _ownedByCurrentUser, _likedByCurrentUser;
+    private boolean _ownedByCurrentUser, _likedByCurrentUser, _containsCommentFromCurrentUser;
 
     @PropertyName(SPARK_OWNERID)
     private String _ownerId;
@@ -34,13 +34,14 @@ public class Spark
     @PropertyName(SPARK_SUBSCRIBERS)
     private ArrayList<String> _subscribers;
 
-    @PropertyName(SPARK_COMMENTSAMOUNT)
-    private int _commentsAmount;
+    @PropertyName(SPARK_COMMENTS)
+    private ArrayList<String> _comments;
 
     public Spark()
     {
         _likes = new ArrayList<>();
         _subscribers = new ArrayList<>();
+        _comments = new ArrayList<>();
     }
 
     public String getId()
@@ -130,6 +131,8 @@ public class Spark
         _created = spark.getCreated();
         _deleted = spark.isDeleted();
         _likes = spark.getLikes();
+        _comments = spark.getComments();
+        _containsCommentFromCurrentUser = spark.containsCommentFromCurrentUser();
     }
 
     public boolean isDeleted()
@@ -137,8 +140,18 @@ public class Spark
         return _deleted;
     }
 
-    public int getCommentsamount()
+    public ArrayList<String> getComments()
     {
-        return _commentsAmount;
+        return _comments;
+    }
+
+    public boolean containsCommentFromCurrentUser()
+    {
+        return _containsCommentFromCurrentUser;
+    }
+
+    public void setContainsCommentFromCurrentUser(boolean contains)
+    {
+        _containsCommentFromCurrentUser = contains;
     }
 }
