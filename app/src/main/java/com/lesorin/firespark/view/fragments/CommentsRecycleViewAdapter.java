@@ -73,9 +73,9 @@ public class CommentsRecycleViewAdapter extends RecyclerView.Adapter<CommentView
         }
     }
 
-    public void deleteSpark(Spark spark)
+    public void deleteComment(Comment comment)
     {
-        if(_commentsList.remove(spark))
+        if(_commentsList.remove(comment))
         {
             notifyDataSetChanged();
         }
