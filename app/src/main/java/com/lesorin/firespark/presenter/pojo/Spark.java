@@ -1,4 +1,4 @@
-package com.lesorin.firespark.presenter;
+package com.lesorin.firespark.presenter.pojo;
 
 import static com.lesorin.firespark.model.ModelConstants.*;
 import com.google.firebase.Timestamp;

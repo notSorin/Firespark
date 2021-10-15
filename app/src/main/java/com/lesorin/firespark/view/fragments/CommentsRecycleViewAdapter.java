@@ -6,8 +6,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.lesorin.firespark.R;
-import com.lesorin.firespark.presenter.Comment;
-import com.lesorin.firespark.presenter.Spark;
+import com.lesorin.firespark.presenter.pojo.Comment;
+import com.lesorin.firespark.presenter.pojo.Spark;
 import java.util.ArrayList;
 
 public class CommentsRecycleViewAdapter extends RecyclerView.Adapter<CommentViewHolder>

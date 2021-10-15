@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.lesorin.firespark.R;
-import com.lesorin.firespark.presenter.Spark;
+import com.lesorin.firespark.presenter.pojo.Spark;
 import java.util.ArrayList;
 
 public abstract class FragmentWithSparks extends Fragment

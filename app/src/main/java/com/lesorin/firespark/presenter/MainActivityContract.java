@@ -1,5 +1,8 @@
 package com.lesorin.firespark.presenter;
 
+import com.lesorin.firespark.presenter.pojo.Comment;
+import com.lesorin.firespark.presenter.pojo.Spark;
+import com.lesorin.firespark.presenter.pojo.User;
 import java.util.ArrayList;
 
 public interface MainActivityContract

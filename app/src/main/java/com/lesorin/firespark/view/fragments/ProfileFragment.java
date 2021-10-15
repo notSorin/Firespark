@@ -1,6 +1,5 @@
 package com.lesorin.firespark.view.fragments;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import com.google.android.material.button.MaterialButton;
 import com.lesorin.firespark.R;
-import com.lesorin.firespark.presenter.User;
+import com.lesorin.firespark.presenter.pojo.User;
 import com.lesorin.firespark.view.activities.MainActivity;
 import java.text.SimpleDateFormat;
 import java.util.Locale;

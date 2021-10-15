@@ -6,9 +6,9 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.lesorin.firespark.R;
-import com.lesorin.firespark.presenter.Spark;
 import com.lesorin.firespark.view.activities.MainActivity;
-import java.text.SimpleDateFormat;
+import java.text.SimpleDateFormat;import com.lesorin.firespark.presenter.pojo.Spark;
+
 import java.util.ArrayList;
 import java.util.Locale;
 
