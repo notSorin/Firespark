@@ -34,6 +34,9 @@ public class Spark
     @PropertyName(SPARK_SUBSCRIBERS)
     private ArrayList<String> _subscribers;
 
+    @PropertyName(SPARK_COMMENTSAMOUNT)
+    private int _commentsAmount;
+
     public Spark()
     {
         _likes = new ArrayList<>();
@@ -132,5 +135,10 @@ public class Spark
     public boolean isDeleted()
     {
         return _deleted;
+    }
+
+    public int getCommentsamount()
+    {
+        return _commentsAmount;
     }
 }

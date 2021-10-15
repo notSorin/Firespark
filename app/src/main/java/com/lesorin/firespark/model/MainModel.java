@@ -467,6 +467,7 @@ class MainModel implements MainContract.Model
         ret.put(SPARK_CREATED, FieldValue.serverTimestamp());
         ret.put(SPARK_DELETED, false);
         ret.put(SPARK_LIKES, Arrays.asList());
+        ret.put(SPARK_COMMENTSAMOUNT, 0);
 
         ArrayList<String> subscribers = user.getFollowers();
 
