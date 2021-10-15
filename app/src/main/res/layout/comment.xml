@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="12dp"
-    android:background="@android:color/transparent">
+    android:background="@drawable/comment_background"
+    android:padding="12dp">
 
     <TextView
         android:id="@+id/CommentOwner"
@@ -27,6 +28,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/CommentOwner">
 
@@ -37,7 +40,7 @@
             app:tint="#41FFFFFF" />
 
         <TextView
-            android:id="@+id/CommentReply"
+            android:id="@+id/CommentReplyOwner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="4dp"
@@ -63,10 +66,10 @@
         android:id="@+id/CommentTimestamp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="end"
         android:text="@string/Timestamp"
         android:textAppearance="@style/TextAppearance.Firespark.Body2"
         android:textColor="@android:color/white"
-        android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="@id/CommentOwner"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/CommentOwner" />
@@ -103,7 +106,7 @@
         app:layout_constraintTop_toBottomOf="@id/CommentBody">
 
         <TextView
-            android:id="@+id/SparkLikes"
+            android:id="@+id/CommentLikes"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center"
@@ -117,7 +120,7 @@
             app:layout_constraintTop_toTopOf="@id/SparkLike" />
 
         <ImageView
-            android:id="@+id/SparkLike"
+            android:id="@+id/CommentLikeButton"
             android:layout_width="60dp"
             android:layout_height="40dp"
             android:padding="8dp"
