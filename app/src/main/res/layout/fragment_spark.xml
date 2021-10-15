@@ -16,8 +16,8 @@
         android:id="@+id/SwipeRefresh"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@id/NewCommentLayout"
-        app:layout_constraintTop_toBottomOf="@id/SparkLayout">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/NewCommentLayout">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/CommentsRV"
@@ -54,9 +54,9 @@
         android:layout_height="wrap_content"
         android:layout_margin="12dp"
         android:hint="@string/NewComment"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/SendComment"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/SparkLayout">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/NewCommentInput"
