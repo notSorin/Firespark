@@ -76,4 +76,5 @@
     <string name="SearchUserNotFound">User not found.</string>
     <string name="RequestProfileDataFailure">Could not retrieve user data.</string>
     <string name="NoCommentsText">No comments here.</string>
+    <string name="Reply">Reply</string>
 </resources>

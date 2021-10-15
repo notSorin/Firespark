@@ -16,6 +16,8 @@
         android:textAppearance="@style/TextAppearance.Firespark.Body1"
         android:textColor="@android:color/white"
         android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@id/CommentTimestamp"
+        app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="12dp" />
@@ -73,9 +75,20 @@
         android:id="@+id/CommentDelete"
         android:layout_width="60dp"
         android:layout_height="40dp"
+        android:layout_marginTop="4dp"
         android:padding="6dp"
         android:src="@drawable/icon_delete"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/CommentBody" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/ReplyButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="@string/Reply"
+        app:cornerRadius="20dp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/CommentBody" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
