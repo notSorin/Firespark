@@ -25,7 +25,7 @@ import java.util.Locale;
 
 public class SparkFragment extends Fragment
 {
-    private final String DATE_FORMAT = "d MMM yyyy\nHH:mm";
+    private final String DATE_FORMAT = "d MMM yyyy\nHH:mm:ss";
     private View _view;
     private RecyclerView _comments;
     private CommentsRecycleViewAdapter _commentsRVAdapter;
