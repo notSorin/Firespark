@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
         _searchFab.setOnClickListener(view ->
         {
-            openSearchUserFragment();
+            openFragment(_searchUserFragment);
         });
     }
 
@@ -89,12 +89,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
         _newSparkFab.setOnClickListener(view ->
         {
-            //Only open the send spark fragment if it's not already open.
-            if(getVisibleFragment() != _sendSparkFragment)
-            {
-                openSendSparkFragment();
-            }
-
+            openFragment(_sendSparkFragment);
             _sendSparkFragment.resetSparkPosition();
             _sendSparkFragment.emptySparkBody();
         });
@@ -193,7 +188,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
                     }
                     else
                     {
-                        openProfileFragment();
+                        openFragment(_profileFragment);
                     }
                     break;
                 case R.id.HomePage:
@@ -203,7 +198,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
                     }
                     else
                     {
-                        openHomeFragment();
+                        openFragment(_homeFragment);
                     }
                     break;
                 case R.id.PopularPage:
@@ -213,7 +208,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
                     }
                     else
                     {
-                        openPopularFragment();
+                        openFragment(_popularFragment);
                     }
                     break;
             }
@@ -224,40 +219,13 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         _navigationView.setSelectedItemId(R.id.HomePage);
     }
 
-    private void openProfileFragment()
+    private void openFragment(Fragment fragment)
     {
-        getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.fade_in, R.anim.fade_out).
-                replace(R.id.FragmentContainer, _profileFragment).commitNow();
-    }
-
-    private void openHomeFragment()
-    {
-        getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.fade_in, R.anim.fade_out).
-                replace(R.id.FragmentContainer, _homeFragment).commitNow();
-    }
-
-    private void openPopularFragment()
-    {
-        getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.fade_in, R.anim.fade_out).
-                replace(R.id.FragmentContainer, _popularFragment).commitNow();
-    }
-
-    private void openSearchUserFragment()
-    {
-        getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.fade_in, R.anim.fade_out).
-                replace(R.id.FragmentContainer, _searchUserFragment).commitNow();
-    }
-
-    private void openSparkFragment()
-    {
-        getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.fade_in, R.anim.fade_out).
-                replace(R.id.FragmentContainer, _sparkFragment).commitNow();
-    }
-
-    private void openSendSparkFragment()
-    {
-        getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.fade_in, R.anim.fade_out).
-                replace(R.id.FragmentContainer, _sendSparkFragment).commitNow();
+        if(fragment != null && getVisibleFragment() != fragment)
+        {
+            getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.fade_in, R.anim.fade_out).
+                replace(R.id.FragmentContainer, fragment).commitNow();
+        }
     }
 
     public void logOutButtonPressed()
@@ -281,7 +249,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public void displayHomeData(ArrayList<Spark> sparks)
     {
-        openHomeFragment();
+        openFragment(_homeFragment);
         _homeFragment.setSparks(sparks);
     }
 
@@ -414,7 +382,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public void searchUserByUsernameSuccess(User user, ArrayList<Spark> sparks)
     {
-        openProfileFragment();
+        openFragment(_profileFragment);
         _profileFragment.setUser(user);
         _profileFragment.setSparks(sparks);
     }
@@ -422,7 +390,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public void requestProfileDataSuccess(User user, ArrayList<Spark> sparks)
     {
-        openProfileFragment();
+        openFragment(_profileFragment);
         _profileFragment.setUser(user);
         _profileFragment.setSparks(sparks);
     }
@@ -436,7 +404,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public void requestSparkDataSuccess(Spark spark, ArrayList<Comment> comments)
     {
-        openSparkFragment();
+        openFragment(_sparkFragment);
         _sparkFragment.setSpark(spark);
         _sparkFragment.setComments(comments);
     }
@@ -456,7 +424,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public void requestPopularDataSuccess(ArrayList<Spark> sparks)
     {
-        openPopularFragment();
+        openFragment(_popularFragment);
         _popularFragment.setSparks(sparks);
     }
 
