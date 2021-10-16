@@ -135,8 +135,6 @@ public class SparkFragment extends FiresparkFragmentAdapter
     public void setComments(ArrayList<Comment> comments)
     {
         _commentsList = comments;
-
-        displayComments();
     }
 
     private void displayComments()
@@ -167,11 +165,10 @@ public class SparkFragment extends FiresparkFragmentAdapter
     public void setSpark(Spark spark)
     {
         _spark = spark;
-
-        displaySpark();
     }
 
-    private void displaySpark()
+    @Override
+    public void displayElements()
     {
         if(getContext() != null && _spark != null)
         {
@@ -184,7 +181,10 @@ public class SparkFragment extends FiresparkFragmentAdapter
             setSpecialOwnerName(_spark.isOwnedByCurrentUser());
             _commentsAmount.setText(String.valueOf(_spark.getComments().size()));
             setSpecialCommentIcon(_spark.containsCommentFromCurrentUser());
+            _commentInput.setText("");
         }
+
+        displayComments();
     }
 
     private void setSpecialCommentIcon(boolean special)

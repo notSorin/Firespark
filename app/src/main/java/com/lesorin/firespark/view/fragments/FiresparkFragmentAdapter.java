@@ -69,4 +69,9 @@ public class FiresparkFragmentAdapter extends FiresparkFragment
     public void userUnfollowed(User user)
     {
     }
+
+    @Override
+    public void displayElements()
+    {
+    }
 }

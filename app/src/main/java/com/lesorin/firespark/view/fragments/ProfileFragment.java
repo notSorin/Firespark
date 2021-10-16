@@ -72,8 +72,11 @@ public class ProfileFragment extends FragmentWithSparks
         });
     }
 
-    private void displayUserInfo()
+    @Override
+    public void displayElements()
     {
+        super.displayElements();
+
         if(getContext() != null && _user != null)
         {
             if(_firstLastName != null && _username != null && _userFollowing != null && _userJoined != null &&

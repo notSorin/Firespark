@@ -18,4 +18,5 @@ public abstract class FiresparkFragment extends Fragment
     public abstract void setUser(User user);
     public abstract void userFollowed(User user);
     public abstract void userUnfollowed(User user);
+    public abstract void displayElements();
 }

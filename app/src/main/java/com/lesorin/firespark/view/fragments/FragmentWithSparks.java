@@ -52,11 +52,9 @@ public abstract class FragmentWithSparks extends FiresparkFragmentAdapter
     public void setSparks(ArrayList<Spark> sparks)
     {
         _sparksList = sparks;
-
-        displaySparks();
     }
 
-    private void displaySparks()
+    public void displayElements()
     {
         if(getContext() != null && _sparksList != null)
         {
