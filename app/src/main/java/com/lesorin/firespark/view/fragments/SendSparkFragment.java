@@ -10,12 +10,11 @@ import android.widget.LinearLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.fragment.app.Fragment;
 import com.google.android.material.textfield.TextInputEditText;
 import com.lesorin.firespark.R;
 import com.lesorin.firespark.view.activities.MainActivity;
 
-public class SendSparkFragment extends Fragment
+public class SendSparkFragment extends FiresparkFragmentAdapter
 {
     private View _view;
     private LinearLayout _upToSend;

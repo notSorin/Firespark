@@ -26,4 +26,16 @@ public class PopularFragment extends FragmentWithSparks
 
         return _view;
     }
+
+    @Override
+    public boolean isPopularFragment()
+    {
+        return true;
+    }
+
+    @Override
+    public boolean isMainFragment()
+    {
+        return true;
+    }
 }

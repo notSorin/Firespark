@@ -10,7 +10,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,7 +23,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class SparkFragment extends Fragment
+public class SparkFragment extends FiresparkFragmentAdapter
 {
     private final String DATE_FORMAT = "d MMM yyyy\nHH:mm:ss";
     private View _view;
@@ -231,6 +230,7 @@ public class SparkFragment extends Fragment
         }
     }
 
+    @Override
     public void sparkLiked(Spark spark)
     {
         if(spark == _spark)
@@ -245,6 +245,7 @@ public class SparkFragment extends Fragment
         _commentInput.setText("");
     }
 
+    @Override
     public void sparkLikeRemoved(Spark spark)
     {
         sparkLiked(spark);

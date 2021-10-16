@@ -6,13 +6,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.lesorin.firespark.R;
 import com.lesorin.firespark.view.activities.MainActivity;
 
-public class SearchUserFragment extends Fragment
+public class SearchUserFragment extends FiresparkFragmentAdapter
 {
     private View _view;
     private TextInputEditText _username;

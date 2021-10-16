@@ -46,7 +46,7 @@ public class ProfileFragment extends FragmentWithSparks
             initializeSwipeRefresh(() ->
             {
                 _swipeRefresh.setRefreshing(true);
-                ((MainActivity)getContext()).requestProfileData(_user == null ? null : _user.getId());
+                ((MainActivity)getContext()).refreshProfileData(_user == null ? null : _user.getId());
             });
             initializeTexts();
             initializeLogoutButton();
@@ -111,6 +111,7 @@ public class ProfileFragment extends FragmentWithSparks
         });
     }
 
+    @Override
     public void setUser(User user)
     {
         _user = user;
@@ -118,8 +119,36 @@ public class ProfileFragment extends FragmentWithSparks
         displayUserInfo();
     }
 
+    @Override
     public User getUser()
     {
         return _user;
+    }
+
+    @Override
+    public boolean isProfileFragment()
+    {
+        return true;
+    }
+
+    @Override
+    public boolean isMainFragment()
+    {
+        return true;
+    }
+
+    @Override
+    public void userFollowed(User user)
+    {
+        if(getUser().getId().equals(user.getId()))
+        {
+            setUser(user);
+        }
+    }
+
+    @Override
+    public void userUnfollowed(User user)
+    {
+        userFollowed(user);
     }
 }

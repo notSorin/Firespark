@@ -2,7 +2,6 @@ package com.lesorin.firespark.view.fragments;
 
 import android.view.View;
 import android.widget.TextView;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,7 +10,7 @@ import com.lesorin.firespark.R;
 import com.lesorin.firespark.presenter.pojo.Spark;
 import java.util.ArrayList;
 
-public abstract class FragmentWithSparks extends Fragment
+public abstract class FragmentWithSparks extends FiresparkFragmentAdapter
 {
     protected View _view;
     protected RecyclerView _sparks;
@@ -82,21 +81,25 @@ public abstract class FragmentWithSparks extends Fragment
         }
     }
 
+    @Override
     public void addSpark(Spark spark)
     {
         _sparksRVAdapter.addSpark(spark);
     }
 
+    @Override
     public void deleteSpark(Spark spark)
     {
         _sparksRVAdapter.deleteSpark(spark);
     }
 
+    @Override
     public void sparkLiked(Spark spark)
     {
         _sparksRVAdapter.sparkLiked(spark);
     }
 
+    @Override
     public void sparkLikeRemoved(Spark spark)
     {
         _sparksRVAdapter.sparkLikeRemoved(spark);

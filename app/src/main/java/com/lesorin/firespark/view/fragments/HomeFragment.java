@@ -26,4 +26,16 @@ public class HomeFragment extends FragmentWithSparks
 
         return _view;
     }
+
+    @Override
+    public boolean isHomeFragment()
+    {
+        return true;
+    }
+
+    @Override
+    public boolean isMainFragment()
+    {
+        return true;
+    }
 }
