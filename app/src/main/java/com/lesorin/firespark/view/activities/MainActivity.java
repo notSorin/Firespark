@@ -192,25 +192,15 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
             switch (item.getItemId())
             {
                 case R.id.ProfilePage:
-                    User user = _profileFragment.getUser();
-
-                    if(user == null)
+                    if(!getVisibleFragment().isProfileFragment())
                     {
-                        requestProfileData(null);
-                    }
-                    else if(!user.isCurrentUser())
-                    {
-                        requestProfileData(null);
-                    }
-                    else
-                    {
-                        openFragment(_profileFragment);
+                        _presenter.requestProfileData(null);
                     }
                     break;
                 case R.id.HomePage:
                     if(_homeFragment.getSparksList() == null)
                     {
-                        requestHomeData();
+                        _presenter.requestHomeData();
                     }
                     else
                     {
@@ -220,7 +210,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
                 case R.id.PopularPage:
                     if(_popularFragment.getSparksList() == null)
                     {
-                        requestPopularData();
+                        _presenter.requestPopularData();
                     }
                     else
                     {
