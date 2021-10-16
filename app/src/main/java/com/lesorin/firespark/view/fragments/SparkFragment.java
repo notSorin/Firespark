@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import com.google.android.material.textfield.TextInputEditText;
 import com.lesorin.firespark.R;
 import com.lesorin.firespark.presenter.pojo.Comment;
 import com.lesorin.firespark.presenter.pojo.Spark;
@@ -33,11 +34,12 @@ public class SparkFragment extends Fragment
     private SwipeRefreshLayout _swipeRefresh;
     private Spark _spark;
     private TextView _ownerUsername, _sparkBody, _likes, _timestamp, _commentsAmount;
-    private ImageView _sparkLike, _sparkDelete, _commentsIcon;
+    private ImageView _sparkLike, _sparkDelete, _commentsIcon, _sendComment;
     private ConstraintLayout _layout;
     private SimpleDateFormat _dateFormat;
     private ArrayList<Comment> _commentsList;
     private TextView _backgroundText;
+    private TextInputEditText _commentInput;
 
     public SparkFragment()
     {
@@ -61,9 +63,21 @@ public class SparkFragment extends Fragment
             initializeSwipeRefresh();
             initializeCommentsRecycleView();
             initializeBackgroundText();
+            initializeNewCommentViews();
         }
 
         return _view;
+    }
+
+    private void initializeNewCommentViews()
+    {
+        _commentInput = _view.findViewById(R.id.NewCommentInput);
+        _sendComment = _view.findViewById(R.id.SendComment);
+
+        _sendComment.setOnClickListener(view ->
+        {
+            //todo
+        });
     }
 
     private void initializeBackgroundText()
