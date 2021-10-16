@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     private SendSparkFragment _sendSparkFragment;
     private Vibrator _vibrator;
     private Animation _fabOpen, _fabClose, _fabFromBottom, _fabToBottom;
-    private Stack<Fragment> _fragmentsStack;
+    private ArrayList<FiresparkFragment> _fragmentsStack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         setContentView(R.layout.activity_main);
 
         _vibrator = (Vibrator)getSystemService(VIBRATOR_SERVICE);
-        _fragmentsStack = new Stack<>();
+        _fragmentsStack = new ArrayList<>();
 
         initializeMVP();
         initializeFragments();
@@ -120,8 +120,8 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         }
         else
         {
-            _fragmentsStack.pop();
-            openFragment(_fragmentsStack.peek());
+            _fragmentsStack.remove(_fragmentsStack.size() - 1);
+            openFragment(_fragmentsStack.get(_fragmentsStack.size() - 1));
         }
     }
 
@@ -236,24 +236,26 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         _navigationView.getMenu().getItem(1).setChecked(true);
     }
 
-    private void openFragment(Fragment fragment)
+    private void openFragment(FiresparkFragment fragment)
     {
         if(fragment != null && getVisibleFragment() != fragment)
         {
             getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.fade_in, R.anim.fade_out).
                 replace(R.id.FragmentContainer, fragment).commitNow();
 
-            if(fragment == _profileFragment)
+            fragment.displayElements();
+
+            if(fragment.isProfileFragment())
             {
                 _navigationView.getMenu().getItem(0).setChecked(true);
                 _navigationView.setVisibility(View.VISIBLE);
             }
-            else if(fragment == _homeFragment)
+            else if(fragment.isHomeFragment())
             {
                 _navigationView.getMenu().getItem(1).setChecked(true);
                 _navigationView.setVisibility(View.VISIBLE);
             }
-            else if(fragment == _popularFragment)
+            else if(fragment.isPopularFragment())
             {
                 _navigationView.getMenu().getItem(2).setChecked(true);
                 _navigationView.setVisibility(View.VISIBLE);
@@ -265,11 +267,11 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
             if(_fragmentsStack.isEmpty())
             {
-                _fragmentsStack.push(fragment);
+                _fragmentsStack.add(fragment);
             }
-            else if(_fragmentsStack.peek() != fragment)
+            else if(_fragmentsStack.get(_fragmentsStack.size() - 1) != fragment)
             {
-                _fragmentsStack.push(fragment);
+                _fragmentsStack.add(fragment);
             }
         }
     }
