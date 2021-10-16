@@ -219,7 +219,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
                     }
                     break;
                 case R.id.PopularPage:
-                    if(_homeFragment.getSparksList() == null)
+                    if(_popularFragment.getSparksList() == null)
                     {
                         requestPopularData();
                     }
