@@ -85,8 +85,7 @@ public class ProfileFragment extends FragmentWithSparks
                 _verifiedIcon.setVisibility(_user.isVerified() ? View.VISIBLE : View.GONE);
                 _firstLastName.setText(_user.getFirstlastname());
                 _username.setText("@" + _user.getUsername());
-                _userFollowing.setText(String.format(getResources().getString(R.string.UserFollowing),
-                    _user.getFollowers().size(), _user.getFollowing().size()));
+                _userFollowing.setText(_user.getFollowers().size() + " Followers - Following " + _user.getFollowing().size());
                 _userJoined.setText(String.format(getResources().getString(R.string.UserJoined),
                         _dateFormat.format(_user.getJoined().toDate())));
                 _followButton.setVisibility(_user.isCurrentUser() ? View.GONE : View.VISIBLE);
@@ -118,8 +117,6 @@ public class ProfileFragment extends FragmentWithSparks
     public void setUser(User user)
     {
         _user = user;
-
-        displayUserInfo();
     }
 
     @Override
@@ -143,15 +140,22 @@ public class ProfileFragment extends FragmentWithSparks
     @Override
     public void userFollowed(User user)
     {
-        if(getUser().getId().equals(user.getId()))
+        if(_user.getId().equals(user.getId()))
         {
             setUser(user);
+            _userFollowing.setText(_user.getFollowers().size() + " Followers - Following " + _user.getFollowing().size());
+            _followButton.setText(_user.isFollowedByCurrentUser() ? R.string.Unfollow : R.string.Follow);
         }
     }
 
     @Override
     public void userUnfollowed(User user)
     {
-        userFollowed(user);
+        if(_user.getId().equals(user.getId()))
+        {
+            setUser(user);
+            _userFollowing.setText(_user.getFollowers().size() + " Followers - Following " + _user.getFollowing().size());
+            _followButton.setText(_user.isFollowedByCurrentUser() ? R.string.Unfollow : R.string.Follow);
+        }
     }
 }
