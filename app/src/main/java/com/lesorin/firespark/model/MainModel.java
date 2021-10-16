@@ -140,6 +140,7 @@ class MainModel implements MainContract.Model
     public void requestPopularData()
     {
         //todo get real data
+        _presenter.requestPopularDataSuccess(new ArrayList<>());
     }
 
     @Override
