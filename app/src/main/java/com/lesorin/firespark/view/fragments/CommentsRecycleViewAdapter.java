@@ -19,7 +19,7 @@ public class CommentsRecycleViewAdapter extends RecyclerView.Adapter<CommentView
 
     public CommentsRecycleViewAdapter()
     {
-        _commentsList = null;
+        _commentsList = new ArrayList<>();
         _dateFormat = new SimpleDateFormat(DATE_FORMAT, Locale.getDefault());
     }
 
