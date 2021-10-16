@@ -20,6 +20,7 @@ import com.lesorin.firespark.presenter.pojo.Comment;
 import com.lesorin.firespark.presenter.MainContract;
 import com.lesorin.firespark.presenter.pojo.Spark;
 import com.lesorin.firespark.presenter.pojo.User;
+import com.lesorin.firespark.view.fragments.FiresparkFragment;
 import com.lesorin.firespark.view.fragments.HomeFragment;
 import com.lesorin.firespark.view.fragments.PopularFragment;
 import com.lesorin.firespark.view.fragments.ProfileFragment;
@@ -96,14 +97,14 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         });
     }
 
-    private Fragment getVisibleFragment()
+    private FiresparkFragment getVisibleFragment()
     {
-        Fragment ret = null;
+        FiresparkFragment ret = null;
         List<Fragment> fragments = getSupportFragmentManager().getFragments();
 
         if(!fragments.isEmpty())
         {
-            ret =fragments.get(0);
+            ret = (FiresparkFragment)fragments.get(0);
         }
 
         return ret;
