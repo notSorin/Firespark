@@ -516,7 +516,18 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     public void sparkOwnerClicked(Spark spark)
     {
-        _presenter.requestProfileData(spark.getOwnerId());
+        User currentProfileUser = getVisibleFragment().getUser();
+
+        //Request user profile only if there isn't already a user on the profile, or if
+        //the one in the profile is different from the one being requested.
+        if(currentProfileUser == null)
+        {
+            _presenter.requestProfileData(spark.getOwnerId());
+        }
+        else if(!currentProfileUser.getId().equals(spark.getOwnerId()))
+        {
+            _presenter.requestProfileData(spark.getOwnerId());
+        }
     }
 
     public void sendSparkRequested(String sparkBody)
