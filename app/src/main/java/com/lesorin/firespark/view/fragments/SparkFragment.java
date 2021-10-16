@@ -244,4 +244,9 @@ public class SparkFragment extends Fragment
     {
         _commentInput.setText("");
     }
+
+    public void sparkLikeRemoved(Spark spark)
+    {
+        sparkLiked(spark);
+    }
 }
