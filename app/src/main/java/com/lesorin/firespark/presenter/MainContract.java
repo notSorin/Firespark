@@ -26,7 +26,6 @@ public interface MainContract
 
     interface PresenterModel
     {
-        void profileDataAcquired(User user);
         void homeDataAcquired(ArrayList<Spark> sparks);
         void popularDataAcquired(ArrayList<Spark> sparks);
         void sendSparkResult(Spark spark);
@@ -53,7 +52,6 @@ public interface MainContract
     interface View
     {
         void userLoggedOutSuccessfully();
-        void displayProfileData(User user);
         void displayHomeData(ArrayList<Spark> sparks);
         void displayPopularData(ArrayList<Spark> sparks);
         void errorSendSparkEmpty();

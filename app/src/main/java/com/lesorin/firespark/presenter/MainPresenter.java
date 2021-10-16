@@ -127,12 +127,6 @@ class MainPresenter implements MainContract.PresenterView, MainContract.Presente
     }
 
     @Override
-    public void profileDataAcquired(User user)
-    {
-        _view.displayProfileData(user);
-    }
-
-    @Override
     public void homeDataAcquired(ArrayList<Spark> sparks)
     {
         _view.displayHomeData(sparks);

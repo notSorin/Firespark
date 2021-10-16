@@ -287,12 +287,6 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     }
 
     @Override
-    public void displayProfileData(User user)
-    {
-        _profileFragment.setUser(user);
-    }
-
-    @Override
     public void displayHomeData(ArrayList<Spark> sparks)
     {
         openFragment(_homeFragment);
