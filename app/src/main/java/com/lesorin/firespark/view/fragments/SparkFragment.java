@@ -32,7 +32,7 @@ public class SparkFragment extends Fragment
     protected RecyclerView.LayoutManager _rvLayoutManager;
     private SwipeRefreshLayout _swipeRefresh;
     private Spark _spark;
-    private TextView _ownerUsername, _sparkBody, _likes, _timestmap, _commentsAmount;
+    private TextView _ownerUsername, _sparkBody, _likes, _timestamp, _commentsAmount;
     private ImageView _sparkLike, _sparkDelete, _commentsIcon;
     private ConstraintLayout _layout;
     private SimpleDateFormat _dateFormat;
@@ -85,7 +85,7 @@ public class SparkFragment extends Fragment
         _ownerUsername = _view.findViewById(R.id.SparkUsername);
         _sparkBody = _view.findViewById(R.id.SparkBody);
         _likes = _view.findViewById(R.id.SparkLikes);
-        _timestmap = _view.findViewById(R.id.SparkTimestamp);
+        _timestamp = _view.findViewById(R.id.SparkTimestamp);
         _sparkLike = _view.findViewById(R.id.SparkLike);
         _layout = _view.findViewById(R.id.SparkLayout);
         _sparkDelete = _view.findViewById(R.id.SparkDelete);
@@ -167,7 +167,7 @@ public class SparkFragment extends Fragment
             setSparkLiked(_spark.isLikedByCurrentUser());
             _sparkDelete.setVisibility(_spark.isOwnedByCurrentUser() ? View.VISIBLE : View.GONE);
             setLikesAmount(_spark.getLikes().size());
-            _timestmap.setText(_dateFormat.format(_spark.getCreated().toDate()));
+            _timestamp.setText(_dateFormat.format(_spark.getCreated().toDate()));
             setSpecialOwnerName(_spark.isOwnedByCurrentUser());
             _commentsAmount.setText(String.valueOf(_spark.getComments().size()));
             setSpecialCommentIcon(_spark.containsCommentFromCurrentUser());
@@ -191,7 +191,7 @@ public class SparkFragment extends Fragment
         _likes.setText(String.valueOf(likesAmount));
     }
 
-    public void setSpecialOwnerName(boolean special)
+    private void setSpecialOwnerName(boolean special)
     {
         if(special)
         {
