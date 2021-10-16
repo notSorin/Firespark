@@ -275,8 +275,8 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public void displayHomeData(ArrayList<Spark> sparks)
     {
-        openFragment(_homeFragment);
         _homeFragment.setSparks(sparks);
+        openFragment(_homeFragment);
     }
 
     @Override
@@ -478,8 +478,8 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public void requestPopularDataSuccess(ArrayList<Spark> sparks)
     {
-        openFragment(_popularFragment);
         _popularFragment.setSparks(sparks);
+        openFragment(_popularFragment);
     }
 
     private void hideKeyboard()
