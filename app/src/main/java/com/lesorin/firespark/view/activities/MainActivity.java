@@ -93,8 +93,6 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         _newSparkFab.setOnClickListener(view ->
         {
             openFragment(_sendSparkFragment);
-            _sendSparkFragment.resetSparkPosition();
-            _sendSparkFragment.emptySparkBody();
         });
     }
 

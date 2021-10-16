@@ -111,4 +111,11 @@ public class SendSparkFragment extends FiresparkFragmentAdapter
             _sparkBody.setText("");
         }
     }
+
+    @Override
+    public void displayElements()
+    {
+        resetSparkPosition();
+        emptySparkBody();
+    }
 }
