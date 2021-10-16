@@ -489,19 +489,19 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         imm.hideSoftInputFromWindow(_navigationView.getWindowToken(), 0);
     }
 
-    public void requestProfileData(String userId)
+    public void refreshProfileData(String userId)
     {
-        _presenter.requestProfileData(userId);
+
     }
 
-    public void requestHomeData()
+    public void refreshHomeData()
     {
-        _presenter.requestHomeData();
+
     }
 
-    public void requestPopularData()
+    public void refreshPopularData()
     {
-        _presenter.requestPopularData();
+
     }
 
     public void sparkClicked(Spark spark)
