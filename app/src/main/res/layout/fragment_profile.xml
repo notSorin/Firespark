@@ -74,6 +74,7 @@
             android:id="@+id/LogoutButton"
             android:layout_width="36dp"
             android:layout_height="36dp"
+            android:layout_marginBottom="6dp"
             android:src="@drawable/icon_logout"
             android:text="@string/LogOut"
             app:cornerRadius="20dp"
