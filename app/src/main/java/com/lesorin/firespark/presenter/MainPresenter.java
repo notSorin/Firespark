@@ -253,4 +253,16 @@ class MainPresenter implements MainContract.PresenterView, MainContract.Presente
     {
         _view.requestSparkDataFailure();
     }
+
+    @Override
+    public void requestPopularDataFailure()
+    {
+        _view.requestPopularDataFailure();
+    }
+
+    @Override
+    public void requestPopularDataSuccess(ArrayList<Spark> sparks)
+    {
+        _view.requestPopularDataSuccess(sparks);
+    }
 }

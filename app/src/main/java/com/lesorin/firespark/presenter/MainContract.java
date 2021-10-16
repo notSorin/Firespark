@@ -46,6 +46,8 @@ public interface MainContract
         void requestProfileDataFailure();
         void requestSparkDataSuccess(Spark spark, ArrayList<Comment> comments);
         void requestSparkDataFailure();
+        void requestPopularDataFailure();
+        void requestPopularDataSuccess(ArrayList<Spark> sparks);
     }
 
     interface View
@@ -75,6 +77,8 @@ public interface MainContract
         void requestProfileDataFailure();
         void requestSparkDataSuccess(Spark spark, ArrayList<Comment> comments);
         void requestSparkDataFailure();
+        void requestPopularDataFailure();
+        void requestPopularDataSuccess(ArrayList<Spark> sparks);
     }
 
     interface Model

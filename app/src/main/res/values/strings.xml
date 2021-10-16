@@ -78,4 +78,5 @@
     <string name="NoCommentsText">No comments here.</string>
     <string name="Reply">Reply</string>
     <string name="RequestSparkDataFailure">Could not retrieve spark data.</string>
+    <string name="RequestPopularDataFailure">Could not retrieve popular Sparks.</string>
 </resources>
