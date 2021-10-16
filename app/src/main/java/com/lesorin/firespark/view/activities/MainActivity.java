@@ -28,6 +28,7 @@ import com.lesorin.firespark.view.fragments.SendSparkFragment;
 import com.lesorin.firespark.view.fragments.SparkFragment;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 public class MainActivity extends AppCompatActivity implements MainContract.View
 {
@@ -42,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     private SendSparkFragment _sendSparkFragment;
     private Vibrator _vibrator;
     private Animation _fabOpen, _fabClose, _fabFromBottom, _fabToBottom;
+    private Stack<Fragment> _fragmentsStack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -50,6 +52,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         setContentView(R.layout.activity_main);
 
         _vibrator = (Vibrator)getSystemService(VIBRATOR_SERVICE);
+        _fragmentsStack = new Stack<>();
 
         initializeMVP();
         initializeFragments();
@@ -106,6 +109,20 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         }
 
         return ret;
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        if(_fragmentsStack.size() == 1)
+        {
+            super.onBackPressed();
+        }
+        else
+        {
+            _fragmentsStack.pop();
+            openFragment(_fragmentsStack.peek());
+        }
     }
 
     private void initializeFABAnimations()
@@ -216,7 +233,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
             return true;
         });
 
-        _navigationView.setSelectedItemId(R.id.HomePage);
+        _navigationView.getMenu().getItem(1).setChecked(true);
     }
 
     private void openFragment(Fragment fragment)
@@ -225,6 +242,35 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         {
             getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.fade_in, R.anim.fade_out).
                 replace(R.id.FragmentContainer, fragment).commitNow();
+
+            if(fragment == _profileFragment)
+            {
+                _navigationView.getMenu().getItem(0).setChecked(true);
+                _navigationView.setVisibility(View.VISIBLE);
+            }
+            else if(fragment == _homeFragment)
+            {
+                _navigationView.getMenu().getItem(1).setChecked(true);
+                _navigationView.setVisibility(View.VISIBLE);
+            }
+            else if(fragment == _popularFragment)
+            {
+                _navigationView.getMenu().getItem(2).setChecked(true);
+                _navigationView.setVisibility(View.VISIBLE);
+            }
+            else
+            {
+                _navigationView.setVisibility(View.GONE);
+            }
+
+            if(_fragmentsStack.isEmpty())
+            {
+                _fragmentsStack.push(fragment);
+            }
+            else if(_fragmentsStack.peek() != fragment)
+            {
+                _fragmentsStack.push(fragment);
+            }
         }
     }
 
