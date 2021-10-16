@@ -239,4 +239,9 @@ public class SparkFragment extends Fragment
             setLikesAmount(spark.getLikes().size());
         }
     }
+
+    public void resetCommentViews()
+    {
+        _commentInput.setText("");
+    }
 }

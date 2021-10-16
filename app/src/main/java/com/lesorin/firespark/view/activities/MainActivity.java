@@ -453,6 +453,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         openFragment(_sparkFragment);
         _sparkFragment.setSpark(spark);
         _sparkFragment.setComments(comments);
+        _sparkFragment.resetCommentViews();
     }
 
     @Override
