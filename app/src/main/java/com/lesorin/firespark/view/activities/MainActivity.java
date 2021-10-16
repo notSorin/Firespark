@@ -89,11 +89,28 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
         _newSparkFab.setOnClickListener(view ->
         {
+            //Only open the send spark fragment if it's not already open.
+            if(getVisibleFragment() != _sendSparkFragment)
+            {
+                openSendSparkFragment();
+            }
+
             _sendSparkFragment.resetSparkPosition();
             _sendSparkFragment.emptySparkBody();
-            getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.fade_in, R.anim.fade_out).
-                    replace(R.id.FragmentContainer, _sendSparkFragment).commit();
         });
+    }
+
+    private Fragment getVisibleFragment()
+    {
+        Fragment ret = null;
+        List<Fragment> fragments = getSupportFragmentManager().getFragments();
+
+        if(!fragments.isEmpty())
+        {
+            ret =fragments.get(0);
+        }
+
+        return ret;
     }
 
     private void initializeFABAnimations()
@@ -235,6 +252,12 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     {
         getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.fade_in, R.anim.fade_out).
                 replace(R.id.FragmentContainer, _sparkFragment).commitNow();
+    }
+
+    private void openSendSparkFragment()
+    {
+        getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.fade_in, R.anim.fade_out).
+                replace(R.id.FragmentContainer, _sendSparkFragment).commitNow();
     }
 
     public void logOutButtonPressed()
