@@ -29,16 +29,13 @@ import com.lesorin.firespark.view.fragments.SendSparkFragment;
 import com.lesorin.firespark.view.fragments.SparkFragment;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
 
 public class MainActivity extends AppCompatActivity implements MainContract.View
 {
     private MainContract.PresenterView _presenter;
     private BottomNavigationView _navigationView;
-    private ProfileFragment _profileFragment;
     private HomeFragment _homeFragment;
     private PopularFragment _popularFragment;
-    private SparkFragment _sparkFragment;
     private SearchUserFragment _searchUserFragment;
     private FloatingActionButton _mainFab, _newSparkFab, _searchFab;
     private SendSparkFragment _sendSparkFragment;
@@ -175,10 +172,8 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     private void initializeFragments()
     {
-        _profileFragment = new ProfileFragment();
         _homeFragment = new HomeFragment();
         _popularFragment = new PopularFragment();
-        _sparkFragment = new SparkFragment();
         _sendSparkFragment = new SendSparkFragment();
         _searchUserFragment = new SearchUserFragment();
     }
@@ -323,7 +318,14 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     public void sparkSentSuccessfully(Spark spark)
     {
         _homeFragment.addSpark(spark);
-        _profileFragment.addSpark(spark);
+
+        for(FiresparkFragment f : _fragmentsStack)
+        {
+            if(f.isProfileFragment() || f.isHomeFragment())
+            {
+                f.addSpark(spark);
+            }
+        }
     }
 
     @Override
@@ -353,10 +355,13 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public void addSparkLikeSuccess(Spark spark)
     {
-        _profileFragment.sparkLiked(spark);
+        for(FiresparkFragment f : _fragmentsStack)
+        {
+            f.sparkLiked(spark);
+        }
+
         _homeFragment.sparkLiked(spark);
         _popularFragment.sparkLiked(spark);
-        _sparkFragment.sparkLiked(spark);
     }
 
     @Override
@@ -368,10 +373,13 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public void removeSparkLikeSuccess(Spark spark)
     {
-        _profileFragment.sparkLikeRemoved(spark);
+        for(FiresparkFragment f : _fragmentsStack)
+        {
+            f.sparkLikeRemoved(spark);
+        }
+
         _homeFragment.sparkLikeRemoved(spark);
         _popularFragment.sparkLikeRemoved(spark);
-        _sparkFragment.sparkLiked(spark);
     }
 
     @Override
@@ -383,7 +391,10 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public void followUserSuccess(User user)
     {
-        _profileFragment.setUser(user);
+        for(FiresparkFragment f : _fragmentsStack)
+        {
+            f.userFollowed(user);
+        }
     }
 
     @Override
@@ -395,7 +406,10 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public void unfollowUserSuccess(User user)
     {
-        _profileFragment.setUser(user);
+        for(FiresparkFragment f : _fragmentsStack)
+        {
+            f.userUnfollowed(user);
+        }
     }
 
     @Override
@@ -413,17 +427,22 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public void searchUserByUsernameSuccess(User user, ArrayList<Spark> sparks)
     {
-        openFragment(_profileFragment);
-        _profileFragment.setUser(user);
-        _profileFragment.setSparks(sparks);
+        requestProfileSuccess(user, sparks);
     }
 
     @Override
     public void requestProfileDataSuccess(User user, ArrayList<Spark> sparks)
     {
-        openFragment(_profileFragment);
-        _profileFragment.setUser(user);
-        _profileFragment.setSparks(sparks);
+        requestProfileSuccess(user, sparks);
+    }
+
+    private void requestProfileSuccess(User user, ArrayList<Spark> sparks)
+    {
+        ProfileFragment pf = new ProfileFragment();
+
+        pf.setUser(user);
+        pf.setSparks(sparks);
+        openFragment(pf);
     }
 
     @Override
@@ -435,10 +454,11 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public void requestSparkDataSuccess(Spark spark, ArrayList<Comment> comments)
     {
-        openFragment(_sparkFragment);
-        _sparkFragment.setSpark(spark);
-        _sparkFragment.setComments(comments);
-        _sparkFragment.resetCommentViews();
+        SparkFragment sf = new SparkFragment();
+
+        sf.setSpark(spark);
+        sf.setComments(comments);
+        openFragment(sf);
     }
 
     @Override
