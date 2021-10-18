@@ -20,8 +20,8 @@ public abstract class FiresparkFragment extends Fragment
     public abstract void sparkLiked(Spark spark);
     public abstract void sparkLikeRemoved(Spark spark);
     public abstract void setUser(User user);
-    public abstract void userFollowed(User user);
-    public abstract void userUnfollowed(User user);
+    public abstract void userFollowed();
+    public abstract void userUnfollowed();
     public abstract void displayElements();
     public abstract void refreshProfile(User user, ArrayList<Spark> sparks);
     public abstract void refreshSparks(ArrayList<Spark> sparks);

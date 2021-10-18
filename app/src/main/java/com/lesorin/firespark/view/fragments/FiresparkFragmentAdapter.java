@@ -68,12 +68,12 @@ public class FiresparkFragmentAdapter extends FiresparkFragment
     }
 
     @Override
-    public void userFollowed(User user)
+    public void userFollowed()
     {
     }
 
     @Override
-    public void userUnfollowed(User user)
+    public void userUnfollowed()
     {
     }
 

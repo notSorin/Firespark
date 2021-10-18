@@ -141,25 +141,17 @@ public class ProfileFragment extends FragmentWithSparks
     }
 
     @Override
-    public void userFollowed(User user)
+    public void userFollowed()
     {
-        if(_user.getId().equals(user.getId()))
-        {
-            setUser(user);
-            _userFollowing.setText(_user.getFollowers().size() + " Followers - Following " + _user.getFollowing().size());
-            _followButton.setText(_user.isFollowedByCurrentUser() ? R.string.Unfollow : R.string.Follow);
-        }
+        updateFollowing();
+        updateFollowButton();
     }
 
     @Override
-    public void userUnfollowed(User user)
+    public void userUnfollowed()
     {
-        if(_user.getId().equals(user.getId()))
-        {
-            setUser(user);
-            _userFollowing.setText(_user.getFollowers().size() + " Followers - Following " + _user.getFollowing().size());
-            _followButton.setText(_user.isFollowedByCurrentUser() ? R.string.Unfollow : R.string.Follow);
-        }
+        updateFollowing();
+        updateFollowButton();
     }
 
     @Override
