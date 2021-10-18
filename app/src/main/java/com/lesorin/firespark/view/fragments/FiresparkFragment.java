@@ -3,6 +3,7 @@ package com.lesorin.firespark.view.fragments;
 import androidx.fragment.app.Fragment;
 import com.lesorin.firespark.presenter.pojo.Spark;
 import com.lesorin.firespark.presenter.pojo.User;
+import java.util.ArrayList;
 
 public abstract class FiresparkFragment extends Fragment
 {
@@ -19,4 +20,5 @@ public abstract class FiresparkFragment extends Fragment
     public abstract void userFollowed(User user);
     public abstract void userUnfollowed(User user);
     public abstract void displayElements();
+    public abstract void refreshProfile(User user, ArrayList<Spark> sparks);
 }

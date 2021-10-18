@@ -10,9 +10,11 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import com.google.android.material.button.MaterialButton;
 import com.lesorin.firespark.R;
+import com.lesorin.firespark.presenter.pojo.Spark;
 import com.lesorin.firespark.presenter.pojo.User;
 import com.lesorin.firespark.view.activities.MainActivity;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Locale;
 
 public class ProfileFragment extends FragmentWithSparks
@@ -86,8 +88,7 @@ public class ProfileFragment extends FragmentWithSparks
                 _firstLastName.setText(_user.getFirstlastname());
                 _username.setText("@" + _user.getUsername());
                 _userFollowing.setText(_user.getFollowers().size() + " Followers - Following " + _user.getFollowing().size());
-                _userJoined.setText(String.format(getResources().getString(R.string.UserJoined),
-                        _dateFormat.format(_user.getJoined().toDate())));
+                _userJoined.setText("Joined on " + _dateFormat.format(_user.getJoined().toDate()));
                 _followButton.setVisibility(_user.isCurrentUser() ? View.GONE : View.VISIBLE);
                 _followButton.setText(_user.isFollowedByCurrentUser() ? R.string.Unfollow : R.string.Follow);
                 _logoutButton.setVisibility(_user.isCurrentUser() ? View.VISIBLE : View.GONE);
@@ -157,5 +158,13 @@ public class ProfileFragment extends FragmentWithSparks
             _userFollowing.setText(_user.getFollowers().size() + " Followers - Following " + _user.getFollowing().size());
             _followButton.setText(_user.isFollowedByCurrentUser() ? R.string.Unfollow : R.string.Follow);
         }
+    }
+
+    @Override
+    public void refreshProfile(User user, ArrayList<Spark> sparks)
+    {
+        setUser(user);
+        setSparks(sparks);
+        displayElements();
     }
 }

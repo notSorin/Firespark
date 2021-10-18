@@ -127,6 +127,12 @@ class MainPresenter implements MainContract.PresenterView, MainContract.Presente
     }
 
     @Override
+    public void requestRefreshProfile(User user)
+    {
+        _model.requestRefreshProfile(user);
+    }
+
+    @Override
     public void homeDataAcquired(ArrayList<Spark> sparks)
     {
         _view.displayHomeData(sparks);
@@ -258,5 +264,17 @@ class MainPresenter implements MainContract.PresenterView, MainContract.Presente
     public void requestPopularDataSuccess(ArrayList<Spark> sparks)
     {
         _view.requestPopularDataSuccess(sparks);
+    }
+
+    @Override
+    public void requestRefreshProfileSuccess(User user, ArrayList<Spark> sparks)
+    {
+        _view.requestRefreshProfileSuccess(user, sparks);
+    }
+
+    @Override
+    public void requestRefreshProfileFailure()
+    {
+        _view.requestRefreshProfileFailure();
     }
 }

@@ -22,6 +22,7 @@ public interface MainContract
         void sparkLikeClicked(Spark spark);
         void userFollowClicked(User user);
         void requestSearchUserByUsername(String userName);
+        void requestRefreshProfile(User user);
     }
 
     interface PresenterModel
@@ -47,6 +48,8 @@ public interface MainContract
         void requestSparkDataFailure();
         void requestPopularDataFailure();
         void requestPopularDataSuccess(ArrayList<Spark> sparks);
+        void requestRefreshProfileSuccess(User user, ArrayList<Spark> sparks);
+        void requestRefreshProfileFailure();
     }
 
     interface View
@@ -77,6 +80,8 @@ public interface MainContract
         void requestSparkDataFailure();
         void requestPopularDataFailure();
         void requestPopularDataSuccess(ArrayList<Spark> sparks);
+        void requestRefreshProfileSuccess(User user, ArrayList<Spark> sparks);
+        void requestRefreshProfileFailure();
     }
 
     interface Model
@@ -93,5 +98,6 @@ public interface MainContract
         void followUnfollowUser(User user);
         void searchUserByUsername(String userName);
         void requestSparkData(Spark spark);
+        void requestRefreshProfile(User user);
     }
 }

@@ -482,6 +482,18 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         openFragment(_popularFragment);
     }
 
+    @Override
+    public void requestRefreshProfileSuccess(User user, ArrayList<Spark> sparks)
+    {
+        _fragmentsStack.get(_fragmentsStack.size() - 1).refreshProfile(user, sparks);
+    }
+
+    @Override
+    public void requestRefreshProfileFailure()
+    {
+        Snackbar.make(_navigationView, R.string.RequestRefreshProfileFailure, Snackbar.LENGTH_LONG).show();
+    }
+
     private void hideKeyboard()
     {
         InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
@@ -491,7 +503,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     public void refreshProfileData(User user)
     {
-        //todo
+        _presenter.requestRefreshProfile(user);
     }
 
     public void refreshHomeData()
