@@ -23,12 +23,14 @@ class MainModel implements MainContract.Model
     private FirebaseAuth _firebaseAuth;
     private FirebaseFirestore _firestore;
     private HashMap<String, Spark> _sparksCache;
+    private HashMap<String, User> _usersCache;
 
     public MainModel()
     {
         _firebaseAuth = FirebaseAuth.getInstance();
         _firestore = FirebaseFirestore.getInstance();
         _sparksCache = new HashMap<>();
+        _usersCache = new HashMap<>();
     }
 
     public void setPresenter(MainContract.PresenterModel presenter)
@@ -52,7 +54,7 @@ class MainModel implements MainContract.Model
         {
             if(task.isSuccessful())
             {
-                User user = createUserFromDocumentSnapshot(task.getResult());
+                User user = updateUsersCache(createUserFromDocumentSnapshot(task.getResult()));
 
                 //todo probably need to limit this query in the future, and figure out how to keep requesting data after the limit
                 _firestore.collection(COLLECTION_SPARKS).whereEqualTo(SPARK_OWNERID, user.getId()).
@@ -84,6 +86,26 @@ class MainModel implements MainContract.Model
                 _presenter.requestProfileDataFailure();
             }
         });
+    }
+
+    private User updateUsersCache(User user)
+    {
+        User userInCache = _usersCache.get(user.getId());
+
+        //If it is in the cache, then update it with the latest data read
+        //from the database, because the cache might contain old values.
+        if(userInCache != null)
+        {
+            userInCache.update(user);
+        }
+        else //If the user is not in cache, insert it.
+        {
+            _usersCache.put(user.getId(), user);
+
+            userInCache = user;
+        }
+
+        return userInCache;
     }
 
     @Override
@@ -158,8 +180,7 @@ class MainModel implements MainContract.Model
         {
             if(task.isSuccessful())
             {
-                DocumentSnapshot ds = task.getResult();
-                User user = createUserFromDocumentSnapshot(ds);
+                User user = updateUsersCache(createUserFromDocumentSnapshot(task.getResult()));
                 HashMap<String, Object> toInsert = createSparkMapForInserting(sparkBody, user);
 
                 _firestore.collection(COLLECTION_SPARKS).add(toInsert).addOnCompleteListener(task2 ->
@@ -267,7 +288,7 @@ class MainModel implements MainContract.Model
                     {
                         if(task.getResult().size() >= 1)
                         {
-                            User user = createUserFromDocumentSnapshot(task.getResult().getDocuments().get(0));
+                            User user = updateUsersCache(createUserFromDocumentSnapshot(task.getResult().getDocuments().get(0)));
 
                             //todo probably need to limit this query in the future, and figure out how to keep requesting data after the limit
                             _firestore.collection(COLLECTION_SPARKS).whereEqualTo(SPARK_OWNERID, user.getId()).
@@ -346,7 +367,7 @@ class MainModel implements MainContract.Model
         {
             if(task.isSuccessful())
             {
-                User user2 = createUserFromDocumentSnapshot(task.getResult());
+                User user2 = updateUsersCache(createUserFromDocumentSnapshot(task.getResult()));
 
                 //todo probably need to limit this query in the future, and figure out how to keep requesting data after the limit
                 _firestore.collection(COLLECTION_SPARKS).whereEqualTo(SPARK_OWNERID, user2.getId()).

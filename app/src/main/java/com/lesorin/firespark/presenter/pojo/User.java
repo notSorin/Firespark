@@ -101,4 +101,18 @@ public class User
     {
         return _verified;
     }
+
+    public void update(User user)
+    {
+        _id = user.getId();
+        _isCurrentUser = user.isCurrentUser();
+        _isFollowedByCurrentUser = user.isFollowedByCurrentUser();
+        _firstLastName = user.getFirstlastname();
+        _username = user.getUsername();
+        _usernameInsensitive = user.getUsernameinsensitive();
+        _joined = user.getJoined();
+        _followers = user.getFollowers();
+        _following = user.getFollowing();
+        _verified = user.isVerified();
+    }
 }
