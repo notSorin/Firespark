@@ -45,7 +45,7 @@ public class SearchUserFragment extends FiresparkFragmentAdapter
 
         _searchButton.setOnClickListener(view ->
         {
-            ((MainActivity)getContext()).requestSearchUserByUsername(_username.getText().toString());
+            _activity.requestSearchUserByUsername(_username.getText().toString());
         });
     }
 

@@ -25,7 +25,7 @@ public class HomeFragment extends FragmentWithSparks
             _view = inflater.inflate(R.layout.fragment_home, container, false);
 
             initializeBackgroundText();
-            initializeSwipeRefresh(() -> ((MainActivity)getContext()).refreshHomeData());
+            initializeSwipeRefresh(() -> _activity.refreshHomeData());
             initializeSparksRecycleView();
         }
 

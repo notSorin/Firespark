@@ -50,7 +50,7 @@ public class ProfileFragment extends FragmentWithSparks
             initializeSwipeRefresh(() ->
             {
                 _swipeRefresh.setRefreshing(true);
-                ((MainActivity)getContext()).refreshProfileData(_user);
+                _activity.refreshProfileData(_user);
             });
             initializeTexts();
             initializeLogoutButton();
