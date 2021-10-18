@@ -34,12 +34,12 @@ public class SparkFragment extends FiresparkFragmentAdapter
     private SwipeRefreshLayout _swipeRefresh;
     private Spark _spark;
     private TextView _ownerUsername, _sparkBody, _likes, _timestamp, _commentsAmount;
-    private ImageView _sparkLike, _sparkDelete, _commentsIcon, _sendComment, _cancelCommentReply;
+    private ImageView _sparkLike, _sparkDelete, _commentsIcon, _cancelCommentReply;
     private SimpleDateFormat _dateFormat;
     private ArrayList<Comment> _commentsList;
     private TextView _backgroundText, _commentReplyOwner;
     private TextInputEditText _commentInput;
-    private View _commentReplyLayout;
+    private View _commentReplyLayout, _sendComment;
     private Comment _replyComment;
 
     public SparkFragment(MainActivity activity)
@@ -81,7 +81,13 @@ public class SparkFragment extends FiresparkFragmentAdapter
         _sendComment = _view.findViewById(R.id.SendComment);
         _commentReplyOwner = _view.findViewById(R.id.CommentReplyOwner);
 
-        _sendComment.setOnClickListener(view -> _activity.sendComment(_spark, _commentInput.getText().toString(), _replyComment));
+        _sendComment.setOnClickListener(view ->
+        {
+            _sendComment.setEnabled(false);
+            _commentInput.setText("");
+            setReplyComment(null);
+            _activity.sendComment(_spark, _commentInput.getText().toString(), _replyComment);
+        });
 
         _cancelCommentReply.setOnClickListener(view ->
         {
