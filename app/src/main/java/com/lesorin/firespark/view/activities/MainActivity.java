@@ -335,7 +335,11 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public void deleteSparkSuccess(Spark spark)
     {
-        _fragmentsStack.get(_fragmentsStack.size() - 1).deleteSpark(spark);
+        //Need to update some fragments so they don't show the spark anymore.
+        for(FiresparkFragment f : _fragmentsStack)
+        {
+            f.deleteSpark(spark);
+        }
 
         //Go to the home fragment if the user wasn't already on one of the main fragments.
         if(!getVisibleFragment().isMainFragment())
