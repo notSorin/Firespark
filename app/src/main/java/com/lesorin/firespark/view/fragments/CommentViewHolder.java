@@ -12,7 +12,7 @@ public class CommentViewHolder extends RecyclerView.ViewHolder
 {
     private TextView _ownerName, _body, _timestamp, _likes, _replyOwner;
     private View _replyLayout;
-    private ImageView _likeButton, _deleteButton;
+    private ImageView _likeButton, _deleteButton, _replyButton;
 
     public CommentViewHolder(@NonNull View view)
     {
@@ -26,6 +26,7 @@ public class CommentViewHolder extends RecyclerView.ViewHolder
         _likes = view.findViewById(R.id.CommentLikes);
         _likeButton = view.findViewById(R.id.CommentLikeButton);
         _deleteButton = view.findViewById(R.id.CommentDelete);
+        _replyButton  = view.findViewById(R.id.CommentReplyButton);
     }
 
     public void setOwnerName(String firstLastName, String username)
@@ -90,5 +91,10 @@ public class CommentViewHolder extends RecyclerView.ViewHolder
         {
             _replyLayout.setVisibility(View.GONE);
         }
+    }
+
+    public View getReplyButton()
+    {
+        return _replyButton;
     }
 }

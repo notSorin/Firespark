@@ -121,7 +121,7 @@
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/ReplyButton"
+        android:id="@+id/CommentReplyButton"
         android:layout_width="60dp"
         android:layout_height="40dp"
         android:padding="8dp"
