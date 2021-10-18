@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     private SendSparkFragment _sendSparkFragment;
     private Vibrator _vibrator;
     private Animation _fabOpen, _fabClose, _fabFromBottom, _fabToBottom;
-    private ArrayList<FiresparkFragment> _fragmentsStack;
+    private ArrayList<FiresparkFragment> _fragmentsStack; //todo make a class for this stack, and take care to not keep too many fragments
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
