@@ -15,12 +15,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.Timestamp;
 import com.lesorin.firespark.R;
 import com.lesorin.firespark.presenter.pojo.Comment;
 import com.lesorin.firespark.presenter.pojo.Spark;
 import com.lesorin.firespark.view.activities.MainActivity;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Locale;
 
 public class SparkFragment extends FiresparkFragmentAdapter
@@ -197,7 +199,10 @@ public class SparkFragment extends FiresparkFragmentAdapter
 
     private void updateTimestamp()
     {
-        _timestamp.setText(_dateFormat.format(_spark.getCreated().toDate()));
+        Timestamp sparkTimestamp = _spark.getCreated();
+        Date created = sparkTimestamp != null ? sparkTimestamp.toDate() : null;
+
+        _timestamp.setText(created != null ? _dateFormat.format(created) : "");
     }
 
     private void updateDeleteIcon()

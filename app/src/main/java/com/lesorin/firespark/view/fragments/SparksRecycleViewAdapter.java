@@ -5,10 +5,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import com.google.firebase.Timestamp;
 import com.lesorin.firespark.R;
 import com.lesorin.firespark.view.activities.MainActivity;
 import java.text.SimpleDateFormat;import com.lesorin.firespark.presenter.pojo.Spark;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Locale;
 
 public class SparksRecycleViewAdapter extends RecyclerView.Adapter<SparkViewHolder>
@@ -37,13 +39,15 @@ public class SparksRecycleViewAdapter extends RecyclerView.Adapter<SparkViewHold
     {
         Spark spark = _sparksList.get(position);
         int likesAmount = spark.getLikes().size();
+        Timestamp sparkTimestamp = spark.getCreated();
+        Date created = sparkTimestamp != null ? sparkTimestamp.toDate() : null;
 
         holder.setOwnerUsername(spark.getOwnerFirstLastName(), spark.getOwnerUsername());
         holder.setSparkBody(spark.getBody());
         holder.setSparkLiked(spark.isLikedByCurrentUser());
         holder.setDeleteButtonVisibility(spark.isOwnedByCurrentUser());
         holder.setLikes(likesAmount);
-        holder.setCreated(_dateFormat.format(spark.getCreated().toDate()));
+        holder.setCreated(created != null ? _dateFormat.format(created) : "");
         holder.setSpecialOwnerName(spark.isOwnedByCurrentUser());
         holder.setCommentsAmount(spark.getComments().size());
         holder.setSpecialCommentIcon(spark.containsCommentFromCurrentUser());
