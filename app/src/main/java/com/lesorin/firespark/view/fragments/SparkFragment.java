@@ -161,28 +161,33 @@ public class SparkFragment extends FiresparkFragmentAdapter
     @Override
     public void displayElements()
     {
-        if(getContext() != null && _spark != null)
+        if(_spark != null)
         {
-            _ownerUsername.setText(_spark.getOwnerFirstLastName() + " (@" + _spark.getOwnerUsername() + ")");
-            _sparkBody.setText(_spark.getBody());
-            setSparkLiked(_spark.isLikedByCurrentUser());
-            _sparkDelete.setVisibility(_spark.isOwnedByCurrentUser() ? View.VISIBLE : View.GONE);
-            setLikesAmount(_spark.getLikes().size());
-            _timestamp.setText(_dateFormat.format(_spark.getCreated().toDate()));
-            setSpecialOwnerName(_spark.isOwnedByCurrentUser());
-            _commentsAmount.setText(String.valueOf(_spark.getComments().size()));
-            setSpecialCommentIcon(_spark.containsCommentFromCurrentUser());
-            _commentInput.setText("");
+            updateOwnerUsername();
+            updateBody();
+            updateLikeIcon();
+            updateDeleteIcon();
+            updateLikesAmount();
+            updateTimestamp();
+            updateCommentsAmount();
+            updateCommentInput();
         }
 
         displayComments();
     }
 
-    private void setSpecialCommentIcon(boolean special)
+    private void updateCommentInput()
     {
-        if(special)
+        _commentInput.setText("");
+    }
+
+    private void updateCommentsAmount()
+    {
+        _commentsAmount.setText(String.valueOf(_spark.getComments().size()));
+
+        if(_spark.containsCommentFromCurrentUser())
         {
-            _commentsIcon.setColorFilter(_commentsIcon.getContext().getColor(R.color.primaryColor));
+            _commentsIcon.setColorFilter(_activity.getColor(R.color.primaryColor));
         }
         else
         {
@@ -190,14 +195,26 @@ public class SparkFragment extends FiresparkFragmentAdapter
         }
     }
 
-    private void setLikesAmount(int likesAmount)
+    private void updateTimestamp()
     {
-        _likes.setText(String.valueOf(likesAmount));
+        _timestamp.setText(_dateFormat.format(_spark.getCreated().toDate()));
     }
 
-    private void setSpecialOwnerName(boolean special)
+    private void updateDeleteIcon()
     {
-        if(special)
+        _sparkDelete.setVisibility(_spark.isOwnedByCurrentUser() ? View.VISIBLE : View.GONE);
+    }
+
+    private void updateBody()
+    {
+        _sparkBody.setText(_spark.getBody());
+    }
+
+    private void updateOwnerUsername()
+    {
+        _ownerUsername.setText(String.format(_activity.getString(R.string.SparkOwnerUsername), _spark.getOwnerFirstLastName(), _spark.getOwnerUsername()));
+
+        if(_spark.isOwnedByCurrentUser())
         {
             _ownerUsername.setBackgroundResource(R.drawable.spark_owner_background);
         }
@@ -207,12 +224,17 @@ public class SparkFragment extends FiresparkFragmentAdapter
         }
     }
 
-    private void setSparkLiked(boolean liked)
+    private void updateLikesAmount()
     {
-        if(liked)
+        _likes.setText(String.valueOf(_spark.getLikesAmount()));
+    }
+
+    private void updateLikeIcon()
+    {
+        if(_spark.isLikedByCurrentUser())
         {
             _sparkLike.setImageResource(R.drawable.thumbs_up_fill);
-            _sparkLike.setColorFilter(_sparkLike.getContext().getColor(R.color.primaryColor));
+            _sparkLike.setColorFilter(_activity.getColor(R.color.primaryColor));
         }
         else
         {
@@ -224,21 +246,14 @@ public class SparkFragment extends FiresparkFragmentAdapter
     @Override
     public void sparkLiked(Spark spark)
     {
-        if(spark == _spark)
-        {
-            setSparkLiked(spark.isLikedByCurrentUser());
-            setLikesAmount(spark.getLikes().size());
-        }
-    }
-
-    public void resetCommentViews()
-    {
-        _commentInput.setText("");
+        updateLikeIcon();
+        updateLikesAmount();
     }
 
     @Override
     public void sparkLikeRemoved(Spark spark)
     {
-        sparkLiked(spark);
+        updateLikeIcon();
+        updateLikesAmount();
     }
 }
