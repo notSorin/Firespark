@@ -11,6 +11,11 @@ import com.lesorin.firespark.view.activities.MainActivity;
 
 public class PopularFragment extends FragmentWithSparks
 {
+    public PopularFragment(MainActivity activity)
+    {
+        super(activity);
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)

@@ -11,6 +11,11 @@ import com.lesorin.firespark.view.activities.MainActivity;
 
 public class HomeFragment extends FragmentWithSparks
 {
+    public HomeFragment(MainActivity activity)
+    {
+        super(activity);
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)

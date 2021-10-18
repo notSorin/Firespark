@@ -17,8 +17,10 @@ public class SearchUserFragment extends FiresparkFragmentAdapter
     private TextInputEditText _username;
     private MaterialButton _searchButton;
 
-    public SearchUserFragment()
+    public SearchUserFragment(MainActivity activity)
     {
+        super(activity);
+
         _view = null;
     }
 

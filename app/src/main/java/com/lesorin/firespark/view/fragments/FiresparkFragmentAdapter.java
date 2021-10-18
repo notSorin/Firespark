@@ -2,10 +2,16 @@ package com.lesorin.firespark.view.fragments;
 
 import com.lesorin.firespark.presenter.pojo.Spark;
 import com.lesorin.firespark.presenter.pojo.User;
+import com.lesorin.firespark.view.activities.MainActivity;
 import java.util.ArrayList;
 
 public class FiresparkFragmentAdapter extends FiresparkFragment
 {
+    public FiresparkFragmentAdapter(MainActivity activity)
+    {
+        _activity = activity;
+    }
+
     @Override
     public User getUser()
     {
@@ -78,6 +84,11 @@ public class FiresparkFragmentAdapter extends FiresparkFragment
 
     @Override
     public void refreshProfile(User user, ArrayList<Spark> sparks)
+    {
+    }
+
+    @Override
+    public void refreshSparks(ArrayList<Spark> sparks)
     {
     }
 }

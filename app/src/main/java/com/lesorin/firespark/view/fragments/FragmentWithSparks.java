@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.lesorin.firespark.R;
 import com.lesorin.firespark.presenter.pojo.Spark;
+import com.lesorin.firespark.view.activities.MainActivity;
 import java.util.ArrayList;
 
 public abstract class FragmentWithSparks extends FiresparkFragmentAdapter
@@ -20,8 +21,10 @@ public abstract class FragmentWithSparks extends FiresparkFragmentAdapter
     protected RecyclerView.LayoutManager _rvLayoutManager;
     protected ArrayList<Spark> _sparksList;
 
-    public FragmentWithSparks()
+    public FragmentWithSparks(MainActivity activity)
     {
+        super(activity);
+
         _view = null;
         _sparksRVAdapter = new SparksRecycleViewAdapter();
         _rvLayoutManager = new LinearLayoutManager(getContext());
@@ -106,5 +109,12 @@ public abstract class FragmentWithSparks extends FiresparkFragmentAdapter
     public ArrayList<Spark> getSparksList()
     {
         return _sparksList;
+    }
+
+    @Override
+    public void refreshSparks(ArrayList<Spark> sparks)
+    {
+        setSparks(sparks);
+        displayElements();
     }
 }

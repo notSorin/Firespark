@@ -40,8 +40,10 @@ public class SparkFragment extends FiresparkFragmentAdapter
     private TextView _backgroundText;
     private TextInputEditText _commentInput;
 
-    public SparkFragment()
+    public SparkFragment(MainActivity activity)
     {
+        super(activity);
+
         _view = null;
         _spark = null;
         _dateFormat = new SimpleDateFormat(DATE_FORMAT, Locale.getDefault());

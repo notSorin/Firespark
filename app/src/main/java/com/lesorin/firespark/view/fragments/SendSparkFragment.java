@@ -22,8 +22,10 @@ public class SendSparkFragment extends FiresparkFragmentAdapter
     private float _differenceY;
     private TextInputEditText _sparkBody;
 
-    public SendSparkFragment()
+    public SendSparkFragment(MainActivity activity)
     {
+        super(activity);
+
         _view = null;
     }
 

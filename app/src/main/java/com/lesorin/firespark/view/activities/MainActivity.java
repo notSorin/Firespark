@@ -172,10 +172,10 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     private void initializeFragments()
     {
-        _homeFragment = new HomeFragment();
-        _popularFragment = new PopularFragment();
-        _sendSparkFragment = new SendSparkFragment();
-        _searchUserFragment = new SearchUserFragment();
+        _homeFragment = new HomeFragment(this);
+        _popularFragment = new PopularFragment(this);
+        _sendSparkFragment = new SendSparkFragment(this);
+        _searchUserFragment = new SearchUserFragment(this);
     }
 
     private void initializeNavigationView()
@@ -452,7 +452,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     private void requestProfileSuccess(User user, ArrayList<Spark> sparks)
     {
-        ProfileFragment pf = new ProfileFragment();
+        ProfileFragment pf = new ProfileFragment(this);
 
         pf.setUser(user);
         pf.setSparks(sparks);
@@ -468,7 +468,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public void requestSparkDataSuccess(Spark spark, ArrayList<Comment> comments)
     {
-        SparkFragment sf = new SparkFragment();
+        SparkFragment sf = new SparkFragment(this);
 
         sf.setSpark(spark);
         sf.setComments(comments);

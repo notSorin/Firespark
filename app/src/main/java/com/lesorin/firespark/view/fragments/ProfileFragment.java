@@ -26,8 +26,10 @@ public class ProfileFragment extends FragmentWithSparks
     private User _user;
     private SimpleDateFormat _dateFormat;
 
-    public ProfileFragment()
+    public ProfileFragment(MainActivity activity)
     {
+        super(activity);
+
         _view = null;
         _sparksRVAdapter = new SparksRecycleViewAdapter();
         _rvLayoutManager = new LinearLayoutManager(getContext());
