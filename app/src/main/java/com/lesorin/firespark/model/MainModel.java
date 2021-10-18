@@ -128,7 +128,11 @@ class MainModel implements MainContract.Model
                     sparks.add(spark);
                 }
 
-                _presenter.homeDataAcquired(sparks);
+                _presenter.requestHomeDataSuccess(sparks);
+            }
+            else
+            {
+                _presenter.requestHomeDataFailure();
             }
         });
     }
@@ -358,47 +362,6 @@ class MainModel implements MainContract.Model
             }
         });
 
-    }
-
-    @Override
-    public void requestRefreshProfile(User user)
-    {
-        _firestore.collection(COLLECTION_USERS).document(user.getId()).get().addOnCompleteListener(task ->
-        {
-            if(task.isSuccessful())
-            {
-                User user2 = updateUsersCache(createUserFromDocumentSnapshot(task.getResult()));
-
-                //todo probably need to limit this query in the future, and figure out how to keep requesting data after the limit
-                _firestore.collection(COLLECTION_SPARKS).whereEqualTo(SPARK_OWNERID, user2.getId()).
-                        whereEqualTo(SPARK_DELETED, false).orderBy(SPARK_CREATED, Query.Direction.DESCENDING).get().addOnCompleteListener(task2 ->
-                {
-                    if(task2.isSuccessful())
-                    {
-                        ArrayList<Spark> sparks = new ArrayList<>();
-
-                        for(QueryDocumentSnapshot document : task2.getResult())
-                        {
-                            Spark spark = createSparkFromDocumentSnapshot(document);
-
-                            spark = updateSparksCache(spark);
-
-                            sparks.add(spark);
-                        }
-
-                        _presenter.requestRefreshProfileSuccess(user2, sparks);
-                    }
-                    else
-                    {
-                        _presenter.requestRefreshProfileFailure();
-                    }
-                });
-            }
-            else
-            {
-                _presenter.requestRefreshProfileFailure();
-            }
-        });
     }
 
     private void followUser(User user)

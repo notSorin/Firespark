@@ -12,11 +12,13 @@ class MainPresenter implements MainContract.PresenterView, MainContract.Presente
 
     private MainContract.View _view;
     private MainContract.Model _model;
+    private boolean _lastRequestWasRefresh;
 
     @Override
     public void setView(MainContract.View view)
     {
         _view = view;
+        _lastRequestWasRefresh = false;
     }
 
     @Override
@@ -28,6 +30,8 @@ class MainPresenter implements MainContract.PresenterView, MainContract.Presente
     @Override
     public void appStarted()
     {
+        _lastRequestWasRefresh = false;
+
         _model.requestHomeData();
     }
 
@@ -41,12 +45,16 @@ class MainPresenter implements MainContract.PresenterView, MainContract.Presente
     @Override
     public void requestProfileData(String userId)
     {
+        _lastRequestWasRefresh = false;
+
         _model.requestProfileData(userId);
     }
 
     @Override
     public void requestHomeData()
     {
+        _lastRequestWasRefresh = false;
+
         _model.requestHomeData();
     }
 
@@ -127,15 +135,45 @@ class MainPresenter implements MainContract.PresenterView, MainContract.Presente
     }
 
     @Override
-    public void requestRefreshProfile(User user)
+    public void requestProfileDataRefresh(User user)
     {
-        _model.requestRefreshProfile(user);
+        _lastRequestWasRefresh = true;
+
+        _model.requestProfileData(user.getId());
     }
 
     @Override
-    public void homeDataAcquired(ArrayList<Spark> sparks)
+    public void requestHomeDataRefresh()
     {
-        _view.displayHomeData(sparks);
+        _lastRequestWasRefresh = true;
+
+        _model.requestHomeData();
+    }
+
+    @Override
+    public void requestHomeDataSuccess(ArrayList<Spark> sparks)
+    {
+        if(_lastRequestWasRefresh)
+        {
+            _view.requestHomeDataRefreshSuccess(sparks);
+        }
+        else
+        {
+            _view.requestHomeDataSuccess(sparks);
+        }
+    }
+
+    @Override
+    public void requestHomeDataFailure()
+    {
+        if(_lastRequestWasRefresh)
+        {
+            _view.requestHomeDataRefreshFailure();
+        }
+        else
+        {
+            _view.requestHomeDataFailure();
+        }
     }
 
     @Override
@@ -233,13 +271,27 @@ class MainPresenter implements MainContract.PresenterView, MainContract.Presente
     @Override
     public void requestProfileDataSuccess(User user, ArrayList<Spark> sparks)
     {
-        _view.requestProfileDataSuccess(user, sparks);
+        if(_lastRequestWasRefresh)
+        {
+            _view.requestProfileDataRefreshSuccess(user, sparks);
+        }
+        else
+        {
+            _view.requestProfileDataSuccess(user, sparks);
+        }
     }
 
     @Override
     public void requestProfileDataFailure()
     {
-        _view.requestProfileDataFailure();
+        if(_lastRequestWasRefresh)
+        {
+            _view.requestProfileDataRefreshFailure();
+        }
+        else
+        {
+            _view.requestProfileDataFailure();
+        }
     }
 
     @Override
@@ -264,17 +316,5 @@ class MainPresenter implements MainContract.PresenterView, MainContract.Presente
     public void requestPopularDataSuccess(ArrayList<Spark> sparks)
     {
         _view.requestPopularDataSuccess(sparks);
-    }
-
-    @Override
-    public void requestRefreshProfileSuccess(User user, ArrayList<Spark> sparks)
-    {
-        _view.requestRefreshProfileSuccess(user, sparks);
-    }
-
-    @Override
-    public void requestRefreshProfileFailure()
-    {
-        _view.requestRefreshProfileFailure();
     }
 }

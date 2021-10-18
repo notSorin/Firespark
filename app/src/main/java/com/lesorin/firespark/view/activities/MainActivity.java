@@ -273,10 +273,22 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     }
 
     @Override
-    public void displayHomeData(ArrayList<Spark> sparks)
+    public void requestHomeDataSuccess(ArrayList<Spark> sparks)
     {
         _homeFragment.setSparks(sparks);
         openFragment(_homeFragment);
+    }
+
+    @Override
+    public void requestHomeDataRefreshFailure()
+    {
+        Snackbar.make(_navigationView, R.string.RequestHomeDataRefreshFailure, Snackbar.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void requestHomeDataFailure()
+    {
+        Snackbar.make(_navigationView, R.string.RequestHomeDataFailure, Snackbar.LENGTH_LONG).show();
     }
 
     @Override
@@ -483,13 +495,19 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     }
 
     @Override
-    public void requestRefreshProfileSuccess(User user, ArrayList<Spark> sparks)
+    public void requestProfileDataRefreshSuccess(User user, ArrayList<Spark> sparks)
     {
         _fragmentsStack.get(_fragmentsStack.size() - 1).refreshProfile(user, sparks);
     }
 
     @Override
-    public void requestRefreshProfileFailure()
+    public void requestHomeDataRefreshSuccess(ArrayList<Spark> sparks)
+    {
+        _homeFragment.refreshSparks(sparks);
+    }
+
+    @Override
+    public void requestProfileDataRefreshFailure()
     {
         Snackbar.make(_navigationView, R.string.RequestRefreshProfileFailure, Snackbar.LENGTH_LONG).show();
     }
@@ -503,12 +521,12 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     public void refreshProfileData(User user)
     {
-        _presenter.requestRefreshProfile(user);
+        _presenter.requestProfileDataRefresh(user);
     }
 
     public void refreshHomeData()
     {
-        //todo
+        _presenter.requestHomeDataRefresh();
     }
 
     public void refreshPopularData()

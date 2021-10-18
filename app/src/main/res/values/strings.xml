@@ -80,4 +80,6 @@
     <string name="RequestSparkDataFailure">Could not retrieve spark data.</string>
     <string name="RequestPopularDataFailure">Could not retrieve popular Sparks.</string>
     <string name="RequestRefreshProfileFailure">Could not refresh profile.</string>
+    <string name="RequestHomeDataFailure">Could not acquire home data.</string>
+    <string name="RequestHomeDataRefreshFailure">Could not refresh home data.</string>
 </resources>
