@@ -81,21 +81,52 @@ public class ProfileFragment extends FragmentWithSparks
     {
         super.displayElements();
 
-        if(getContext() != null && _user != null)
+        if(_user != null)
         {
-            if(_firstLastName != null && _username != null && _userFollowing != null && _userJoined != null &&
-                _followButton != null && _logoutButton != null)
-            {
-                _verifiedIcon.setVisibility(_user.isVerified() ? View.VISIBLE : View.GONE);
-                _firstLastName.setText(_user.getFirstlastname());
-                _username.setText("@" + _user.getUsername());
-                _userFollowing.setText(_user.getFollowers().size() + " Followers - Following " + _user.getFollowing().size());
-                _userJoined.setText("Joined on " + _dateFormat.format(_user.getJoined().toDate()));
-                _followButton.setVisibility(_user.isCurrentUser() ? View.GONE : View.VISIBLE);
-                _followButton.setText(_user.isFollowedByCurrentUser() ? R.string.Unfollow : R.string.Follow);
-                _logoutButton.setVisibility(_user.isCurrentUser() ? View.VISIBLE : View.GONE);
-            }
+            updateVerifiedIcon();
+            updateFirstLastName();
+            updateUserName();
+            updateFollowing();
+            updateJoined();
+            updateFollowButton();
+            updateLogoutButton();
         }
+    }
+
+    private void updateLogoutButton()
+    {
+        _logoutButton.setVisibility(_user.isCurrentUser() ? View.VISIBLE : View.GONE);
+    }
+
+    private void updateUserName()
+    {
+        _username.setText(String.format(_activity.getString(R.string.UserHandle), _user.getUsername()));
+    }
+
+    private void updateFirstLastName()
+    {
+        _firstLastName.setText(_user.getFirstlastname());
+    }
+
+    private void updateVerifiedIcon()
+    {
+        _verifiedIcon.setVisibility(_user.isVerified() ? View.VISIBLE : View.GONE);
+    }
+
+    private void updateFollowing()
+    {
+        _userFollowing.setText(String.format(_activity.getString(R.string.UserFollowers), _user.getFollowers().size(), _user.getFollowing().size()));
+    }
+
+    private void updateFollowButton()
+    {
+        _followButton.setVisibility(_user.isCurrentUser() ? View.GONE : View.VISIBLE);
+        _followButton.setText(_user.isFollowedByCurrentUser() ? R.string.Unfollow : R.string.Follow);
+    }
+
+    private void updateJoined()
+    {
+        _userJoined.setText(String.format(_activity.getString(R.string.UserJoined), _dateFormat.format(_user.getJoined().toDate())));
     }
 
     private void initializeTexts()
@@ -110,10 +141,7 @@ public class ProfileFragment extends FragmentWithSparks
     {
         _logoutButton = _view.findViewById(R.id.LogoutButton);
 
-        _logoutButton.setOnClickListener(view ->
-        {
-            ((MainActivity)getContext()).logOutButtonPressed();
-        });
+        _logoutButton.setOnClickListener(view -> _activity.logOutButtonPressed());
     }
 
     @Override
