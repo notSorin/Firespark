@@ -78,20 +78,14 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     {
         _searchFab = findViewById(R.id.SearchFAB);
 
-        _searchFab.setOnClickListener(view ->
-        {
-            openFragment(_searchUserFragment);
-        });
+        _searchFab.setOnClickListener(view -> openFragment(_searchUserFragment));
     }
 
     private void initializeNewSparkFab()
     {
         _newSparkFab = findViewById(R.id.NewSparkFAB);
 
-        _newSparkFab.setOnClickListener(view ->
-        {
-            openFragment(_sendSparkFragment);
-        });
+        _newSparkFab.setOnClickListener(view -> openFragment(_sendSparkFragment));
     }
 
     private FiresparkFragment getVisibleFragment()
