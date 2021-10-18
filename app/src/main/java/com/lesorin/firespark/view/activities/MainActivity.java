@@ -322,7 +322,9 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public void sparkSentSuccessfully(Spark spark)
     {
-        _fragmentsStack.get(_fragmentsStack.size() - 1).addSpark(spark);
+        _homeFragment.addSpark(spark);
+        _fragmentsStack.clear();
+        _fragmentsStack.add(_homeFragment);
     }
 
     @Override
