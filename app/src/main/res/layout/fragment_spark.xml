@@ -9,6 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -36,69 +37,80 @@
         app:layout_constraintBottom_toBottomOf="@id/SwipeRefresh"
         app:layout_constraintTop_toTopOf="@id/SwipeRefresh" />
 
-    <LinearLayout
-        android:id="@+id/CommentReplyLayout"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/NewCommentLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:gravity="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintStart_toStartOf="@id/NewCommentLayout"
+        android:paddingStart="12dp"
+        android:paddingTop="12dp"
+        android:paddingEnd="12dp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/SparkLayout">
 
-        <ImageView
-            android:layout_width="12dp"
-            android:layout_height="match_parent"
-            android:src="@drawable/reply"
-            app:tint="@color/primaryColor" />
-
-        <TextView
-            android:id="@+id/CommentReplyOwner"
+        <LinearLayout
+            android:id="@+id/CommentReplyLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="4dp"
-            android:text="@string/Username"
-            android:textAppearance="@style/TextAppearance.Firespark.Body2"
-            android:textColor="@color/primaryColor" />
+            android:gravity="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/CancelCommentReply"
+            <ImageView
+                android:layout_width="12dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/reply"
+                app:tint="@color/primaryColor" />
+
+            <TextView
+                android:id="@+id/CommentReplyOwner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="4dp"
+                android:text="@string/Username"
+                android:textAppearance="@style/TextAppearance.Firespark.Body2"
+                android:textColor="@color/primaryColor" />
+
+            <ImageView
+                android:id="@+id/CancelCommentReply"
+                android:layout_width="48dp"
+                android:layout_height="match_parent"
+                android:padding="4dp"
+                android:src="@drawable/icon_close"
+                app:tint="@color/primaryColor" />
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/SendComment"
             android:layout_width="48dp"
-            android:layout_height="match_parent"
-            android:src="@drawable/icon_close"
-            app:tint="@color/primaryColor" />
-    </LinearLayout>
-
-    <ImageView
-        android:id="@+id/SendComment"
-        android:layout_width="60dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="12dp"
-        android:src="@drawable/icon_send"
-        app:layout_constraintBottom_toBottomOf="@id/NewCommentLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/NewCommentLayout"
-        app:tint="@color/primaryColor" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/NewCommentLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:hint="@string/NewComment"
-        app:layout_constraintEnd_toStartOf="@id/SendComment"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/CommentReplyLayout">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/NewCommentInput"
-            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"
-            android:maxLength="150" />
+            android:layout_marginStart="12dp"
+            app:cornerRadius="20dp"
+            app:icon="@drawable/icon_send"
+            app:iconSize="24dp"
+            app:iconTint="@color/black"
+            app:layout_constraintBottom_toBottomOf="@id/NewCommentInputLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/NewCommentInputLayout"
+            app:layout_constraintTop_toTopOf="@id/NewCommentInputLayout" />
 
-    </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/NewCommentInputLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/NewComment"
+            app:layout_constraintEnd_toStartOf="@id/SendComment"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/CommentReplyLayout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/NewCommentInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:maxLength="150" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
