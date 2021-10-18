@@ -329,15 +329,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public void sparkSentSuccessfully(Spark spark)
     {
-        _homeFragment.addSpark(spark);
-
-        for(FiresparkFragment f : _fragmentsStack)
-        {
-            if(f.isProfileFragment() || f.isHomeFragment())
-            {
-                f.addSpark(spark);
-            }
-        }
+        _fragmentsStack.get(_fragmentsStack.size() - 1).addSpark(spark);
     }
 
     @Override
@@ -349,14 +341,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public void deleteSparkSuccess(Spark spark)
     {
-        //Need to update some fragments so they don't show the spark anymore.
-        for(FiresparkFragment f : _fragmentsStack)
-        {
-            f.deleteSpark(spark);
-        }
-
-        _homeFragment.deleteSpark(spark);
-        _popularFragment.deleteSpark(spark);
+        _fragmentsStack.get(_fragmentsStack.size() - 1).deleteSpark(spark);
 
         //Go to the home fragment if the user wasn't already on one of the main fragments.
         if(!getVisibleFragment().isMainFragment())
@@ -369,13 +354,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public void addSparkLikeSuccess(Spark spark)
     {
-        for(FiresparkFragment f : _fragmentsStack)
-        {
-            f.sparkLiked(spark);
-        }
-
-        _homeFragment.sparkLiked(spark);
-        _popularFragment.sparkLiked(spark);
+        _fragmentsStack.get(_fragmentsStack.size() - 1).sparkLiked(spark);
     }
 
     @Override
@@ -387,13 +366,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public void removeSparkLikeSuccess(Spark spark)
     {
-        for(FiresparkFragment f : _fragmentsStack)
-        {
-            f.sparkLikeRemoved(spark);
-        }
-
-        _homeFragment.sparkLikeRemoved(spark);
-        _popularFragment.sparkLikeRemoved(spark);
+        _fragmentsStack.get(_fragmentsStack.size() - 1).sparkLikeRemoved(spark);
     }
 
     @Override
@@ -405,10 +378,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public void followUserSuccess(User user)
     {
-        for(FiresparkFragment f : _fragmentsStack)
-        {
-            f.userFollowed(user);
-        }
+        _fragmentsStack.get(_fragmentsStack.size() - 1).userFollowed();
     }
 
     @Override
@@ -420,10 +390,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public void unfollowUserSuccess(User user)
     {
-        for(FiresparkFragment f : _fragmentsStack)
-        {
-            f.userUnfollowed(user);
-        }
+        _fragmentsStack.get(_fragmentsStack.size() - 1).userUnfollowed();
     }
 
     @Override
