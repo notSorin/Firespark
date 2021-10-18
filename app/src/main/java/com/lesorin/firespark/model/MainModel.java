@@ -191,8 +191,7 @@ class MainModel implements MainContract.Model
                 {
                     if(task2.isSuccessful())
                     {
-                        _firestore.collection(COLLECTION_SPARKS).document(task2.getResult().getId()).
-                                get().addOnCompleteListener(task3 ->
+                        task2.getResult().get().addOnCompleteListener(task3 ->
                         {
                             if(task3.isSuccessful())
                             {
