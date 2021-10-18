@@ -107,20 +107,9 @@ public class SparkFragment extends FiresparkFragmentAdapter
         _commentsAmount = _view.findViewById(R.id.SparkCommentsAmount);
         _commentsIcon = _view.findViewById(R.id.SparkCommentsIcon);
 
-        _sparkLike.setOnClickListener(view ->
-        {
-            ((MainActivity)view.getContext()).sparkLikeClicked(_spark);
-        });
-
-        _ownerUsername.setOnClickListener(view ->
-        {
-            ((MainActivity)view.getContext()).sparkOwnerClicked(_spark);
-        });
-
-        _sparkDelete.setOnClickListener(view ->
-        {
-            ((MainActivity)view.getContext()).sparkDeleteClicked(_spark);
-        });
+        _sparkLike.setOnClickListener(view -> _activity.sparkLikeClicked(_spark));
+        _ownerUsername.setOnClickListener(view -> _activity.sparkOwnerClicked(_spark));
+        _sparkDelete.setOnClickListener(view -> _activity.sparkDeleteClicked(_spark));
     }
 
     private void initializeSwipeRefresh()
