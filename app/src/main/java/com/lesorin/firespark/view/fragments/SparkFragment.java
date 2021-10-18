@@ -141,12 +141,12 @@ public class SparkFragment extends FiresparkFragmentAdapter
 
     private void displayComments()
     {
-        if(getContext() != null && _commentsList != null)
+        if(_commentsList != null)
         {
             if(_commentsRVAdapter != null)
             {
                 _commentsRVAdapter.setComments(_commentsList);
-                setBackGroundText(_commentsList.isEmpty() ? getString(R.string.NoCommentsText) : "");
+                setBackGroundText(_commentsList.isEmpty() ? _activity.getString(R.string.NoCommentsText) : "");
             }
 
             if(_swipeRefresh != null)
