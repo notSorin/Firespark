@@ -302,8 +302,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     public void informSendingSpark()
     {
         hideKeyboard();
-        _navigationView.setSelectedItemId(R.id.HomePage);
-        Snackbar.make(_navigationView, R.string.SendingSpark, Snackbar.LENGTH_LONG).show();
+        openFragment(_homeFragment);
         _vibrator.vibrate(200);
     }
 
