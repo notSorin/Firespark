@@ -84,9 +84,9 @@ public class SparkFragment extends FiresparkFragmentAdapter
         _sendComment.setOnClickListener(view ->
         {
             _sendComment.setEnabled(false);
-            _commentInput.setText("");
-            setReplyComment(null);
             _activity.sendComment(_spark, _commentInput.getText().toString(), _replyComment);
+            setReplyComment(null);
+            _commentInput.setText("");
         });
 
         _cancelCommentReply.setOnClickListener(view ->
