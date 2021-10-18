@@ -20,10 +20,11 @@ import java.util.HashMap;
 class MainModel implements MainContract.Model
 {
     private MainContract.PresenterModel _presenter;
-    private FirebaseAuth _firebaseAuth;
-    private FirebaseFirestore _firestore;
-    private HashMap<String, Spark> _sparksCache;
-    private HashMap<String, User> _usersCache;
+    private final FirebaseAuth _firebaseAuth;
+    private final FirebaseFirestore _firestore;
+    private final HashMap<String, Spark> _sparksCache;
+    private final HashMap<String, User> _usersCache;
+    private final HashMap<String, Comment> _commentsCache;
 
     public MainModel()
     {
@@ -31,6 +32,7 @@ class MainModel implements MainContract.Model
         _firestore = FirebaseFirestore.getInstance();
         _sparksCache = new HashMap<>();
         _usersCache = new HashMap<>();
+        _commentsCache = new HashMap<>();
     }
 
     public void setPresenter(MainContract.PresenterModel presenter)
@@ -218,7 +220,6 @@ class MainModel implements MainContract.Model
                 _presenter.sendSparkResult(null);
             }
         });
-
     }
 
     @Override
@@ -361,6 +362,84 @@ class MainModel implements MainContract.Model
             }
         });
 
+    }
+
+    @Override
+    public void requestSendComment(Spark spark, String commentBody, Comment replyComment)
+    {
+        _firestore.collection(COLLECTION_USERS).document(_firebaseAuth.getUid()).get().addOnCompleteListener(task ->
+        {
+            if(task.isSuccessful())
+            {
+                User currentUser = updateUsersCache(createUserFromDocumentSnapshot(task.getResult()));
+                HashMap<String, Object> toInsert = createCommentMapForInserting(currentUser, spark, commentBody, replyComment);
+
+                _firestore.collection(COLLECTION_COMMENTS).add(toInsert).addOnCompleteListener(task2 ->
+                {
+                    if(task2.isSuccessful())
+                    {
+                        task2.getResult().get().addOnCompleteListener(task3 ->
+                        {
+                            if(task3.isSuccessful())
+                            {
+                                Comment comment = updateCommentsCache(createCommentFromDocumentSnapshot(task3.getResult()));
+                                HashMap<String, Object> updateFields = new HashMap<>();
+
+                                updateFields.put(SPARK_COMMENTS, FieldValue.arrayUnion(currentUser.getId()));
+
+                                _firestore.collection(COLLECTION_SPARKS).document(spark.getId()).update(updateFields).
+                                    addOnCompleteListener(task4 ->
+                                    {
+                                        if(task4.isSuccessful())
+                                        {
+                                            spark.getComments().add(currentUser.getId());
+                                            spark.setContainsCommentFromCurrentUser(true);
+
+                                            _presenter.requestSendCommentSuccess(comment);
+                                        }
+                                        else
+                                        {
+                                            _presenter.requestSendCommentFailure();
+                                        }
+                                    });
+                            }
+                            else
+                            {
+                                _presenter.requestSendCommentFailure();
+                            }
+                        });
+                    }
+                    else
+                    {
+                        _presenter.requestSendCommentFailure();
+                    }
+                });
+            }
+            else
+            {
+                _presenter.requestSendCommentFailure();
+            }
+        });
+    }
+
+    private Comment updateCommentsCache(Comment comment)
+    {
+        Comment commentInCache = _commentsCache.get(comment.getId());
+
+        //If it is in the cache, then update it with the latest data read
+        //from the database, because the cache might contain old values.
+        if(commentInCache != null)
+        {
+            commentInCache.update(comment);
+        }
+        else //If the comment is not in cache, insert it.
+        {
+            _commentsCache.put(comment.getId(), comment);
+
+            commentInCache = comment;
+        }
+
+        return commentInCache;
     }
 
     private void followUser(User user)
@@ -519,6 +598,28 @@ class MainModel implements MainContract.Model
         subscribers.add(_firebaseAuth.getCurrentUser().getUid());
 
         ret.put(SPARK_SUBSCRIBERS, subscribers);
+
+        return ret;
+    }
+
+    private HashMap<String, Object> createCommentMapForInserting(User currentUser, Spark spark, String commentBody, Comment replyComment)
+    {
+        HashMap<String, Object> ret = new HashMap<>();
+
+        ret.put(COMMENT_SPARKID, spark.getId());
+        ret.put(COMMENT_OWNERID, currentUser.getId());
+        ret.put(COMMENT_OWNERFIRSTLASTNAME, currentUser.getFirstlastname());
+        ret.put(COMMENT_OWNERUSERNAME, currentUser.getUsername());
+        ret.put(COMMENT_BODY, commentBody);
+        ret.put(COMMENT_CREATED, FieldValue.serverTimestamp());
+        ret.put(COMMENT_DELETED, false);
+        ret.put(COMMENT_LIKES, Arrays.asList());
+
+        if(replyComment != null)
+        {
+            ret.put(COMMENT_REPLYTOFIRSTLASTNAME, replyComment.getOwnerFirstLastName());
+            ret.put(COMMENT_REPLYTOUSERNAME, replyComment.getOwnerUsername());
+        }
 
         return ret;
     }

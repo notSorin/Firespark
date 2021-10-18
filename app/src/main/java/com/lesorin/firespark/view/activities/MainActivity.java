@@ -478,6 +478,24 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         Snackbar.make(_navigationView, R.string.RequestRefreshProfileFailure, Snackbar.LENGTH_LONG).show();
     }
 
+    @Override
+    public void requestSendCommentFailure()
+    {
+        Snackbar.make(_navigationView, R.string.RequestSendCommentFailure, Snackbar.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void requestSendCommentFailureEmptyBody()
+    {
+        Snackbar.make(_navigationView, R.string.RequestSendCommentFailureEmptyBody, Snackbar.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void requestSendCommentSuccess(Comment comment)
+    {
+        //todo
+    }
+
     private void hideKeyboard()
     {
         InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
@@ -549,5 +567,10 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     public void requestSearchUserByUsername(String userName)
     {
         _presenter.requestSearchUserByUsername(userName);
+    }
+
+    public void sendComment(Spark spark, String commentBody, Comment replyComment)
+    {
+        _presenter.requestSendComment(spark, commentBody, replyComment);
     }
 }

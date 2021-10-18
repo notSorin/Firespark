@@ -9,6 +9,7 @@ import java.util.ArrayList;
 class MainPresenter implements MainContract.PresenterView, MainContract.PresenterModel
 {
     private static final int MAX_SPARK_LENGTH = 150;
+    private static final int MAX_COMMENT_LENGTH = 150;
 
     private MainContract.View _view;
     private MainContract.Model _model;
@@ -148,6 +149,38 @@ class MainPresenter implements MainContract.PresenterView, MainContract.Presente
         _lastRequestWasRefresh = true;
 
         _model.requestHomeData();
+    }
+
+    @Override
+    public void requestSendComment(Spark spark, String commentBody, Comment replyComment)
+    {
+        if(spark != null && commentBody != null)
+        {
+            String temp = commentBody.replaceAll("\\s+", "");
+
+            if(!temp.isEmpty())
+            {
+                //Remove all newlines and consecutive spaces.
+                commentBody = commentBody.replaceAll("\\s+", " ");
+
+                if(commentBody.length() <= MAX_COMMENT_LENGTH)
+                {
+                    _model.requestSendComment(spark, commentBody, replyComment);
+                }
+                else
+                {
+                    _view.errorSendSparkTooLong();
+                }
+            }
+            else
+            {
+                _view.requestSendCommentFailureEmptyBody();
+            }
+        }
+        else
+        {
+            _view.requestSendCommentFailure();
+        }
     }
 
     @Override
@@ -316,5 +349,17 @@ class MainPresenter implements MainContract.PresenterView, MainContract.Presente
     public void requestPopularDataSuccess(ArrayList<Spark> sparks)
     {
         _view.requestPopularDataSuccess(sparks);
+    }
+
+    @Override
+    public void requestSendCommentFailure()
+    {
+        _view.requestSendCommentFailure();
+    }
+
+    @Override
+    public void requestSendCommentSuccess(Comment comment)
+    {
+        _view.requestSendCommentSuccess(comment);
     }
 }

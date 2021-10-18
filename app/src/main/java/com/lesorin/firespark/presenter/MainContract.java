@@ -25,6 +25,7 @@ public interface MainContract
         void requestSearchUserByUsername(String userName);
         void requestProfileDataRefresh(User user);
         void requestHomeDataRefresh();
+        void requestSendComment(Spark spark, String commentBody, Comment replyComment);
     }
 
     interface PresenterModel
@@ -51,6 +52,8 @@ public interface MainContract
         void requestSparkDataFailure();
         void requestPopularDataFailure();
         void requestPopularDataSuccess(ArrayList<Spark> sparks);
+        void requestSendCommentFailure();
+        void requestSendCommentSuccess(Comment comment);
     }
 
     interface View
@@ -86,6 +89,9 @@ public interface MainContract
         void requestHomeDataRefreshFailure();
         void requestHomeDataFailure();
         void requestProfileDataRefreshFailure();
+        void requestSendCommentFailure();
+        void requestSendCommentFailureEmptyBody();
+        void requestSendCommentSuccess(Comment comment);
     }
 
     interface Model
@@ -102,5 +108,6 @@ public interface MainContract
         void followUnfollowUser(User user);
         void searchUserByUsername(String userName);
         void requestSparkData(Spark spark);
+        void requestSendComment(Spark spark, String commentBody, Comment replyComment);
     }
 }

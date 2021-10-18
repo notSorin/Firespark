@@ -85,4 +85,6 @@
     <string name="UserHandle">\@%s</string>
     <string name="UserFollowers">%d Followers - Following %d</string>
     <string name="SparkOwnerUsername">%s (@%s)</string>
+    <string name="RequestSendCommentFailure">Could not send comment.</string>
+    <string name="RequestSendCommentFailureEmptyBody">Cannot send an empty comment.</string>
 </resources>
