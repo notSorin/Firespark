@@ -346,7 +346,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         if(!getVisibleFragment().isMainFragment())
         {
             _fragmentsStack.clear();
-            _navigationView.setSelectedItemId(R.id.HomePage);
+            openFragment(_homeFragment);
         }
     }
 
