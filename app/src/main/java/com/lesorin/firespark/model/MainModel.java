@@ -390,6 +390,15 @@ class MainModel implements MainContract.Model
             {
                 user.setFollowedByCurrentUser(true);
                 user.getFollowers().add(currentUserId);
+
+                //Also update the current user if they are in the cache.
+                User currentUser = _usersCache.get(currentUserId);
+
+                if(currentUser != null)
+                {
+                    currentUser.getFollowing().add(otherUserId);
+                }
+
                 _presenter.followUserSuccess(user);
             }
             else
@@ -425,6 +434,15 @@ class MainModel implements MainContract.Model
             {
                 user.setFollowedByCurrentUser(false);
                 user.getFollowers().remove(currentUserId);
+
+                //Also update the current user if they are in the cache.
+                User currentUser = _usersCache.get(currentUserId);
+
+                if(currentUser != null)
+                {
+                    currentUser.getFollowing().remove(otherUserId);
+                }
+
                 _presenter.unfollowUserSuccess(user);
             }
             else
