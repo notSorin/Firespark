@@ -154,4 +154,9 @@ public class Spark
     {
         _containsCommentFromCurrentUser = contains;
     }
+
+    public int getLikesAmount()
+    {
+        return _likes.size();
+    }
 }
