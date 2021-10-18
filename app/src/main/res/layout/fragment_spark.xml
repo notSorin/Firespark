@@ -36,6 +36,40 @@
         app:layout_constraintBottom_toBottomOf="@id/SwipeRefresh"
         app:layout_constraintTop_toTopOf="@id/SwipeRefresh" />
 
+    <LinearLayout
+        android:id="@+id/CommentReplyLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="@id/NewCommentLayout"
+        app:layout_constraintTop_toBottomOf="@id/SparkLayout">
+
+        <ImageView
+            android:layout_width="12dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/reply"
+            app:tint="@color/primaryColor" />
+
+        <TextView
+            android:id="@+id/CommentReplyOwner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="4dp"
+            android:text="@string/Username"
+            android:textAppearance="@style/TextAppearance.Firespark.Body2"
+            android:textColor="@color/primaryColor" />
+
+        <ImageView
+            android:id="@+id/CancelCommentReply"
+            android:layout_width="48dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/icon_close"
+            app:tint="@color/primaryColor" />
+    </LinearLayout>
+
     <ImageView
         android:id="@+id/SendComment"
         android:layout_width="60dp"
@@ -52,11 +86,11 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="12dp"
+        android:layout_marginStart="12dp"
         android:hint="@string/NewComment"
         app:layout_constraintEnd_toStartOf="@id/SendComment"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/SparkLayout">
+        app:layout_constraintTop_toBottomOf="@id/CommentReplyLayout">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/NewCommentInput"
