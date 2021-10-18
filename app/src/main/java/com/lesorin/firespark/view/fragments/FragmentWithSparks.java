@@ -59,12 +59,12 @@ public abstract class FragmentWithSparks extends FiresparkFragmentAdapter
 
     public void displayElements()
     {
-        if(getContext() != null && _sparksList != null)
+        if(_sparksList != null)
         {
             if(_sparksRVAdapter != null)
             {
                 _sparksRVAdapter.setSparks(_sparksList);
-                setBackGroundText(_sparksList.isEmpty() ? getString(R.string.NoDataText) : "");
+                setBackGroundText(_sparksList.isEmpty() ? _activity.getString(R.string.NoDataText) : "");
             }
 
             if(_swipeRefresh != null)
