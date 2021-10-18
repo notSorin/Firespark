@@ -82,4 +82,7 @@
     <string name="RequestRefreshProfileFailure">Could not refresh profile.</string>
     <string name="RequestHomeDataFailure">Could not acquire home data.</string>
     <string name="RequestHomeDataRefreshFailure">Could not refresh home data.</string>
+    <string name="UserHandle">\@%s</string>
+    <string name="UserFollowers">%d Followers - Following %d</string>
+    <string name="SparkOwnerUsername">%s (@%s)</string>
 </resources>
