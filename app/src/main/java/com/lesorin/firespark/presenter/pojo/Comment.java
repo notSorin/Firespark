@@ -169,4 +169,21 @@ public class Comment
     {
         _likedByCurrentUser = liked;
     }
+
+    public void update(Comment comment)
+    {
+        _id = comment.getId();
+        _ownedByCurrentUser = comment.isOwnedByCurrentUser();
+        _likedByCurrentUser = comment.isLikedByCurrentUser();
+        _sparkId = comment.getSparkId();
+        _ownerId = comment.getOwnerId();
+        _ownerFirstLastName = comment.getOwnerFirstLastName();
+        _ownerUsername = comment.getOwnerUsername();
+        _body = comment.getBody();
+        _created = comment.getCreated();
+        _deleted = comment.getDeleted();
+        _likes = comment.getLikes();
+        _replyToFirstLastName = comment.getReplyToFirstLastName();
+        _replyToUsername = comment.getReplyToUsername();
+    }
 }
