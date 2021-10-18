@@ -16,11 +16,13 @@ public class CommentsRecycleViewAdapter extends RecyclerView.Adapter<CommentView
     private final String DATE_FORMAT = "d MMM yyyy\nHH:mm:ss";
     private SimpleDateFormat _dateFormat;
     private ArrayList<Comment> _commentsList;
+    private SparkFragment _sparkFragment;
 
-    public CommentsRecycleViewAdapter()
+    public CommentsRecycleViewAdapter(SparkFragment sparkFragment)
     {
         _commentsList = new ArrayList<>();
         _dateFormat = new SimpleDateFormat(DATE_FORMAT, Locale.getDefault());
+        _sparkFragment = sparkFragment;
     }
 
     @NonNull
@@ -46,6 +48,7 @@ public class CommentsRecycleViewAdapter extends RecyclerView.Adapter<CommentView
         holder.setCreated(_dateFormat.format(comment.getCreated().toDate()));
         holder.setSpecialOwnerName(comment.isOwnedByCurrentUser());
         holder.setReplyName(comment.getReplyToFirstLastName(), comment.getReplyToUsername());
+        holder.getReplyButton().setOnClickListener(view -> _sparkFragment.setReplyComment(_commentsList.get(position)));
     }
 
     @Override

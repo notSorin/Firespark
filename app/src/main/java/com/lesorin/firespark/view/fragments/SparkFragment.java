@@ -9,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -35,12 +34,13 @@ public class SparkFragment extends FiresparkFragmentAdapter
     private SwipeRefreshLayout _swipeRefresh;
     private Spark _spark;
     private TextView _ownerUsername, _sparkBody, _likes, _timestamp, _commentsAmount;
-    private ImageView _sparkLike, _sparkDelete, _commentsIcon, _sendComment;
-    private ConstraintLayout _layout;
+    private ImageView _sparkLike, _sparkDelete, _commentsIcon, _sendComment, _cancelCommentReply;
     private SimpleDateFormat _dateFormat;
     private ArrayList<Comment> _commentsList;
-    private TextView _backgroundText;
+    private TextView _backgroundText, _commentReplyOwner;
     private TextInputEditText _commentInput;
+    private View _commentReplyLayout;
+    private Comment _replyComment;
 
     public SparkFragment(MainActivity activity)
     {
@@ -49,9 +49,10 @@ public class SparkFragment extends FiresparkFragmentAdapter
         _view = null;
         _spark = null;
         _dateFormat = new SimpleDateFormat(DATE_FORMAT, Locale.getDefault());
-        _commentsRVAdapter = new CommentsRecycleViewAdapter();
+        _commentsRVAdapter = new CommentsRecycleViewAdapter(this);
         _rvLayoutManager = new LinearLayoutManager(getContext());
         _commentsList = null;
+        _replyComment = null;
     }
 
     @Nullable
@@ -74,12 +75,19 @@ public class SparkFragment extends FiresparkFragmentAdapter
 
     private void initializeNewCommentViews()
     {
+        _commentReplyLayout = _view.findViewById(R.id.CommentReplyLayout);
+        _cancelCommentReply = _view.findViewById(R.id.CancelCommentReply);
         _commentInput = _view.findViewById(R.id.NewCommentInput);
         _sendComment = _view.findViewById(R.id.SendComment);
+        _commentReplyOwner = _view.findViewById(R.id.CommentReplyOwner);
 
-        _sendComment.setOnClickListener(view ->
+        _sendComment.setOnClickListener(view -> _activity.sendComment(_spark, _commentInput.getText().toString(), _replyComment));
+
+        _cancelCommentReply.setOnClickListener(view ->
         {
-            //todo
+            _replyComment = null;
+
+            updateCommentReply();
         });
     }
 
@@ -104,7 +112,6 @@ public class SparkFragment extends FiresparkFragmentAdapter
         _likes = _view.findViewById(R.id.SparkLikes);
         _timestamp = _view.findViewById(R.id.SparkTimestamp);
         _sparkLike = _view.findViewById(R.id.SparkLike);
-        _layout = _view.findViewById(R.id.SparkLayout);
         _sparkDelete = _view.findViewById(R.id.SparkDelete);
         _commentsAmount = _view.findViewById(R.id.SparkCommentsAmount);
         _commentsIcon = _view.findViewById(R.id.SparkCommentsIcon);
@@ -173,9 +180,24 @@ public class SparkFragment extends FiresparkFragmentAdapter
             updateTimestamp();
             updateCommentsAmount();
             updateCommentInput();
+            updateCommentReply();
         }
 
         displayComments();
+    }
+
+    private void updateCommentReply()
+    {
+        if(_replyComment != null)
+        {
+            _commentReplyLayout.setVisibility(View.VISIBLE);
+            _commentReplyOwner.setText(_replyComment.getOwnerFirstLastName());
+        }
+        else
+        {
+            _commentReplyLayout.setVisibility(View.GONE);
+            _replyComment = null;
+        }
     }
 
     private void updateCommentInput()
@@ -260,5 +282,12 @@ public class SparkFragment extends FiresparkFragmentAdapter
     {
         updateLikeIcon();
         updateLikesAmount();
+    }
+
+    public void setReplyComment(Comment comment)
+    {
+        _replyComment = comment;
+
+        updateCommentReply();
     }
 }
