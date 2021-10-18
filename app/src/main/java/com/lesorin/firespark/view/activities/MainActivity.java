@@ -531,13 +531,9 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         MaterialAlertDialogBuilder madb = new MaterialAlertDialogBuilder(this);
 
         madb.setTitle(getString(R.string.DeleteSparkTitle)).setMessage(getString(R.string.DeleteSparkMessage)).
-            setNegativeButton(getString(R.string.Cancel), (dialogInterface, i) ->
-            {
-
-            }).setPositiveButton(getString(R.string.Delete), (dialogInterface, i) ->
-            {
-                _presenter.sparkDeleteClicked(spark);
-            }).show();
+            setNegativeButton(getString(R.string.Cancel), (dialogInterface, i) -> {}).
+            setPositiveButton(getString(R.string.Delete), (dialogInterface, i) -> _presenter.sparkDeleteClicked(spark)).
+            show();
     }
 
     public void userFollowClicked(User user)
