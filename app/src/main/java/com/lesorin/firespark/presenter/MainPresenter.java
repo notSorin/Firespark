@@ -107,7 +107,14 @@ class MainPresenter implements MainContract.PresenterView, MainContract.Presente
     @Override
     public void requestDeleteSpark(Spark spark)
     {
-        _model.requestDeleteSpark(spark);
+        if(spark.isOwnedByCurrentUser())
+        {
+            _model.requestDeleteSpark(spark);
+        }
+        else
+        {
+            _view.responseDeleteSparkFailure();
+        }
     }
 
     @Override

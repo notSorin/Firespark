@@ -218,29 +218,22 @@ class MainModel implements MainContract.Model
     @Override
     public void requestDeleteSpark(Spark spark)
     {
-        if(spark.isOwnedByCurrentUser())
+        HashMap<String, Object> updateFields = new HashMap<>();
+
+        updateFields.put(SPARK_DELETED, true);
+
+        _firestore.collection(COLLECTION_SPARKS).document(spark.getId()).update(updateFields).addOnCompleteListener(task ->
         {
-            HashMap<String, Object> updateFields = new HashMap<>();
-
-            updateFields.put(SPARK_DELETED, true);
-
-            _firestore.collection(COLLECTION_SPARKS).document(spark.getId()).update(updateFields).addOnCompleteListener(task ->
+            if(task.isSuccessful())
             {
-                if(task.isSuccessful())
-                {
-                    _sparksCache.remove(spark.getId());
-                    _presenter.responseDeleteSparkSuccess(spark);
-                }
-                else
-                {
-                    _presenter.responseDeleteSparkFailure();
-                }
-            });
-        }
-        else
-        {
-            _presenter.responseDeleteSparkFailure();
-        }
+                _sparksCache.remove(spark.getId());
+                _presenter.responseDeleteSparkSuccess(spark);
+            }
+            else
+            {
+                _presenter.responseDeleteSparkFailure();
+            }
+        });
     }
 
     @Override
