@@ -550,6 +550,21 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         _presenter.requestSparkData(spark);
     }
 
+    private SparkFragment findSparkFragment(Spark spark)
+    {
+        SparkFragment sparkFragment = null;
+
+        for(FiresparkFragment ff : _fragmentsStack)
+        {
+            if(ff.isSparkFragment() && ff.getSpark() == spark)
+            {
+                sparkFragment = (SparkFragment)ff;
+            }
+        }
+
+        return sparkFragment;
+    }
+
     public void sparkLikeClicked(Spark spark)
     {
         _presenter.sparkLikeClicked(spark);
@@ -569,6 +584,21 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         {
             _presenter.requestProfileData(spark.getOwnerId());
         }
+    }
+
+    private ProfileFragment findProfileFragment(String userId)
+    {
+        ProfileFragment userFragment = null;
+
+        for(FiresparkFragment ff : _fragmentsStack)
+        {
+            if(ff.isProfileFragment() && ff.getUser().getId().equals(userId))
+            {
+                userFragment = (ProfileFragment)ff;
+            }
+        }
+
+        return userFragment;
     }
 
     public void sendSparkClicked(String sparkBody)
