@@ -419,15 +419,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     private void requestProfileSuccess(User user, ArrayList<Spark> sparks)
     {
-        ProfileFragment pf = null;
-
-        for(FiresparkFragment ff : _fragmentsStack)
-        {
-            if(ff.isProfileFragment() && ff.getUser() == user)
-            {
-                pf = (ProfileFragment)ff;
-            }
-        }
+        ProfileFragment pf = findProfileFragment(user.getId());
 
         if(pf == null)
         {
@@ -448,15 +440,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public void requestSparkDataSuccess(Spark spark, ArrayList<Comment> comments)
     {
-        SparkFragment sf = null;
-
-        for(FiresparkFragment ff : _fragmentsStack)
-        {
-            if(ff.isSparkFragment() && ff.getSpark() == spark)
-            {
-                sf = (SparkFragment)ff;
-            }
-        }
+        SparkFragment sf = findSparkFragment(spark);
 
         if(sf == null)
         {
