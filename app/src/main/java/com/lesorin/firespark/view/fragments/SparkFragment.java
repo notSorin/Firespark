@@ -296,5 +296,6 @@ public class SparkFragment extends FiresparkFragmentAdapter
     {
         _commentsRVAdapter.addComment(comment);
         _sendComment.setEnabled(true);
+        updateCommentsAmount();
     }
 }
