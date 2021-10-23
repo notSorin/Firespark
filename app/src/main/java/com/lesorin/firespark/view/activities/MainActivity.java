@@ -29,6 +29,7 @@ import com.lesorin.firespark.view.fragments.SendSparkFragment;
 import com.lesorin.firespark.view.fragments.SparkFragment;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 public class MainActivity extends AppCompatActivity implements MainContract.View
 {
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     private SendSparkFragment _sendSparkFragment;
     private Vibrator _vibrator;
     private Animation _fabOpen, _fabClose, _fabFromBottom, _fabToBottom;
-    private ArrayList<FiresparkFragment> _fragmentsStack; //todo make a class for this stack, and take care to not keep too many fragments
+    private Stack<FiresparkFragment> _fragmentsStack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -50,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         setContentView(R.layout.activity_main);
 
         _vibrator = (Vibrator)getSystemService(VIBRATOR_SERVICE);
-        _fragmentsStack = new ArrayList<>();
+        _fragmentsStack = new Stack<>();
 
         initializeMVP();
         initializeFragments();
@@ -110,8 +111,8 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         }
         else
         {
-            _fragmentsStack.remove(_fragmentsStack.size() - 1);
-            openFragment(_fragmentsStack.get(_fragmentsStack.size() - 1));
+            _fragmentsStack.pop();
+            openFragment(_fragmentsStack.peek());
         }
     }
 
@@ -247,7 +248,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
             {
                 _fragmentsStack.add(fragment);
             }
-            else if(_fragmentsStack.get(_fragmentsStack.size() - 1) != fragment)
+            else if(_fragmentsStack.peek() != fragment)
             {
                 _fragmentsStack.add(fragment);
             }
@@ -353,7 +354,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public void addSparkLikeSuccess(Spark spark)
     {
-        _fragmentsStack.get(_fragmentsStack.size() - 1).sparkLiked(spark);
+        _fragmentsStack.peek().sparkLiked(spark);
     }
 
     @Override
@@ -365,7 +366,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public void removeSparkLikeSuccess(Spark spark)
     {
-        _fragmentsStack.get(_fragmentsStack.size() - 1).sparkLikeRemoved(spark);
+        _fragmentsStack.peek().sparkLikeRemoved(spark);
     }
 
     @Override
@@ -377,7 +378,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public void followUserSuccess(User user)
     {
-        _fragmentsStack.get(_fragmentsStack.size() - 1).userFollowed();
+        _fragmentsStack.peek().userFollowed();
     }
 
     @Override
@@ -389,7 +390,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public void unfollowUserSuccess(User user)
     {
-        _fragmentsStack.get(_fragmentsStack.size() - 1).userUnfollowed();
+        _fragmentsStack.peek().userUnfollowed();
     }
 
     @Override
@@ -489,7 +490,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public void requestProfileDataRefreshSuccess(User user, ArrayList<Spark> sparks)
     {
-        _fragmentsStack.get(_fragmentsStack.size() - 1).refreshProfile(user, sparks);
+        _fragmentsStack.peek().refreshProfile(user, sparks);
     }
 
     @Override
@@ -519,7 +520,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public void requestSendCommentSuccess(Comment comment)
     {
-        _fragmentsStack.get(_fragmentsStack.size() - 1).sendCommentSuccess(comment);
+        _fragmentsStack.peek().sendCommentSuccess(comment);
     }
 
     private void hideKeyboard()
