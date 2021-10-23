@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.lesorin.firespark.R;
 import com.lesorin.firespark.presenter.pojo.Comment;
+import com.lesorin.firespark.view.activities.MainActivity;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Locale;
@@ -49,6 +50,7 @@ public class CommentsRecycleViewAdapter extends RecyclerView.Adapter<CommentView
         holder.setSpecialOwnerName(comment.isOwnedByCurrentUser());
         holder.setReplyName(comment.getReplyToFirstLastName(), comment.getReplyToUsername());
         holder.getReplyButton().setOnClickListener(view -> _sparkFragment.setReplyComment(_commentsList.get(position)));
+        holder.getDeleteView().setOnClickListener(view -> ((MainActivity)view.getContext()).commentDeleteClicked(_commentsList.get(position)));
     }
 
     @Override

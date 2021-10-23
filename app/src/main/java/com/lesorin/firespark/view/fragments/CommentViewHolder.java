@@ -97,4 +97,9 @@ public class CommentViewHolder extends RecyclerView.ViewHolder
     {
         return _replyButton;
     }
+
+    public View getDeleteView()
+    {
+        return _deleteButton;
+    }
 }

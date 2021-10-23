@@ -184,6 +184,12 @@ class MainPresenter implements MainContract.PresenterView, MainContract.Presente
     }
 
     @Override
+    public void requestDeleteComment(Comment comment)
+    {
+        //todo
+    }
+
+    @Override
     public void requestHomeDataSuccess(ArrayList<Spark> sparks)
     {
         if(_lastRequestWasRefresh)

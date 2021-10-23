@@ -26,6 +26,7 @@ public interface MainContract
         void requestProfileDataRefresh(User user);
         void requestHomeDataRefresh();
         void requestSendComment(Spark spark, String commentBody, Comment replyComment);
+        void requestDeleteComment(Comment comment);
     }
 
     interface PresenterModel

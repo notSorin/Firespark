@@ -622,4 +622,9 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     {
         _presenter.requestSendComment(spark, commentBody, replyComment);
     }
+
+    public void commentDeleteClicked(Comment comment)
+    {
+        _presenter.requestDeleteComment(comment);
+    }
 }
