@@ -1,5 +1,6 @@
 package com.lesorin.firespark.view.fragments;
 
+import com.lesorin.firespark.presenter.pojo.Comment;
 import com.lesorin.firespark.presenter.pojo.Spark;
 import com.lesorin.firespark.presenter.pojo.User;
 import com.lesorin.firespark.view.activities.MainActivity;
@@ -89,6 +90,11 @@ public class FiresparkFragmentAdapter extends FiresparkFragment
 
     @Override
     public void refreshSparks(ArrayList<Spark> sparks)
+    {
+    }
+
+    @Override
+    public void sendCommentSuccess(Comment comment)
     {
     }
 }

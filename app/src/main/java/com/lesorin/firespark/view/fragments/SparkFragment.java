@@ -36,7 +36,6 @@ public class SparkFragment extends FiresparkFragmentAdapter
     private TextView _ownerUsername, _sparkBody, _likes, _timestamp, _commentsAmount;
     private ImageView _sparkLike, _sparkDelete, _commentsIcon, _cancelCommentReply;
     private SimpleDateFormat _dateFormat;
-    private ArrayList<Comment> _commentsList;
     private TextView _backgroundText, _commentReplyOwner;
     private TextInputEditText _commentInput;
     private View _commentReplyLayout, _sendComment;
@@ -51,7 +50,6 @@ public class SparkFragment extends FiresparkFragmentAdapter
         _dateFormat = new SimpleDateFormat(DATE_FORMAT, Locale.getDefault());
         _commentsRVAdapter = new CommentsRecycleViewAdapter(this);
         _rvLayoutManager = new LinearLayoutManager(getContext());
-        _commentsList = null;
         _replyComment = null;
     }
 
@@ -140,23 +138,19 @@ public class SparkFragment extends FiresparkFragmentAdapter
 
     public void setComments(ArrayList<Comment> comments)
     {
-        _commentsList = comments;
+        _commentsRVAdapter.setComments(comments);
     }
 
     private void displayComments()
     {
-        if(_commentsList != null)
+        if(_commentsRVAdapter != null)
         {
-            if(_commentsRVAdapter != null)
-            {
-                _commentsRVAdapter.setComments(_commentsList);
-                setBackGroundText(_commentsList.isEmpty() ? _activity.getString(R.string.NoCommentsText) : "");
-            }
+            setBackGroundText(_commentsRVAdapter.getItemCount() == 0 ? _activity.getString(R.string.NoCommentsText) : "");
+        }
 
-            if(_swipeRefresh != null)
-            {
-                _swipeRefresh.setRefreshing(false);
-            }
+        if(_swipeRefresh != null)
+        {
+            _swipeRefresh.setRefreshing(false);
         }
     }
 
@@ -295,5 +289,12 @@ public class SparkFragment extends FiresparkFragmentAdapter
         _replyComment = comment;
 
         updateCommentReply();
+    }
+
+    @Override
+    public void sendCommentSuccess(Comment comment)
+    {
+        _commentsRVAdapter.addComment(comment);
+        _sendComment.setEnabled(true);
     }
 }

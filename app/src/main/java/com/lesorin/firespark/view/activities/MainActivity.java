@@ -493,7 +493,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public void requestSendCommentSuccess(Comment comment)
     {
-        //todo
+        _fragmentsStack.get(_fragmentsStack.size() - 1).sendCommentSuccess(comment);
     }
 
     private void hideKeyboard()
