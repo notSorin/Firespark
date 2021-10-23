@@ -184,7 +184,17 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
                 case R.id.ProfilePage:
                     if(!getVisibleFragment().isProfileFragment())
                     {
-                        _presenter.requestProfileData(null);
+                        //Only request the current user's profile if it is not already in the fragments stack.
+                        ProfileFragment pf = findCurrentUserProfileFragment();
+
+                        if(pf == null)
+                        {
+                            _presenter.requestProfileData(null);
+                        }
+                        else
+                        {
+                            openFragment(pf);
+                        }
                     }
                     break;
                 case R.id.HomePage:
@@ -579,6 +589,21 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         for(FiresparkFragment ff : _fragmentsStack)
         {
             if(ff.isProfileFragment() && ff.getUser().getId().equals(userId))
+            {
+                userFragment = (ProfileFragment)ff;
+            }
+        }
+
+        return userFragment;
+    }
+
+    private ProfileFragment findCurrentUserProfileFragment()
+    {
+        ProfileFragment userFragment = null;
+
+        for(FiresparkFragment ff : _fragmentsStack)
+        {
+            if(ff.isProfileFragment() && ff.getUser().isCurrentUser())
             {
                 userFragment = (ProfileFragment)ff;
             }
