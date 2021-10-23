@@ -1,6 +1,6 @@
-package com.lesorin.firespark.model;
+package com.lesorin.firespark.model.firebase;
 
-import static com.lesorin.firespark.model.ModelConstants.*;
+import static com.lesorin.firespark.model.firebase.ModelConstants.*;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
@@ -12,7 +12,7 @@ import com.lesorin.firespark.presenter.StartContract;
 import java.util.Arrays;
 import java.util.HashMap;
 
-class StartModel implements StartContract.Model
+public class StartModel implements StartContract.Model
 {
     private StartContract.PresenterModel _presenter;
     private FirebaseAuth _firebaseAuth;

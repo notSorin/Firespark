@@ -1,6 +1,6 @@
 package com.lesorin.firespark.presenter.pojo;
 
-import static com.lesorin.firespark.model.ModelConstants.*;
+import static com.lesorin.firespark.model.firebase.ModelConstants.*;
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.PropertyName;
 import java.util.ArrayList;

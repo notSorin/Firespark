@@ -1,4 +1,4 @@
-package com.lesorin.firespark.model;
+package com.lesorin.firespark.model.firebase;
 
 public class ModelConstants
 {

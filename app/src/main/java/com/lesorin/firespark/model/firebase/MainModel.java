@@ -1,6 +1,6 @@
-package com.lesorin.firespark.model;
+package com.lesorin.firespark.model.firebase;
 
-import static com.lesorin.firespark.model.ModelConstants.*;
+import static com.lesorin.firespark.model.firebase.ModelConstants.*;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
-class MainModel implements MainContract.Model
+public class MainModel implements MainContract.Model
 {
     private MainContract.PresenterModel _presenter;
     private final FirebaseAuth _firebaseAuth;

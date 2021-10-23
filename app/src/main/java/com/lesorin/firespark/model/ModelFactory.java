@@ -1,5 +1,7 @@
 package com.lesorin.firespark.model;
 
+import com.lesorin.firespark.model.firebase.MainModel;
+import com.lesorin.firespark.model.firebase.StartModel;
 import com.lesorin.firespark.presenter.MainContract;
 import com.lesorin.firespark.presenter.StartContract;
 
