@@ -41,7 +41,7 @@ class MainModel implements MainContract.Model
     }
 
     @Override
-    public void logUserOut()
+    public void requestLogout()
     {
         _firebaseAuth.signOut();
     }
@@ -172,7 +172,7 @@ class MainModel implements MainContract.Model
     }
 
     @Override
-    public void sendSpark(String sparkBody)
+    public void requestSendSpark(String sparkBody)
     {
         String userId = _firebaseAuth.getCurrentUser().getUid();
 
@@ -217,7 +217,7 @@ class MainModel implements MainContract.Model
     }
 
     @Override
-    public void deleteSpark(Spark spark)
+    public void requestDeleteSpark(Spark spark)
     {
         if(spark.isOwnedByCurrentUser())
         {
@@ -245,7 +245,7 @@ class MainModel implements MainContract.Model
     }
 
     @Override
-    public void likeDislikeSpark(Spark spark)
+    public void requestLikeDislikeSpark(Spark spark)
     {
         String userId = _firebaseAuth.getUid();
 
@@ -260,7 +260,7 @@ class MainModel implements MainContract.Model
     }
 
     @Override
-    public void followUnfollowUser(User user)
+    public void requestFollowUnfollowUser(User user)
     {
         String userId = _firebaseAuth.getUid();
 
@@ -275,7 +275,7 @@ class MainModel implements MainContract.Model
     }
 
     @Override
-    public void searchUserByUsername(String userName)
+    public void requestSearchUserByUsername(String userName)
     {
         if(!userName.isEmpty())
         {

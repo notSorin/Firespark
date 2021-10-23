@@ -98,15 +98,15 @@ public interface MainContract
     interface Model
     {
         void setPresenter(MainContract.PresenterModel presenter);
-        void logUserOut();
+        void requestLogout();
         void requestProfileData(String userId);
         void requestHomeData();
         void requestPopularData();
-        void sendSpark(String sparkBody);
-        void deleteSpark(Spark spark);
-        void likeDislikeSpark(Spark spark);
-        void followUnfollowUser(User user);
-        void searchUserByUsername(String userName);
+        void requestSendSpark(String sparkBody);
+        void requestDeleteSpark(Spark spark);
+        void requestLikeDislikeSpark(Spark spark);
+        void requestFollowUnfollowUser(User user);
+        void requestSearchUserByUsername(String userName);
         void requestSparkData(Spark spark);
         void requestSendComment(Spark spark, String commentBody, Comment replyComment);
     }

@@ -39,7 +39,7 @@ class MainPresenter implements MainContract.PresenterView, MainContract.Presente
     @Override
     public void requestLogout()
     {
-        _model.logUserOut();
+        _model.requestLogout();
         _view.userLoggedOutSuccessfully();
     }
 
@@ -86,7 +86,7 @@ class MainPresenter implements MainContract.PresenterView, MainContract.Presente
                 if(sparkBody.length() <= MAX_SPARK_LENGTH)
                 {
                     _view.informSendingSpark();
-                    _model.sendSpark(sparkBody);
+                    _model.requestSendSpark(sparkBody);
                 }
                 else
                 {
@@ -107,19 +107,19 @@ class MainPresenter implements MainContract.PresenterView, MainContract.Presente
     @Override
     public void requestDeleteSpark(Spark spark)
     {
-        _model.deleteSpark(spark);
+        _model.requestDeleteSpark(spark);
     }
 
     @Override
     public void requestLikeDislikeSpark(Spark spark)
     {
-        _model.likeDislikeSpark(spark);
+        _model.requestLikeDislikeSpark(spark);
     }
 
     @Override
     public void requestFollowUnfollowUser(User user)
     {
-        _model.followUnfollowUser(user);
+        _model.requestFollowUnfollowUser(user);
     }
 
     @Override
@@ -127,7 +127,7 @@ class MainPresenter implements MainContract.PresenterView, MainContract.Presente
     {
         if(userName.matches(USERNAME_REGEX))
         {
-            _model.searchUserByUsername(userName);
+            _model.requestSearchUserByUsername(userName);
         }
         else
         {
