@@ -571,7 +571,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         }
     }
 
-    public void sendSparkRequested(String sparkBody)
+    public void sendSparkClicked(String sparkBody)
     {
         _presenter.sendSparkRequested(sparkBody);
     }

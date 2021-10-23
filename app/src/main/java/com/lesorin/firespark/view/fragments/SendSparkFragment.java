@@ -90,7 +90,7 @@ public class SendSparkFragment extends FiresparkFragmentAdapter
             {
                 if((int)_sparkLayout.getY() == (int)_view.getY())
                 {
-                    _activity.sendSparkRequested(_sparkBody.getText().toString());
+                    _activity.sendSparkClicked(_sparkBody.getText().toString());
                 }
             }
 
