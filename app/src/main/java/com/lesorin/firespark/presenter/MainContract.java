@@ -44,22 +44,20 @@ public interface MainContract
         void responseDeleteSparkFailure();
         void responseLikeSparkSuccess(Spark spark);
         void responseLikeSparkFailure();
-        void removeSparkLikeSuccess(Spark spark);
-        void removeSparkLikeFailure(Spark spark);
-        void followUserSuccess(User user);
-        void followUserFailure();
-        void unfollowUserSuccess(User user);
-        void unfollowUserFailure();
-        void searchUserFailure();
-        void searchUserSuccess(User user, ArrayList<Spark> sparks);
-        void requestProfileDataSuccess(User user, ArrayList<Spark> sparks);
-        void requestProfileDataFailure();
-        void requestSparkDataSuccess(Spark spark, ArrayList<Comment> comments);
-        void requestSparkDataFailure();
-        void requestPopularDataFailure();
-        void requestPopularDataSuccess(ArrayList<Spark> sparks);
-        void requestSendCommentFailure();
-        void requestSendCommentSuccess(Comment comment);
+        void responseUnlikeSparkSuccess(Spark spark);
+        void responseUnlikeSparkFailure();
+        void responseFollowUserSuccess(User user);
+        void responseFollowUserFailure();
+        void responseUnfollowUserSuccess(User user);
+        void responseUnfollowUserFailure();
+        void responseSearchUserByUsernameSuccess(User user, ArrayList<Spark> sparks);
+        void responseSearchUserByUsernameFailure();
+        void responseProfileDataSuccess(User user, ArrayList<Spark> sparks);
+        void responseProfileDataFailure();
+        void responseSparkDataSuccess(Spark spark, ArrayList<Comment> comments);
+        void responseSparkDataFailure();
+        void responseSendCommentSuccess(Comment comment);
+        void responseSendCommentFailure();
     }
 
     interface View
@@ -77,7 +75,7 @@ public interface MainContract
         void addSparkLikeSuccess(Spark spark);
         void addSparkLikeFailure();
         void removeSparkLikeSuccess(Spark spark);
-        void removeSparkLikeFailure(Spark spark);
+        void removeSparkLikeFailure();
         void followUserSuccess(User user);
         void followUserFailure();
         void unfollowUserSuccess(User user);

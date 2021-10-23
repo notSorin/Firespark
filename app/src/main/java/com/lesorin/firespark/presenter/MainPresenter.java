@@ -218,7 +218,7 @@ class MainPresenter implements MainContract.PresenterView, MainContract.Presente
     @Override
     public void responsePopularDataSuccess(ArrayList<Spark> sparks)
     {
-        _view.displayPopularData(sparks);
+        //todo
     }
 
     @Override
@@ -265,55 +265,55 @@ class MainPresenter implements MainContract.PresenterView, MainContract.Presente
     }
 
     @Override
-    public void removeSparkLikeSuccess(Spark spark)
+    public void responseUnlikeSparkSuccess(Spark spark)
     {
         _view.removeSparkLikeSuccess(spark);
     }
 
     @Override
-    public void removeSparkLikeFailure(Spark spark)
+    public void responseUnlikeSparkFailure()
     {
-        _view.removeSparkLikeFailure(spark);
+        _view.removeSparkLikeFailure();
     }
 
     @Override
-    public void followUserSuccess(User user)
+    public void responseFollowUserSuccess(User user)
     {
         _view.followUserSuccess(user);
     }
 
     @Override
-    public void followUserFailure()
+    public void responseFollowUserFailure()
     {
         _view.followUserFailure();
     }
 
     @Override
-    public void unfollowUserSuccess(User user)
+    public void responseUnfollowUserSuccess(User user)
     {
         _view.unfollowUserSuccess(user);
     }
 
     @Override
-    public void unfollowUserFailure()
+    public void responseUnfollowUserFailure()
     {
         _view.unfollowUserFailure();
     }
 
     @Override
-    public void searchUserFailure()
-    {
-        _view.searchUserByUsernameFailure();
-    }
-
-    @Override
-    public void searchUserSuccess(User user, ArrayList<Spark> sparks)
+    public void responseSearchUserByUsernameSuccess(User user, ArrayList<Spark> sparks)
     {
         _view.searchUserByUsernameSuccess(user, sparks);
     }
 
     @Override
-    public void requestProfileDataSuccess(User user, ArrayList<Spark> sparks)
+    public void responseSearchUserByUsernameFailure()
+    {
+        _view.searchUserByUsernameFailure();
+    }
+
+    @Override
+    public void responseProfileDataSuccess(User user, ArrayList<Spark> sparks)
     {
         if(_lastRequestWasRefresh)
         {
@@ -326,7 +326,7 @@ class MainPresenter implements MainContract.PresenterView, MainContract.Presente
     }
 
     @Override
-    public void requestProfileDataFailure()
+    public void responseProfileDataFailure()
     {
         if(_lastRequestWasRefresh)
         {
@@ -339,38 +339,26 @@ class MainPresenter implements MainContract.PresenterView, MainContract.Presente
     }
 
     @Override
-    public void requestSparkDataSuccess(Spark spark, ArrayList<Comment> comments)
+    public void responseSparkDataSuccess(Spark spark, ArrayList<Comment> comments)
     {
         _view.requestSparkDataSuccess(spark, comments);
     }
 
     @Override
-    public void requestSparkDataFailure()
+    public void responseSparkDataFailure()
     {
         _view.requestSparkDataFailure();
     }
 
     @Override
-    public void requestPopularDataFailure()
-    {
-        _view.requestPopularDataFailure();
-    }
-
-    @Override
-    public void requestPopularDataSuccess(ArrayList<Spark> sparks)
-    {
-        _view.requestPopularDataSuccess(sparks);
-    }
-
-    @Override
-    public void requestSendCommentFailure()
-    {
-        _view.requestSendCommentFailure();
-    }
-
-    @Override
-    public void requestSendCommentSuccess(Comment comment)
+    public void responseSendCommentSuccess(Comment comment)
     {
         _view.requestSendCommentSuccess(comment);
+    }
+
+    @Override
+    public void responseSendCommentFailure()
+    {
+        _view.requestSendCommentFailure();
     }
 }

@@ -75,17 +75,17 @@ class MainModel implements MainContract.Model
                             sparks.add(spark);
                         }
 
-                        _presenter.requestProfileDataSuccess(user, sparks);
+                        _presenter.responseProfileDataSuccess(user, sparks);
                     }
                     else
                     {
-                        _presenter.requestProfileDataFailure();
+                        _presenter.responseProfileDataFailure();
                     }
                 });
             }
             else
             {
-                _presenter.requestProfileDataFailure();
+                _presenter.responseProfileDataFailure();
             }
         });
     }
@@ -167,8 +167,7 @@ class MainModel implements MainContract.Model
     @Override
     public void requestPopularData()
     {
-        //todo get real data
-        _presenter.requestPopularDataSuccess(new ArrayList<>());
+        //todo
     }
 
     @Override
@@ -305,28 +304,28 @@ class MainModel implements MainContract.Model
                                             sparks.add(spark);
                                         }
 
-                                        _presenter.searchUserSuccess(user, sparks);
+                                        _presenter.responseSearchUserByUsernameSuccess(user, sparks);
                                     }
                                     else
                                     {
-                                        _presenter.searchUserFailure();
+                                        _presenter.responseSearchUserByUsernameFailure();
                                     }
                                 });
                         }
                         else
                         {
-                            _presenter.searchUserFailure();
+                            _presenter.responseSearchUserByUsernameFailure();
                         }
                     }
                     else
                     {
-                        _presenter.searchUserFailure();
+                        _presenter.responseSearchUserByUsernameFailure();
                     }
                 });
         }
         else
         {
-            _presenter.searchUserFailure();
+            _presenter.responseSearchUserByUsernameFailure();
         }
     }
 
@@ -348,11 +347,11 @@ class MainModel implements MainContract.Model
                     comments.add(comment);
                 }
 
-                _presenter.requestSparkDataSuccess(spark, comments);
+                _presenter.responseSparkDataSuccess(spark, comments);
             }
             else
             {
-                _presenter.requestSparkDataFailure();
+                _presenter.responseSparkDataFailure();
             }
         });
 
@@ -390,31 +389,31 @@ class MainModel implements MainContract.Model
                                     {
                                         if(task4.isSuccessful())
                                         {
-                                            _presenter.requestSendCommentSuccess(comment);
+                                            _presenter.responseSendCommentSuccess(comment);
                                         }
                                         else
                                         {
                                             spark.removeOneCommentFromUser(currentUser.getId());
                                             spark.setContainsCommentFromCurrentUser(spark.containsCommentFromUser(currentUser.getId()));
-                                            _presenter.requestSendCommentFailure();
+                                            _presenter.responseSendCommentFailure();
                                         }
                                     });
                             }
                             else
                             {
-                                _presenter.requestSendCommentFailure();
+                                _presenter.responseSendCommentFailure();
                             }
                         });
                     }
                     else
                     {
-                        _presenter.requestSendCommentFailure();
+                        _presenter.responseSendCommentFailure();
                     }
                 });
             }
             else
             {
-                _presenter.requestSendCommentFailure();
+                _presenter.responseSendCommentFailure();
             }
         });
     }
@@ -474,11 +473,11 @@ class MainModel implements MainContract.Model
                     currentUser.getFollowing().add(otherUserId);
                 }
 
-                _presenter.followUserSuccess(user);
+                _presenter.responseFollowUserSuccess(user);
             }
             else
             {
-                _presenter.followUserFailure();
+                _presenter.responseFollowUserFailure();
             }
         });
     }
@@ -518,11 +517,11 @@ class MainModel implements MainContract.Model
                     currentUser.getFollowing().remove(otherUserId);
                 }
 
-                _presenter.unfollowUserSuccess(user);
+                _presenter.responseUnfollowUserSuccess(user);
             }
             else
             {
-                _presenter.unfollowUserFailure();
+                _presenter.responseUnfollowUserFailure();
             }
         });
     }
@@ -566,11 +565,11 @@ class MainModel implements MainContract.Model
                 {
                     spark.getLikes().remove(userId);
                     spark.setLikedByCurrentUser(false);
-                    _presenter.removeSparkLikeSuccess(spark);
+                    _presenter.responseUnlikeSparkSuccess(spark);
                 }
                 else
                 {
-                    _presenter.removeSparkLikeFailure(spark);
+                    _presenter.responseUnlikeSparkFailure();
                 }
             });
     }

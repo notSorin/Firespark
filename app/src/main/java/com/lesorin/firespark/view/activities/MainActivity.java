@@ -370,7 +370,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     }
 
     @Override
-    public void removeSparkLikeFailure(Spark spark)
+    public void removeSparkLikeFailure()
     {
         Snackbar.make(_navigationView, R.string.RemoveSparkLikeFailure, Snackbar.LENGTH_LONG).show();
     }
