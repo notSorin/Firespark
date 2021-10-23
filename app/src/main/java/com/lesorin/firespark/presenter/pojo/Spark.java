@@ -159,4 +159,19 @@ public class Spark
     {
         return _likes.size();
     }
+
+    public void addCommentFromUser(String userId)
+    {
+        _comments.add(userId);
+    }
+
+    public void removeOneCommentFromUser(String userId)
+    {
+        _comments.remove(userId);
+    }
+
+    public boolean containsCommentFromUser(String userId)
+    {
+        return _comments.contains(userId);
+    }
 }

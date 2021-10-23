@@ -383,22 +383,25 @@ class MainModel implements MainContract.Model
                             if(task3.isSuccessful())
                             {
                                 Comment comment = updateCommentsCache(createCommentFromDocumentSnapshot(task3.getResult()));
+
+                                spark.addCommentFromUser(currentUser.getId());
+                                spark.setContainsCommentFromCurrentUser(true);
+
                                 HashMap<String, Object> updateFields = new HashMap<>();
 
-                                updateFields.put(SPARK_COMMENTS, FieldValue.arrayUnion(currentUser.getId()));
+                                updateFields.put(SPARK_COMMENTS, spark.getComments());
 
                                 _firestore.collection(COLLECTION_SPARKS).document(spark.getId()).update(updateFields).
                                     addOnCompleteListener(task4 ->
                                     {
                                         if(task4.isSuccessful())
                                         {
-                                            spark.getComments().add(currentUser.getId());
-                                            spark.setContainsCommentFromCurrentUser(true);
-
                                             _presenter.requestSendCommentSuccess(comment);
                                         }
                                         else
                                         {
+                                            spark.removeOneCommentFromUser(currentUser.getId());
+                                            spark.setContainsCommentFromCurrentUser(spark.containsCommentFromUser(currentUser.getId()));
                                             _presenter.requestSendCommentFailure();
                                         }
                                     });
