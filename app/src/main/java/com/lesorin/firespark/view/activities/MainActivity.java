@@ -418,7 +418,20 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     private void requestProfileSuccess(User user, ArrayList<Spark> sparks)
     {
-        ProfileFragment pf = new ProfileFragment(this);
+        ProfileFragment pf = null;
+
+        for(FiresparkFragment ff : _fragmentsStack)
+        {
+            if(ff.isProfileFragment() && ff.getUser() == user)
+            {
+                pf = (ProfileFragment)ff;
+            }
+        }
+
+        if(pf == null)
+        {
+            pf = new ProfileFragment(this);
+        }
 
         pf.setUser(user);
         pf.setSparks(sparks);
@@ -434,7 +447,20 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public void requestSparkDataSuccess(Spark spark, ArrayList<Comment> comments)
     {
-        SparkFragment sf = new SparkFragment(this);
+        SparkFragment sf = null;
+
+        for(FiresparkFragment ff : _fragmentsStack)
+        {
+            if(ff.isSparkFragment() && ff.getSpark() == spark)
+            {
+                sf = (SparkFragment)ff;
+            }
+        }
+
+        if(sf == null)
+        {
+            sf = new SparkFragment(this);
+        }
 
         sf.setSpark(spark);
         sf.setComments(comments);

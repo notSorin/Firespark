@@ -97,4 +97,16 @@ public class FiresparkFragmentAdapter extends FiresparkFragment
     public void sendCommentSuccess(Comment comment)
     {
     }
+
+    @Override
+    public boolean isSparkFragment()
+    {
+        return false;
+    }
+
+    @Override
+    public Spark getSpark()
+    {
+        return null;
+    }
 }

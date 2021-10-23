@@ -27,4 +27,6 @@ public abstract class FiresparkFragment extends Fragment
     public abstract void refreshProfile(User user, ArrayList<Spark> sparks);
     public abstract void refreshSparks(ArrayList<Spark> sparks);
     public abstract void sendCommentSuccess(Comment comment);
+    public abstract boolean isSparkFragment();
+    public abstract Spark getSpark();
 }

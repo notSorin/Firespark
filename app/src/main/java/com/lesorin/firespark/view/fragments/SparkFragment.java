@@ -298,4 +298,16 @@ public class SparkFragment extends FiresparkFragmentAdapter
         _sendComment.setEnabled(true);
         updateCommentsAmount();
     }
+
+    @Override
+    public boolean isSparkFragment()
+    {
+        return true;
+    }
+
+    @Override
+    public Spark getSpark()
+    {
+        return _spark;
+    }
 }
