@@ -190,7 +190,7 @@ class MainPresenter implements MainContract.PresenterView, MainContract.Presente
     }
 
     @Override
-    public void requestHomeDataSuccess(ArrayList<Spark> sparks)
+    public void responseHomeDataSuccess(ArrayList<Spark> sparks)
     {
         if(_lastRequestWasRefresh)
         {
@@ -203,7 +203,7 @@ class MainPresenter implements MainContract.PresenterView, MainContract.Presente
     }
 
     @Override
-    public void requestHomeDataFailure()
+    public void responseHomeDataFailure()
     {
         if(_lastRequestWasRefresh)
         {
@@ -216,47 +216,52 @@ class MainPresenter implements MainContract.PresenterView, MainContract.Presente
     }
 
     @Override
-    public void popularDataAcquired(ArrayList<Spark> sparks)
+    public void responsePopularDataSuccess(ArrayList<Spark> sparks)
     {
         _view.displayPopularData(sparks);
     }
 
+    @Override
+    public void responsePopularDataFailure()
+    {
+        //todo
+    }
+
 
     @Override
-    public void sendSparkResult(Spark spark)
+    public void responseSendSparkSuccess(Spark spark)
     {
-        if(spark != null)
-        {
-            _view.sparkSentSuccessfully(spark);
-        }
-        else
-        {
-            _view.errorSendSparkUnknown();
-        }
+        _view.sparkSentSuccessfully(spark);
     }
 
     @Override
-    public void deleteSparkFailure()
+    public void responseSendSparkFailure()
     {
-        _view.deleteSparkError();
+        _view.errorSendSparkUnknown();
     }
 
     @Override
-    public void deleteSparkSuccess(Spark spark)
+    public void responseDeleteSparkSuccess(Spark spark)
     {
         _view.deleteSparkSuccess(spark);
     }
 
     @Override
-    public void addSparkLikeSuccess(Spark spark)
+    public void responseDeleteSparkFailure()
+    {
+        _view.deleteSparkError();
+    }
+
+    @Override
+    public void responseLikeSparkSuccess(Spark spark)
     {
         _view.addSparkLikeSuccess(spark);
     }
 
     @Override
-    public void addSparkLikeFailure(Spark spark)
+    public void responseLikeSparkFailure()
     {
-        _view.addSparkLikeFailure(spark);
+        _view.addSparkLikeFailure();
     }
 
     @Override

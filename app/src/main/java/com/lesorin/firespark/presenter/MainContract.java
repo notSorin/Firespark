@@ -13,6 +13,8 @@ public interface MainContract
         void setView(View view);
         void setModel(Model model);
         void appStarted();
+
+        //All methods starting with "request" are methods which can be initiated by the client user.
         void requestLogout();
         void requestProfileData(String userId);
         void requestHomeData();
@@ -31,14 +33,17 @@ public interface MainContract
 
     interface PresenterModel
     {
-        void requestHomeDataSuccess(ArrayList<Spark> sparks);
-        void requestHomeDataFailure();
-        void popularDataAcquired(ArrayList<Spark> sparks);
-        void sendSparkResult(Spark spark);
-        void deleteSparkFailure();
-        void deleteSparkSuccess(Spark spark);
-        void addSparkLikeSuccess(Spark spark);
-        void addSparkLikeFailure(Spark spark);
+        //All methods starting with "response" are methods in response to client requests.
+        void responseHomeDataSuccess(ArrayList<Spark> sparks);
+        void responseHomeDataFailure();
+        void responsePopularDataSuccess(ArrayList<Spark> sparks);
+        void responsePopularDataFailure();
+        void responseSendSparkSuccess(Spark spark);
+        void responseSendSparkFailure();
+        void responseDeleteSparkSuccess(Spark spark);
+        void responseDeleteSparkFailure();
+        void responseLikeSparkSuccess(Spark spark);
+        void responseLikeSparkFailure();
         void removeSparkLikeSuccess(Spark spark);
         void removeSparkLikeFailure(Spark spark);
         void followUserSuccess(User user);
@@ -70,7 +75,7 @@ public interface MainContract
         void deleteSparkError();
         void deleteSparkSuccess(Spark spark);
         void addSparkLikeSuccess(Spark spark);
-        void addSparkLikeFailure(Spark spark);
+        void addSparkLikeFailure();
         void removeSparkLikeSuccess(Spark spark);
         void removeSparkLikeFailure(Spark spark);
         void followUserSuccess(User user);
@@ -98,6 +103,8 @@ public interface MainContract
     interface Model
     {
         void setPresenter(MainContract.PresenterModel presenter);
+
+        //All methods starting with "request" are methods which can be initiated by the client user.
         void requestLogout();
         void requestProfileData(String userId);
         void requestHomeData();

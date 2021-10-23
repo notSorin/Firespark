@@ -130,11 +130,11 @@ class MainModel implements MainContract.Model
                     sparks.add(spark);
                 }
 
-                _presenter.requestHomeDataSuccess(sparks);
+                _presenter.responseHomeDataSuccess(sparks);
             }
             else
             {
-                _presenter.requestHomeDataFailure();
+                _presenter.responseHomeDataFailure();
             }
         });
     }
@@ -195,23 +195,23 @@ class MainModel implements MainContract.Model
 
                                 spark = updateSparksCache(spark);
 
-                                _presenter.sendSparkResult(spark);
+                                _presenter.responseSendSparkSuccess(spark);
                             }
                             else
                             {
-                                _presenter.sendSparkResult(null);
+                                _presenter.responseSendSparkFailure();
                             }
                         });
                     }
                     else
                     {
-                        _presenter.sendSparkResult(null);
+                        _presenter.responseSendSparkFailure();
                     }
                 });
             }
             else
             {
-                _presenter.sendSparkResult(null);
+                _presenter.responseSendSparkFailure();
             }
         });
     }
@@ -230,17 +230,17 @@ class MainModel implements MainContract.Model
                 if(task.isSuccessful())
                 {
                     _sparksCache.remove(spark.getId());
-                    _presenter.deleteSparkSuccess(spark);
+                    _presenter.responseDeleteSparkSuccess(spark);
                 }
                 else
                 {
-                    _presenter.deleteSparkFailure();
+                    _presenter.responseDeleteSparkFailure();
                 }
             });
         }
         else
         {
-            _presenter.deleteSparkFailure();
+            _presenter.responseDeleteSparkFailure();
         }
     }
 
@@ -542,11 +542,11 @@ class MainModel implements MainContract.Model
                 {
                     spark.getLikes().add(userId);
                     spark.setLikedByCurrentUser(true);
-                    _presenter.addSparkLikeSuccess(spark);
+                    _presenter.responseLikeSparkSuccess(spark);
                 }
                 else
                 {
-                    _presenter.addSparkLikeFailure(spark);
+                    _presenter.responseLikeSparkFailure();
                 }
             });
     }
