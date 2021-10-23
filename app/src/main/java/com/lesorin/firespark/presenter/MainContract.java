@@ -101,7 +101,6 @@ public interface MainContract
         void requestProfileData(String userId);
         void requestHomeData();
         void requestPopularData();
-        String getUserName();
         void sendSpark(String sparkBody);
         void deleteSpark(Spark spark);
         void likeDislikeSpark(Spark spark);

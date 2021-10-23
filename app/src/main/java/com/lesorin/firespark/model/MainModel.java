@@ -172,12 +172,6 @@ class MainModel implements MainContract.Model
     }
 
     @Override
-    public String getUserName()
-    {
-        return _firebaseAuth.getCurrentUser().getDisplayName();
-    }
-
-    @Override
     public void sendSpark(String sparkBody)
     {
         String userId = _firebaseAuth.getCurrentUser().getUid();
