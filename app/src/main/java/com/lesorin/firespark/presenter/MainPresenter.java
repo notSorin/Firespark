@@ -131,7 +131,7 @@ class MainPresenter implements MainContract.PresenterView, MainContract.Presente
         }
         else
         {
-            _view.searchUserByUsernameFailure();
+            _view.responseSearchUserByUsernameFailure();
         }
     }
 
@@ -174,12 +174,12 @@ class MainPresenter implements MainContract.PresenterView, MainContract.Presente
             }
             else
             {
-                _view.requestSendCommentFailureEmptyBody();
+                _view.responseSendCommentEmptyBody();
             }
         }
         else
         {
-            _view.requestSendCommentFailure();
+            _view.responseSendCommentFailure();
         }
     }
 
@@ -194,7 +194,7 @@ class MainPresenter implements MainContract.PresenterView, MainContract.Presente
     {
         if(_lastRequestWasRefresh)
         {
-            _view.requestHomeDataRefreshSuccess(sparks);
+            _view.responseHomeDataRefreshSuccess(sparks);
         }
         else
         {
@@ -207,7 +207,7 @@ class MainPresenter implements MainContract.PresenterView, MainContract.Presente
     {
         if(_lastRequestWasRefresh)
         {
-            _view.requestHomeDataRefreshFailure();
+            _view.responseHomeDataRefreshFailure();
         }
         else
         {
@@ -243,73 +243,73 @@ class MainPresenter implements MainContract.PresenterView, MainContract.Presente
     @Override
     public void responseDeleteSparkSuccess(Spark spark)
     {
-        _view.deleteSparkSuccess(spark);
+        _view.responseDeleteSparkSuccess(spark);
     }
 
     @Override
     public void responseDeleteSparkFailure()
     {
-        _view.deleteSparkError();
+        _view.responseDeleteSparkFailure();
     }
 
     @Override
     public void responseLikeSparkSuccess(Spark spark)
     {
-        _view.addSparkLikeSuccess(spark);
+        _view.responseLikeSparkSuccess(spark);
     }
 
     @Override
     public void responseLikeSparkFailure()
     {
-        _view.addSparkLikeFailure();
+        _view.responseLikeSparkFailure();
     }
 
     @Override
     public void responseUnlikeSparkSuccess(Spark spark)
     {
-        _view.removeSparkLikeSuccess(spark);
+        _view.responseUnlikeSparkSuccess(spark);
     }
 
     @Override
     public void responseUnlikeSparkFailure()
     {
-        _view.removeSparkLikeFailure();
+        _view.responseUnlikeSparkFailure();
     }
 
     @Override
     public void responseFollowUserSuccess(User user)
     {
-        _view.followUserSuccess(user);
+        _view.responseFollowUserSuccess(user);
     }
 
     @Override
     public void responseFollowUserFailure()
     {
-        _view.followUserFailure();
+        _view.responseFollowUserFailure();
     }
 
     @Override
     public void responseUnfollowUserSuccess(User user)
     {
-        _view.unfollowUserSuccess(user);
+        _view.responseUnfollowUserSuccess(user);
     }
 
     @Override
     public void responseUnfollowUserFailure()
     {
-        _view.unfollowUserFailure();
+        _view.responseUnfollowUserFailure();
     }
 
     @Override
     public void responseSearchUserByUsernameSuccess(User user, ArrayList<Spark> sparks)
     {
-        _view.searchUserByUsernameSuccess(user, sparks);
+        _view.responseSearchUserByUsernameSuccess(user, sparks);
     }
 
     @Override
     public void responseSearchUserByUsernameFailure()
     {
-        _view.searchUserByUsernameFailure();
+        _view.responseSearchUserByUsernameFailure();
     }
 
     @Override
@@ -317,11 +317,11 @@ class MainPresenter implements MainContract.PresenterView, MainContract.Presente
     {
         if(_lastRequestWasRefresh)
         {
-            _view.requestProfileDataRefreshSuccess(user, sparks);
+            _view.responseProfileDataRefreshSuccess(user, sparks);
         }
         else
         {
-            _view.requestProfileDataSuccess(user, sparks);
+            _view.responseProfileDataSuccess(user, sparks);
         }
     }
 
@@ -330,35 +330,35 @@ class MainPresenter implements MainContract.PresenterView, MainContract.Presente
     {
         if(_lastRequestWasRefresh)
         {
-            _view.requestProfileDataRefreshFailure();
+            _view.responseProfileDataRefreshFailure();
         }
         else
         {
-            _view.requestProfileDataFailure();
+            _view.responseProfileDataFailure();
         }
     }
 
     @Override
     public void responseSparkDataSuccess(Spark spark, ArrayList<Comment> comments)
     {
-        _view.requestSparkDataSuccess(spark, comments);
+        _view.responseSparkDataSuccess(spark, comments);
     }
 
     @Override
     public void responseSparkDataFailure()
     {
-        _view.requestSparkDataFailure();
+        _view.responseSparkDataFailure();
     }
 
     @Override
     public void responseSendCommentSuccess(Comment comment)
     {
-        _view.requestSendCommentSuccess(comment);
+        _view.responseSendCommentSuccess(comment);
     }
 
     @Override
     public void responseSendCommentFailure()
     {
-        _view.requestSendCommentFailure();
+        _view.responseSendCommentFailure();
     }
 }

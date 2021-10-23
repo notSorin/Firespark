@@ -281,12 +281,6 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     }
 
     @Override
-    public void requestHomeDataRefreshFailure()
-    {
-        Snackbar.make(_navigationView, R.string.RequestHomeDataRefreshFailure, Snackbar.LENGTH_LONG).show();
-    }
-
-    @Override
     public void responseSendSparkSuccess(Spark spark)
     {
         _homeFragment.addSpark(spark);
@@ -323,13 +317,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     }
 
     @Override
-    public void deleteSparkError()
-    {
-        Snackbar.make(_navigationView, R.string.DeleteSparkError, Snackbar.LENGTH_LONG).show();
-    }
-
-    @Override
-    public void deleteSparkSuccess(Spark spark)
+    public void responseDeleteSparkSuccess(Spark spark)
     {
         //Need to update some fragments so they don't show the spark anymore.
         for(FiresparkFragment f : _fragmentsStack)
@@ -346,67 +334,73 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     }
 
     @Override
-    public void addSparkLikeSuccess(Spark spark)
+    public void responseDeleteSparkFailure()
+    {
+        Snackbar.make(_navigationView, R.string.DeleteSparkError, Snackbar.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void responseLikeSparkSuccess(Spark spark)
     {
         _fragmentsStack.peek().sparkLiked(spark);
     }
 
     @Override
-    public void addSparkLikeFailure()
+    public void responseLikeSparkFailure()
     {
         Snackbar.make(_navigationView, R.string.AddSparkLikeFailure, Snackbar.LENGTH_LONG).show();
     }
 
     @Override
-    public void removeSparkLikeSuccess(Spark spark)
+    public void responseUnlikeSparkSuccess(Spark spark)
     {
         _fragmentsStack.peek().sparkLikeRemoved(spark);
     }
 
     @Override
-    public void removeSparkLikeFailure()
+    public void responseUnlikeSparkFailure()
     {
         Snackbar.make(_navigationView, R.string.RemoveSparkLikeFailure, Snackbar.LENGTH_LONG).show();
     }
 
     @Override
-    public void followUserSuccess(User user)
+    public void responseFollowUserSuccess(User user)
     {
         _fragmentsStack.peek().userFollowed();
     }
 
     @Override
-    public void followUserFailure()
+    public void responseFollowUserFailure()
     {
         Snackbar.make(_navigationView, R.string.FollowUserFailure, Snackbar.LENGTH_LONG).show();
     }
 
     @Override
-    public void unfollowUserSuccess(User user)
+    public void responseUnfollowUserSuccess(User user)
     {
         _fragmentsStack.peek().userUnfollowed();
     }
 
     @Override
-    public void unfollowUserFailure()
+    public void responseUnfollowUserFailure()
     {
         Snackbar.make(_navigationView, R.string.UnfollowUserFailure, Snackbar.LENGTH_LONG).show();
     }
 
     @Override
-    public void searchUserByUsernameFailure()
-    {
-        Snackbar.make(_navigationView, R.string.SearchUserNotFound, Snackbar.LENGTH_LONG).show();
-    }
-
-    @Override
-    public void searchUserByUsernameSuccess(User user, ArrayList<Spark> sparks)
+    public void responseSearchUserByUsernameSuccess(User user, ArrayList<Spark> sparks)
     {
         requestProfileSuccess(user, sparks);
     }
 
     @Override
-    public void requestProfileDataSuccess(User user, ArrayList<Spark> sparks)
+    public void responseSearchUserByUsernameFailure()
+    {
+        Snackbar.make(_navigationView, R.string.SearchUserNotFound, Snackbar.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void responseProfileDataSuccess(User user, ArrayList<Spark> sparks)
     {
         requestProfileSuccess(user, sparks);
     }
@@ -426,13 +420,13 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     }
 
     @Override
-    public void requestProfileDataFailure()
+    public void responseProfileDataFailure()
     {
         Snackbar.make(_navigationView, R.string.RequestProfileDataFailure, Snackbar.LENGTH_LONG).show();
     }
 
     @Override
-    public void requestSparkDataSuccess(Spark spark, ArrayList<Comment> comments)
+    public void responseSparkDataSuccess(Spark spark, ArrayList<Comment> comments)
     {
         SparkFragment sf = findSparkFragment(spark);
 
@@ -447,58 +441,64 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     }
 
     @Override
-    public void requestSparkDataFailure()
+    public void responseSparkDataFailure()
     {
         Snackbar.make(_navigationView, R.string.RequestSparkDataFailure, Snackbar.LENGTH_LONG).show();
     }
 
     @Override
-    public void requestPopularDataFailure()
-    {
-        Snackbar.make(_navigationView, R.string.RequestPopularDataFailure, Snackbar.LENGTH_LONG).show();
-    }
-
-    @Override
-    public void requestPopularDataSuccess(ArrayList<Spark> sparks)
+    public void responsePopularDataSuccess(ArrayList<Spark> sparks)
     {
         _popularFragment.setSparks(sparks);
         openFragment(_popularFragment);
     }
 
     @Override
-    public void requestProfileDataRefreshSuccess(User user, ArrayList<Spark> sparks)
+    public void responsePopularDataFailure()
+    {
+        Snackbar.make(_navigationView, R.string.RequestPopularDataFailure, Snackbar.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void responseProfileDataRefreshSuccess(User user, ArrayList<Spark> sparks)
     {
         _fragmentsStack.peek().refreshProfile(user, sparks);
     }
 
     @Override
-    public void requestHomeDataRefreshSuccess(ArrayList<Spark> sparks)
-    {
-        _homeFragment.refreshSparks(sparks);
-    }
-
-    @Override
-    public void requestProfileDataRefreshFailure()
+    public void responseProfileDataRefreshFailure()
     {
         Snackbar.make(_navigationView, R.string.RequestRefreshProfileFailure, Snackbar.LENGTH_LONG).show();
     }
 
     @Override
-    public void requestSendCommentFailure()
+    public void responseHomeDataRefreshSuccess(ArrayList<Spark> sparks)
+    {
+        _homeFragment.refreshSparks(sparks);
+    }
+
+    @Override
+    public void responseHomeDataRefreshFailure()
+    {
+        Snackbar.make(_navigationView, R.string.RequestHomeDataRefreshFailure, Snackbar.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void responseSendCommentSuccess(Comment comment)
+    {
+        _fragmentsStack.peek().sendCommentSuccess(comment);
+    }
+
+    @Override
+    public void responseSendCommentFailure()
     {
         Snackbar.make(_navigationView, R.string.RequestSendCommentFailure, Snackbar.LENGTH_LONG).show();
     }
 
     @Override
-    public void requestSendCommentFailureEmptyBody()
+    public void responseSendCommentEmptyBody()
     {
         Snackbar.make(_navigationView, R.string.RequestSendCommentFailureEmptyBody, Snackbar.LENGTH_LONG).show();
-    }
-
-    @Override
-    public void requestSendCommentSuccess(Comment comment)
-    {
-        _fragmentsStack.peek().sendCommentSuccess(comment);
     }
 
     private void hideKeyboard()
