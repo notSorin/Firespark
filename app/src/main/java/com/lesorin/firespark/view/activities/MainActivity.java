@@ -261,17 +261,23 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     }
 
     @Override
-    public void userLoggedOutSuccessfully()
+    public void responseLogoutSuccess()
     {
         startActivity(new Intent(this, StartActivity.class));
         finish();
     }
 
     @Override
-    public void requestHomeDataSuccess(ArrayList<Spark> sparks)
+    public void responseHomeDataSuccess(ArrayList<Spark> sparks)
     {
         _homeFragment.setSparks(sparks);
         openFragment(_homeFragment);
+    }
+
+    @Override
+    public void responseHomeDataFailure()
+    {
+        Snackbar.make(_navigationView, R.string.RequestHomeDataFailure, Snackbar.LENGTH_LONG).show();
     }
 
     @Override
@@ -281,26 +287,28 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     }
 
     @Override
-    public void requestHomeDataFailure()
+    public void responseSendSparkSuccess(Spark spark)
     {
-        Snackbar.make(_navigationView, R.string.RequestHomeDataFailure, Snackbar.LENGTH_LONG).show();
+        _homeFragment.addSpark(spark);
+        _fragmentsStack.clear();
+        _fragmentsStack.add(_homeFragment);
     }
 
     @Override
-    public void displayPopularData(ArrayList<Spark> sparks)
+    public void responseSendSparkFailure()
     {
-        _popularFragment.setSparks(sparks);
+        Snackbar.make(_navigationView, R.string.SendSparkUnknown, Snackbar.LENGTH_LONG).show();
     }
 
     @Override
-    public void errorSendSparkEmpty()
+    public void responseSendSparkEmpty()
     {
         Snackbar.make(_navigationView, R.string.SendSparkEmpty, Snackbar.LENGTH_LONG).show();
         _sendSparkFragment.resetSparkPosition();
     }
 
     @Override
-    public void informSendingSpark()
+    public void responseSendSparkInProgress()
     {
         hideKeyboard();
         openFragment(_homeFragment);
@@ -308,24 +316,10 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     }
 
     @Override
-    public void errorSendSparkTooLong()
+    public void responseSendSparkTooLong()
     {
         Snackbar.make(_navigationView, R.string.SendSparkTooLong, Snackbar.LENGTH_LONG).show();
         _sendSparkFragment.resetSparkPosition();
-    }
-
-    @Override
-    public void errorSendSparkUnknown()
-    {
-        Snackbar.make(_navigationView, R.string.SendSparkUnknown, Snackbar.LENGTH_LONG).show();
-    }
-
-    @Override
-    public void sparkSentSuccessfully(Spark spark)
-    {
-        _homeFragment.addSpark(spark);
-        _fragmentsStack.clear();
-        _fragmentsStack.add(_homeFragment);
     }
 
     @Override

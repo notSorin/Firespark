@@ -8,13 +8,12 @@ import java.util.ArrayList;
 //todo change methods names so all requests start with "request".
 public interface MainContract
 {
+    //All methods starting with "request" are methods which can be initiated by the client user.
     interface PresenterView
     {
         void setView(View view);
         void setModel(Model model);
         void appStarted();
-
-        //All methods starting with "request" are methods which can be initiated by the client user.
         void requestLogout();
         void requestProfileData(String userId);
         void requestHomeData();
@@ -31,9 +30,9 @@ public interface MainContract
         void requestDeleteComment(Comment comment);
     }
 
+    //All methods starting with "response" are methods in response to client requests.
     interface PresenterModel
     {
-        //All methods starting with "response" are methods in response to client requests.
         void responseHomeDataSuccess(ArrayList<Spark> sparks);
         void responseHomeDataFailure();
         void responsePopularDataSuccess(ArrayList<Spark> sparks);
@@ -60,16 +59,17 @@ public interface MainContract
         void responseSendCommentFailure();
     }
 
+    //All methods starting with "response" are methods in response to client requests.
     interface View
     {
-        void userLoggedOutSuccessfully();
-        void requestHomeDataSuccess(ArrayList<Spark> sparks);
-        void displayPopularData(ArrayList<Spark> sparks);
-        void errorSendSparkEmpty();
-        void informSendingSpark();
-        void errorSendSparkTooLong();
-        void errorSendSparkUnknown();
-        void sparkSentSuccessfully(Spark spark);
+        void responseLogoutSuccess();
+        void responseHomeDataSuccess(ArrayList<Spark> sparks);
+        void responseHomeDataFailure();
+        void responseSendSparkSuccess(Spark spark);
+        void responseSendSparkFailure();
+        void responseSendSparkEmpty();
+        void responseSendSparkInProgress();
+        void responseSendSparkTooLong();
         void deleteSparkError();
         void deleteSparkSuccess(Spark spark);
         void addSparkLikeSuccess(Spark spark);
@@ -91,18 +91,16 @@ public interface MainContract
         void requestProfileDataRefreshSuccess(User user, ArrayList<Spark> sparks);
         void requestHomeDataRefreshSuccess(ArrayList<Spark> sparks);
         void requestHomeDataRefreshFailure();
-        void requestHomeDataFailure();
         void requestProfileDataRefreshFailure();
         void requestSendCommentFailure();
         void requestSendCommentFailureEmptyBody();
         void requestSendCommentSuccess(Comment comment);
     }
 
+    //All methods starting with "request" are methods which can be initiated by the client user.
     interface Model
     {
         void setPresenter(MainContract.PresenterModel presenter);
-
-        //All methods starting with "request" are methods which can be initiated by the client user.
         void requestLogout();
         void requestProfileData(String userId);
         void requestHomeData();

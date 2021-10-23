@@ -40,7 +40,7 @@ class MainPresenter implements MainContract.PresenterView, MainContract.Presente
     public void requestLogout()
     {
         _model.requestLogout();
-        _view.userLoggedOutSuccessfully();
+        _view.responseLogoutSuccess();
     }
 
     @Override
@@ -85,22 +85,22 @@ class MainPresenter implements MainContract.PresenterView, MainContract.Presente
 
                 if(sparkBody.length() <= MAX_SPARK_LENGTH)
                 {
-                    _view.informSendingSpark();
+                    _view.responseSendSparkInProgress();
                     _model.requestSendSpark(sparkBody);
                 }
                 else
                 {
-                    _view.errorSendSparkTooLong();
+                    _view.responseSendSparkTooLong();
                 }
             }
             else
             {
-                _view.errorSendSparkEmpty();
+                _view.responseSendSparkEmpty();
             }
         }
         else
         {
-            _view.errorSendSparkEmpty();
+            _view.responseSendSparkEmpty();
         }
     }
 
@@ -169,7 +169,7 @@ class MainPresenter implements MainContract.PresenterView, MainContract.Presente
                 }
                 else
                 {
-                    _view.errorSendSparkTooLong();
+                    _view.responseSendSparkTooLong();
                 }
             }
             else
@@ -198,7 +198,7 @@ class MainPresenter implements MainContract.PresenterView, MainContract.Presente
         }
         else
         {
-            _view.requestHomeDataSuccess(sparks);
+            _view.responseHomeDataSuccess(sparks);
         }
     }
 
@@ -211,7 +211,7 @@ class MainPresenter implements MainContract.PresenterView, MainContract.Presente
         }
         else
         {
-            _view.requestHomeDataFailure();
+            _view.responseHomeDataFailure();
         }
     }
 
@@ -231,13 +231,13 @@ class MainPresenter implements MainContract.PresenterView, MainContract.Presente
     @Override
     public void responseSendSparkSuccess(Spark spark)
     {
-        _view.sparkSentSuccessfully(spark);
+        _view.responseSendSparkSuccess(spark);
     }
 
     @Override
     public void responseSendSparkFailure()
     {
-        _view.errorSendSparkUnknown();
+        _view.responseSendSparkFailure();
     }
 
     @Override
