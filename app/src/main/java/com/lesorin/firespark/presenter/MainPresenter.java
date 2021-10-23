@@ -37,7 +37,7 @@ class MainPresenter implements MainContract.PresenterView, MainContract.Presente
     }
 
     @Override
-    public void logOutButtonPressed()
+    public void requestLogout()
     {
         _model.logUserOut();
         _view.userLoggedOutSuccessfully();
@@ -72,7 +72,7 @@ class MainPresenter implements MainContract.PresenterView, MainContract.Presente
     }
 
     @Override
-    public void sendSparkRequested(String sparkBody)
+    public void requestSendSpark(String sparkBody)
     {
         if(sparkBody != null)
         {
@@ -105,19 +105,19 @@ class MainPresenter implements MainContract.PresenterView, MainContract.Presente
     }
 
     @Override
-    public void sparkDeleteClicked(Spark spark)
+    public void requestDeleteSpark(Spark spark)
     {
         _model.deleteSpark(spark);
     }
 
     @Override
-    public void sparkLikeClicked(Spark spark)
+    public void requestLikeDislikeSpark(Spark spark)
     {
         _model.likeDislikeSpark(spark);
     }
 
     @Override
-    public void userFollowClicked(User user)
+    public void requestFollowUnfollowUser(User user)
     {
         _model.followUnfollowUser(user);
     }

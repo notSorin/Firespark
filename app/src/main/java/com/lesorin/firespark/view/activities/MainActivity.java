@@ -257,7 +257,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     public void logOutButtonPressed()
     {
-        _presenter.logOutButtonPressed();
+        _presenter.requestLogout();
     }
 
     @Override
@@ -560,7 +560,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     public void sparkLikeClicked(Spark spark)
     {
-        _presenter.sparkLikeClicked(spark);
+        _presenter.requestLikeDislikeSpark(spark);
     }
 
     public void sparkOwnerClicked(Spark spark)
@@ -595,7 +595,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     public void sendSparkClicked(String sparkBody)
     {
-        _presenter.sendSparkRequested(sparkBody);
+        _presenter.requestSendSpark(sparkBody);
     }
 
     public void sparkDeleteClicked(Spark spark)
@@ -604,13 +604,13 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
         madb.setTitle(getString(R.string.DeleteSparkTitle)).setMessage(getString(R.string.DeleteSparkMessage)).
             setNegativeButton(getString(R.string.Cancel), (dialogInterface, i) -> {}).
-            setPositiveButton(getString(R.string.Delete), (dialogInterface, i) -> _presenter.sparkDeleteClicked(spark)).
+            setPositiveButton(getString(R.string.Delete), (dialogInterface, i) -> _presenter.requestDeleteSpark(spark)).
             show();
     }
 
     public void userFollowClicked(User user)
     {
-        _presenter.userFollowClicked(user);
+        _presenter.requestFollowUnfollowUser(user);
     }
 
     public void requestSearchUserByUsername(String userName)
