@@ -186,7 +186,14 @@ class MainPresenter implements MainContract.PresenterView, MainContract.Presente
     @Override
     public void requestDeleteComment(Comment comment)
     {
-        //todo
+        if(comment.isOwnedByCurrentUser())
+        {
+            _model.requestDeleteComment(comment);
+        }
+        else
+        {
+            _view.responseDeleteCommentFailure();
+        }
     }
 
     @Override

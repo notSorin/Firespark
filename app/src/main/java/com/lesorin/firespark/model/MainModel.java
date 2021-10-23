@@ -418,6 +418,12 @@ class MainModel implements MainContract.Model
         });
     }
 
+    @Override
+    public void requestDeleteComment(Comment comment)
+    {
+
+    }
+
     private Comment updateCommentsCache(Comment comment)
     {
         Comment commentInCache = _commentsCache.get(comment.getId());

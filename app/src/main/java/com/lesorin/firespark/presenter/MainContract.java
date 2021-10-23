@@ -95,6 +95,7 @@ public interface MainContract
         void responseSendCommentSuccess(Comment comment);
         void responseSendCommentFailure();
         void responseSendCommentEmptyBody();
+        void responseDeleteCommentFailure();
     }
 
     //All methods starting with "request" are methods which can be initiated by the client user.
@@ -112,5 +113,6 @@ public interface MainContract
         void requestSearchUserByUsername(String userName);
         void requestSparkData(Spark spark);
         void requestSendComment(Spark spark, String commentBody, Comment replyComment);
+        void requestDeleteComment(Comment comment);
     }
 }
