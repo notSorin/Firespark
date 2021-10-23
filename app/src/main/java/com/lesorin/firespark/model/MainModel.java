@@ -370,6 +370,7 @@ class MainModel implements MainContract.Model
                             {
                                 Comment comment = updateCommentsCache(createCommentFromDocumentSnapshot(task3.getResult()));
 
+                                //fixme This is not correct because the spark's comments could be outdated.
                                 spark.addCommentFromUser(currentUser.getId());
                                 spark.setContainsCommentFromCurrentUser(true);
 
