@@ -531,7 +531,16 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     public void sparkClicked(Spark spark)
     {
-        _presenter.requestSparkData(spark);
+        SparkFragment sf = findSparkFragment(spark);
+
+        if(sf == null)
+        {
+            _presenter.requestSparkData(spark);
+        }
+        else
+        {
+            openFragment(sf);
+        }
     }
 
     private SparkFragment findSparkFragment(Spark spark)
@@ -556,17 +565,16 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     public void sparkOwnerClicked(Spark spark)
     {
-        User currentProfileUser = getVisibleFragment().getUser();
+        FiresparkFragment ff = findProfileFragment(spark.getOwnerId());
 
-        //Request user profile only if there isn't already a user on the profile, or if
-        //the one in the profile is different from the one being requested.
-        if(currentProfileUser == null)
+        //Request user profile only if there isn't already a fragment on the fragments stack with said user.
+        if(ff == null)
         {
             _presenter.requestProfileData(spark.getOwnerId());
         }
-        else if(!currentProfileUser.getId().equals(spark.getOwnerId()))
+        else
         {
-            _presenter.requestProfileData(spark.getOwnerId());
+            openFragment(ff);
         }
     }
 
