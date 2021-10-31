@@ -1,5 +1,6 @@
 package com.lesorin.firespark.model;
 
+import android.content.Context;
 import com.lesorin.firespark.presenter.MainContract;
 import com.lesorin.firespark.presenter.StartContract;
 
@@ -20,8 +21,8 @@ public class ModelFactory
         return new com.lesorin.firespark.model.rest.MainModel();
     }
 
-    public static StartContract.Model getRESTStartModel()
+    public static StartContract.Model getRESTStartModel(Context context)
     {
-        return new com.lesorin.firespark.model.rest.StartModel();
+        return new com.lesorin.firespark.model.rest.StartModel(context);
     }
 }

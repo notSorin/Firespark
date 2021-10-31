@@ -6,7 +6,7 @@ public class StartModel implements StartContract.Model
 {
     private StartContract.PresenterModel _presenter;
 
-    public StartModel()
+    public StartModel(Context context)
     {
     }
 
