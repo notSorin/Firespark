@@ -90,5 +90,5 @@
     <string name="RequestSendCommentFailure">Could not send comment.</string>
     <string name="RequestSendCommentFailureEmptyBody">Cannot send an empty comment.</string>
     <string name="ResponseDeleteCommentFailure">Could not delete comment.</string>
-    <string name="NetworkError">A network error has occurred. Please try again.</string>
+    <string name="NetworkError">Firespark server could not be reached. Please try again.</string>
 </resources>
