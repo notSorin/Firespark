@@ -204,6 +204,13 @@ public class StartActivity extends AppCompatActivity implements StartContract.Vi
     }
 
     @Override
+    public void responseSignupFailure(String message)
+    {
+        Snackbar.make(_viewPager, message, Snackbar.LENGTH_LONG).show();
+        _signUpFragment.setElementsState(true);
+    }
+
+    @Override
     public void responseLogInSuccess()
     {
         startActivity(new Intent(this, MainActivity.class));

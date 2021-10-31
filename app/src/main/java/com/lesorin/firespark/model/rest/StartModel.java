@@ -34,7 +34,50 @@ public class StartModel implements StartContract.Model
     @Override
     public void requestSignUp(String firstLastName, String username, String email, String password)
     {
+        Response.Listener<String> rl = response ->
+        {
+            try
+            {
+                JSONObject json = new JSONObject(response);
+                int code = json.getInt(KEY_CODE);
+                String message = json.getString(KEY_MESSAGE);
 
+                if(code == 200)
+                {
+                    _presenter.responseSignUpSuccess();
+                }
+                else if(code == 400)
+                {
+                    //TODO In the future, make the server return codes indicating why the sign up
+                    //process failed, then call specific functions from the presenter, so that the view
+                    //can display errors in different languages.
+                    _presenter.responseSignupFailure(message);
+                }
+            }
+            catch(JSONException e)
+            {
+                _presenter.responseSignUpUnknownError();
+            }
+        };
+
+        StringRequest request = new StringRequest(Request.Method.POST, SIGN_UP_URL, rl,
+                error -> _presenter.responseNetworkError())
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String> params = new HashMap<>();
+
+                params.put(KEY_SIGN_UP_EMAIL, email);
+                params.put(KEY_SIGN_UP_PASSWORD, password);
+                params.put(KEY_SIGN_UP_USERNAME, username);
+                params.put(KEY_SIGN_UP_FIRST_LAST_NAME, firstLastName);
+
+                return params;
+            }
+        };
+
+        _requestQueue.add(request);
     }
 
     @Override
@@ -73,8 +116,8 @@ public class StartModel implements StartContract.Model
             {
                 Map<String, String> params = new HashMap<>();
 
-                params.put("email_or_username", emailOrUsername);
-                params.put("password", password);
+                params.put(KEY_LOG_IN_EMAIL_OR_USERNAME, emailOrUsername);
+                params.put(KEY_LOG_IN_PASSWORD, password);
 
                 return params;
             }

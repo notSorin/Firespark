@@ -123,6 +123,12 @@ class StartPresenter implements StartContract.PresenterView, StartContract.Prese
     }
 
     @Override
+    public void responseSignupFailure(String message)
+    {
+        _view.responseSignupFailure(message);
+    }
+
+    @Override
     public void responseSignUpEmptyName()
     {
         _view.responseSignUpEmptyName();

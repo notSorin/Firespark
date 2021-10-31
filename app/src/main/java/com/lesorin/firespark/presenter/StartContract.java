@@ -32,6 +32,7 @@ public interface StartContract
         void responseLogInEmailNotVerified();
         void responseLogInFailure();
         void responseNetworkError();
+        void responseSignupFailure(String message);
     }
 
     //All methods starting with "response" are methods in response to client requests.
@@ -55,6 +56,7 @@ public interface StartContract
         void responseLogInEmailNotVerified();
         void responseLogInFailure();
         void responseNetworkError();
+        void responseSignupFailure(String message);
     }
 
     //All methods starting with "request" are methods which can be initiated by the client user.

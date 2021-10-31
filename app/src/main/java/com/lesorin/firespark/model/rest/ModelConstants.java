@@ -23,4 +23,15 @@ public class ModelConstants
     public static final String KEY_CODE = "code";
     public static final String KEY_MESSAGE = "message";
     public static final String KEY_TOKEN = "token";
+
+    //Keys for logging in.
+    public static final String KEY_LOG_IN_EMAIL_OR_USERNAME = "email_or_username";
+    public static final String KEY_LOG_IN_PASSWORD = "password";
+
+    //Keys for signing up.
+    public static final String KEY_SIGN_UP_EMAIL = "email";
+    public static final String KEY_SIGN_UP_PASSWORD = "password";
+    public static final String KEY_SIGN_UP_USERNAME = "username";
+    public static final String KEY_SIGN_UP_FIRST_LAST_NAME = "firstlastname";
+
 }
