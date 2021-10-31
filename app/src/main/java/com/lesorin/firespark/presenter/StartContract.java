@@ -60,7 +60,7 @@ public interface StartContract
     {
         void setPresenter(PresenterModel presenter);
         void requestSignUp(String firstLastName, String username, String email, String password);
-        void requestLogIn(String email, String password);
+        void requestLogIn(String emailOrUsername, String password);
         boolean isUserSignedIn();
     }
 }
