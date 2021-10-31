@@ -8,6 +8,7 @@
     <string name="LogIn">Log in</string>
     <string name="Signup">Sign up</string>
     <string name="Email">Email</string>
+    <string name="EmailOrUsername">Email or Username</string>
     <string name="Password">Password</string>
     <string name="RepeatPassword">Repeat Password</string>
     <string name="SignupPassword">Password</string>
@@ -50,6 +51,7 @@
     <string name="SendingSpark">Sending Spark. Please wait…</string>
     <string name="LoadingData">Loading…</string>
     <string name="Username">Username</string>
+    <string name="SignUpUsername">Unique Username</string>
     <string name="CreateUserInvalidFirstLastName">Invalid First and Last Name.</string>
     <string name="CreateUserInvalidUsername">Invalid Username.</string>
     <string name="CreateUserEmptyEmail">Email cannot be empty.</string>
@@ -88,4 +90,5 @@
     <string name="RequestSendCommentFailure">Could not send comment.</string>
     <string name="RequestSendCommentFailureEmptyBody">Cannot send an empty comment.</string>
     <string name="ResponseDeleteCommentFailure">Could not delete comment.</string>
+    <string name="NetworkError">A network error has occurred. Please try again.</string>
 </resources>
