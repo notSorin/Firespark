@@ -117,6 +117,12 @@ class StartPresenter implements StartContract.PresenterView, StartContract.Prese
     }
 
     @Override
+    public void responseNetworkError()
+    {
+        //TODO
+    }
+
+    @Override
     public void responseSignUpEmptyName()
     {
         _view.responseSignUpEmptyName();

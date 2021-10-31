@@ -31,6 +31,7 @@ public interface StartContract
         void responseLogInSuccess();
         void responseLogInEmailNotVerified();
         void responseLogInFailure();
+        void responseNetworkError();
     }
 
     //All methods starting with "response" are methods in response to client requests.
