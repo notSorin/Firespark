@@ -22,7 +22,7 @@ public class StartModel implements StartContract.Model
     }
 
     @Override
-    public void requestLogIn(String email, String password)
+    public void requestLogIn(String emailOrUsername, String password)
     {
 
     }

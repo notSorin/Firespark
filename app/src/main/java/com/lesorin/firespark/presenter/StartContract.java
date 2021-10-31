@@ -12,7 +12,7 @@ public interface StartContract
         void setModel(Model model);
         void appStarted();
         void requestSignUp(String firstLastName, String username, String email, String password, String passwordRepeat);
-        void requestLogIn(String email, String password);
+        void requestLogIn(String emailOrUsername, String password);
     }
 
     //All methods starting with "response" are methods in response to client requests.

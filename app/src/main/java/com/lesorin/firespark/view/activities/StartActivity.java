@@ -120,11 +120,11 @@ public class StartActivity extends AppCompatActivity implements StartContract.Vi
         _viewPager.setCurrentItem(2);
     }
 
-    public void logInButtonPressed(String email, String password)
+    public void logInButtonPressed(String emailOrUsername, String password)
     {
         _loginFragment.setElementsState(false);
         Snackbar.make(_viewPager, R.string.PleaseWait, Snackbar.LENGTH_LONG).show();
-        _presenter.requestLogIn(email, password);
+        _presenter.requestLogIn(emailOrUsername, password);
     }
 
     public void signUpButtonPressed(String firstLastName, String username, String email, String password, String passwordRepeat)

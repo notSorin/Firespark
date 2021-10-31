@@ -48,9 +48,9 @@ class StartPresenter implements StartContract.PresenterView, StartContract.Prese
     }
 
     @Override
-    public void requestLogIn(String email, String password)
+    public void requestLogIn(String emailOrUsername, String password)
     {
-        _model.requestLogIn(email, password);
+        _model.requestLogIn(emailOrUsername, password);
     }
 
     @Override
