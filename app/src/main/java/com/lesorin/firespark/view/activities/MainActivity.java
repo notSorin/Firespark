@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public void onBackPressed()
     {
-        if(_fragmentsStack.size() == 1)
+        if(_fragmentsStack.size() <= 1)
         {
             super.onBackPressed();
         }
@@ -182,7 +182,9 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
             switch (item.getItemId())
             {
                 case R.id.ProfilePage:
-                    if(!getVisibleFragment().isProfileFragment())
+                    FiresparkFragment ff = getVisibleFragment();
+
+                    if(ff == null || !ff.isProfileFragment())
                     {
                         //Only request the current user's profile if it is not already in the fragments stack.
                         ProfileFragment pf = findCurrentUserProfileFragment();
@@ -336,7 +338,9 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         }
 
         //Go to the home fragment if the user wasn't already on one of the main fragments.
-        if(!getVisibleFragment().isMainFragment())
+        FiresparkFragment ff = getVisibleFragment();
+
+        if(ff == null || !ff.isMainFragment())
         {
             _fragmentsStack.clear();
             openFragment(_homeFragment);
