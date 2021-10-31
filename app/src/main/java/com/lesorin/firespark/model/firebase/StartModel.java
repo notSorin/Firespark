@@ -30,7 +30,7 @@ public class StartModel implements StartContract.Model
     }
 
     @Override
-    public void createUser(String firstLastName, String username, String email, String password)
+    public void requestSignUp(String firstLastName, String username, String email, String password)
     {
         if(!email.isEmpty() && !password.isEmpty())
         {
@@ -56,18 +56,18 @@ public class StartModel implements StartContract.Model
                     }
                     else
                     {
-                        _presenter.failedToCreateUserUsernameAlreadyExists();
+                        _presenter.responseSignUpUsernameNotAvailable();
                     }
                 }
                 else
                 {
-                    _presenter.failedToCreateUserUnknownError();
+                    _presenter.responseSignUpUnknownError();
                 }
             });
         }
         else
         {
-            _presenter.failedToCreateUserEmptyEmailOrPassword();
+            _presenter.responseSignUpEmptyEmailOrPassword();
         }
     }
 
@@ -116,24 +116,24 @@ public class StartModel implements StartContract.Model
         }
         catch(FirebaseAuthUserCollisionException e)
         {
-            _presenter.failedToCreateUserEmailAlreadyExists();
+            _presenter.responseSignUpEmailNotAvailable();
         }
         catch (FirebaseAuthWeakPasswordException wpe)
         {
-            _presenter.failedToCreateUserWeakPassword();
+            _presenter.responseSignUpWeakPassword();
         }
         catch(FirebaseAuthInvalidCredentialsException ice)
         {
-            _presenter.failedToCreateUserInvalidEmail();
+            _presenter.responseSignUpInvalidEmail();
         }
         catch(Exception e)
         {
-            _presenter.failedToCreateUserUnknownError();
+            _presenter.responseSignUpUnknownError();
         }
     }
 
     @Override
-    public void logUserIn(String email, String password)
+    public void requestLogIn(String email, String password)
     {
         if(!email.isEmpty() && !password.isEmpty())
         {
@@ -147,23 +147,23 @@ public class StartModel implements StartContract.Model
                     {
                         if(user.isEmailVerified())
                         {
-                            _presenter.logUserInSuccess();
+                            _presenter.responseLogInSuccess();
                         }
                         else
                         {
-                            _presenter.logUserInFailureNotVerified();
+                            _presenter.responseLogInEmailNotVerified();
                         }
                     }
                 }
                 else
                 {
-                    _presenter.logUserInFailure();
+                    _presenter.responseLogInFailure();
                 }
             });
         }
         else
         {
-            _presenter.logUserInFailure();
+            _presenter.responseLogInFailure();
         }
     }
 
@@ -183,17 +183,17 @@ public class StartModel implements StartContract.Model
             {
                 if(task.isSuccessful())
                 {
-                    _presenter.createUserVerificationEmailSent();
+                    _presenter.responseSignUpVerificationEmailSent();
                 }
                 else
                 {
-                    _presenter.createUserVerificationEmailNotSent();
+                    _presenter.responseSignUpVerificationEmailNotSent();
                 }
             });
         }
         else
         {
-            _presenter.createUserVerificationEmailNotSent();
+            _presenter.responseSignUpVerificationEmailNotSent();
         }
     }
 }

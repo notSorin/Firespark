@@ -16,13 +16,13 @@ public class StartModel implements StartContract.Model
     }
 
     @Override
-    public void createUser(String firstLastName, String username, String email, String password)
+    public void requestSignUp(String firstLastName, String username, String email, String password)
     {
 
     }
 
     @Override
-    public void logUserIn(String email, String password)
+    public void requestLogIn(String email, String password)
     {
 
     }

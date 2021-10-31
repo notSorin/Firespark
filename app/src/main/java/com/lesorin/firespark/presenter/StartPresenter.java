@@ -21,7 +21,7 @@ class StartPresenter implements StartContract.PresenterView, StartContract.Prese
     }
 
     @Override
-    public void signUpButtonPressed(String firstLastName, String username, String email, String password, String passwordRepeat)
+    public void requestSignUp(String firstLastName, String username, String email, String password, String passwordRepeat)
     {
         if(firstLastName.matches(FIRST_LAST_NAME_REGEX))
         {
@@ -29,28 +29,28 @@ class StartPresenter implements StartContract.PresenterView, StartContract.Prese
             {
                 if(password.equals(passwordRepeat))
                 {
-                    _model.createUser(firstLastName, username, email, password);
+                    _model.requestSignUp(firstLastName, username, email, password);
                 }
                 else
                 {
-                    _view.errorPasswordsDoNotMatch();
+                    _view.responseSignUpPasswordsDoNotMatch();
                 }
             }
             else
             {
-                _view.errorInvalidUsername();
+                _view.responseSignUpInvalidUsername();
             }
         }
         else
         {
-            _view.errorInvalidFirstLastName();
+            _view.responseSignUpInvalidFirstLastName();
         }
     }
 
     @Override
-    public void logInButtonPressed(String email, String password)
+    public void requestLogIn(String email, String password)
     {
-        _model.logUserIn(email, password);
+        _model.requestLogIn(email, password);
     }
 
     @Override
@@ -58,86 +58,85 @@ class StartPresenter implements StartContract.PresenterView, StartContract.Prese
     {
         if(_model.isUserSignedIn())
         {
-            _view.openMainActivity();
+            _view.responseLogInSuccess();
         }
     }
 
     @Override
-    public void userCreatedSuccessfully()
+    public void responseSignUpSuccess()
     {
-        _view.userCreatedSuccessfully();
+        _view.responseSignUpSuccess();
     }
 
     @Override
-    public void failedToCreateUserEmailAlreadyExists()
+    public void responseSignUpEmailNotAvailable()
     {
-        _view.errorCreateUserEmailAlreadyExists();
+        _view.responseSignUpEmailNotAvailable();
     }
 
     @Override
-    public void failedToCreateUserWeakPassword()
+    public void responseSignUpWeakPassword()
     {
-        _view.errorCreateUserWeakPassword();
+        _view.responseSignUpWeakPassword();
     }
 
     @Override
-    public void failedToCreateUserUnknownError()
+    public void responseSignUpUnknownError()
     {
-        _view.errorCreateUserUnknownError();
+        _view.responseSignUpUnknownError();
     }
 
     @Override
-    public void createUserVerificationEmailSent()
+    public void responseSignUpVerificationEmailSent()
     {
-        _view.notifyVerificationEmailSent();
-        _view.openLogInView();
+        _view.responseSignUpVerificationEmailSent();
     }
 
     @Override
-    public void createUserVerificationEmailNotSent()
+    public void responseSignUpVerificationEmailNotSent()
     {
-        _view.notifyVerificationEmailNotSent();
+        _view.responseSignUpVerificationEmailNotSent();
     }
 
     @Override
-    public void logUserInSuccess()
+    public void responseLogInSuccess()
     {
-        _view.openMainActivity();
+        _view.responseLogInSuccess();
     }
 
     @Override
-    public void logUserInFailureNotVerified()
+    public void responseLogInEmailNotVerified()
     {
-        _view.errorUserNotVerified();
+        _view.responseLogInEmailNotVerified();
     }
 
     @Override
-    public void logUserInFailure()
+    public void responseLogInFailure()
     {
-        _view.errorCannotLogIn();
+        _view.responseLogInFailure();
     }
 
     @Override
-    public void failedToCreateUserEmptyName()
+    public void responseSignUpEmptyName()
     {
-        _view.errorCreateUserEmptyName();
+        _view.responseSignUpEmptyName();
     }
 
     @Override
-    public void failedToCreateUserEmptyEmailOrPassword()
+    public void responseSignUpEmptyEmailOrPassword()
     {
-        _view.errorCreateUserEmptyEmailOrPassword();
+        _view.responseSignUpEmptyEmailOrPassword();
     }
 
     @Override
-    public void failedToCreateUserInvalidEmail()
+    public void responseSignUpInvalidEmail()
     {
-        _view.errorCreateUserInvalidEmail();
+        _view.responseSignUpInvalidEmail();
     }
 
     @Override
-    public void failedToCreateUserUsernameAlreadyExists()
+    public void responseSignUpUsernameNotAvailable()
     {
-        _view.errorCreateUserUsernameAlreadyExists();
+        _view.responseSignUpUsernameNotAvailable();
     }
 }

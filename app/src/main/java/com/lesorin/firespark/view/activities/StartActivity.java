@@ -124,133 +124,128 @@ public class StartActivity extends AppCompatActivity implements StartContract.Vi
     {
         _loginFragment.setElementsState(false);
         Snackbar.make(_viewPager, R.string.PleaseWait, Snackbar.LENGTH_LONG).show();
-        _presenter.logInButtonPressed(email, password);
+        _presenter.requestLogIn(email, password);
     }
 
     public void signUpButtonPressed(String firstLastName, String username, String email, String password, String passwordRepeat)
     {
         _signUpFragment.setElementsState(false);
         Snackbar.make(_viewPager, R.string.PleaseWait, Snackbar.LENGTH_LONG).show();
-        _presenter.signUpButtonPressed(firstLastName, username, email, password, passwordRepeat);
+        _presenter.requestSignUp(firstLastName, username, email, password, passwordRepeat);
     }
 
     @Override
-    public void errorPasswordsDoNotMatch()
+    public void responseSignUpPasswordsDoNotMatch()
     {
         _signUpFragment.setElementsState(true);
         Snackbar.make(_viewPager, R.string.PasswordsDoNotMatch, Snackbar.LENGTH_LONG).show();
     }
 
     @Override
-    public void userCreatedSuccessfully()
+    public void responseSignUpSuccess()
     {
         Snackbar.make(_viewPager, R.string.UserCreateSuccess, Snackbar.LENGTH_LONG).show();
+        _viewPager.setCurrentItem(1);
     }
 
     @Override
-    public void errorCreateUserEmailAlreadyExists()
+    public void responseSignUpEmailNotAvailable()
     {
         _signUpFragment.setElementsState(true);
         Snackbar.make(_viewPager, R.string.CreateUserEmailAlreadyExists, Snackbar.LENGTH_LONG).show();
     }
 
     @Override
-    public void errorCreateUserWeakPassword()
+    public void responseSignUpWeakPassword()
     {
         _signUpFragment.setElementsState(true);
         Snackbar.make(_viewPager, R.string.CreateUserWeakPassword, Snackbar.LENGTH_LONG).show();
     }
 
     @Override
-    public void errorCreateUserUnknownError()
+    public void responseSignUpUnknownError()
     {
         _signUpFragment.setElementsState(true);
         Snackbar.make(_viewPager, R.string.CreateUserUnknownError, Snackbar.LENGTH_LONG).show();
     }
 
     @Override
-    public void notifyVerificationEmailSent()
+    public void responseSignUpVerificationEmailSent()
     {
         Snackbar.make(_viewPager, R.string.CreateUserVerificationEmailSent, Snackbar.LENGTH_LONG).show();
     }
 
     @Override
-    public void notifyVerificationEmailNotSent()
+    public void responseSignUpVerificationEmailNotSent()
     {
         Snackbar.make(_viewPager, R.string.CreateUserVerificationEmailNotSent, Snackbar.LENGTH_LONG).show();
     }
 
     @Override
-    public void openLogInView()
-    {
-        _viewPager.setCurrentItem(1);
-    }
-
-    @Override
-    public void errorUserNotVerified()
+    public void responseLogInEmailNotVerified()
     {
         _loginFragment.setElementsState(true);
         Snackbar.make(_viewPager, R.string.UserNotVerified, Snackbar.LENGTH_LONG).show();
     }
 
     @Override
-    public void errorCannotLogIn()
+    public void responseLogInFailure()
     {
         _loginFragment.setElementsState(true);
         Snackbar.make(_viewPager, R.string.CannotLogIn, Snackbar.LENGTH_LONG).show();
     }
 
     @Override
-    public void openMainActivity()
+    public void responseLogInSuccess()
     {
         startActivity(new Intent(this, MainActivity.class));
         finish();
     }
 
     @Override
-    public void errorCreateUserEmptyName()
+    public void responseSignUpEmptyName()
     {
         _signUpFragment.setElementsState(true);
         Snackbar.make(_viewPager, R.string.CreateUserEmptyName, Snackbar.LENGTH_LONG).show();
     }
 
     @Override
-    public void errorCreateUserEmptyEmailOrPassword()
+    public void responseSignUpEmptyEmailOrPassword()
     {
         _signUpFragment.setElementsState(true);
         Snackbar.make(_viewPager, R.string.CreateUserEmptyEmailOrPassword, Snackbar.LENGTH_LONG).show();
     }
 
     @Override
-    public void errorCreateUserInvalidEmail()
+    public void responseSignUpInvalidEmail()
     {
         _signUpFragment.setElementsState(true);
         Snackbar.make(_viewPager, R.string.CreateUserInvalidEmail, Snackbar.LENGTH_LONG).show();
     }
 
     @Override
-    public void errorInvalidFirstLastName()
+    public void responseSignUpInvalidFirstLastName()
     {
         _signUpFragment.setElementsState(true);
         Snackbar.make(_viewPager, R.string.CreateUserInvalidFirstLastName, Snackbar.LENGTH_LONG).show();
     }
 
     @Override
-    public void errorInvalidUsername()
+    public void responseSignUpInvalidUsername()
     {
         _signUpFragment.setElementsState(true);
         Snackbar.make(_viewPager, R.string.CreateUserInvalidUsername, Snackbar.LENGTH_LONG).show();
     }
 
     @Override
-    public void errorEmptyEmail()
+    public void responseSignUpEmptyEmail()
     {
         _signUpFragment.setElementsState(true);
         Snackbar.make(_viewPager, R.string.CreateUserEmptyEmail, Snackbar.LENGTH_LONG).show();
     }
 
     @Override
-    public void errorCreateUserUsernameAlreadyExists()
+    public void responseSignUpUsernameNotAvailable()
     {
         _signUpFragment.setElementsState(true);
         Snackbar.make(_viewPager, R.string.CreateUserUsernameExists, Snackbar.LENGTH_LONG).show();
