@@ -1,13 +1,29 @@
 package com.lesorin.firespark.model.rest;
 
+import static com.lesorin.firespark.model.rest.ModelConstants.*;
+import android.content.Context;
+import android.content.SharedPreferences;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.lesorin.firespark.presenter.StartContract;
+import org.json.JSONException;
+import org.json.JSONObject;
+import java.util.HashMap;
+import java.util.Map;
 
 public class StartModel implements StartContract.Model
 {
     private StartContract.PresenterModel _presenter;
+    private RequestQueue _requestQueue;
+    private SharedPreferences _preferences;
 
     public StartModel(Context context)
     {
+        _requestQueue = Volley.newRequestQueue(context);
+        _preferences = context.getSharedPreferences(SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
     }
 
     public void setPresenter(StartContract.PresenterModel presenter)
@@ -24,12 +40,61 @@ public class StartModel implements StartContract.Model
     @Override
     public void requestLogIn(String emailOrUsername, String password)
     {
+        Response.Listener<String> rl = response ->
+        {
+            try
+            {
+                JSONObject json = new JSONObject(response);
 
+                if(json.getInt(KEY_CODE) == 200)
+                {
+                    JSONObject message = json.getJSONObject(KEY_MESSAGE);
+                    String token = message.getString(KEY_TOKEN);
+
+                    saveUserToken(token);
+                    _presenter.responseLogInSuccess();
+                }
+                else
+                {
+                    _presenter.responseLogInFailure();
+                }
+            }
+            catch(JSONException e)
+            {
+                _presenter.responseLogInFailure();
+            }
+        };
+
+        StringRequest request = new StringRequest(Request.Method.POST, LOG_IN_URL, rl,
+                error -> _presenter.responseNetworkError())
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String> params = new HashMap<>();
+
+                params.put("email_or_username", emailOrUsername);
+                params.put("password", password);
+
+                return params;
+            }
+        };
+
+        _requestQueue.add(request);
+    }
+
+    private void saveUserToken(String token)
+    {
+        SharedPreferences.Editor editor = _preferences.edit();
+
+        editor.putString(KEY_TOKEN, token);
+
+        editor.apply();
     }
 
     @Override
     public boolean isUserSignedIn()
     {
-        return false;
+        return _preferences.getString(KEY_TOKEN, null) != null;
     }
 }
