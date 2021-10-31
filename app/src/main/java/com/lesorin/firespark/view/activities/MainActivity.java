@@ -155,7 +155,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     private void initializeMVP()
     {
         MainContract.PresenterView presenterView = PresenterFactory.getMainPresenter();
-        MainContract.Model model = ModelFactory.getMainModel();
+        MainContract.Model model = ModelFactory.getRESTMainModel();
         MainContract.PresenterModel presenterModel = (MainContract.PresenterModel)presenterView;
 
         presenterView.setView(this);

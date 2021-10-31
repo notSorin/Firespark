@@ -48,7 +48,7 @@ public class StartActivity extends AppCompatActivity implements StartContract.Vi
         //is a View, therefore it is acceptable for the view to directly access a concrete presenter
         //and model to correctly instantiate the presenter.
         StartContract.PresenterView presenterView = PresenterFactory.getStartPresenter();
-        StartContract.Model model = ModelFactory.getStartModel();
+        StartContract.Model model = ModelFactory.getRESTStartModel();
         StartContract.PresenterModel presenterModel = (StartContract.PresenterModel)presenterView;
 
         presenterView.setView(this);
