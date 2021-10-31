@@ -119,7 +119,7 @@ class StartPresenter implements StartContract.PresenterView, StartContract.Prese
     @Override
     public void responseNetworkError()
     {
-        //TODO
+        _view.responseNetworkError();
     }
 
     @Override

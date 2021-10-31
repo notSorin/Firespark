@@ -54,6 +54,7 @@ public interface StartContract
         void responseLogInSuccess();
         void responseLogInEmailNotVerified();
         void responseLogInFailure();
+        void responseNetworkError();
     }
 
     //All methods starting with "request" are methods which can be initiated by the client user.

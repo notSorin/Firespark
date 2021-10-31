@@ -196,6 +196,14 @@ public class StartActivity extends AppCompatActivity implements StartContract.Vi
     }
 
     @Override
+    public void responseNetworkError()
+    {
+        Snackbar.make(_viewPager, R.string.NetworkError, Snackbar.LENGTH_LONG).show();
+        _loginFragment.setElementsState(true);
+        _signUpFragment.setElementsState(true);
+    }
+
+    @Override
     public void responseLogInSuccess()
     {
         startActivity(new Intent(this, MainActivity.class));
