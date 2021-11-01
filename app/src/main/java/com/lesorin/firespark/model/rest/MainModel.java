@@ -37,7 +37,8 @@ public class MainModel implements MainContract.Model
     @Override
     public void requestLogout()
     {
-
+        _preferences.edit().clear().apply();
+        _presenter.responseLogoutSuccess();
     }
 
     @Override
