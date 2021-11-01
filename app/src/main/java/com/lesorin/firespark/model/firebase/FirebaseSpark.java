@@ -1,11 +1,12 @@
-package com.lesorin.firespark.presenter.pojo;
+package com.lesorin.firespark.model.firebase;
 
 import static com.lesorin.firespark.model.firebase.ModelConstants.*;
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.PropertyName;
 import java.util.ArrayList;
+import java.util.Date;
 
-public class Spark
+class FirebaseSpark extends com.lesorin.firespark.presenter.Spark
 {
     private String _id;
     private boolean _ownedByCurrentUser, _likedByCurrentUser, _containsCommentFromCurrentUser;
@@ -37,7 +38,7 @@ public class Spark
     @PropertyName(SPARK_COMMENTS)
     private ArrayList<String> _comments;
 
-    public Spark()
+    public FirebaseSpark()
     {
         _likes = new ArrayList<>();
         _subscribers = new ArrayList<>();
@@ -74,6 +75,12 @@ public class Spark
         return _likes;
     }
 
+    @Override
+    public void setLikes(ArrayList<String> likes)
+    {
+        _likes = likes;
+    }
+
     public ArrayList<String> getSubscribers()
     {
         return _subscribers;
@@ -89,6 +96,18 @@ public class Spark
         _ownedByCurrentUser = ownedByCurrentUser;
     }
 
+    @Override
+    public String getUserFirstLastName()
+    {
+        return _ownerFirstLastName;
+    }
+
+    @Override
+    public void setUserFirstLastName(String name)
+    {
+        _ownerFirstLastName = name;
+    }
+
     public boolean isOwnedByCurrentUser()
     {
         return _ownedByCurrentUser;
@@ -99,9 +118,27 @@ public class Spark
         return _ownerFirstLastName;
     }
 
-    public Timestamp getCreated()
+    public Date getCreated()
     {
-        return _created;
+        return _created.toDate();
+    }
+
+    @Override
+    public void setCreated(Date created)
+    {
+        _created = new Timestamp(created);
+    }
+
+    @Override
+    public String getUserUsername()
+    {
+        return _ownerUsername;
+    }
+
+    @Override
+    public void setUserUsername(String username)
+    {
+        _ownerUsername = username;
     }
 
     public String getOwnerUsername()
@@ -119,30 +156,26 @@ public class Spark
         _likedByCurrentUser = likedByCurrentUser;
     }
 
-    public void update(Spark spark)
-    {
-        _id = spark.getId();
-        _ownedByCurrentUser = spark.isOwnedByCurrentUser();
-        _likedByCurrentUser = spark.isLikedByCurrentUser();
-        _ownerId = spark.getOwnerId();
-        _ownerFirstLastName = spark.getOwnerFirstLastName();
-        _ownerUsername = spark.getOwnerUsername();
-        _body = spark.getBody();
-        _created = spark.getCreated();
-        _deleted = spark.isDeleted();
-        _likes = spark.getLikes();
-        _comments = spark.getComments();
-        _containsCommentFromCurrentUser = spark.containsCommentFromCurrentUser();
-    }
-
     public boolean isDeleted()
     {
         return _deleted;
     }
 
+    @Override
+    public void setDeleted(boolean deleted)
+    {
+        _deleted = deleted;
+    }
+
     public ArrayList<String> getComments()
     {
         return _comments;
+    }
+
+    @Override
+    public void setComments(ArrayList<String> comments)
+    {
+        _comments = comments;
     }
 
     public boolean containsCommentFromCurrentUser()
@@ -158,6 +191,18 @@ public class Spark
     public int getLikesAmount()
     {
         return _likes.size();
+    }
+
+    @Override
+    public String getUserId()
+    {
+        return _ownerId;
+    }
+
+    @Override
+    public void setUserId(String userid)
+    {
+        _ownerId = userid;
     }
 
     public void addCommentFromUser(String userId)

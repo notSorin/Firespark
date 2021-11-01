@@ -1,11 +1,12 @@
-package com.lesorin.firespark.presenter.pojo;
+package com.lesorin.firespark.model.firebase;
 
 import static com.lesorin.firespark.model.firebase.ModelConstants.*;
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.PropertyName;
 import java.util.ArrayList;
+import java.util.Date;
 
-public class Comment
+class FirebaseComment extends com.lesorin.firespark.presenter.Comment
 {
     private String _id;
     private boolean _ownedByCurrentUser, _likedByCurrentUser;
@@ -40,7 +41,7 @@ public class Comment
     @PropertyName(COMMENT_REPLYTOUSERNAME)
     private String _replyToUsername;
 
-    public Comment()
+    public FirebaseComment()
     {
         _likes = new ArrayList<>();
     }
@@ -68,6 +69,48 @@ public class Comment
     public String getSparkId()
     {
         return _sparkId;
+    }
+
+    @Override
+    public void setSparkId(String sparkId)
+    {
+        _id = sparkId;
+    }
+
+    @Override
+    public String getUserId()
+    {
+        return _ownerId;
+    }
+
+    @Override
+    public void setUserId(String id)
+    {
+        _ownerId = id;
+    }
+
+    @Override
+    public String getUserFirstLastName()
+    {
+        return _ownerFirstLastName;
+    }
+
+    @Override
+    public void setUserFirstLastName(String name)
+    {
+        _ownerFirstLastName = name;
+    }
+
+    @Override
+    public String getUserUsername()
+    {
+        return _ownerUsername;
+    }
+
+    @Override
+    public void setUserUsername(String username)
+    {
+        _ownerUsername = username;
     }
 
     public String getOwnerId()
@@ -110,9 +153,21 @@ public class Comment
         _body = body;
     }
 
-    public Timestamp getCreated()
+    public Date getCreated()
     {
-        return _created;
+        return _created.toDate();
+    }
+
+    @Override
+    public void setCreated(Date created)
+    {
+        _created = new Timestamp(created);
+    }
+
+    @Override
+    public boolean isDeleted()
+    {
+        return _deleted;
     }
 
     public void setCreated(Timestamp created)
@@ -168,22 +223,5 @@ public class Comment
     public void setLikedByCurrentUser(boolean liked)
     {
         _likedByCurrentUser = liked;
-    }
-
-    public void update(Comment comment)
-    {
-        _id = comment.getId();
-        _ownedByCurrentUser = comment.isOwnedByCurrentUser();
-        _likedByCurrentUser = comment.isLikedByCurrentUser();
-        _sparkId = comment.getSparkId();
-        _ownerId = comment.getOwnerId();
-        _ownerFirstLastName = comment.getOwnerFirstLastName();
-        _ownerUsername = comment.getOwnerUsername();
-        _body = comment.getBody();
-        _created = comment.getCreated();
-        _deleted = comment.getDeleted();
-        _likes = comment.getLikes();
-        _replyToFirstLastName = comment.getReplyToFirstLastName();
-        _replyToUsername = comment.getReplyToUsername();
     }
 }

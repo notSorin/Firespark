@@ -1,11 +1,12 @@
-package com.lesorin.firespark.presenter.pojo;
+package com.lesorin.firespark.model.firebase;
 
 import static com.lesorin.firespark.model.firebase.ModelConstants.*;
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.PropertyName;
 import java.util.ArrayList;
+import java.util.Date;
 
-public class User
+class FirebaseUser extends com.lesorin.firespark.presenter.User
 {
     private String _id;
     private boolean _isCurrentUser, _isFollowedByCurrentUser;
@@ -31,7 +32,7 @@ public class User
     @PropertyName(USER_VERIFIED)
     private boolean _verified;
 
-    public User()
+    public FirebaseUser()
     {
         _followers = new ArrayList<>();
         _following = new ArrayList<>();
@@ -52,9 +53,28 @@ public class User
         return _username;
     }
 
+    @Override
+    public String getUsernameInsensitive()
+    {
+        return _usernameInsensitive;
+    }
+
+    @Override
+    public void setUsername(String username)
+    {
+        _username = username;
+        _usernameInsensitive = username.toLowerCase();
+    }
+
     public ArrayList<String> getFollowers()
     {
         return _followers;
+    }
+
+    @Override
+    public void setFollowers(ArrayList<String> followers)
+    {
+        _followers = followers;
     }
 
     public ArrayList<String> getFollowing()
@@ -62,9 +82,21 @@ public class User
         return _following;
     }
 
-    public Timestamp getJoined()
+    @Override
+    public void setFollowing(ArrayList<String> following)
     {
-        return _joined;
+        _following = following;
+    }
+
+    public Date getJoined()
+    {
+        return _joined.toDate();
+    }
+
+    @Override
+    public void setJoined(Date joined)
+    {
+        _joined = new Timestamp(joined);
     }
 
     public void setCurrentUser(boolean isCurrentUser)
@@ -80,6 +112,18 @@ public class User
     public String getId()
     {
         return _id;
+    }
+
+    @Override
+    public String getFirstLastName()
+    {
+        return _firstLastName;
+    }
+
+    @Override
+    public void setFirstLastName(String name)
+    {
+        _firstLastName = name;
     }
 
     public boolean isFollowedByCurrentUser()
@@ -99,20 +143,24 @@ public class User
 
     public boolean isVerified()
     {
-        return _verified;
+        return false; //Not applicable to Firebase model.
     }
 
-    public void update(User user)
+    @Override
+    public void setVerified(boolean verified)
     {
-        _id = user.getId();
-        _isCurrentUser = user.isCurrentUser();
-        _isFollowedByCurrentUser = user.isFollowedByCurrentUser();
-        _firstLastName = user.getFirstlastname();
-        _username = user.getUsername();
-        _usernameInsensitive = user.getUsernameinsensitive();
-        _joined = user.getJoined();
-        _followers = user.getFollowers();
-        _following = user.getFollowing();
-        _verified = user.isVerified();
+        //Not applicable to Firebase model.
+    }
+
+    @Override
+    public boolean isOriginal()
+    {
+        return _verified; //For the Firebase model the verified field indicates if a user is original.
+    }
+
+    @Override
+    public void setOriginal(boolean original)
+    {
+        _verified = original; //For the Firebase model the verified field indicates if a user is original.
     }
 }
