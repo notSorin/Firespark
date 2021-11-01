@@ -93,8 +93,10 @@ public class StartModel implements StartContract.Model
                 {
                     JSONObject message = json.getJSONObject(KEY_MESSAGE);
                     String token = message.getString(KEY_TOKEN);
+                    int userid = message.getInt(KEY_USERID);
 
                     saveUserToken(token);
+                    saveUserId(userid);
                     _presenter.responseLogInSuccess();
                 }
                 else
@@ -126,13 +128,14 @@ public class StartModel implements StartContract.Model
         _requestQueue.add(request);
     }
 
+    private void saveUserId(int userid)
+    {
+        _preferences.edit().putInt(KEY_USERID, userid).apply();
+    }
+
     private void saveUserToken(String token)
     {
-        SharedPreferences.Editor editor = _preferences.edit();
-
-        editor.putString(KEY_TOKEN, token);
-
-        editor.apply();
+        _preferences.edit().putString(KEY_TOKEN, token).apply();
     }
 
     @Override
