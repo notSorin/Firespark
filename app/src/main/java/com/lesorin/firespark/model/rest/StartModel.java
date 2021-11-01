@@ -93,7 +93,7 @@ public class StartModel implements StartContract.Model
                 {
                     JSONObject message = json.getJSONObject(KEY_MESSAGE);
                     String token = message.getString(KEY_TOKEN);
-                    int userid = message.getInt(KEY_USERID);
+                    String userid = message.getString(KEY_USERID);
 
                     saveUserToken(token);
                     saveUserId(userid);
@@ -128,9 +128,9 @@ public class StartModel implements StartContract.Model
         _requestQueue.add(request);
     }
 
-    private void saveUserId(int userid)
+    private void saveUserId(String userid)
     {
-        _preferences.edit().putInt(KEY_USERID, userid).apply();
+        _preferences.edit().putString(KEY_USERID, userid).apply();
     }
 
     private void saveUserToken(String token)
