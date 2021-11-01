@@ -1,9 +1,9 @@
 package com.lesorin.firespark.view.fragments;
 
 import androidx.fragment.app.Fragment;
-import com.lesorin.firespark.presenter.pojo.Comment;
-import com.lesorin.firespark.presenter.pojo.Spark;
-import com.lesorin.firespark.presenter.pojo.User;
+import com.lesorin.firespark.presenter.Comment;
+import com.lesorin.firespark.presenter.Spark;
+import com.lesorin.firespark.presenter.User;
 import com.lesorin.firespark.view.activities.MainActivity;
 import java.util.ArrayList;
 

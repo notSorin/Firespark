@@ -5,10 +5,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import com.google.firebase.Timestamp;
 import com.lesorin.firespark.R;
+import com.lesorin.firespark.presenter.Spark;
 import com.lesorin.firespark.view.activities.MainActivity;
-import java.text.SimpleDateFormat;import com.lesorin.firespark.presenter.pojo.Spark;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
@@ -39,10 +39,9 @@ public class SparksRecycleViewAdapter extends RecyclerView.Adapter<SparkViewHold
     {
         Spark spark = _sparksList.get(position);
         int likesAmount = spark.getLikes().size();
-        Timestamp sparkTimestamp = spark.getCreated();
-        Date created = sparkTimestamp != null ? sparkTimestamp.toDate() : null;
+        Date created = spark.getCreated();
 
-        holder.setOwnerUsername(spark.getOwnerFirstLastName(), spark.getOwnerUsername());
+        holder.setOwnerUsername(spark.getUserFirstLastName(), spark.getUserUsername());
         holder.setSparkBody(spark.getBody());
         holder.setSparkLiked(spark.isLikedByCurrentUser());
         holder.setDeleteButtonVisibility(spark.isOwnedByCurrentUser());

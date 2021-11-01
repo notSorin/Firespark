@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.lesorin.firespark.R;
-import com.lesorin.firespark.presenter.pojo.Spark;
+import com.lesorin.firespark.presenter.Spark;
 import com.lesorin.firespark.view.activities.MainActivity;
 import java.util.ArrayList;
 

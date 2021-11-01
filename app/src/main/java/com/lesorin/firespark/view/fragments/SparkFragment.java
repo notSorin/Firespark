@@ -14,10 +14,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.firebase.Timestamp;
 import com.lesorin.firespark.R;
-import com.lesorin.firespark.presenter.pojo.Comment;
-import com.lesorin.firespark.presenter.pojo.Spark;
+import com.lesorin.firespark.presenter.Comment;
+import com.lesorin.firespark.presenter.Spark;
 import com.lesorin.firespark.view.activities.MainActivity;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -191,7 +190,7 @@ public class SparkFragment extends FiresparkFragmentAdapter
         if(_replyComment != null)
         {
             _commentReplyLayout.setVisibility(View.VISIBLE);
-            _commentReplyOwner.setText(_replyComment.getOwnerFirstLastName());
+            _commentReplyOwner.setText(_replyComment.getUserFirstLastName());
         }
         else
         {
@@ -221,8 +220,7 @@ public class SparkFragment extends FiresparkFragmentAdapter
 
     private void updateTimestamp()
     {
-        Timestamp sparkTimestamp = _spark.getCreated();
-        Date created = sparkTimestamp != null ? sparkTimestamp.toDate() : null;
+        Date created = _spark.getCreated();
 
         _timestamp.setText(created != null ? _dateFormat.format(created) : "");
     }
@@ -239,7 +237,7 @@ public class SparkFragment extends FiresparkFragmentAdapter
 
     private void updateOwnerUsername()
     {
-        _ownerUsername.setText(String.format(_activity.getString(R.string.SparkOwnerUsername), _spark.getOwnerFirstLastName(), _spark.getOwnerUsername()));
+        _ownerUsername.setText(String.format(_activity.getString(R.string.SparkOwnerUsername), _spark.getUserFirstLastName(), _spark.getUserUsername()));
 
         if(_spark.isOwnedByCurrentUser())
         {

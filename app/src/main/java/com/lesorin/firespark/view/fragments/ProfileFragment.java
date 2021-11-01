@@ -10,8 +10,8 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import com.google.android.material.button.MaterialButton;
 import com.lesorin.firespark.R;
-import com.lesorin.firespark.presenter.pojo.Spark;
-import com.lesorin.firespark.presenter.pojo.User;
+import com.lesorin.firespark.presenter.Spark;
+import com.lesorin.firespark.presenter.User;
 import com.lesorin.firespark.view.activities.MainActivity;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -105,7 +105,7 @@ public class ProfileFragment extends FragmentWithSparks
 
     private void updateFirstLastName()
     {
-        _firstLastName.setText(_user.getFirstlastname());
+        _firstLastName.setText(_user.getFirstLastName());
     }
 
     private void updateVerifiedIcon()
@@ -126,7 +126,7 @@ public class ProfileFragment extends FragmentWithSparks
 
     private void updateJoined()
     {
-        _userJoined.setText(String.format(_activity.getString(R.string.UserJoined), _dateFormat.format(_user.getJoined().toDate())));
+        _userJoined.setText(String.format(_activity.getString(R.string.UserJoined), _dateFormat.format(_user.getJoined())));
     }
 
     private void initializeTexts()

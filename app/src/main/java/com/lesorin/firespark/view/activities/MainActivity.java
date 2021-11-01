@@ -15,11 +15,11 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.lesorin.firespark.R;
 import com.lesorin.firespark.model.ModelFactory;
+import com.lesorin.firespark.presenter.Comment;
+import com.lesorin.firespark.presenter.Spark;
+import com.lesorin.firespark.presenter.User;
 import com.lesorin.firespark.presenter.PresenterFactory;
-import com.lesorin.firespark.presenter.pojo.Comment;
 import com.lesorin.firespark.presenter.MainContract;
-import com.lesorin.firespark.presenter.pojo.Spark;
-import com.lesorin.firespark.presenter.pojo.User;
 import com.lesorin.firespark.view.fragments.FiresparkFragment;
 import com.lesorin.firespark.view.fragments.HomeFragment;
 import com.lesorin.firespark.view.fragments.PopularFragment;
@@ -579,12 +579,12 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     public void sparkOwnerClicked(Spark spark)
     {
-        FiresparkFragment ff = findProfileFragment(spark.getOwnerId());
+        FiresparkFragment ff = findProfileFragment(spark.getUserId());
 
         //Request user profile only if there isn't already a fragment on the fragments stack with said user.
         if(ff == null)
         {
-            _presenter.requestProfileData(spark.getOwnerId());
+            _presenter.requestProfileData(spark.getUserId());
         }
         else
         {

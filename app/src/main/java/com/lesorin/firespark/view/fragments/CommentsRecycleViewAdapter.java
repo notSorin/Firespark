@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.lesorin.firespark.R;
-import com.lesorin.firespark.presenter.pojo.Comment;
+import com.lesorin.firespark.presenter.Comment;
 import com.lesorin.firespark.view.activities.MainActivity;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -41,12 +41,12 @@ public class CommentsRecycleViewAdapter extends RecyclerView.Adapter<CommentView
         Comment comment = _commentsList.get(position);
         int likesAmount = comment.getLikes().size();
 
-        holder.setOwnerName(comment.getOwnerFirstLastName(), comment.getOwnerUsername());
+        holder.setOwnerName(comment.getUserFirstLastName(), comment.getUserUsername());
         holder.setBody(comment.getBody());
         holder.setCommentLiked(comment.isLikedByCurrentUser());
         holder.setDeleteButtonVisibility(comment.isOwnedByCurrentUser());
         holder.setLikes(likesAmount);
-        holder.setCreated(_dateFormat.format(comment.getCreated().toDate()));
+        holder.setCreated(_dateFormat.format(comment.getCreated()));
         holder.setSpecialOwnerName(comment.isOwnedByCurrentUser());
         holder.setReplyName(comment.getReplyToFirstLastName(), comment.getReplyToUsername());
         holder.getReplyButton().setOnClickListener(view -> _sparkFragment.setReplyComment(_commentsList.get(position)));
