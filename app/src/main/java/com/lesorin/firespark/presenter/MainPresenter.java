@@ -1,9 +1,6 @@
 package com.lesorin.firespark.presenter;
 
 import static com.lesorin.firespark.presenter.StartContract.USERNAME_REGEX;
-import com.lesorin.firespark.presenter.pojo.Comment;
-import com.lesorin.firespark.presenter.pojo.Spark;
-import com.lesorin.firespark.presenter.pojo.User;
 import java.util.ArrayList;
 
 class MainPresenter implements MainContract.PresenterView, MainContract.PresenterModel
