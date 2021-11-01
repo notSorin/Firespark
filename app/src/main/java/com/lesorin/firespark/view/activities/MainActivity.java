@@ -521,6 +521,12 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         Snackbar.make(_navigationView, R.string.ResponseDeleteCommentFailure, Snackbar.LENGTH_LONG).show();
     }
 
+    @Override
+    public void responseNetworkError()
+    {
+        Snackbar.make(_navigationView, R.string.NetworkError, Snackbar.LENGTH_LONG).show();
+    }
+
     private void hideKeyboard()
     {
         InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);

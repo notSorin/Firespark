@@ -377,4 +377,16 @@ class MainPresenter implements MainContract.PresenterView, MainContract.Presente
     {
         _view.responseLogoutSuccess();
     }
+
+    @Override
+    public void responseNetworkError()
+    {
+        _view.responseNetworkError();
+    }
+
+    @Override
+    public void invalidUserCredentialsDetected()
+    {
+        //TODO inform the user that their credentials expired and take them to the login screen.
+    }
 }

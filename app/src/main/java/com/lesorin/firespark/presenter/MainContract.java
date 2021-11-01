@@ -55,6 +55,8 @@ public interface MainContract
         void responseSendCommentSuccess(Comment comment);
         void responseSendCommentFailure();
         void responseLogoutSuccess();
+        void responseNetworkError();
+        void invalidUserCredentialsDetected();
     }
 
     //All methods starting with "response" are methods in response to client requests.
@@ -94,6 +96,7 @@ public interface MainContract
         void responseSendCommentFailure();
         void responseSendCommentEmptyBody();
         void responseDeleteCommentFailure();
+        void responseNetworkError();
     }
 
     //All methods starting with "request" are methods which can be initiated by the client user.
