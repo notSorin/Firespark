@@ -44,6 +44,7 @@ public class MainModel implements MainContract.Model
     public void requestLogout()
     {
         _firebaseAuth.signOut();
+        _presenter.responseLogoutSuccess();
     }
 
     @Override

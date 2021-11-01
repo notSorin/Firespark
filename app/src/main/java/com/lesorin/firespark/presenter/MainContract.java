@@ -57,6 +57,7 @@ public interface MainContract
         void responseSparkDataFailure();
         void responseSendCommentSuccess(Comment comment);
         void responseSendCommentFailure();
+        void responseLogoutSuccess();
     }
 
     //All methods starting with "response" are methods in response to client requests.

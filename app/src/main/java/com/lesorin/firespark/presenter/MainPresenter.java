@@ -40,7 +40,6 @@ class MainPresenter implements MainContract.PresenterView, MainContract.Presente
     public void requestLogout()
     {
         _model.requestLogout();
-        _view.responseLogoutSuccess();
     }
 
     @Override
@@ -374,5 +373,11 @@ class MainPresenter implements MainContract.PresenterView, MainContract.Presente
     public void responseSendCommentFailure()
     {
         _view.responseSendCommentFailure();
+    }
+
+    @Override
+    public void responseLogoutSuccess()
+    {
+        _view.responseLogoutSuccess();
     }
 }
