@@ -24,7 +24,7 @@ import java.util.Map;
 public class MainModel implements MainContract.Model
 {
     private MainContract.PresenterModel _presenter;
-    private final HashMap<String, Spark> _sparksCache;
+    private final HashMap<String, RESTSpark> _sparksCache;
     private final HashMap<String, User> _usersCache;
     private final HashMap<String, Comment> _commentsCache;
     private RequestQueue _requestQueue;
@@ -78,7 +78,7 @@ public class MainModel implements MainContract.Model
 
                     for(int i = 0; i < sparksArray.length(); i++)
                     {
-                        Spark spark = _gson.fromJson(sparksArray.getJSONObject(i).toString(), RESTSpark.class);
+                        RESTSpark spark = _gson.fromJson(sparksArray.getJSONObject(i).toString(), RESTSpark.class);
 
                         sparks.add(processSpark(spark));
                     }
@@ -114,7 +114,7 @@ public class MainModel implements MainContract.Model
         _requestQueue.add(request);
     }
 
-    private Spark processSpark(Spark spark)
+    private RESTSpark processSpark(RESTSpark spark)
     {
         spark.setOwnedByCurrentUser(spark.getUserId().equals(_userid));
         spark.setLikedByCurrentUser(spark.getLikes().contains(_userid));
@@ -152,9 +152,9 @@ public class MainModel implements MainContract.Model
     //is updated and returned.
     //If a spark with the same id as the parameter is not contained in the cache map, then the
     //parameter is inserted into the map and returned.
-    private Spark updateSparksCache(Spark spark)
+    private RESTSpark updateSparksCache(RESTSpark spark)
     {
-        Spark sparkInMap = null;
+        RESTSpark sparkInMap = null;
 
         if(spark != null)
         {
