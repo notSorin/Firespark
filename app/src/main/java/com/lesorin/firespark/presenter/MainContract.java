@@ -1,8 +1,5 @@
 package com.lesorin.firespark.presenter;
 
-import com.lesorin.firespark.presenter.pojo.Comment;
-import com.lesorin.firespark.presenter.pojo.Spark;
-import com.lesorin.firespark.presenter.pojo.User;
 import java.util.ArrayList;
 
 //todo change methods names so all requests start with "request".
