@@ -39,7 +39,7 @@ public class SparksRecycleViewAdapter extends RecyclerView.Adapter<SparkViewHold
     {
         Spark spark = _sparksList.get(position);
         int likesAmount = spark.getLikes().size();
-        Date created = spark.getCreated();
+        Date created = spark.getCreated(); //TODO Figure out how to convert server UTC date to local date.
 
         holder.setOwnerUsername(spark.getUserFirstLastName(), spark.getUserUsername());
         holder.setSparkBody(spark.getBody());
