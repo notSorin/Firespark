@@ -21,7 +21,7 @@ public class ProfileFragment extends FragmentWithSparks
 {
     private final String JOINED_FORMAT = "d MMM yyyy";
     private MaterialButton _followButton;
-    private View _logoutButton, _verifiedIcon;
+    private View _logoutButton, _originalIcon;
     private TextView _firstLastName, _username, _userFollowing, _userJoined;
     private User _user;
     private SimpleDateFormat _dateFormat;
@@ -63,7 +63,7 @@ public class ProfileFragment extends FragmentWithSparks
 
     private void initializeVerifiedIcon()
     {
-        _verifiedIcon = _view.findViewById(R.id.VerifiedIcon);
+        _originalIcon = _view.findViewById(R.id.OriginalIcon);
     }
 
     private void initializeFollowButton()
@@ -83,7 +83,7 @@ public class ProfileFragment extends FragmentWithSparks
 
         if(_user != null)
         {
-            updateVerifiedIcon();
+            updateOriginalIcon();
             updateFirstLastName();
             updateUserName();
             updateFollowing();
@@ -108,9 +108,9 @@ public class ProfileFragment extends FragmentWithSparks
         _firstLastName.setText(_user.getFirstLastName());
     }
 
-    private void updateVerifiedIcon()
+    private void updateOriginalIcon()
     {
-        _verifiedIcon.setVisibility(_user.isVerified() ? View.VISIBLE : View.GONE);
+        _originalIcon.setVisibility(_user.isOriginal() ? View.VISIBLE : View.GONE);
     }
 
     private void updateFollowing()
