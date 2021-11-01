@@ -62,6 +62,20 @@ public class MainModel implements MainContract.Model
 
     }
 
+    private ArrayList<Spark> getSparksFromJSONArray(JSONArray sparksArray) throws JSONException
+    {
+        ArrayList<Spark> sparks = new ArrayList<>();
+
+        for(int i = 0; i < sparksArray.length(); i++)
+        {
+            RESTSpark spark = _gson.fromJson(sparksArray.getJSONObject(i).toString(), RESTSpark.class);
+
+            sparks.add(processSpark(spark));
+        }
+
+        return sparks;
+    }
+
     @Override
     public void requestHomeData()
     {
@@ -73,15 +87,8 @@ public class MainModel implements MainContract.Model
 
                 if(json.getInt(KEY_CODE) == 200)
                 {
-                    JSONArray sparksArray = json.getJSONArray(KEY_MESSAGE);
-                    ArrayList<Spark> sparks = new ArrayList<>();
-
-                    for(int i = 0; i < sparksArray.length(); i++)
-                    {
-                        RESTSpark spark = _gson.fromJson(sparksArray.getJSONObject(i).toString(), RESTSpark.class);
-
-                        sparks.add(processSpark(spark));
-                    }
+                    JSONArray jsonSparks = json.getJSONArray(KEY_MESSAGE);
+                    ArrayList<Spark> sparks = getSparksFromJSONArray(jsonSparks);
 
                     _presenter.responseHomeDataSuccess(sparks);
                 }
