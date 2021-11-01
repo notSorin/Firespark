@@ -18,11 +18,18 @@ public class ModelConstants
     //REST URLS.
     public static final String SIGN_UP_URL = USING_API_URL + "RegisterUser.php";
     public static final String LOG_IN_URL = USING_API_URL + "LoginUser.php";
+    public static final String GET_HOME_DATA_URL = USING_API_URL + "GetHomeData.php";
 
     //JSON keys.
     public static final String KEY_CODE = "code";
     public static final String KEY_MESSAGE = "message";
     public static final String KEY_TOKEN = "token";
+    public static final String KEY_USERID = "userid";
+    public static final String KEY_ERRNO = "errno";
+    public static final String KEY_TOKEN_AUTH = "Authorization";
+
+    //Error codes.
+    public static final String ERRNO_IC = "ERRNO_IC"; //Invalid credentials.
 
     //Keys for logging in.
     public static final String KEY_LOG_IN_EMAIL_OR_USERNAME = "email_or_username";
