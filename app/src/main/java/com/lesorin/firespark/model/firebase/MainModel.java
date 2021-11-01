@@ -9,10 +9,10 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.WriteBatch;
-import com.lesorin.firespark.presenter.pojo.Comment;
 import com.lesorin.firespark.presenter.MainContract;
-import com.lesorin.firespark.presenter.pojo.Spark;
-import com.lesorin.firespark.presenter.pojo.User;
+import com.lesorin.firespark.presenter.Spark;
+import com.lesorin.firespark.presenter.User;
+import com.lesorin.firespark.presenter.Comment;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -580,7 +580,7 @@ public class MainModel implements MainContract.Model
         HashMap<String, Object> ret = new HashMap<>();
 
         ret.put(SPARK_OWNERID, _firebaseAuth.getCurrentUser().getUid());
-        ret.put(SPARK_OWNERFIRSTLASTNAME, user.getFirstlastname());
+        ret.put(SPARK_OWNERFIRSTLASTNAME, user.getFirstLastName());
         ret.put(SPARK_OWNERUSERNAME, user.getUsername());
         ret.put(SPARK_BODY, sparkBody);
         ret.put(SPARK_CREATED, FieldValue.serverTimestamp());
@@ -605,7 +605,7 @@ public class MainModel implements MainContract.Model
 
         ret.put(COMMENT_SPARKID, spark.getId());
         ret.put(COMMENT_OWNERID, currentUser.getId());
-        ret.put(COMMENT_OWNERFIRSTLASTNAME, currentUser.getFirstlastname());
+        ret.put(COMMENT_OWNERFIRSTLASTNAME, currentUser.getFirstLastName());
         ret.put(COMMENT_OWNERUSERNAME, currentUser.getUsername());
         ret.put(COMMENT_BODY, commentBody);
         ret.put(COMMENT_CREATED, FieldValue.serverTimestamp());
@@ -614,16 +614,16 @@ public class MainModel implements MainContract.Model
 
         if(replyComment != null)
         {
-            ret.put(COMMENT_REPLYTOFIRSTLASTNAME, replyComment.getOwnerFirstLastName());
-            ret.put(COMMENT_REPLYTOUSERNAME, replyComment.getOwnerUsername());
+            ret.put(COMMENT_REPLYTOFIRSTLASTNAME, replyComment.getUserFirstLastName());
+            ret.put(COMMENT_REPLYTOUSERNAME, replyComment.getReplyToUsername());
         }
 
         return ret;
     }
 
-    private Spark createSparkFromDocumentSnapshot(DocumentSnapshot document)
+    private FirebaseSpark createSparkFromDocumentSnapshot(DocumentSnapshot document)
     {
-        Spark spark = document.toObject(Spark.class);
+        FirebaseSpark spark = document.toObject(FirebaseSpark.class);
 
         spark.setId(document.getId());
         spark.setOwnedByCurrentUser(spark.getOwnerId().equals(_firebaseAuth.getUid()));
@@ -633,9 +633,9 @@ public class MainModel implements MainContract.Model
         return spark;
     }
 
-    private User createUserFromDocumentSnapshot(DocumentSnapshot document)
+    private FirebaseUser createUserFromDocumentSnapshot(DocumentSnapshot document)
     {
-        User user = document.toObject(User.class);
+        FirebaseUser user = document.toObject(FirebaseUser.class);
 
         user.setId(document.getId());
         user.setCurrentUser(document.getId().equals(_firebaseAuth.getUid()));
@@ -644,9 +644,9 @@ public class MainModel implements MainContract.Model
         return user;
     }
 
-    private Comment createCommentFromDocumentSnapshot(DocumentSnapshot document)
+    private FirebaseComment createCommentFromDocumentSnapshot(DocumentSnapshot document)
     {
-        Comment comment = document.toObject(Comment.class);
+        FirebaseComment comment = document.toObject(FirebaseComment.class);
 
         comment.setId(document.getId());
         comment.setOwnedByCurrentUser(comment.getOwnerId().equals(_firebaseAuth.getUid()));
