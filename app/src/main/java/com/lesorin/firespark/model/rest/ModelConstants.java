@@ -12,7 +12,7 @@ public class ModelConstants
     private static final String API_V1_URL = API_URL + "v1/";
     private static final String API_PRE_URL = API_URL + "pre/";
 
-    //Replace USING_API_URL this with the version of the API to use.
+    //Replace USING_API_URL with the version of the API to use.
     private static final String USING_API_URL = API_PRE_URL;
 
     //REST URLS.

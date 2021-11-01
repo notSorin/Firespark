@@ -16,9 +16,9 @@ public class ModelFactory
         return new com.lesorin.firespark.model.firebase.StartModel();
     }
 
-    public static MainContract.Model getRESTMainModel()
+    public static MainContract.Model getRESTMainModel(Context context)
     {
-        return new com.lesorin.firespark.model.rest.MainModel();
+        return new com.lesorin.firespark.model.rest.MainModel(context);
     }
 
     public static StartContract.Model getRESTStartModel(Context context)

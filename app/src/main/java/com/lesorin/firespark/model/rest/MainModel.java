@@ -1,5 +1,10 @@
 package com.lesorin.firespark.model.rest;
 
+import static com.lesorin.firespark.model.rest.ModelConstants.*;
+import android.content.Context;
+import android.content.SharedPreferences;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
 import com.lesorin.firespark.presenter.MainContract;
 import com.lesorin.firespark.presenter.pojo.Comment;
 import com.lesorin.firespark.presenter.pojo.Spark;
@@ -12,12 +17,16 @@ public class MainModel implements MainContract.Model
     private final HashMap<String, Spark> _sparksCache;
     private final HashMap<String, User> _usersCache;
     private final HashMap<String, Comment> _commentsCache;
+    private RequestQueue _requestQueue;
+    private SharedPreferences _preferences;
 
-    public MainModel()
+    public MainModel(Context context)
     {
         _sparksCache = new HashMap<>();
         _usersCache = new HashMap<>();
         _commentsCache = new HashMap<>();
+        _requestQueue = Volley.newRequestQueue(context);
+        _preferences = context.getSharedPreferences(SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
     }
 
     public void setPresenter(MainContract.PresenterModel presenter)
