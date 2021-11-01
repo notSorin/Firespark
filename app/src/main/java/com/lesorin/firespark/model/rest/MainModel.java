@@ -25,7 +25,7 @@ public class MainModel implements MainContract.Model
 {
     private MainContract.PresenterModel _presenter;
     private final HashMap<String, RESTSpark> _sparksCache;
-    private final HashMap<String, User> _usersCache;
+    private final HashMap<String, RESTUser> _usersCache;
     private final HashMap<String, Comment> _commentsCache;
     private RequestQueue _requestQueue;
     private SharedPreferences _preferences;
@@ -59,7 +59,98 @@ public class MainModel implements MainContract.Model
     @Override
     public void requestProfileData(String userId)
     {
+        final String userid = userId == null ? _userid : userId;
 
+        Response.Listener<String> rl = response ->
+        {
+            try
+            {
+                JSONObject json = new JSONObject(response);
+
+                if(json.getInt(KEY_CODE) == 200)
+                {
+                    JSONObject message = json.getJSONObject(KEY_MESSAGE);
+                    JSONObject jsonUser = message.getJSONObject(KEY_PROFILE);
+                    JSONArray jsonSparks = message.getJSONArray(KEY_PROFILE_SPARKS);
+                    RESTUser user = getUserFromJSONObject(jsonUser);
+                    ArrayList<Spark> sparks = getSparksFromJSONArray(jsonSparks);
+
+                    _presenter.responseProfileDataSuccess(user, sparks);
+                }
+                else
+                {
+                    _presenter.responseProfileDataFailure();
+                    handleResponseError(json);
+                }
+            }
+            catch(JSONException e)
+            {
+                _presenter.responseProfileDataFailure();
+            }
+        };
+
+        StringRequest request = new StringRequest(Request.Method.POST, GET_PROFILE_DATA_URL, rl,
+                error -> _presenter.responseNetworkError())
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String> params = new HashMap<>();
+
+                params.put(KEY_USERID, userid);
+
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders()
+            {
+                Map<String, String> params = new HashMap<>();
+
+                params.put(KEY_TOKEN_AUTH, _token);
+
+                return params;
+            }
+        };
+
+        _requestQueue.add(request);
+    }
+
+    private RESTUser getUserFromJSONObject(JSONObject jsonProfile) throws JSONException
+    {
+        RESTUser user = _gson.fromJson(jsonProfile.toString(), RESTUser.class);
+
+        user = processUser(user);
+
+        return user;
+    }
+
+    private RESTUser processUser(RESTUser user)
+    {
+        user.setCurrentUser(user.getId().equals(_userid));
+        user.setFollowedByCurrentUser(user.getFollowers().contains(_userid));
+
+        return updateUsersCache(user);
+    }
+
+    private RESTUser updateUsersCache(RESTUser user)
+    {
+        RESTUser userInCache = _usersCache.get(user.getId());
+
+        //If it is in the cache, then update it with the latest data read
+        //from the database, because the cache might contain old values.
+        if(userInCache != null)
+        {
+            userInCache.update(user);
+        }
+        else //If the user is not in cache, insert it.
+        {
+            _usersCache.put(user.getId(), user);
+
+            userInCache = user;
+        }
+
+        return userInCache;
     }
 
     private ArrayList<Spark> getSparksFromJSONArray(JSONArray sparksArray) throws JSONException
