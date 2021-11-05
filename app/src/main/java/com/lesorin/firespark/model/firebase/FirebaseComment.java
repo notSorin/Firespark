@@ -205,6 +205,16 @@ class FirebaseComment extends com.lesorin.firespark.presenter.Comment
         _replyToFirstLastName = firstLastName;
     }
 
+    @Override
+    public String getReplyToId() {
+        return null;
+    }
+
+    @Override
+    public void setReplyToId(String id) {
+
+    }
+
     public String getReplyToUsername()
     {
         return _replyToUsername;

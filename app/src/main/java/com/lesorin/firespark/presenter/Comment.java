@@ -38,6 +38,9 @@ public abstract class Comment
     public abstract String getReplyToFirstLastName();
     public abstract void setReplyToFirstLastName(String firstLastName);
 
+    public abstract String getReplyToId();
+    public abstract void setReplyToId(String id);
+
     public abstract String getReplyToUsername();
     public abstract void setReplyToUsername(String username);
 
