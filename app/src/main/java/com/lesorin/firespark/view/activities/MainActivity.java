@@ -674,4 +674,9 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     {
         _presenter.requestDeleteComment(comment);
     }
+
+    public void refreshSparkData(Spark spark)
+    {
+        _presenter.requestSparkDataRefresh(spark);
+    }
 }

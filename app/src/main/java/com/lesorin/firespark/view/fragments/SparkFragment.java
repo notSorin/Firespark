@@ -128,11 +128,7 @@ public class SparkFragment extends FiresparkFragmentAdapter
     {
         _swipeRefresh = _view.findViewById(R.id.SwipeRefresh);
 
-        _swipeRefresh.setOnRefreshListener(() ->
-        {
-            //todo
-            _swipeRefresh.setRefreshing(false);
-        });
+        _swipeRefresh.setOnRefreshListener(() -> _activity.refreshSparkData(_spark));
     }
 
     public void setComments(ArrayList<Comment> comments)
