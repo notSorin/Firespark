@@ -290,7 +290,57 @@ public class MainModel implements MainContract.Model
     @Override
     public void requestSendSpark(String sparkBody)
     {
+        Response.Listener<String> rl = response ->
+        {
+            try
+            {
+                JSONObject json = new JSONObject(response);
 
+                if(json.getInt(KEY_CODE) == 200)
+                {
+                    RESTSpark spark = _gson.fromJson(json.getJSONObject(KEY_MESSAGE).toString(), RESTSpark.class);
+
+                    spark = processSpark(spark);
+
+                    _presenter.responseSendSparkSuccess(spark);
+                }
+                else
+                {
+                    _presenter.responseSendSparkFailure();
+                    handleResponseError(json);
+                }
+            }
+            catch(Exception e)
+            {
+                _presenter.responseSendSparkFailure();
+            }
+        };
+
+        StringRequest request = new StringRequest(Request.Method.POST, SEND_SPARK_URL, rl,
+                error -> _presenter.responseNetworkError())
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String> params = new HashMap<>();
+
+                params.put(KEY_SPARK_BODY, sparkBody);
+
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders()
+            {
+                Map<String, String> params = new HashMap<>();
+
+                params.put(KEY_TOKEN_AUTH, _token);
+
+                return params;
+            }
+        };
+
+        _requestQueue.add(request);
     }
 
     @Override
