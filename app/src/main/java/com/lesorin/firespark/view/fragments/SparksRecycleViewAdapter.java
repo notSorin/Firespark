@@ -50,26 +50,10 @@ public class SparksRecycleViewAdapter extends RecyclerView.Adapter<SparkViewHold
         holder.setSpecialOwnerName(spark.isOwnedByCurrentUser());
         holder.setCommentsAmount(spark.getComments().size());
         holder.setSpecialCommentIcon(spark.containsCommentFromCurrentUser());
-
-        holder.getLayoutView().setOnClickListener(view ->
-        {
-            ((MainActivity)view.getContext()).sparkClicked(_sparksList.get(position));
-        });
-
-        holder.getLikeView().setOnClickListener(view ->
-        {
-            ((MainActivity)view.getContext()).sparkLikeClicked(_sparksList.get(position));
-        });
-
-        holder.getOwnerView().setOnClickListener(view ->
-        {
-            ((MainActivity)view.getContext()).sparkOwnerClicked(_sparksList.get(position));
-        });
-
-        holder.getDeleteSparkView().setOnClickListener(view ->
-        {
-            ((MainActivity)view.getContext()).sparkDeleteClicked(_sparksList.get(position));
-        });
+        holder.getLayoutView().setOnClickListener(view -> ((MainActivity)view.getContext()).sparkClicked(_sparksList.get(position)));
+        holder.getLikeView().setOnClickListener(view -> ((MainActivity)view.getContext()).sparkLikeClicked(_sparksList.get(position)));
+        holder.getOwnerView().setOnClickListener(view -> ((MainActivity)view.getContext()).sparkOwnerClicked(_sparksList.get(position)));
+        holder.getDeleteSparkView().setOnClickListener(view -> ((MainActivity)view.getContext()).sparkDeleteClicked(_sparksList.get(position)));
     }
 
     @Override
