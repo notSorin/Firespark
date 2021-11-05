@@ -109,4 +109,9 @@ public class FiresparkFragmentAdapter extends FiresparkFragment
     {
         return null;
     }
+
+    @Override
+    public void refreshSparkData(Spark spark, ArrayList<Comment> comments)
+    {
+    }
 }
