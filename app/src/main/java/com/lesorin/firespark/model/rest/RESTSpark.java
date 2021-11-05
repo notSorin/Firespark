@@ -3,6 +3,8 @@ package com.lesorin.firespark.model.rest;
 import com.lesorin.firespark.presenter.Spark;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
 
 public class RESTSpark extends Spark
 {
@@ -11,7 +13,8 @@ public class RESTSpark extends Spark
     private String sparkid, userid, body, username, firstlastname;
     private Date created;
     private int deleted;
-    private ArrayList<String> likes, comments;
+    private List<String> comments;
+    private Set<String> likes;
 
     @Override
     public String getId()
@@ -50,13 +53,13 @@ public class RESTSpark extends Spark
     }
 
     @Override
-    public ArrayList<String> getLikes()
+    public Set<String> getLikes()
     {
         return likes;
     }
 
     @Override
-    public void setLikes(ArrayList<String> likes)
+    public void setLikes(Set<String> likes)
     {
         this.likes = likes;
     }
@@ -152,13 +155,13 @@ public class RESTSpark extends Spark
     }
 
     @Override
-    public ArrayList<String> getComments()
+    public List<String> getComments()
     {
         return comments;
     }
 
     @Override
-    public void setComments(ArrayList<String> comments)
+    public void setComments(List<String> comments)
     {
         this.comments = comments;
     }

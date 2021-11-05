@@ -1,8 +1,8 @@
 package com.lesorin.firespark.model.rest;
 
 import com.lesorin.firespark.presenter.Comment;
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.Set;
 
 public class RESTComment extends Comment
 {
@@ -12,7 +12,7 @@ public class RESTComment extends Comment
             replytousername, replytofirstlastname;
     private Date created;
     private int deleted;
-    private ArrayList<String> likes;
+    private Set<String> likes;
 
     @Override
     public String getId()
@@ -123,13 +123,13 @@ public class RESTComment extends Comment
     }
 
     @Override
-    public ArrayList<String> getLikes()
+    public Set<String> getLikes()
     {
         return likes;
     }
 
     @Override
-    public void setLikes(ArrayList<String> likes)
+    public void setLikes(Set<String> likes)
     {
         this.likes = likes;
     }

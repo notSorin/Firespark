@@ -1,8 +1,8 @@
 package com.lesorin.firespark.model.rest;
 
 import com.lesorin.firespark.presenter.User;
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.Set;
 
 public class RESTUser extends User
 {
@@ -11,7 +11,7 @@ public class RESTUser extends User
     private String userid, username, firstlastname;
     private Date joined;
     private int verified, original;
-    private ArrayList<String> followers, following;
+    private Set<String> followers, following;
 
     @Override
     public void setId(String id)
@@ -56,25 +56,25 @@ public class RESTUser extends User
     }
 
     @Override
-    public ArrayList<String> getFollowers()
+    public Set<String> getFollowers()
     {
         return followers;
     }
 
     @Override
-    public void setFollowers(ArrayList<String> followers)
+    public void setFollowers(Set<String> followers)
     {
         this.followers = followers;
     }
 
     @Override
-    public ArrayList<String> getFollowing()
+    public Set<String> getFollowing()
     {
         return following;
     }
 
     @Override
-    public void setFollowing(ArrayList<String> following)
+    public void setFollowing(Set<String> following)
     {
         this.following = following;
     }
