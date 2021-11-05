@@ -268,7 +268,7 @@ public class MainModel implements MainContract.Model
     @Override
     public void requestPopularData()
     {
-
+        //todo
     }
 
     @Override
@@ -611,7 +611,7 @@ public class MainModel implements MainContract.Model
     @Override
     public void requestSearchUserByUsername(String userName)
     {
-
+        //todo
     }
 
     @Override
@@ -740,7 +740,7 @@ public class MainModel implements MainContract.Model
     @Override
     public void requestSendComment(Spark spark, String commentBody, Comment replyComment)
     {
-
+        //todo
     }
 
     @Override
