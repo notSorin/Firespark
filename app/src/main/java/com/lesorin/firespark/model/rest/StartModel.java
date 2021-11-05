@@ -17,8 +17,8 @@ import java.util.Map;
 public class StartModel implements StartContract.Model
 {
     private StartContract.PresenterModel _presenter;
-    private RequestQueue _requestQueue;
-    private SharedPreferences _preferences;
+    private final RequestQueue _requestQueue;
+    private final SharedPreferences _preferences;
 
     public StartModel(Context context)
     {
