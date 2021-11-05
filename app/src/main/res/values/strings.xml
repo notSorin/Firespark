@@ -93,4 +93,6 @@
     <string name="NetworkError">Firespark server could not be reached. Please try again.</string>
     <string name="DeletedComment"><![CDATA[<<<deleted comment>>>]]></string>
     <string name="ResponseSparkDataRefreshFailure">Could not refresh spark data.</string>
+    <string name="DeleteCommentTitle">Delete Comment?</string>
+    <string name="DeleteCommentMessage">Are you sure you want to delete this Comment? This action cannot be undone.</string>
 </resources>

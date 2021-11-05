@@ -678,7 +678,12 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     public void commentDeleteClicked(Comment comment)
     {
-        _presenter.requestDeleteComment(comment);
+        MaterialAlertDialogBuilder madb = new MaterialAlertDialogBuilder(this);
+
+        madb.setTitle(getString(R.string.DeleteCommentTitle)).setMessage(getString(R.string.DeleteCommentMessage)).
+                setNegativeButton(getString(R.string.Cancel), (dialogInterface, i) -> {}).
+                setPositiveButton(getString(R.string.Delete), (dialogInterface, i) -> _presenter.requestDeleteComment(comment)).
+                show();
     }
 
     public void refreshSparkData(Spark spark)
