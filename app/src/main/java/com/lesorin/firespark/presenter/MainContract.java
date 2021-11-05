@@ -2,7 +2,6 @@ package com.lesorin.firespark.presenter;
 
 import java.util.ArrayList;
 
-//todo change methods names so all requests start with "request".
 public interface MainContract
 {
     //All methods starting with "request" are methods which can be initiated by the client user.
