@@ -282,9 +282,7 @@ public class MainModel implements MainContract.Model
 
                 if(json.getInt(KEY_CODE) == 200)
                 {
-                    RESTSpark spark = _gson.fromJson(json.getJSONObject(KEY_MESSAGE).toString(), RESTSpark.class);
-
-                    spark = processSpark(spark);
+                    RESTSpark spark = getSparkFromJSONObject(json.getJSONObject(KEY_MESSAGE));
 
                     _presenter.responseSendSparkSuccess(spark);
                 }
