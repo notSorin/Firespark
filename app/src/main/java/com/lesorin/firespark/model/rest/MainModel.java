@@ -734,7 +734,66 @@ public class MainModel implements MainContract.Model
     @Override
     public void requestDeleteComment(Comment comment)
     {
+        Response.Listener<String> rl = response ->
+        {
+            try
+            {
+                JSONObject json = new JSONObject(response);
 
+                if(json.getInt(KEY_CODE) == 200)
+                {
+                    removeCommentFromSpark(comment);
+                    _commentsCache.remove(comment.getId());
+                    _presenter.responseDeleteCommentSuccess(comment);
+                }
+                else
+                {
+                    _presenter.responseDeleteCommentFailure();
+                    handleResponseError(json);
+                }
+            }
+            catch(JSONException e)
+            {
+                _presenter.responseDeleteCommentFailure();
+            }
+        };
+
+        StringRequest request = new StringRequest(Request.Method.POST, DELETE_COMMENT_URL, rl,
+                error -> _presenter.responseNetworkError())
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String> params = new HashMap<>();
+
+                params.put(KEY_COMMENT_ID, comment.getId());
+
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders()
+            {
+                Map<String, String> params = new HashMap<>();
+
+                params.put(KEY_TOKEN_AUTH, _token);
+
+                return params;
+            }
+        };
+
+        _requestQueue.add(request);
+    }
+
+    private void removeCommentFromSpark(Comment comment)
+    {
+        Spark spark = _sparksCache.get(comment.getSparkId());
+
+        if(spark != null)
+        {
+            spark.getComments().remove(comment.getUserId());
+            spark.setContainsCommentFromCurrentUser(spark.getComments().contains(_userid));
+        }
     }
 
     @Override
