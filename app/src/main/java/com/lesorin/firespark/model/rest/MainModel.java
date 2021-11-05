@@ -27,10 +27,10 @@ public class MainModel implements MainContract.Model
     private final HashMap<String, RESTSpark> _sparksCache;
     private final HashMap<String, RESTUser> _usersCache;
     private final HashMap<String, Comment> _commentsCache;
-    private RequestQueue _requestQueue;
-    private SharedPreferences _preferences;
-    private String _token, _userid;
-    private Gson _gson;
+    private final RequestQueue _requestQueue;
+    private final SharedPreferences _preferences;
+    private final String _token, _userid;
+    private final Gson _gson;
 
     public MainModel(Context context)
     {
