@@ -20,6 +20,7 @@ public class ModelConstants
     public static final String LOG_IN_URL = USING_API_URL + "LoginUser.php";
     public static final String GET_HOME_DATA_URL = USING_API_URL + "GetHomeData.php";
     public static final String GET_PROFILE_DATA_URL = USING_API_URL + "GetProfileData.php";
+    public static final String DELETE_SPARK_URL = USING_API_URL + "DeleteSpark.php";
 
     //JSON keys.
     public static final String KEY_CODE = "code";
@@ -30,6 +31,7 @@ public class ModelConstants
     public static final String KEY_TOKEN_AUTH = "Authorization";
     public static final String KEY_PROFILE = "profile";
     public static final String KEY_PROFILE_SPARKS = "profile_sparks";
+    public static final String KEY_SPARKID = "sparkid";
 
     //Error codes.
     public static final String ERRNO_IC = "ERRNO_IC"; //Invalid credentials.

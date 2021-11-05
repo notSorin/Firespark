@@ -296,7 +296,54 @@ public class MainModel implements MainContract.Model
     @Override
     public void requestDeleteSpark(Spark spark)
     {
+        Response.Listener<String> rl = response ->
+        {
+            try
+            {
+                JSONObject json = new JSONObject(response);
 
+                if(json.getInt(KEY_CODE) == 200)
+                {
+                    _sparksCache.remove(spark.getId());
+                    _presenter.responseDeleteSparkSuccess(spark);
+                }
+                else
+                {
+                    _presenter.responseDeleteSparkFailure();
+                    handleResponseError(json);
+                }
+            }
+            catch(JSONException e)
+            {
+                _presenter.responseDeleteSparkFailure();
+            }
+        };
+
+        StringRequest request = new StringRequest(Request.Method.POST, DELETE_SPARK_URL, rl,
+                error -> _presenter.responseNetworkError())
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String> params = new HashMap<>();
+
+                params.put(KEY_SPARKID, spark.getId());
+
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders()
+            {
+                Map<String, String> params = new HashMap<>();
+
+                params.put(KEY_TOKEN_AUTH, _token);
+
+                return params;
+            }
+        };
+
+        _requestQueue.add(request);
     }
 
     @Override
