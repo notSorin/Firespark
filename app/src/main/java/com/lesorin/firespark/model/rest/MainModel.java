@@ -674,9 +674,9 @@ public class MainModel implements MainContract.Model
 
         for(int i = 0; i < jsonComments.length(); i++)
         {
-            RESTComment comment = _gson.fromJson(jsonComments.getJSONObject(i).toString(), RESTComment.class);
+            RESTComment comment = getCommentFromJSONObject(jsonComments.getJSONObject(i));
 
-            comments.add(processComment(comment));
+            comments.add(comment);
         }
 
         return comments;
