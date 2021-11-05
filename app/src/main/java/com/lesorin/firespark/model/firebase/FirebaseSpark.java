@@ -1,10 +1,13 @@
 package com.lesorin.firespark.model.firebase;
 
 import static com.lesorin.firespark.model.firebase.ModelConstants.*;
+import android.util.ArraySet;
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.PropertyName;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
 
 class FirebaseSpark extends com.lesorin.firespark.presenter.Spark
 {
@@ -30,17 +33,17 @@ class FirebaseSpark extends com.lesorin.firespark.presenter.Spark
     private boolean _deleted;
 
     @PropertyName(SPARK_LIKES)
-    private ArrayList<String> _likes;
+    private Set<String> _likes;
 
     @PropertyName(SPARK_SUBSCRIBERS)
-    private ArrayList<String> _subscribers;
+    private List<String> _subscribers;
 
     @PropertyName(SPARK_COMMENTS)
-    private ArrayList<String> _comments;
+    private List<String> _comments;
 
     public FirebaseSpark()
     {
-        _likes = new ArrayList<>();
+        _likes = new ArraySet<>();
         _subscribers = new ArrayList<>();
         _comments = new ArrayList<>();
     }
@@ -70,18 +73,18 @@ class FirebaseSpark extends com.lesorin.firespark.presenter.Spark
         return _body;
     }
 
-    public ArrayList<String> getLikes()
+    public Set<String> getLikes()
     {
         return _likes;
     }
 
     @Override
-    public void setLikes(ArrayList<String> likes)
+    public void setLikes(Set<String> likes)
     {
         _likes = likes;
     }
 
-    public ArrayList<String> getSubscribers()
+    public List<String> getSubscribers()
     {
         return _subscribers;
     }
@@ -167,13 +170,13 @@ class FirebaseSpark extends com.lesorin.firespark.presenter.Spark
         _deleted = deleted;
     }
 
-    public ArrayList<String> getComments()
+    public List<String> getComments()
     {
         return _comments;
     }
 
     @Override
-    public void setComments(ArrayList<String> comments)
+    public void setComments(List<String> comments)
     {
         _comments = comments;
     }

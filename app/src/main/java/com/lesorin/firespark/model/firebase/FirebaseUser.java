@@ -1,10 +1,11 @@
 package com.lesorin.firespark.model.firebase;
 
 import static com.lesorin.firespark.model.firebase.ModelConstants.*;
+import android.util.ArraySet;
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.PropertyName;
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.Set;
 
 class FirebaseUser extends com.lesorin.firespark.presenter.User
 {
@@ -24,18 +25,18 @@ class FirebaseUser extends com.lesorin.firespark.presenter.User
     private Timestamp _joined;
 
     @PropertyName(USER_FOLLOWERS)
-    private ArrayList<String> _followers;
+    private Set<String> _followers;
 
     @PropertyName(USER_FOLLOWING)
-    private ArrayList<String> _following;
+    private Set<String> _following;
 
     @PropertyName(USER_VERIFIED)
     private boolean _verified;
 
     public FirebaseUser()
     {
-        _followers = new ArrayList<>();
-        _following = new ArrayList<>();
+        _followers = new ArraySet<>();
+        _following = new ArraySet<>();
     }
 
     public void setId(String id)
@@ -66,24 +67,24 @@ class FirebaseUser extends com.lesorin.firespark.presenter.User
         _usernameInsensitive = username.toLowerCase();
     }
 
-    public ArrayList<String> getFollowers()
+    public Set<String> getFollowers()
     {
         return _followers;
     }
 
     @Override
-    public void setFollowers(ArrayList<String> followers)
+    public void setFollowers(Set<String> followers)
     {
         _followers = followers;
     }
 
-    public ArrayList<String> getFollowing()
+    public Set<String> getFollowing()
     {
         return _following;
     }
 
     @Override
-    public void setFollowing(ArrayList<String> following)
+    public void setFollowing(Set<String> following)
     {
         _following = following;
     }

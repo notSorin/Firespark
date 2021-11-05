@@ -1,10 +1,11 @@
 package com.lesorin.firespark.model.firebase;
 
 import static com.lesorin.firespark.model.firebase.ModelConstants.*;
+import android.util.ArraySet;
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.PropertyName;
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.Set;
 
 class FirebaseComment extends com.lesorin.firespark.presenter.Comment
 {
@@ -33,7 +34,7 @@ class FirebaseComment extends com.lesorin.firespark.presenter.Comment
     private boolean _deleted;
 
     @PropertyName(COMMENT_LIKES)
-    private ArrayList<String> _likes;
+    private Set<String> _likes;
 
     @PropertyName(COMMENT_REPLYTOFIRSTLASTNAME)
     private String _replyToFirstLastName;
@@ -43,7 +44,7 @@ class FirebaseComment extends com.lesorin.firespark.presenter.Comment
 
     public FirebaseComment()
     {
-        _likes = new ArrayList<>();
+        _likes = new ArraySet<>();
     }
 
     public String getId()
@@ -185,12 +186,12 @@ class FirebaseComment extends com.lesorin.firespark.presenter.Comment
         _deleted = deleted;
     }
 
-    public ArrayList<String> getLikes()
+    public Set<String> getLikes()
     {
         return _likes;
     }
 
-    public void setLikes(ArrayList<String> likes)
+    public void setLikes(Set<String> likes)
     {
         _likes = likes;
     }

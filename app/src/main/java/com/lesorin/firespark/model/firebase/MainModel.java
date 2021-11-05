@@ -16,6 +16,7 @@ import com.lesorin.firespark.presenter.Comment;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Set;
 
 public class MainModel implements MainContract.Model
 {
@@ -583,7 +584,7 @@ public class MainModel implements MainContract.Model
         ret.put(SPARK_LIKES, Arrays.asList());
         ret.put(SPARK_COMMENTS, Arrays.asList());
 
-        ArrayList<String> subscribers = user.getFollowers();
+        Set<String> subscribers = user.getFollowers();
 
         //Need to add the current user to the subscribers list so they can too be able to view
         //their own sparks on the home feed.
