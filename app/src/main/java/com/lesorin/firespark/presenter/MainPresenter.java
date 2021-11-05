@@ -129,7 +129,14 @@ class MainPresenter implements MainContract.PresenterView, MainContract.Presente
     @Override
     public void requestFollowUnfollowUser(User user)
     {
-        _model.requestFollowUnfollowUser(user);
+        if(user.getFollowers().contains(_model.getUserId())) //Current user is following the other user: unfollow them.
+        {
+            _model.requestUnfollowUser(user);
+        }
+        else //Current user is not following the other user: follow them.
+        {
+            _model.requestFollowUser(user);
+        }
     }
 
     @Override
