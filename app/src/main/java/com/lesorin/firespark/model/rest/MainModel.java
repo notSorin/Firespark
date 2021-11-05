@@ -597,6 +597,18 @@ public class MainModel implements MainContract.Model
     }
 
     @Override
+    public void requestLikeComment(Comment comment)
+    {
+        //todo
+    }
+
+    @Override
+    public void requestUnlikeComment(Comment comment)
+    {
+        //todo
+    }
+
+    @Override
     public void requestSearchUserByUsername(String userName)
     {
 

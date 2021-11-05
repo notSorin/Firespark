@@ -228,7 +228,14 @@ class MainPresenter implements MainContract.PresenterView, MainContract.Presente
     @Override
     public void requestLikeUnlikeComment(Comment comment)
     {
-
+        if(comment.isLikedByCurrentUser()) //Current user already likes this comment, so remove their like.
+        {
+            _model.requestUnlikeComment(comment);
+        }
+        else
+        {
+            _model.requestLikeComment(comment);
+        }
     }
 
     @Override

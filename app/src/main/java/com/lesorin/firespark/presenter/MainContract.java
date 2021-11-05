@@ -124,5 +124,7 @@ public interface MainContract
         String getUserId();
         void requestLikeSpark(Spark spark);
         void requestUnlikeSpark(Spark spark);
+        void requestLikeComment(Comment comment);
+        void requestUnlikeComment(Comment comment);
     }
 }
