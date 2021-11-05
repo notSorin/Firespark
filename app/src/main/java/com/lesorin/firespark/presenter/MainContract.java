@@ -24,6 +24,7 @@ public interface MainContract
         void requestHomeDataRefresh();
         void requestSendComment(Spark spark, String commentBody, Comment replyComment);
         void requestDeleteComment(Comment comment);
+        void requestSparkDataRefresh(Spark spark);
     }
 
     //All methods starting with "response" are methods in response to client requests.
@@ -96,6 +97,8 @@ public interface MainContract
         void responseSendCommentEmptyBody();
         void responseDeleteCommentFailure();
         void responseNetworkError();
+        void responseSparkDataRefreshSuccess(Spark spark, ArrayList<Comment> comments);
+        void responseSparkDataRefreshFailure();
     }
 
     //All methods starting with "request" are methods which can be initiated by the client user.

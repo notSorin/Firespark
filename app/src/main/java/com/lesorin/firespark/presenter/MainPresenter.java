@@ -218,6 +218,14 @@ class MainPresenter implements MainContract.PresenterView, MainContract.Presente
     }
 
     @Override
+    public void requestSparkDataRefresh(Spark spark)
+    {
+        _lastRequestWasRefresh = true;
+
+        _model.requestSparkData(spark);
+    }
+
+    @Override
     public void responseHomeDataSuccess(ArrayList<Spark> sparks)
     {
         if(_lastRequestWasRefresh)
@@ -369,13 +377,27 @@ class MainPresenter implements MainContract.PresenterView, MainContract.Presente
     @Override
     public void responseSparkDataSuccess(Spark spark, ArrayList<Comment> comments)
     {
-        _view.responseSparkDataSuccess(spark, comments);
+        if(_lastRequestWasRefresh)
+        {
+            _view.responseSparkDataRefreshSuccess(spark, comments);
+        }
+        else
+        {
+            _view.responseSparkDataSuccess(spark, comments);
+        }
     }
 
     @Override
     public void responseSparkDataFailure()
     {
-        _view.responseSparkDataFailure();
+        if(_lastRequestWasRefresh)
+        {
+            _view.responseSparkDataRefreshFailure();
+        }
+        else
+        {
+            _view.responseSparkDataFailure();
+        }
     }
 
     @Override
