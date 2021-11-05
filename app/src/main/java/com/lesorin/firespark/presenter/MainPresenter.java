@@ -58,12 +58,16 @@ class MainPresenter implements MainContract.PresenterView, MainContract.Presente
     @Override
     public void requestPopularData()
     {
+        _lastRequestWasRefresh = false;
+
         _model.requestPopularData();
     }
 
     @Override
     public void requestSparkData(Spark spark)
     {
+        _lastRequestWasRefresh = false;
+
         _model.requestSparkData(spark);
     }
 
