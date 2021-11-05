@@ -286,7 +286,7 @@ public class SparkFragment extends FiresparkFragmentAdapter
     }
 
     @Override
-    public void sendCommentSuccess(Comment comment)
+    public void addComment(Comment comment)
     {
         _commentsRVAdapter.addComment(comment);
         _sendComment.setEnabled(true);

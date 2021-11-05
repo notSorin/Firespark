@@ -500,7 +500,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public void responseSendCommentSuccess(Comment comment)
     {
-        _fragmentsStack.peek().sendCommentSuccess(comment);
+        _fragmentsStack.peek().addComment(comment);
     }
 
     @Override

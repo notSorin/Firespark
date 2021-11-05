@@ -94,7 +94,7 @@ public class FiresparkFragmentAdapter extends FiresparkFragment
     }
 
     @Override
-    public void sendCommentSuccess(Comment comment)
+    public void addComment(Comment comment)
     {
     }
 
