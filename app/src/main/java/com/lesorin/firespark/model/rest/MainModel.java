@@ -52,7 +52,13 @@ public class MainModel implements MainContract.Model
     @Override
     public void requestLogout()
     {
-        _preferences.edit().clear().apply();
+        SharedPreferences.Editor editor = _preferences.edit();
+
+        //Remove the user's id and token from the preferences.
+        editor.remove(KEY_USERID);
+        editor.remove(KEY_TOKEN);
+        editor.apply();
+
         _presenter.responseLogoutSuccess();
     }
 
