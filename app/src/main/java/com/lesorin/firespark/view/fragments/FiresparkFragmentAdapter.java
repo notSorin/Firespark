@@ -114,4 +114,9 @@ public class FiresparkFragmentAdapter extends FiresparkFragment
     public void refreshSparkData(Spark spark, ArrayList<Comment> comments)
     {
     }
+
+    @Override
+    public void deleteComment(Comment comment)
+    {
+    }
 }
