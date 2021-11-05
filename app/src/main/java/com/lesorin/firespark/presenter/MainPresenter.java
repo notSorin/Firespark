@@ -120,7 +120,7 @@ class MainPresenter implements MainContract.PresenterView, MainContract.Presente
     @Override
     public void requestLikeUnlikeSpark(Spark spark)
     {
-        if(spark.getLikes().contains(_model.getUserId())) //Current user already likes this spark, so remove their like.
+        if(spark.isLikedByCurrentUser()) //Current user already likes this spark, so remove their like.
         {
             _model.requestUnlikeSpark(spark);
         }
@@ -133,7 +133,7 @@ class MainPresenter implements MainContract.PresenterView, MainContract.Presente
     @Override
     public void requestFollowUnfollowUser(User user)
     {
-        if(user.getFollowers().contains(_model.getUserId())) //Current user is following the other user: unfollow them.
+        if(user.isFollowedByCurrentUser()) //Current user is following the other user: unfollow them.
         {
             _model.requestUnfollowUser(user);
         }
