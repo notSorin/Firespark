@@ -17,7 +17,7 @@ public interface MainContract
         void requestSparkData(Spark spark);
         void requestSendSpark(String sparkBody);
         void requestDeleteSpark(Spark spark);
-        void requestLikeDislikeSpark(Spark spark);
+        void requestLikeUnlikeSpark(Spark spark);
         void requestFollowUnfollowUser(User user);
         void requestSearchUserByUsername(String userName);
         void requestProfileDataRefresh(User user);

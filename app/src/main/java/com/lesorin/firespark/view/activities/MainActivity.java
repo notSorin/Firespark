@@ -598,7 +598,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     public void sparkLikeClicked(Spark spark)
     {
-        _presenter.requestLikeDislikeSpark(spark);
+        _presenter.requestLikeUnlikeSpark(spark);
     }
 
     public void sparkOwnerClicked(Spark spark)
