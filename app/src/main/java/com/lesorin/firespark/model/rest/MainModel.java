@@ -126,13 +126,6 @@ public class MainModel implements MainContract.Model
     {
         RESTUser user = _gson.fromJson(jsonProfile.toString(), RESTUser.class);
 
-        user = processUser(user);
-
-        return user;
-    }
-
-    private RESTUser processUser(RESTUser user)
-    {
         user.setCurrentUser(user.getId().equals(_userid));
         user.setFollowedByCurrentUser(user.getFollowers().contains(_userid));
 
