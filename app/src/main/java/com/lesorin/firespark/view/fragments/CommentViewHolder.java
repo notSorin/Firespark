@@ -80,12 +80,20 @@ public class CommentViewHolder extends RecyclerView.ViewHolder
         }
     }
 
-    public void setReplyName(String firstLastName, String username)
+    public void setReply(String replyToId, String firstLastName, String username)
     {
-        if(firstLastName != null && username != null)
+        if(replyToId != null) //It's a reply to another comment.
         {
             _replyLayout.setVisibility(View.VISIBLE);
-            _replyOwner.setText(firstLastName + " (@" + username + ")");
+
+            if(firstLastName != null && username != null)
+            {
+                _replyOwner.setText(firstLastName + " (@" + username + ")");
+            }
+            else //If the first and last name and username are null, then the comment was deleted.
+            {
+                _replyOwner.setText(R.string.DeletedComment);
+            }
         }
         else
         {

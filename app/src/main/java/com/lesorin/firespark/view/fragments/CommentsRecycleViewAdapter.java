@@ -48,7 +48,7 @@ public class CommentsRecycleViewAdapter extends RecyclerView.Adapter<CommentView
         holder.setLikes(likesAmount);
         holder.setCreated(_dateFormat.format(comment.getCreated()));
         holder.setSpecialOwnerName(comment.isOwnedByCurrentUser());
-        holder.setReplyName(comment.getReplyToFirstLastName(), comment.getReplyToUsername());
+        holder.setReply(comment.getReplyToId(), comment.getReplyToFirstLastName(), comment.getReplyToUsername());
         holder.getReplyButton().setOnClickListener(view -> _sparkFragment.setReplyComment(_commentsList.get(position)));
         holder.getDeleteView().setOnClickListener(view -> ((MainActivity)view.getContext()).commentDeleteClicked(_commentsList.get(position)));
     }
