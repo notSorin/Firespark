@@ -682,8 +682,10 @@ public class MainModel implements MainContract.Model
         return comments;
     }
 
-    private RESTComment processComment(RESTComment comment)
+    private RESTComment getCommentFromJSONObject(JSONObject jsonObject)
     {
+        RESTComment comment = _gson.fromJson(jsonObject.toString(), RESTComment.class);
+
         comment.setOwnedByCurrentUser(comment.getUserId().equals(_userid));
         comment.setLikedByCurrentUser(comment.getLikes().contains(_userid));
 
