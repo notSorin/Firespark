@@ -346,10 +346,112 @@ public class MainModel implements MainContract.Model
         _requestQueue.add(request);
     }
 
-    @Override
-    public void requestLikeDislikeSpark(Spark spark)
+    public void requestLikeSpark(Spark spark)
     {
+        Response.Listener<String> rl = response ->
+        {
+            try
+            {
+                JSONObject json = new JSONObject(response);
 
+                if(json.getInt(KEY_CODE) == 200)
+                {
+                    spark.getLikes().add(_userid);
+                    spark.setLikedByCurrentUser(true);
+                    _presenter.responseLikeSparkSuccess(spark);
+                }
+                else
+                {
+                    _presenter.responseLikeSparkFailure();
+                    handleResponseError(json);
+                }
+            }
+            catch(JSONException e)
+            {
+                _presenter.responseLikeSparkFailure();
+            }
+        };
+
+        StringRequest request = new StringRequest(Request.Method.POST, LIKE_SPARK_URL, rl,
+                error -> _presenter.responseNetworkError())
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String> params = new HashMap<>();
+
+                params.put(KEY_SPARKID, spark.getId());
+                params.put(KEY_ACTION, ACTION_LIKE_SPARK);
+
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders()
+            {
+                Map<String, String> params = new HashMap<>();
+
+                params.put(KEY_TOKEN_AUTH, _token);
+
+                return params;
+            }
+        };
+
+        _requestQueue.add(request);
+    }
+
+    public void requestUnlikeSpark(Spark spark)
+    {
+        Response.Listener<String> rl = response ->
+        {
+            try
+            {
+                JSONObject json = new JSONObject(response);
+
+                if(json.getInt(KEY_CODE) == 200)
+                {
+                    spark.getLikes().remove(_userid);
+                    spark.setLikedByCurrentUser(false);
+                    _presenter.responseUnlikeSparkSuccess(spark);
+                }
+                else
+                {
+                    _presenter.responseUnlikeSparkFailure();
+                    handleResponseError(json);
+                }
+            }
+            catch(JSONException e)
+            {
+                _presenter.responseUnlikeSparkFailure();
+            }
+        };
+
+        StringRequest request = new StringRequest(Request.Method.POST, UNLIKE_SPARK_URL, rl,
+                error -> _presenter.responseNetworkError())
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String> params = new HashMap<>();
+
+                params.put(KEY_SPARKID, spark.getId());
+                params.put(KEY_ACTION, ACTION_UNLIKE_SPARK);
+
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders()
+            {
+                Map<String, String> params = new HashMap<>();
+
+                params.put(KEY_TOKEN_AUTH, _token);
+
+                return params;
+            }
+        };
+
+        _requestQueue.add(request);
     }
 
     @Override
@@ -380,5 +482,11 @@ public class MainModel implements MainContract.Model
     public void requestDeleteComment(Comment comment)
     {
 
+    }
+
+    @Override
+    public String getUserId()
+    {
+        return _userid;
     }
 }
