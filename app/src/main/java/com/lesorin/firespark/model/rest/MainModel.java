@@ -613,10 +613,13 @@ public class MainModel implements MainContract.Model
 
                 if(json.getInt(KEY_CODE) == 200)
                 {
-                    JSONArray jsonComments = json.getJSONArray(KEY_MESSAGE);
+                    JSONObject message = json.getJSONObject(KEY_MESSAGE);
+                    JSONObject jsonSpark = message.getJSONObject(KEY_SPARK);
+                    JSONArray jsonComments = message.getJSONArray(KEY_SPARK_COMMENTS);
+                    RESTSpark newSpark = getSparkFromJSONObject(jsonSpark);
                     ArrayList<Comment> comments = getCommentsFromJSONArray(jsonComments);
 
-                    _presenter.responseSparkDataSuccess(spark, comments);
+                    _presenter.responseSparkDataSuccess(newSpark, comments);
                 }
                 else
                 {
@@ -630,7 +633,7 @@ public class MainModel implements MainContract.Model
             }
         };
 
-        StringRequest request = new StringRequest(Request.Method.POST, GET_SPARK_COMMENTS_URL, rl,
+        StringRequest request = new StringRequest(Request.Method.POST, GET_SPARK_DATA_URL, rl,
                 error -> _presenter.responseNetworkError())
         {
             @Override
