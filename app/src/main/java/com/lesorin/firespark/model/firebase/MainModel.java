@@ -238,18 +238,13 @@ public class MainModel implements MainContract.Model
     }
 
     @Override
-    public void requestFollowUnfollowUser(User user)
-    {
-        String userId = _firebaseAuth.getUid();
+    public void requestFollowUser(User user) {
 
-        if(user.getFollowers().contains(userId)) //Current user is following the other user: unfollow them.
-        {
-            unfollowUser(user);
-        }
-        else //Current user is not following the other user: follow them.
-        {
-            followUser(user);
-        }
+    }
+
+    @Override
+    public void requestUnfollowUser(User user) {
+
     }
 
     @Override
