@@ -238,21 +238,6 @@ public class MainModel implements MainContract.Model
     }
 
     @Override
-    public void requestLikeDislikeSpark(Spark spark)
-    {
-        String userId = _firebaseAuth.getUid();
-
-        if(spark.getLikes().contains(userId)) //Current user already likes this spark, so remove their like.
-        {
-            removeLikeFromSpark(spark);
-        }
-        else
-        {
-            addLikeToSpark(spark);
-        }
-    }
-
-    @Override
     public void requestFollowUnfollowUser(User user)
     {
         String userId = _firebaseAuth.getUid();
@@ -416,6 +401,21 @@ public class MainModel implements MainContract.Model
     @Override
     public void requestDeleteComment(Comment comment)
     {
+
+    }
+
+    @Override
+    public String getUserId() {
+        return null;
+    }
+
+    @Override
+    public void requestLikeSpark(Spark spark) {
+
+    }
+
+    @Override
+    public void requestUnlikeSpark(Spark spark) {
 
     }
 
