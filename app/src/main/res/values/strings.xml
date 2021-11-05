@@ -92,4 +92,5 @@
     <string name="ResponseDeleteCommentFailure">Could not delete comment.</string>
     <string name="NetworkError">Firespark server could not be reached. Please try again.</string>
     <string name="DeletedComment"><![CDATA[<<<deleted comment>>>]]></string>
+    <string name="ResponseSparkDataRefreshFailure">Could not refresh spark data.</string>
 </resources>
