@@ -429,4 +429,16 @@ class MainPresenter implements MainContract.PresenterView, MainContract.Presente
     {
         //TODO inform the user that their credentials expired and take them to the login screen.
     }
+
+    @Override
+    public void responseDeleteCommentSuccess(Comment comment)
+    {
+        _view.responseDeleteCommentSuccess(comment);
+    }
+
+    @Override
+    public void responseDeleteCommentFailure()
+    {
+        _view.responseDeleteCommentFailure();
+    }
 }

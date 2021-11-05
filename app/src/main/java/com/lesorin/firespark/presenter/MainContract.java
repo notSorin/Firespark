@@ -57,6 +57,8 @@ public interface MainContract
         void responseLogoutSuccess();
         void responseNetworkError();
         void invalidUserCredentialsDetected();
+        void responseDeleteCommentSuccess(Comment comment);
+        void responseDeleteCommentFailure();
     }
 
     //All methods starting with "response" are methods in response to client requests.
@@ -95,6 +97,7 @@ public interface MainContract
         void responseSendCommentSuccess(Comment comment);
         void responseSendCommentFailure();
         void responseSendCommentEmptyBody();
+        void responseDeleteCommentSuccess(Comment comment);
         void responseDeleteCommentFailure();
         void responseNetworkError();
         void responseSparkDataRefreshSuccess(Spark spark, ArrayList<Comment> comments);
