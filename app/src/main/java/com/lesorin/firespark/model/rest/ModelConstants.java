@@ -23,6 +23,8 @@ public class ModelConstants
     public static final String DELETE_SPARK_URL = USING_API_URL + "DeleteSpark.php";
     public static final String LIKE_SPARK_URL = USING_API_URL + "LikeUnlikeSpark.php";
     public static final String UNLIKE_SPARK_URL = USING_API_URL + "LikeUnlikeSpark.php";
+    public static final String FOLLOW_USER_URL = USING_API_URL + "FollowUnfollowUser.php";
+    public static final String UNFOLLOW_USER_URL = USING_API_URL + "FollowUnfollowUser.php";
 
     //JSON keys.
     public static final String KEY_CODE = "code";
@@ -37,6 +39,9 @@ public class ModelConstants
     public static final String KEY_ACTION = "action";
     public static final String ACTION_LIKE_SPARK = "like";
     public static final String ACTION_UNLIKE_SPARK = "unlike";
+    public static final String KEY_FOLLOWEE_ID = "followeeid";
+    public static final String ACTION_FOLLOW_USER = "follow";
+    public static final String ACTION_UNFOLLOW_USER = "unfollow";
 
     //Error codes.
     public static final String ERRNO_IC = "ERRNO_IC"; //Invalid credentials.

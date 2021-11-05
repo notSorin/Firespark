@@ -346,6 +346,116 @@ public class MainModel implements MainContract.Model
         _requestQueue.add(request);
     }
 
+    @Override
+    public void requestFollowUser(User user)
+    {
+        Response.Listener<String> rl = response ->
+        {
+            try
+            {
+                JSONObject json = new JSONObject(response);
+
+                if(json.getInt(KEY_CODE) == 200)
+                {
+                    user.getFollowers().add(_userid);
+                    user.setFollowedByCurrentUser(true);
+                    _presenter.responseFollowUserSuccess(user);
+                }
+                else
+                {
+                    _presenter.responseFollowUserFailure();
+                    handleResponseError(json);
+                }
+            }
+            catch(JSONException e)
+            {
+                _presenter.responseFollowUserFailure();
+            }
+        };
+
+        StringRequest request = new StringRequest(Request.Method.POST, FOLLOW_USER_URL, rl,
+                error -> _presenter.responseNetworkError())
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String> params = new HashMap<>();
+
+                params.put(KEY_FOLLOWEE_ID, user.getId());
+                params.put(KEY_ACTION, ACTION_FOLLOW_USER);
+
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders()
+            {
+                Map<String, String> params = new HashMap<>();
+
+                params.put(KEY_TOKEN_AUTH, _token);
+
+                return params;
+            }
+        };
+
+        _requestQueue.add(request);
+    }
+
+    @Override
+    public void requestUnfollowUser(User user)
+    {
+        Response.Listener<String> rl = response ->
+        {
+            try
+            {
+                JSONObject json = new JSONObject(response);
+
+                if(json.getInt(KEY_CODE) == 200)
+                {
+                    user.getFollowers().remove(_userid);
+                    user.setFollowedByCurrentUser(false);
+                    _presenter.responseUnfollowUserSuccess(user);
+                }
+                else
+                {
+                    _presenter.responseUnfollowUserFailure();
+                    handleResponseError(json);
+                }
+            }
+            catch(JSONException e)
+            {
+                _presenter.responseUnfollowUserFailure();
+            }
+        };
+
+        StringRequest request = new StringRequest(Request.Method.POST, UNFOLLOW_USER_URL, rl,
+                error -> _presenter.responseNetworkError())
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String> params = new HashMap<>();
+
+                params.put(KEY_FOLLOWEE_ID, user.getId());
+                params.put(KEY_ACTION, ACTION_UNFOLLOW_USER);
+
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders()
+            {
+                Map<String, String> params = new HashMap<>();
+
+                params.put(KEY_TOKEN_AUTH, _token);
+
+                return params;
+            }
+        };
+
+        _requestQueue.add(request);
+    }
+
     public void requestLikeSpark(Spark spark)
     {
         Response.Listener<String> rl = response ->
@@ -452,12 +562,6 @@ public class MainModel implements MainContract.Model
         };
 
         _requestQueue.add(request);
-    }
-
-    @Override
-    public void requestFollowUnfollowUser(User user)
-    {
-
     }
 
     @Override
