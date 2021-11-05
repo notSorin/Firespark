@@ -211,15 +211,6 @@ public class MainModel implements MainContract.Model
         _requestQueue.add(request);
     }
 
-    private RESTSpark processSpark(RESTSpark spark)
-    {
-        spark.setOwnedByCurrentUser(spark.getUserId().equals(_userid));
-        spark.setLikedByCurrentUser(spark.getLikes().contains(_userid));
-        spark.setContainsCommentFromCurrentUser(spark.getComments().contains(_userid));
-
-        return updateSparksCache(spark);
-    }
-
     private void handleResponseError(JSONObject json)
     {
         try
@@ -666,6 +657,17 @@ public class MainModel implements MainContract.Model
         };
 
         _requestQueue.add(request);
+    }
+
+    private RESTSpark getSparkFromJSONObject(JSONObject jsonSpark)
+    {
+        RESTSpark spark = _gson.fromJson(jsonSpark.toString(), RESTSpark.class);
+
+        spark.setOwnedByCurrentUser(spark.getUserId().equals(_userid));
+        spark.setLikedByCurrentUser(spark.getLikes().contains(_userid));
+        spark.setContainsCommentFromCurrentUser(spark.getComments().contains(_userid));
+
+        return updateSparksCache(spark);
     }
 
     private ArrayList<Comment> getCommentsFromJSONArray(JSONArray jsonComments) throws JSONException
