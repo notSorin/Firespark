@@ -110,4 +110,9 @@ public class CommentViewHolder extends RecyclerView.ViewHolder
     {
         return _deleteButton;
     }
+
+    public View getLikeView()
+    {
+        return _likeButton;
+    }
 }

@@ -25,6 +25,7 @@ public interface MainContract
         void requestSendComment(Spark spark, String commentBody, Comment replyComment);
         void requestDeleteComment(Comment comment);
         void requestSparkDataRefresh(Spark spark);
+        void requestLikeUnlikeComment(Comment comment);
     }
 
     //All methods starting with "response" are methods in response to client requests.

@@ -690,4 +690,9 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     {
         _presenter.requestSparkDataRefresh(spark);
     }
+
+    public void commentLikeClicked(Comment comment)
+    {
+        _presenter.requestLikeUnlikeComment(comment);
+    }
 }

@@ -226,6 +226,12 @@ class MainPresenter implements MainContract.PresenterView, MainContract.Presente
     }
 
     @Override
+    public void requestLikeUnlikeComment(Comment comment)
+    {
+
+    }
+
+    @Override
     public void responseHomeDataSuccess(ArrayList<Spark> sparks)
     {
         if(_lastRequestWasRefresh)
