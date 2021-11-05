@@ -116,7 +116,14 @@ class MainPresenter implements MainContract.PresenterView, MainContract.Presente
     @Override
     public void requestLikeDislikeSpark(Spark spark)
     {
-        _model.requestLikeDislikeSpark(spark);
+        if(spark.getLikes().contains(_model.getUserId())) //Current user already likes this spark, so remove their like.
+        {
+            _model.requestUnlikeSpark(spark);
+        }
+        else
+        {
+            _model.requestLikeSpark(spark);
+        }
     }
 
     @Override

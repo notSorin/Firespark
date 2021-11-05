@@ -108,11 +108,13 @@ public interface MainContract
         void requestPopularData();
         void requestSendSpark(String sparkBody);
         void requestDeleteSpark(Spark spark);
-        void requestLikeDislikeSpark(Spark spark);
         void requestFollowUnfollowUser(User user);
         void requestSearchUserByUsername(String userName);
         void requestSparkData(Spark spark);
         void requestSendComment(Spark spark, String commentBody, Comment replyComment);
         void requestDeleteComment(Comment comment);
+        String getUserId();
+        void requestLikeSpark(Spark spark);
+        void requestUnlikeSpark(Spark spark);
     }
 }
