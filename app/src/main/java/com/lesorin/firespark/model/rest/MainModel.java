@@ -158,9 +158,9 @@ public class MainModel implements MainContract.Model
 
         for(int i = 0; i < sparksArray.length(); i++)
         {
-            RESTSpark spark = _gson.fromJson(sparksArray.getJSONObject(i).toString(), RESTSpark.class);
+            RESTSpark spark = getSparkFromJSONObject(sparksArray.getJSONObject(i));
 
-            sparks.add(processSpark(spark));
+            sparks.add(spark);
         }
 
         return sparks;
