@@ -1,7 +1,7 @@
 package com.lesorin.firespark.presenter;
 
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.Set;
 
 public abstract class Comment
 {
@@ -32,8 +32,8 @@ public abstract class Comment
     public abstract boolean isDeleted();
     public abstract void setDeleted(boolean deleted);
 
-    public abstract ArrayList<String> getLikes();
-    public abstract void setLikes(ArrayList<String> likes);
+    public abstract Set<String> getLikes();
+    public abstract void setLikes(Set<String> likes);
 
     public abstract String getReplyToFirstLastName();
     public abstract void setReplyToFirstLastName(String firstLastName);

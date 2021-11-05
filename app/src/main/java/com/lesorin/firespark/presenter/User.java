@@ -1,7 +1,7 @@
 package com.lesorin.firespark.presenter;
 
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.Set;
 
 public abstract class User
 {
@@ -15,11 +15,11 @@ public abstract class User
     public abstract String getUsernameInsensitive();
     public abstract void setUsername(String username);
 
-    public abstract ArrayList<String> getFollowers();
-    public abstract void setFollowers(ArrayList<String> followers);
+    public abstract Set<String> getFollowers();
+    public abstract void setFollowers(Set<String> followers);
 
-    public abstract ArrayList<String> getFollowing();
-    public abstract void setFollowing(ArrayList<String> following);
+    public abstract Set<String> getFollowing();
+    public abstract void setFollowing(Set<String> following);
 
     public abstract Date getJoined();
     public abstract void setJoined(Date joined);

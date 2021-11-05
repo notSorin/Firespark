@@ -1,7 +1,8 @@
 package com.lesorin.firespark.presenter;
 
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
 
 public abstract class Spark
 {
@@ -11,11 +12,11 @@ public abstract class Spark
     public abstract String getBody();
     public abstract void setBody(String body);
 
-    public abstract ArrayList<String> getSubscribers();
+    public abstract List<String> getSubscribers();
     public abstract void addSubscriber(String subscriberId);
 
-    public abstract ArrayList<String> getLikes();
-    public abstract void setLikes(ArrayList<String> likes);
+    public abstract Set<String> getLikes();
+    public abstract void setLikes(Set<String> likes);
     public abstract int getLikesAmount();
 
     public abstract String getUserId();
@@ -39,8 +40,8 @@ public abstract class Spark
     public abstract boolean isDeleted();
     public abstract void setDeleted(boolean deleted);
 
-    public abstract ArrayList<String> getComments();
-    public abstract void setComments(ArrayList<String> comments);
+    public abstract List<String> getComments();
+    public abstract void setComments(List<String> comments);
     public abstract void addCommentFromUser(String userId);
     public abstract void removeOneCommentFromUser(String userId);
     public abstract boolean containsCommentFromUser(String userId);
