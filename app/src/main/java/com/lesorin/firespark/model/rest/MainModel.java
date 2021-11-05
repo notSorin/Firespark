@@ -26,7 +26,7 @@ public class MainModel implements MainContract.Model
     private MainContract.PresenterModel _presenter;
     private final HashMap<String, RESTSpark> _sparksCache;
     private final HashMap<String, RESTUser> _usersCache;
-    private final HashMap<String, Comment> _commentsCache;
+    private final HashMap<String, RESTComment> _commentsCache;
     private final RequestQueue _requestQueue;
     private final SharedPreferences _preferences;
     private final String _token, _userid;
@@ -623,7 +623,108 @@ public class MainModel implements MainContract.Model
     @Override
     public void requestSparkData(Spark spark)
     {
+        Response.Listener<String> rl = response ->
+        {
+            try
+            {
+                JSONObject json = new JSONObject(response);
 
+                if(json.getInt(KEY_CODE) == 200)
+                {
+                    JSONArray jsonComments = json.getJSONArray(KEY_MESSAGE);
+                    ArrayList<Comment> comments = getCommentsFromJSONArray(jsonComments);
+
+                    _presenter.responseSparkDataSuccess(spark, comments);
+                }
+                else
+                {
+                    _presenter.responseSparkDataFailure();
+                    handleResponseError(json);
+                }
+            }
+            catch(JSONException e)
+            {
+                _presenter.responseSparkDataFailure();
+            }
+        };
+
+        StringRequest request = new StringRequest(Request.Method.POST, GET_SPARK_COMMENTS_URL, rl,
+                error -> _presenter.responseNetworkError())
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String> params = new HashMap<>();
+
+                params.put(KEY_SPARKID, spark.getId());
+
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders()
+            {
+                Map<String, String> params = new HashMap<>();
+
+                params.put(KEY_TOKEN_AUTH, _token);
+
+                return params;
+            }
+        };
+
+        _requestQueue.add(request);
+    }
+
+    private ArrayList<Comment> getCommentsFromJSONArray(JSONArray jsonComments) throws JSONException
+    {
+        ArrayList<Comment> comments = new ArrayList<>();
+
+        for(int i = 0; i < jsonComments.length(); i++)
+        {
+            RESTComment comment = _gson.fromJson(jsonComments.getJSONObject(i).toString(), RESTComment.class);
+
+            comments.add(processComment(comment));
+        }
+
+        return comments;
+    }
+
+    private RESTComment processComment(RESTComment comment)
+    {
+        comment.setOwnedByCurrentUser(comment.getUserId().equals(_userid));
+        comment.setLikedByCurrentUser(comment.getLikes().contains(_userid));
+
+        return updateCommentsCache(comment);
+    }
+
+    //Inserts the parameter comment into the cache map.
+    //If a comment with the same id as the parameter already exists in the cache map, then the map comment
+    //is updated and returned.
+    //If a comment with the same id as the parameter is not contained in the cache map, then the
+    //parameter is inserted into the map and returned.
+    private RESTComment updateCommentsCache(RESTComment comment)
+    {
+        RESTComment commentInMap = null;
+
+        if(comment != null)
+        {
+            commentInMap = _commentsCache.get(comment.getId());
+
+            //If it is in the cache, then update it with the latest data read
+            //from the database, because the cache might contain old values.
+            if(commentInMap != null)
+            {
+                commentInMap.update(comment);
+            }
+            else //If the spark is not in cache, insert it.
+            {
+                _commentsCache.put(comment.getId(), comment);
+
+                commentInMap = comment;
+            }
+        }
+
+        return commentInMap;
     }
 
     @Override

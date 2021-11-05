@@ -26,6 +26,7 @@ public class ModelConstants
     public static final String FOLLOW_USER_URL = USING_API_URL + "FollowUnfollowUser.php";
     public static final String UNFOLLOW_USER_URL = USING_API_URL + "FollowUnfollowUser.php";
     public static final String SEND_SPARK_URL = USING_API_URL + "SendSpark.php";
+    public static final String GET_SPARK_COMMENTS_URL = USING_API_URL + "GetSparkComments.php";
 
     //JSON keys.
     public static final String KEY_CODE = "code";
