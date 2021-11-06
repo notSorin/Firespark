@@ -20,6 +20,9 @@ import com.lesorin.firespark.view.fragments.SignupFragment;
 import com.lesorin.firespark.view.fragments.ViewPagerAdapter;
 import com.lesorin.firespark.view.fragments.WelcomeFragment;
 
+/**
+ * Start activity of the app.
+ */
 public class StartActivity extends AppCompatActivity implements StartContract.View
 {
     private ViewPager _viewPager;
@@ -110,16 +113,28 @@ public class StartActivity extends AppCompatActivity implements StartContract.Vi
         _presenter.appStarted();
     }
 
+    /**
+     * Handles the event of pressing the fake log in button.
+     */
     public void fakeLogInButtonPressed()
     {
         _viewPager.setCurrentItem(1);
     }
 
+    /**
+     * Handles the event of pressing the fake sign up button.
+     */
     public void fakeSignUpButtonPressed()
     {
         _viewPager.setCurrentItem(2);
     }
 
+    /**
+     * Handles the event of pressing the log in button.
+     *
+     * @param emailOrUsername The email or username as read from the user's input.
+     * @param password        The password as read from the user's input.
+     */
     public void logInButtonPressed(String emailOrUsername, String password)
     {
         _loginFragment.setElementsState(false);
@@ -127,6 +142,15 @@ public class StartActivity extends AppCompatActivity implements StartContract.Vi
         _presenter.requestLogIn(emailOrUsername, password);
     }
 
+    /**
+     * Handles the event of pressing the sign up button.
+     *
+     * @param firstLastName  The user's first last name.
+     * @param username       The user's username.
+     * @param email          The user's email.
+     * @param password       The user's password.
+     * @param passwordRepeat The user's repeated password.
+     */
     public void signUpButtonPressed(String firstLastName, String username, String email, String password, String passwordRepeat)
     {
         _signUpFragment.setElementsState(false);
