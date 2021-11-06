@@ -1,6 +1,5 @@
 package com.lesorin.firespark.presenter;
 
-import static com.lesorin.firespark.presenter.StartContract.USERNAME_REGEX;
 import java.util.ArrayList;
 
 class MainPresenter implements MainContract.PresenterView, MainContract.PresenterModel

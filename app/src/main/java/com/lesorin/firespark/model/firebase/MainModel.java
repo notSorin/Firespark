@@ -401,11 +401,6 @@ public class MainModel implements MainContract.Model
     }
 
     @Override
-    public String getUserId() {
-        return null;
-    }
-
-    @Override
     public void requestLikeSpark(Spark spark) {
 
     }

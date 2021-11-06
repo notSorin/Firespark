@@ -707,7 +707,7 @@ public class MainModel implements MainContract.Model
     }
 
     @Override
-    public void requestSearchUser(String name)
+    public void requestSearchUser(String usernameOrName)
     {
         //todo
     }
@@ -904,11 +904,5 @@ public class MainModel implements MainContract.Model
             spark.getComments().remove(comment.getUserId());
             spark.setContainsCommentFromCurrentUser(spark.getComments().contains(_userid));
         }
-    }
-
-    @Override
-    public String getUserId()
-    {
-        return _userid;
     }
 }
