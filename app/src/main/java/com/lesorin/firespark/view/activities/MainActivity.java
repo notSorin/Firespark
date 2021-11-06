@@ -545,6 +545,30 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         Snackbar.make(_navigationView, R.string.ResponseSparkDataRefreshFailure, Snackbar.LENGTH_LONG).show();
     }
 
+    @Override
+    public void responseLikeCommentSuccess(Comment comment)
+    {
+        _fragmentsStack.peek().commentLiked(comment);
+    }
+
+    @Override
+    public void responseLikeCommentFailure()
+    {
+        Snackbar.make(_navigationView, R.string.ResponseLikeCommentFailure, Snackbar.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void responseUnlikeCommentSuccess(Comment comment)
+    {
+        _fragmentsStack.peek().commentUnliked(comment);
+    }
+
+    @Override
+    public void responseUnlikeCommentFailure()
+    {
+        Snackbar.make(_navigationView, R.string.ResponseUnlikeCommentFailure, Snackbar.LENGTH_LONG).show();
+    }
+
     private void hideKeyboard()
     {
         InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);

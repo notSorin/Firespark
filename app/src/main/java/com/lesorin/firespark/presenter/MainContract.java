@@ -60,6 +60,10 @@ public interface MainContract
         void invalidUserCredentialsDetected();
         void responseDeleteCommentSuccess(Comment comment);
         void responseDeleteCommentFailure();
+        void responseLikeCommentSuccess(Comment comment);
+        void responseLikeCommentFailure();
+        void responseUnlikeCommentSuccess(Comment comment);
+        void responseUnlikeCommentFailure();
     }
 
     //All methods starting with "response" are methods in response to client requests.
@@ -103,6 +107,10 @@ public interface MainContract
         void responseNetworkError();
         void responseSparkDataRefreshSuccess(Spark spark, ArrayList<Comment> comments);
         void responseSparkDataRefreshFailure();
+        void responseLikeCommentSuccess(Comment comment);
+        void responseLikeCommentFailure();
+        void responseUnlikeCommentSuccess(Comment comment);
+        void responseUnlikeCommentFailure();
     }
 
     //All methods starting with "request" are methods which can be initiated by the client user.

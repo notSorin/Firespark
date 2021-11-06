@@ -454,4 +454,28 @@ class MainPresenter implements MainContract.PresenterView, MainContract.Presente
     {
         _view.responseDeleteCommentFailure();
     }
+
+    @Override
+    public void responseLikeCommentSuccess(Comment comment)
+    {
+        _view.responseLikeCommentSuccess(comment);
+    }
+
+    @Override
+    public void responseLikeCommentFailure()
+    {
+        _view.responseLikeCommentFailure();
+    }
+
+    @Override
+    public void responseUnlikeCommentSuccess(Comment comment)
+    {
+        _view.responseUnlikeCommentSuccess(comment);
+    }
+
+    @Override
+    public void responseUnlikeCommentFailure()
+    {
+        _view.responseUnlikeCommentFailure();
+    }
 }
