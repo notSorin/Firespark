@@ -14,6 +14,9 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.lesorin.firespark.R;
 import com.lesorin.firespark.view.activities.MainActivity;
 
+/**
+ * Fragment dedicated to sending new sparks to the network.
+ */
 public class SendSparkFragment extends FiresparkFragmentAdapter
 {
     private View _view;
@@ -22,6 +25,11 @@ public class SendSparkFragment extends FiresparkFragmentAdapter
     private float _differenceY;
     private TextInputEditText _sparkBody;
 
+    /**
+     * Instantiates a new Send spark fragment.
+     *
+     * @param activity Activity to be accessible from the fragment.
+     */
     public SendSparkFragment(MainActivity activity)
     {
         super(activity);
@@ -98,6 +106,9 @@ public class SendSparkFragment extends FiresparkFragmentAdapter
         });
     }
 
+    /**
+     * Resets the position of the view where the user can input the spark's body.
+     */
     public void resetSparkPosition()
     {
         if(_view != null)
@@ -106,7 +117,7 @@ public class SendSparkFragment extends FiresparkFragmentAdapter
         }
     }
 
-    public void emptySparkBody()
+    private void emptySparkBody()
     {
         if(_view != null)
         {

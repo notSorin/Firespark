@@ -9,8 +9,16 @@ import androidx.annotation.Nullable;
 import com.lesorin.firespark.R;
 import com.lesorin.firespark.view.activities.MainActivity;
 
+/**
+ * One of the main fragments of the app, whose purpose is to display the "home" data for the current user.
+ */
 public class HomeFragment extends FragmentWithSparks
 {
+    /**
+     * Instantiates a new Home fragment.
+     *
+     * @param activity Activity to be accessible from the fragment.
+     */
     public HomeFragment(MainActivity activity)
     {
         super(activity);

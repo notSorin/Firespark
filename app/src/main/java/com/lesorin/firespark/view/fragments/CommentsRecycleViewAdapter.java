@@ -53,7 +53,7 @@ public class CommentsRecycleViewAdapter extends RecyclerView.Adapter<CommentView
         holder.setBody(comment.getBody());
         holder.setCommentLiked(comment.isLikedByCurrentUser());
         holder.setDeleteButtonVisibility(comment.isOwnedByCurrentUser());
-        holder.setLikes(likesAmount);
+        holder.setLikesAmount(likesAmount);
         holder.setCreated(_dateFormat.format(comment.getCreated()));
         holder.setSpecialOwnerName(comment.isOwnedByCurrentUser());
         holder.setReply(comment.getReplyToId(), comment.getReplyToFirstLastName(), comment.getReplyToUsername());

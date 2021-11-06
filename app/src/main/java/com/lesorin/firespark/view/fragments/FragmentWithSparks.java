@@ -135,7 +135,7 @@ public abstract class FragmentWithSparks extends FiresparkFragmentAdapter
     @Override
     public void sparkUnliked(Spark spark)
     {
-        _sparksRVAdapter.sparkLikeRemoved(spark);
+        _sparksRVAdapter.sparkUnliked(spark);
     }
 
     /**

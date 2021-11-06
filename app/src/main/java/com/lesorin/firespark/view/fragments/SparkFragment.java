@@ -23,13 +23,16 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
+/**
+ * Fragment dedicated to holding and displaying a spark and its comments.
+ */
 public class SparkFragment extends FiresparkFragmentAdapter
 {
     private final String DATE_FORMAT = "d MMM yyyy\nHH:mm:ss";
     private View _view;
     private RecyclerView _comments;
     private CommentsRecycleViewAdapter _commentsRVAdapter;
-    protected RecyclerView.LayoutManager _rvLayoutManager;
+    private RecyclerView.LayoutManager _rvLayoutManager;
     private SwipeRefreshLayout _swipeRefresh;
     private Spark _spark;
     private TextView _ownerUsername, _sparkBody, _likes, _timestamp, _commentsAmount;
@@ -40,6 +43,11 @@ public class SparkFragment extends FiresparkFragmentAdapter
     private View _commentReplyLayout, _sendComment;
     private Comment _replyComment;
 
+    /**
+     * Instantiates a new Spark fragment.
+     *
+     * @param activity Activity to be accessible from the fragment.
+     */
     public SparkFragment(MainActivity activity)
     {
         super(activity);
@@ -131,6 +139,11 @@ public class SparkFragment extends FiresparkFragmentAdapter
         _swipeRefresh.setOnRefreshListener(() -> _activity.refreshSparkData(_spark));
     }
 
+    /**
+     * Sets comments to the fragment.
+     *
+     * @param comments Comments list to set.
+     */
     public void setComments(ArrayList<Comment> comments)
     {
         _commentsRVAdapter.setComments(comments);
@@ -149,6 +162,11 @@ public class SparkFragment extends FiresparkFragmentAdapter
         }
     }
 
+    /**
+     * Sets background text on the fragment.
+     *
+     * @param text Background text to set.
+     */
     public void setBackGroundText(String text)
     {
         if(_backgroundText != null)
@@ -157,6 +175,11 @@ public class SparkFragment extends FiresparkFragmentAdapter
         }
     }
 
+    /**
+     * Sets a spark on the fragment.
+     *
+     * @param spark Spark to set.
+     */
     public void setSpark(Spark spark)
     {
         _spark = spark;
@@ -278,7 +301,12 @@ public class SparkFragment extends FiresparkFragmentAdapter
         updateLikesAmount();
     }
 
-    public void setReplyComment(Comment comment)
+    /**
+     * Sets the "reply to" comment on the fragment.
+     *
+     * @param comment Comment to which to reply when a new comment is sent.
+     */
+    public void setReplyComment(@Nullable Comment comment)
     {
         _replyComment = comment;
 

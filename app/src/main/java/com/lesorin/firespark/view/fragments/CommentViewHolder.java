@@ -64,7 +64,7 @@ public class CommentViewHolder extends RecyclerView.ViewHolder
      *
      * @param likesAmount The amount of likes that the comment has.
      */
-    public void setLikes(int likesAmount)
+    public void setLikesAmount(int likesAmount)
     {
         _likes.setText(String.valueOf(likesAmount));
     }

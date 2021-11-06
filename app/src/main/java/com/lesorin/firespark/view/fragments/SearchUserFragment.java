@@ -11,12 +11,20 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.lesorin.firespark.R;
 import com.lesorin.firespark.view.activities.MainActivity;
 
+/**
+ * Fragment dedicated to searching for users on the network.
+ */
 public class SearchUserFragment extends FiresparkFragmentAdapter
 {
     private View _view;
     private TextInputEditText _nameInput;
     private MaterialButton _searchButton;
 
+    /**
+     * Instantiates a new Search user fragment.
+     *
+     * @param activity Activity to be accessible from the fragment.
+     */
     public SearchUserFragment(MainActivity activity)
     {
         super(activity);

@@ -13,12 +13,18 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
+/**
+ * RecyclerView adapter for @{@link SparkViewHolder}.
+ */
 public class SparksRecycleViewAdapter extends RecyclerView.Adapter<SparkViewHolder>
 {
     private final String DATE_FORMAT = "d MMM yyyy\nHH:mm:ss";
     private ArrayList<Spark> _sparksList;
     private SimpleDateFormat _dateFormat;
 
+    /**
+     * Instantiates a new @{@link SparksRecycleViewAdapter}.
+     */
     public SparksRecycleViewAdapter()
     {
         _sparksList = new ArrayList<>();
@@ -62,6 +68,11 @@ public class SparksRecycleViewAdapter extends RecyclerView.Adapter<SparkViewHold
         return _sparksList.size();
     }
 
+    /**
+     * Sets sparks to the adapter.
+     *
+     * @param sparks Sparks list to set.
+     */
     public void setSparks(ArrayList<Spark> sparks)
     {
         _sparksList = sparks;
@@ -69,12 +80,11 @@ public class SparksRecycleViewAdapter extends RecyclerView.Adapter<SparkViewHold
         notifyDataSetChanged();
     }
 
-    public void emptyElements()
-    {
-        _sparksList.clear();
-        notifyDataSetChanged();
-    }
-
+    /**
+     * Adds a spark to the sparks list.
+     *
+     * @param spark Spark to add.
+     */
     public void addSpark(Spark spark)
     {
         int index = _sparksList.indexOf(spark);
@@ -86,6 +96,11 @@ public class SparksRecycleViewAdapter extends RecyclerView.Adapter<SparkViewHold
         }
     }
 
+    /**
+     * Deletes a spark from the sparks list.
+     *
+     * @param spark Spark to delete.
+     */
     public void deleteSpark(Spark spark)
     {
         if(_sparksList.remove(spark))
@@ -94,6 +109,11 @@ public class SparksRecycleViewAdapter extends RecyclerView.Adapter<SparkViewHold
         }
     }
 
+    /**
+     * Notifies the adapter that a spark has been liked.
+     *
+     * @param spark Spark which was liked.
+     */
     public void sparkLiked(Spark spark)
     {
         sparkChanged(spark);
@@ -109,7 +129,12 @@ public class SparksRecycleViewAdapter extends RecyclerView.Adapter<SparkViewHold
         }
     }
 
-    public void sparkLikeRemoved(Spark spark)
+    /**
+     * Notifies the adapter that a spark has been unliked.
+     *
+     * @param spark Spark which was unliked.
+     */
+    public void sparkUnliked(Spark spark)
     {
         sparkChanged(spark);
     }

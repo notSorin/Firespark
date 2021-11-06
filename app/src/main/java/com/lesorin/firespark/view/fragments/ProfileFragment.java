@@ -17,6 +17,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Locale;
 
+/**
+ * One of the main fragments of the app, whose purpose is to display a "user's profile".
+ */
 public class ProfileFragment extends FragmentWithSparks
 {
     private final String JOINED_FORMAT = "d MMM yyyy";
@@ -26,6 +29,11 @@ public class ProfileFragment extends FragmentWithSparks
     private User _user;
     private SimpleDateFormat _dateFormat;
 
+    /**
+     * Instantiates a new Profile fragment.
+     *
+     * @param activity Activity to be accessible from the fragment.
+     */
     public ProfileFragment(MainActivity activity)
     {
         super(activity);

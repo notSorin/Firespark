@@ -9,8 +9,16 @@ import androidx.annotation.Nullable;
 import com.lesorin.firespark.R;
 import com.lesorin.firespark.view.activities.MainActivity;
 
+/**
+ * One of the main fragments of the app, whose purpose is to display the "popular" sparks on the network.
+ */
 public class PopularFragment extends FragmentWithSparks
 {
+    /**
+     * Instantiates a new Popular fragment.
+     *
+     * @param activity Activity to be accessible from the fragment.
+     */
     public PopularFragment(MainActivity activity)
     {
         super(activity);

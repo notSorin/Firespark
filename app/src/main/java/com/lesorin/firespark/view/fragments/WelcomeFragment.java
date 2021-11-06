@@ -11,11 +11,18 @@ import com.google.android.material.button.MaterialButton;
 import com.lesorin.firespark.R;
 import com.lesorin.firespark.view.activities.StartActivity;
 
+/**
+ * The Welcome fragment of the app, which users see when they first open the app without being logged
+ * into the network.
+ */
 public class WelcomeFragment extends Fragment
 {
     private View _view;
     private MaterialButton _loginButton, _signUpButton;
 
+    /**
+     * Instantiates a new WelcomeFragment.
+     */
     public WelcomeFragment()
     {
         _view = null;

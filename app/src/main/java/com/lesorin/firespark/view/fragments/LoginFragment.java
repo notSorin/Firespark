@@ -12,12 +12,18 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.lesorin.firespark.R;
 import com.lesorin.firespark.view.activities.StartActivity;
 
+/**
+ * Fragment used to log into the app.
+ */
 public class LoginFragment extends Fragment
 {
     private View _view;
     private MaterialButton _loginButton;
     private TextInputEditText _email, _password;
 
+    /**
+     * Instantiates a new Login fragment.
+     */
     public LoginFragment()
     {
         _view = null;
@@ -54,6 +60,11 @@ public class LoginFragment extends Fragment
         });
     }
 
+    /**
+     * Sets elements state.
+     *
+     * @param enabled True to enable the elements on the fragment, false to disable them.
+     */
     public void setElementsState(boolean enabled)
     {
         _email.setEnabled(enabled);

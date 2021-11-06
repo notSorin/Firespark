@@ -12,12 +12,18 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.lesorin.firespark.R;
 import com.lesorin.firespark.view.activities.StartActivity;
 
+/**
+ * Fragment used to sign up on the network.
+ */
 public class SignupFragment extends Fragment
 {
     private View _view;
     private MaterialButton _signupButton;
     private TextInputEditText _firstLastName, _username, _email, _password, _passwordRepeat;
 
+    /**
+     * Instantiates a new Signup fragment.
+     */
     public SignupFragment()
     {
         _view = null;
@@ -59,6 +65,11 @@ public class SignupFragment extends Fragment
         });
     }
 
+    /**
+     * Sets elements state.
+     *
+     * @param enabled True to enable the elements on the fragment, false to disable them.
+     */
     public void setElementsState(boolean enabled)
     {
         _firstLastName.setEnabled(enabled);
