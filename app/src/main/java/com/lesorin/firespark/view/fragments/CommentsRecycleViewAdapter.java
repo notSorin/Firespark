@@ -52,6 +52,7 @@ public class CommentsRecycleViewAdapter extends RecyclerView.Adapter<CommentView
         holder.getReplyButton().setOnClickListener(view -> _sparkFragment.setReplyComment(_commentsList.get(position)));
         holder.getDeleteView().setOnClickListener(view -> ((MainActivity)view.getContext()).commentDeleteClicked(_commentsList.get(position)));
         holder.getLikeView().setOnClickListener(view -> ((MainActivity)view.getContext()).commentLikeClicked(_commentsList.get(position)));
+        holder.getOwnerView().setOnClickListener(view -> ((MainActivity)view.getContext()).commentOwnerClicked(_commentsList.get(position)));
     }
 
     @Override

@@ -700,4 +700,9 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     {
         _presenter.requestLikeUnlikeComment(comment);
     }
+
+    public void commentOwnerClicked(Comment comment)
+    {
+        handleUserNameClick(comment.getUserId());
+    }
 }

@@ -115,4 +115,9 @@ public class CommentViewHolder extends RecyclerView.ViewHolder
     {
         return _likeButton;
     }
+
+    public View getOwnerView()
+    {
+        return _ownerName;
+    }
 }
