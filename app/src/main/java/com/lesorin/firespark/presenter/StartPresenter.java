@@ -3,6 +3,9 @@ package com.lesorin.firespark.presenter;
 import static com.lesorin.firespark.presenter.StartContract.FIRST_LAST_NAME_REGEX;
 import static com.lesorin.firespark.presenter.StartContract.USERNAME_REGEX;
 
+/**
+ * Start presenter of the app.
+ */
 class StartPresenter implements StartContract.PresenterView, StartContract.PresenterModel
 {
     private StartContract.View _view;
