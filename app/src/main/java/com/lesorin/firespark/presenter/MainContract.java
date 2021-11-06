@@ -102,6 +102,7 @@ public interface MainContract
         void responseSendCommentSuccess(Comment comment);
         void responseSendCommentFailure();
         void responseSendCommentEmptyBody();
+        void responseSendCommentTooLong();
         void responseDeleteCommentSuccess(Comment comment);
         void responseDeleteCommentFailure();
         void responseNetworkError();

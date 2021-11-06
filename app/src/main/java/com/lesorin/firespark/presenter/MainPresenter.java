@@ -190,7 +190,7 @@ class MainPresenter implements MainContract.PresenterView, MainContract.Presente
                 }
                 else
                 {
-                    _view.responseSendSparkTooLong();
+                    _view.responseSendCommentTooLong();
                 }
             }
             else

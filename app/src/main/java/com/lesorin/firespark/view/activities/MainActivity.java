@@ -516,6 +516,12 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     }
 
     @Override
+    public void responseSendCommentTooLong()
+    {
+        Snackbar.make(_navigationView, R.string.ResponseSendCommentTooLong, Snackbar.LENGTH_LONG).show();
+    }
+
+    @Override
     public void responseDeleteCommentSuccess(Comment comment)
     {
         _fragmentsStack.peek().deleteComment(comment);
