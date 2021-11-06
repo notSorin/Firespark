@@ -21,6 +21,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Main REST model of the app.
+ */
 public class MainModel implements MainContract.Model
 {
     private MainContract.PresenterModel _presenter;
@@ -32,6 +35,11 @@ public class MainModel implements MainContract.Model
     private final String _token, _userid;
     private final Gson _gson;
 
+    /**
+     * Instantiates a new MainModel.
+     *
+     * @param context Context required by the model.
+     */
     public MainModel(Context context)
     {
         _sparksCache = new HashMap<>();

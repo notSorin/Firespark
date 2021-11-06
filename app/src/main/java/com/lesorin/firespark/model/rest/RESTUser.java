@@ -4,6 +4,9 @@ import com.lesorin.firespark.presenter.User;
 import java.util.Date;
 import java.util.Set;
 
+/**
+ * REST User.
+ */
 public class RESTUser extends User
 {
     private boolean _isCurrentUser, _isFollowedByCurrentUser;

@@ -6,6 +6,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * REST Spark.
+ */
 public class RESTSpark extends Spark
 {
     private boolean _ownedByCurrentUser, _likedByCurrentUser, _containsCommentFromCurrentUser;

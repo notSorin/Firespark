@@ -4,6 +4,9 @@ import com.lesorin.firespark.presenter.Comment;
 import java.util.Date;
 import java.util.Set;
 
+/**
+ * REST Comment.
+ */
 public class RESTComment extends Comment
 {
     private boolean _ownedByCurrentUser, _likedByCurrentUser;

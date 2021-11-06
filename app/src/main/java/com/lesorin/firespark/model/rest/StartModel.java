@@ -14,12 +14,20 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Start model of the app.
+ */
 public class StartModel implements StartContract.Model
 {
     private StartContract.PresenterModel _presenter;
     private final RequestQueue _requestQueue;
     private final SharedPreferences _preferences;
 
+    /**
+     * Instantiates a new StartModel.
+     *
+     * @param context Context to be used by the model.
+     */
     public StartModel(Context context)
     {
         _requestQueue = Volley.newRequestQueue(context);
