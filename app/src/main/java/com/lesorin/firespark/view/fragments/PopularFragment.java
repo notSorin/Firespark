@@ -25,7 +25,7 @@ public class PopularFragment extends FragmentWithSparks
             _view = inflater.inflate(R.layout.fragment_popular, container, false);
 
             initializeSwipeRefresh(() -> _activity.refreshPopularData());
-            initializeSparksRecycleView();
+            initializeSparksRecyclerView();
         }
 
         return _view;

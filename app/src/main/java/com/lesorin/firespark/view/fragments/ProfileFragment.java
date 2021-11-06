@@ -55,7 +55,7 @@ public class ProfileFragment extends FragmentWithSparks
             initializeTexts();
             initializeLogoutButton();
             initializeFollowButton();
-            initializeSparksRecycleView();
+            initializeSparksRecyclerView();
         }
 
         return _view;

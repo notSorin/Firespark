@@ -11,6 +11,9 @@ import com.lesorin.firespark.presenter.Spark;
 import com.lesorin.firespark.view.activities.MainActivity;
 import java.util.ArrayList;
 
+/**
+ * An abstract fragment which contains a list of sparks.
+ */
 public abstract class FragmentWithSparks extends FiresparkFragmentAdapter
 {
     protected View _view;
@@ -21,6 +24,11 @@ public abstract class FragmentWithSparks extends FiresparkFragmentAdapter
     protected RecyclerView.LayoutManager _rvLayoutManager;
     protected ArrayList<Spark> _sparksList;
 
+    /**
+     * Instantiates a new @{@link FragmentWithSparks}.
+     *
+     * @param activity {@link MainActivity} to be accessible from all @{@link FiresparkFragment}s.
+     */
     public FragmentWithSparks(MainActivity activity)
     {
         super(activity);
@@ -31,11 +39,19 @@ public abstract class FragmentWithSparks extends FiresparkFragmentAdapter
         _sparksList = null;
     }
 
+    /**
+     * Initialize background text.
+     */
     protected void initializeBackgroundText()
     {
         _backgroundText = _view.findViewById(R.id.BackgroundText);
     }
 
+    /**
+     * Initialize the swipe refresh on the fragment.
+     *
+     * @param refreshListener Listener to be called when the swipe refresh is triggered.
+     */
     protected void initializeSwipeRefresh(SwipeRefreshLayout.OnRefreshListener refreshListener)
     {
         _swipeRefresh = _view.findViewById(R.id.SwipeRefresh);
@@ -43,7 +59,10 @@ public abstract class FragmentWithSparks extends FiresparkFragmentAdapter
         _swipeRefresh.setOnRefreshListener(refreshListener);
     }
 
-    protected void initializeSparksRecycleView()
+    /**
+     * Initialize the sparks recycler view.
+     */
+    protected void initializeSparksRecyclerView()
     {
         _sparks = _view.findViewById(R.id.SparksRV);
 
@@ -52,11 +71,19 @@ public abstract class FragmentWithSparks extends FiresparkFragmentAdapter
         _sparks.setAdapter(_sparksRVAdapter);
     }
 
+    /**
+     * Sets sparks on the fragment.
+     *
+     * @param sparks Sparks to be set on the fragment.
+     */
     public void setSparks(ArrayList<Spark> sparks)
     {
         _sparksList = sparks;
     }
 
+    /**
+     * Displays the elements available on the fragment.
+     */
     public void displayElements()
     {
         if(_sparksList != null)
@@ -74,6 +101,11 @@ public abstract class FragmentWithSparks extends FiresparkFragmentAdapter
         }
     }
 
+    /**
+     * Sets background text.
+     *
+     * @param text Text to be set on the background of the fragment.
+     */
     public void setBackGroundText(String text)
     {
         if(_backgroundText != null)
@@ -101,11 +133,15 @@ public abstract class FragmentWithSparks extends FiresparkFragmentAdapter
     }
 
     @Override
-    public void sparkLikeRemoved(Spark spark)
+    public void sparkUnliked(Spark spark)
     {
         _sparksRVAdapter.sparkLikeRemoved(spark);
     }
 
+    /**
+     *
+     * @return The list with sparks on the fragment.
+     */
     public ArrayList<Spark> getSparksList()
     {
         return _sparksList;

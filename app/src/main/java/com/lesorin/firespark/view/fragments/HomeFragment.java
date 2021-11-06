@@ -26,7 +26,7 @@ public class HomeFragment extends FragmentWithSparks
 
             initializeBackgroundText();
             initializeSwipeRefresh(() -> _activity.refreshHomeData());
-            initializeSparksRecycleView();
+            initializeSparksRecyclerView();
         }
 
         return _view;

@@ -389,7 +389,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public void responseUnlikeSparkSuccess(Spark spark)
     {
-        _fragmentsStack.peek().sparkLikeRemoved(spark);
+        _fragmentsStack.peek().sparkUnliked(spark);
     }
 
     @Override

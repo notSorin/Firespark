@@ -6,8 +6,16 @@ import com.lesorin.firespark.presenter.User;
 import com.lesorin.firespark.view.activities.MainActivity;
 import java.util.ArrayList;
 
+/**
+ * An adapter of @{@link FiresparkFragment} with default implementations.
+ */
 public class FiresparkFragmentAdapter extends FiresparkFragment
 {
+    /**
+     * Instantiates a new Firespark fragment adapter.
+     *
+     * @param activity Activity to be accessible from the fragment.
+     */
     public FiresparkFragmentAdapter(MainActivity activity)
     {
         _activity = activity;
@@ -59,7 +67,7 @@ public class FiresparkFragmentAdapter extends FiresparkFragment
     }
 
     @Override
-    public void sparkLikeRemoved(Spark spark)
+    public void sparkUnliked(Spark spark)
     {
     }
 

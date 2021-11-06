@@ -272,7 +272,7 @@ public class SparkFragment extends FiresparkFragmentAdapter
     }
 
     @Override
-    public void sparkLikeRemoved(Spark spark)
+    public void sparkUnliked(Spark spark)
     {
         updateLikeIcon();
         updateLikesAmount();
