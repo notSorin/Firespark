@@ -31,6 +31,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
+import javax.annotation.Nullable;
+
+/**
+ * Main activity of the app.
+ */
 public class MainActivity extends AppCompatActivity implements MainContract.View
 {
     private MainContract.PresenterView _presenter;
@@ -89,6 +94,10 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         _newSparkFab.setOnClickListener(view -> openFragment(_sendSparkFragment));
     }
 
+    /**
+     *
+     * @return The fragment that is currently visible to the user, or null if there is no visible fragments.
+     */
     private FiresparkFragment getVisibleFragment()
     {
         FiresparkFragment ret = null;
@@ -105,11 +114,12 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public void onBackPressed()
     {
+        //Exit the app only if there is 1 fragment in the fragments stack.
         if(_fragmentsStack.size() <= 1)
         {
             super.onBackPressed();
         }
-        else
+        else //Go back to the previous fragment if there are more than 1 fragments in the fragments stack.
         {
             _fragmentsStack.pop();
             openFragment(_fragmentsStack.peek());
@@ -184,6 +194,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
                 case R.id.ProfilePage:
                     FiresparkFragment ff = getVisibleFragment();
 
+                    //Make sure the user is not already in a profile fragment.
                     if(ff == null || !ff.isProfileFragment())
                     {
                         //Only request the current user's profile if it is not already in the fragments stack.
@@ -200,6 +211,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
                     }
                     break;
                 case R.id.HomePage:
+                    //Request the home sparks only if they were not previously requested.
                     if(_homeFragment.getSparksList() == null)
                     {
                         _presenter.requestHomeData();
@@ -210,6 +222,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
                     }
                     break;
                 case R.id.PopularPage:
+                    //Request the popular sparks only if they were not previously requested.
                     if(_popularFragment.getSparksList() == null)
                     {
                         _presenter.requestPopularData();
@@ -227,6 +240,10 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         _navigationView.getMenu().getItem(1).setChecked(true);
     }
 
+    /**
+     * Opens a fragment, and makes sure to display its elements.
+     * @param fragment The fragment to be opened.
+     */
     private void openFragment(FiresparkFragment fragment)
     {
         if(fragment != null && getVisibleFragment() != fragment)
@@ -236,6 +253,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
             fragment.displayElements();
 
+            //Check the correct icon on the navigation view.
             if(fragment.isProfileFragment())
             {
                 _navigationView.getMenu().getItem(0).setChecked(true);
@@ -251,7 +269,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
                 _navigationView.getMenu().getItem(2).setChecked(true);
                 _navigationView.setVisibility(View.VISIBLE);
             }
-            else
+            else //Hide the navigation view if the fragment is not one of the main fragments.
             {
                 _navigationView.setVisibility(View.GONE);
             }
@@ -267,6 +285,9 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         }
     }
 
+    /**
+     * Handles log out of the currently connected user.
+     */
     public void logOutButtonPressed()
     {
         _presenter.requestLogout();
@@ -582,25 +603,43 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         imm.hideSoftInputFromWindow(_navigationView.getWindowToken(), 0);
     }
 
+    /**
+     * Handles the event of refreshing a user profile.
+     *
+     * @param user The user whose profile to refresh
+     */
     public void refreshProfileData(User user)
     {
         _presenter.requestProfileDataRefresh(user);
     }
 
+    /**
+     * Handles the event of refreshing the data on the home profile.
+     */
     public void refreshHomeData()
     {
         _presenter.requestHomeDataRefresh();
     }
 
+    /**
+     * Handles the event of refreshing the data on the popular fragment.
+     */
     public void refreshPopularData()
     {
         //todo
     }
 
+    /**
+     * Handles the click of a spark.
+     *
+     * @param spark The clicked spark.
+     */
     public void sparkClicked(Spark spark)
     {
         SparkFragment sf = findSparkFragment(spark);
 
+        //If there is no fragment with the spark's data, ask the presenter for it,
+        //otherwise just open that fragment.
         if(sf == null)
         {
             _presenter.requestSparkData(spark);
@@ -611,6 +650,11 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         }
     }
 
+    /**
+     * Finds a @{@link SparkFragment} in the fragments stack.
+     * @param spark The spark whose fragment to find.
+     * @return The spark's fragment if it is found in the fragments stack, null otherwise.
+     */
     private SparkFragment findSparkFragment(Spark spark)
     {
         SparkFragment sparkFragment = null;
@@ -626,16 +670,30 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         return sparkFragment;
     }
 
+    /**
+     * Handles the event of clicking the "like" button on a spark.
+     *
+     * @param spark The spark on which the "like" button was clicked.
+     */
     public void sparkLikeClicked(Spark spark)
     {
         _presenter.requestLikeUnlikeSpark(spark);
     }
 
+    /**
+     * Handles the event of clicking the owner name on a spark.
+     *
+     * @param spark The spark on which the owner name was clicked.
+     */
     public void sparkOwnerClicked(Spark spark)
     {
         handleUserNameClick(spark.getUserId());
     }
 
+    /**
+     * Handles the click on a user name.
+     * @param userId The id of the user whose name was clicked.
+     */
     private void handleUserNameClick(String userId)
     {
         FiresparkFragment ff = findProfileFragment(userId);
@@ -651,6 +709,11 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         }
     }
 
+    /**
+     * Finds a @{@link ProfileFragment} in the fragments stack.
+     * @param userId The user's id whose fragment to find.
+     * @return The user's fragment if it is found in the fragments stack, null otherwise.
+     */
     private ProfileFragment findProfileFragment(String userId)
     {
         ProfileFragment userFragment = null;
@@ -666,6 +729,10 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         return userFragment;
     }
 
+    /**
+     * Finds a @{@link ProfileFragment} in the fragments stack, belonging to the currently connected user.
+     * @return The current user's fragment if it is found in the fragments stack, null otherwise.
+     */
     private ProfileFragment findCurrentUserProfileFragment()
     {
         ProfileFragment userFragment = null;
@@ -681,11 +748,21 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         return userFragment;
     }
 
+    /**
+     * Handles the event of sending a spark.
+     *
+     * @param sparkBody The spark's body as read from the user's input.
+     */
     public void sendSparkClicked(String sparkBody)
     {
         _presenter.requestSendSpark(sparkBody);
     }
 
+    /**
+     * Handles the event of clicking the "delete" button on a spark.
+     *
+     * @param spark The spark on which the "delete" button was clicked.
+     */
     public void sparkDeleteClicked(Spark spark)
     {
         MaterialAlertDialogBuilder madb = new MaterialAlertDialogBuilder(this);
@@ -696,21 +773,43 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
             show();
     }
 
+    /**
+     * Handles the event of following a user.
+     *
+     * @param user The user whom to follow.
+     */
     public void userFollowClicked(User user)
     {
         _presenter.requestFollowUnfollowUser(user);
     }
 
+    /**
+     * Handles the event of searching for a user.
+     *
+     * @param name The name to search for as read from the user's input. It can be a username or a first and last name.
+     */
     public void requestSearchUser(String name)
     {
         _presenter.requestSearchUser(name);
     }
 
-    public void sendComment(Spark spark, String commentBody, Comment replyComment)
+    /**
+     * Handles the event of sending a comment.
+     *
+     * @param spark        the spark on which to send the comment
+     * @param commentBody  the comment's body as read from the user's input
+     * @param replyComment the reply comment
+     */
+    public void sendComment(Spark spark, String commentBody, @Nullable Comment replyComment)
     {
         _presenter.requestSendComment(spark, commentBody, replyComment);
     }
 
+    /**
+     * Handles the event of clicking the "delete" button on a comment.
+     *
+     * @param comment The comment on which the "delete" button was clicked.
+     */
     public void commentDeleteClicked(Comment comment)
     {
         MaterialAlertDialogBuilder madb = new MaterialAlertDialogBuilder(this);
@@ -721,16 +820,31 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
                 show();
     }
 
+    /**
+     * Handles the event of refreshing a spark and its comments.
+     *
+     * @param spark The spark whose data to refresh.
+     */
     public void refreshSparkData(Spark spark)
     {
         _presenter.requestSparkDataRefresh(spark);
     }
 
+    /**
+     * Handles the event of clicking the "like" button on a comment.
+     *
+     * @param comment The comment on which the "like" button was clicked.
+     */
     public void commentLikeClicked(Comment comment)
     {
         _presenter.requestLikeUnlikeComment(comment);
     }
 
+    /**
+     * Comment owner clicked.
+     *
+     * @param comment the comment
+     */
     public void commentOwnerClicked(Comment comment)
     {
         handleUserNameClick(comment.getUserId());
