@@ -603,12 +603,17 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     public void sparkOwnerClicked(Spark spark)
     {
-        FiresparkFragment ff = findProfileFragment(spark.getUserId());
+        handleUserNameClick(spark.getUserId());
+    }
+
+    private void handleUserNameClick(String userId)
+    {
+        FiresparkFragment ff = findProfileFragment(userId);
 
         //Request user profile only if there isn't already a fragment on the fragments stack with said user.
         if(ff == null)
         {
-            _presenter.requestProfileData(spark.getUserId());
+            _presenter.requestProfileData(userId);
         }
         else
         {
