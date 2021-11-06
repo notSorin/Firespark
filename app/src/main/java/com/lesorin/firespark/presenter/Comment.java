@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.Set;
 
 /**
- * Model class for a comment in the network.
+ * Abstract model class for a comment in the network.
  */
 public abstract class Comment
 {

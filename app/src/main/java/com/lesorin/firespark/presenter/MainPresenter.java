@@ -2,6 +2,9 @@ package com.lesorin.firespark.presenter;
 
 import java.util.ArrayList;
 
+/**
+ * Main presenter of the app.
+ */
 class MainPresenter implements MainContract.PresenterView, MainContract.PresenterModel
 {
     private static final int MAX_SPARK_LENGTH = 150;
