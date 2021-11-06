@@ -12,6 +12,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Locale;
 
+/**
+ * A RecyclerView adapter for @{@link CommentViewHolder}.
+ */
 public class CommentsRecycleViewAdapter extends RecyclerView.Adapter<CommentViewHolder>
 {
     private final String DATE_FORMAT = "d MMM yyyy\nHH:mm:ss";
@@ -19,6 +22,11 @@ public class CommentsRecycleViewAdapter extends RecyclerView.Adapter<CommentView
     private ArrayList<Comment> _commentsList;
     private SparkFragment _sparkFragment;
 
+    /**
+     * Instantiates a new Comments recycle view adapter.
+     *
+     * @param sparkFragment Parent fragment for the adapter.
+     */
     public CommentsRecycleViewAdapter(SparkFragment sparkFragment)
     {
         _commentsList = new ArrayList<>();
@@ -61,6 +69,11 @@ public class CommentsRecycleViewAdapter extends RecyclerView.Adapter<CommentView
         return _commentsList.size();
     }
 
+    /**
+     * Sets comments on the view.
+     *
+     * @param comments Comments list to set.
+     */
     public void setComments(ArrayList<Comment> comments)
     {
         _commentsList = comments;
@@ -68,6 +81,11 @@ public class CommentsRecycleViewAdapter extends RecyclerView.Adapter<CommentView
         notifyDataSetChanged();
     }
 
+    /**
+     * Adds a comment to the view.
+     *
+     * @param comment The comment to add.
+     */
     public void addComment(Comment comment)
     {
         int index = _commentsList.indexOf(comment);
@@ -79,6 +97,11 @@ public class CommentsRecycleViewAdapter extends RecyclerView.Adapter<CommentView
         }
     }
 
+    /**
+     * Deletes a comment from the view.
+     *
+     * @param comment The comment to delete.
+     */
     public void deleteComment(Comment comment)
     {
         if(_commentsList.remove(comment))
@@ -97,11 +120,21 @@ public class CommentsRecycleViewAdapter extends RecyclerView.Adapter<CommentView
         }
     }
 
+    /**
+     * Notifies the view that a comment has been liked.
+     *
+     * @param comment The comment which was liked.
+     */
     public void commentLiked(Comment comment)
     {
         commentChanged(comment);
     }
 
+    /**
+     * Notifies the view that a comment has been unliked.
+     *
+     * @param comment The comment which was unliked.
+     */
     public void commentUnliked(Comment comment)
     {
         commentChanged(comment);

@@ -4,6 +4,9 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.ViewPager;
 
+/**
+ * A page transformer that uses alpha transparency to go from one page to the other.
+ */
 public class AlphaPageTransformer implements ViewPager.PageTransformer
 {
     @Override
