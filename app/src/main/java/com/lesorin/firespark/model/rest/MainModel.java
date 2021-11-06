@@ -599,13 +599,111 @@ public class MainModel implements MainContract.Model
     @Override
     public void requestLikeComment(Comment comment)
     {
-        //todo
+        Response.Listener<String> rl = response ->
+        {
+            try
+            {
+                JSONObject json = new JSONObject(response);
+
+                if(json.getInt(KEY_CODE) == 200)
+                {
+                    comment.getLikes().add(_userid);
+                    comment.setLikedByCurrentUser(true);
+                    _presenter.responseLikeCommentSuccess(comment);
+                }
+                else
+                {
+                    _presenter.responseLikeCommentFailure();
+                    handleResponseError(json);
+                }
+            }
+            catch(JSONException e)
+            {
+                _presenter.responseLikeCommentFailure();
+            }
+        };
+
+        StringRequest request = new StringRequest(Request.Method.POST, LIKE_COMMENT_URL, rl,
+                error -> _presenter.responseNetworkError())
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String> params = new HashMap<>();
+
+                params.put(KEY_COMMENT_ID, comment.getId());
+                params.put(KEY_ACTION, ACTION_LIKE_COMMENT);
+
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders()
+            {
+                Map<String, String> params = new HashMap<>();
+
+                params.put(KEY_TOKEN_AUTH, _token);
+
+                return params;
+            }
+        };
+
+        _requestQueue.add(request);
     }
 
     @Override
     public void requestUnlikeComment(Comment comment)
     {
-        //todo
+        Response.Listener<String> rl = response ->
+        {
+            try
+            {
+                JSONObject json = new JSONObject(response);
+
+                if(json.getInt(KEY_CODE) == 200)
+                {
+                    comment.getLikes().remove(_userid);
+                    comment.setLikedByCurrentUser(false);
+                    _presenter.responseUnlikeCommentSuccess(comment);
+                }
+                else
+                {
+                    _presenter.responseUnlikeCommentFailure();
+                    handleResponseError(json);
+                }
+            }
+            catch(JSONException e)
+            {
+                _presenter.responseUnlikeCommentFailure();
+            }
+        };
+
+        StringRequest request = new StringRequest(Request.Method.POST, UNLIKE_COMMENT_URL, rl,
+                error -> _presenter.responseNetworkError())
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String> params = new HashMap<>();
+
+                params.put(KEY_COMMENT_ID, comment.getId());
+                params.put(KEY_ACTION, ACTION_UNLIKE_COMMENT);
+
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders()
+            {
+                Map<String, String> params = new HashMap<>();
+
+                params.put(KEY_TOKEN_AUTH, _token);
+
+                return params;
+            }
+        };
+
+        _requestQueue.add(request);
     }
 
     @Override
