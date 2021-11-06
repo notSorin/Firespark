@@ -415,6 +415,16 @@ public class MainModel implements MainContract.Model
 
     }
 
+    @Override
+    public void requestLikeComment(Comment comment) {
+
+    }
+
+    @Override
+    public void requestUnlikeComment(Comment comment) {
+
+    }
+
     private Comment updateCommentsCache(Comment comment)
     {
         Comment commentInCache = _commentsCache.get(comment.getId());
