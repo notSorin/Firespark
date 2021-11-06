@@ -289,7 +289,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public void responseHomeDataFailure()
     {
-        Snackbar.make(_navigationView, R.string.RequestHomeDataFailure, Snackbar.LENGTH_LONG).show();
+        Snackbar.make(_navigationView, R.string.ResponseHomeDataFailure, Snackbar.LENGTH_LONG).show();
     }
 
     @Override
@@ -303,13 +303,13 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public void responseSendSparkFailure()
     {
-        Snackbar.make(_navigationView, R.string.SendSparkUnknown, Snackbar.LENGTH_LONG).show();
+        Snackbar.make(_navigationView, R.string.ResponseSendSparkFailure, Snackbar.LENGTH_LONG).show();
     }
 
     @Override
     public void responseSendSparkEmpty()
     {
-        Snackbar.make(_navigationView, R.string.SendSparkEmpty, Snackbar.LENGTH_LONG).show();
+        Snackbar.make(_navigationView, R.string.ResponseSendSparkEmpty, Snackbar.LENGTH_LONG).show();
         _sendSparkFragment.resetSparkPosition();
     }
 
@@ -324,7 +324,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public void responseSendSparkTooLong()
     {
-        Snackbar.make(_navigationView, R.string.SendSparkTooLong, Snackbar.LENGTH_LONG).show();
+        Snackbar.make(_navigationView, R.string.ResponseSendSparkTooLong, Snackbar.LENGTH_LONG).show();
         _sendSparkFragment.resetSparkPosition();
     }
 
@@ -350,7 +350,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public void responseDeleteSparkFailure()
     {
-        Snackbar.make(_navigationView, R.string.DeleteSparkError, Snackbar.LENGTH_LONG).show();
+        Snackbar.make(_navigationView, R.string.ResponseDeleteSparkFailure, Snackbar.LENGTH_LONG).show();
     }
 
     @Override
@@ -362,7 +362,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public void responseLikeSparkFailure()
     {
-        Snackbar.make(_navigationView, R.string.AddSparkLikeFailure, Snackbar.LENGTH_LONG).show();
+        Snackbar.make(_navigationView, R.string.ResponseLikeSparkFailure, Snackbar.LENGTH_LONG).show();
     }
 
     @Override
@@ -374,7 +374,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public void responseUnlikeSparkFailure()
     {
-        Snackbar.make(_navigationView, R.string.RemoveSparkLikeFailure, Snackbar.LENGTH_LONG).show();
+        Snackbar.make(_navigationView, R.string.ResponseUnlikeSparkFailure, Snackbar.LENGTH_LONG).show();
     }
 
     @Override
@@ -386,7 +386,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public void responseFollowUserFailure()
     {
-        Snackbar.make(_navigationView, R.string.FollowUserFailure, Snackbar.LENGTH_LONG).show();
+        Snackbar.make(_navigationView, R.string.ResponseFollowUserFailure, Snackbar.LENGTH_LONG).show();
     }
 
     @Override
@@ -398,7 +398,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public void responseUnfollowUserFailure()
     {
-        Snackbar.make(_navigationView, R.string.UnfollowUserFailure, Snackbar.LENGTH_LONG).show();
+        Snackbar.make(_navigationView, R.string.ResponseUnfollowUserFailure, Snackbar.LENGTH_LONG).show();
     }
 
     @Override
@@ -408,9 +408,9 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     }
 
     @Override
-    public void responseSearchUserByUsernameFailure()
+    public void responseSearchUserByUsernameFailure() //todo change the name of this method
     {
-        Snackbar.make(_navigationView, R.string.SearchUserNotFound, Snackbar.LENGTH_LONG).show();
+        Snackbar.make(_navigationView, R.string.ResponseSearchUserByUsernameFailure, Snackbar.LENGTH_LONG).show();
     }
 
     @Override
@@ -436,7 +436,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public void responseProfileDataFailure()
     {
-        Snackbar.make(_navigationView, R.string.RequestProfileDataFailure, Snackbar.LENGTH_LONG).show();
+        Snackbar.make(_navigationView, R.string.ResponseProfileDataFailure, Snackbar.LENGTH_LONG).show();
     }
 
     @Override
@@ -457,7 +457,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public void responseSparkDataFailure()
     {
-        Snackbar.make(_navigationView, R.string.RequestSparkDataFailure, Snackbar.LENGTH_LONG).show();
+        Snackbar.make(_navigationView, R.string.ResponseSparkDataFailure, Snackbar.LENGTH_LONG).show();
     }
 
     @Override
@@ -470,7 +470,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public void responsePopularDataFailure()
     {
-        Snackbar.make(_navigationView, R.string.RequestPopularDataFailure, Snackbar.LENGTH_LONG).show();
+        Snackbar.make(_navigationView, R.string.ResponsePopularDataFailure, Snackbar.LENGTH_LONG).show();
     }
 
     @Override
@@ -482,7 +482,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public void responseProfileDataRefreshFailure()
     {
-        Snackbar.make(_navigationView, R.string.RequestRefreshProfileFailure, Snackbar.LENGTH_LONG).show();
+        Snackbar.make(_navigationView, R.string.ResponseProfileDataRefreshFailure, Snackbar.LENGTH_LONG).show();
     }
 
     @Override
@@ -494,7 +494,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public void responseHomeDataRefreshFailure()
     {
-        Snackbar.make(_navigationView, R.string.RequestHomeDataRefreshFailure, Snackbar.LENGTH_LONG).show();
+        Snackbar.make(_navigationView, R.string.ResponseHomeDataRefreshFailure, Snackbar.LENGTH_LONG).show();
     }
 
     @Override
@@ -506,13 +506,13 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public void responseSendCommentFailure()
     {
-        Snackbar.make(_navigationView, R.string.RequestSendCommentFailure, Snackbar.LENGTH_LONG).show();
+        Snackbar.make(_navigationView, R.string.ResponseSendCommentFailure, Snackbar.LENGTH_LONG).show();
     }
 
     @Override
     public void responseSendCommentEmptyBody()
     {
-        Snackbar.make(_navigationView, R.string.RequestSendCommentFailureEmptyBody, Snackbar.LENGTH_LONG).show();
+        Snackbar.make(_navigationView, R.string.ResponseSendCommentEmptyBody, Snackbar.LENGTH_LONG).show();
     }
 
     @Override
@@ -536,7 +536,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public void responseNetworkError()
     {
-        Snackbar.make(_navigationView, R.string.NetworkError, Snackbar.LENGTH_LONG).show();
+        Snackbar.make(_navigationView, R.string.ResponseNetworkError, Snackbar.LENGTH_LONG).show();
     }
 
     @Override
