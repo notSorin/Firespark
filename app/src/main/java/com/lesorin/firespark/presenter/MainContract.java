@@ -19,7 +19,7 @@ public interface MainContract
         void requestDeleteSpark(Spark spark);
         void requestLikeUnlikeSpark(Spark spark);
         void requestFollowUnfollowUser(User user);
-        void requestSearchUserByUsername(String userName);
+        void requestSearchUser(String usernameOrName);
         void requestProfileDataRefresh(User user);
         void requestHomeDataRefresh();
         void requestSendComment(Spark spark, String commentBody, Comment replyComment);
@@ -47,8 +47,8 @@ public interface MainContract
         void responseFollowUserFailure();
         void responseUnfollowUserSuccess(User user);
         void responseUnfollowUserFailure();
-        void responseSearchUserByUsernameSuccess(User user, ArrayList<Spark> sparks);
-        void responseSearchUserByUsernameFailure();
+        void responseSearchUserSuccess(User user, ArrayList<Spark> sparks);
+        void responseSearchUserFailure();
         void responseProfileDataSuccess(User user, ArrayList<Spark> sparks);
         void responseProfileDataFailure();
         void responseSparkDataSuccess(Spark spark, ArrayList<Comment> comments);
@@ -87,8 +87,8 @@ public interface MainContract
         void responseFollowUserFailure();
         void responseUnfollowUserSuccess(User user);
         void responseUnfollowUserFailure();
-        void responseSearchUserByUsernameSuccess(User user, ArrayList<Spark> sparks);
-        void responseSearchUserByUsernameFailure();
+        void responseSearchUserSuccess(User user, ArrayList<Spark> sparks);
+        void responseSearchUserFailure();
         void responseProfileDataSuccess(User user, ArrayList<Spark> sparks);
         void responseProfileDataFailure();
         void responseSparkDataSuccess(Spark spark, ArrayList<Comment> comments);
@@ -126,7 +126,7 @@ public interface MainContract
         void requestDeleteSpark(Spark spark);
         void requestFollowUser(User user);
         void requestUnfollowUser(User user);
-        void requestSearchUserByUsername(String userName);
+        void requestSearchUser(String name);
         void requestSparkData(Spark spark);
         void requestSendComment(Spark spark, String commentBody, Comment replyComment);
         void requestDeleteComment(Comment comment);

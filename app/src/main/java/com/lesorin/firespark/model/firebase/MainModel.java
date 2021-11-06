@@ -249,9 +249,9 @@ public class MainModel implements MainContract.Model
     }
 
     @Override
-    public void requestSearchUserByUsername(String userName)
+    public void requestSearchUser(String userName)
     {
-        if(!userName.isEmpty())
+        /*if(!userName.isEmpty())
         {
             _firestore.collection(COLLECTION_USERS).whereEqualTo(USER_USERNAMEINSENSITIVE, userName.toLowerCase()).
                 get().addOnCompleteListener(task ->
@@ -301,7 +301,7 @@ public class MainModel implements MainContract.Model
         else
         {
             _presenter.responseSearchUserByUsernameFailure();
-        }
+        }*/
     }
 
     @Override

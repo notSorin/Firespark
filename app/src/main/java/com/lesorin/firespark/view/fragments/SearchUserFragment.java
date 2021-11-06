@@ -14,7 +14,7 @@ import com.lesorin.firespark.view.activities.MainActivity;
 public class SearchUserFragment extends FiresparkFragmentAdapter
 {
     private View _view;
-    private TextInputEditText _username;
+    private TextInputEditText _nameInput;
     private MaterialButton _searchButton;
 
     public SearchUserFragment(MainActivity activity)
@@ -45,12 +45,12 @@ public class SearchUserFragment extends FiresparkFragmentAdapter
 
         _searchButton.setOnClickListener(view ->
         {
-            _activity.requestSearchUserByUsername(_username.getText().toString());
+            _activity.requestSearchUser(_nameInput.getText().toString());
         });
     }
 
     private void initializeUsernameField()
     {
-        _username = _view.findViewById(R.id.SearchUsername);
+        _nameInput = _view.findViewById(R.id.SearchUsername);
     }
 }

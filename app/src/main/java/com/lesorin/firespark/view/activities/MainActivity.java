@@ -402,13 +402,13 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     }
 
     @Override
-    public void responseSearchUserByUsernameSuccess(User user, ArrayList<Spark> sparks)
+    public void responseSearchUserSuccess(User user, ArrayList<Spark> sparks)
     {
         requestProfileSuccess(user, sparks);
     }
 
     @Override
-    public void responseSearchUserByUsernameFailure() //todo change the name of this method
+    public void responseSearchUserFailure()
     {
         Snackbar.make(_navigationView, R.string.ResponseSearchUserByUsernameFailure, Snackbar.LENGTH_LONG).show();
     }
@@ -701,9 +701,9 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         _presenter.requestFollowUnfollowUser(user);
     }
 
-    public void requestSearchUserByUsername(String userName)
+    public void requestSearchUser(String name)
     {
-        _presenter.requestSearchUserByUsername(userName);
+        _presenter.requestSearchUser(name);
     }
 
     public void sendComment(Spark spark, String commentBody, Comment replyComment)

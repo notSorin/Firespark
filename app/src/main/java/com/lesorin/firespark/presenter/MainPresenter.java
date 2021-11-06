@@ -144,16 +144,9 @@ class MainPresenter implements MainContract.PresenterView, MainContract.Presente
     }
 
     @Override
-    public void requestSearchUserByUsername(String userName)
+    public void requestSearchUser(String name)
     {
-        if(userName.matches(USERNAME_REGEX))
-        {
-            _model.requestSearchUserByUsername(userName);
-        }
-        else
-        {
-            _view.responseSearchUserByUsernameFailure();
-        }
+        _model.requestSearchUser(name);
     }
 
     @Override
@@ -350,15 +343,15 @@ class MainPresenter implements MainContract.PresenterView, MainContract.Presente
     }
 
     @Override
-    public void responseSearchUserByUsernameSuccess(User user, ArrayList<Spark> sparks)
+    public void responseSearchUserSuccess(User user, ArrayList<Spark> sparks)
     {
-        _view.responseSearchUserByUsernameSuccess(user, sparks);
+        _view.responseSearchUserSuccess(user, sparks);
     }
 
     @Override
-    public void responseSearchUserByUsernameFailure()
+    public void responseSearchUserFailure()
     {
-        _view.responseSearchUserByUsernameFailure();
+        _view.responseSearchUserFailure();
     }
 
     @Override

@@ -707,7 +707,7 @@ public class MainModel implements MainContract.Model
     }
 
     @Override
-    public void requestSearchUserByUsername(String userName)
+    public void requestSearchUser(String name)
     {
         //todo
     }
