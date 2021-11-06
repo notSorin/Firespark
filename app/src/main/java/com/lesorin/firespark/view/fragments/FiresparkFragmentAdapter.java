@@ -119,4 +119,14 @@ public class FiresparkFragmentAdapter extends FiresparkFragment
     public void deleteComment(Comment comment)
     {
     }
+
+    @Override
+    public void commentLiked(Comment comment)
+    {
+    }
+
+    @Override
+    public void commentUnliked(Comment comment)
+    {
+    }
 }

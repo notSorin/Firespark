@@ -31,4 +31,6 @@ public abstract class FiresparkFragment extends Fragment
     public abstract Spark getSpark();
     public abstract void refreshSparkData(Spark spark, ArrayList<Comment> comments);
     public abstract void deleteComment(Comment comment);
+    public abstract void commentLiked(Comment comment);
+    public abstract void commentUnliked(Comment comment);
 }

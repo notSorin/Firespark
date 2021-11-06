@@ -86,4 +86,24 @@ public class CommentsRecycleViewAdapter extends RecyclerView.Adapter<CommentView
             notifyDataSetChanged();
         }
     }
+
+    private void commentChanged(Comment comment)
+    {
+        int commentIndex = _commentsList.indexOf(comment);
+
+        if(commentIndex != -1)
+        {
+            notifyItemChanged(commentIndex);
+        }
+    }
+
+    public void commentLiked(Comment comment)
+    {
+        commentChanged(comment);
+    }
+
+    public void commentUnliked(Comment comment)
+    {
+        commentChanged(comment);
+    }
 }

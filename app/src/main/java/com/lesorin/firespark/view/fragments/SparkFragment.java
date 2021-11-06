@@ -319,4 +319,16 @@ public class SparkFragment extends FiresparkFragmentAdapter
         _commentsRVAdapter.deleteComment(comment);
         updateCommentsAmount();
     }
+
+    @Override
+    public void commentLiked(Comment comment)
+    {
+        _commentsRVAdapter.commentLiked(comment);
+    }
+
+    @Override
+    public void commentUnliked(Comment comment)
+    {
+        _commentsRVAdapter.commentUnliked(comment);
+    }
 }
