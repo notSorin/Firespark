@@ -853,4 +853,15 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     {
         handleUserNameClick(comment.getUserId());
     }
+
+    /**
+     * Handles the event of clicking a @{@link com.lesorin.firespark.view.fragments.SimplifiedUserViewHolder}.
+     *
+     * @param user The user belonging to the @{@link com.lesorin.firespark.view.fragments.SimplifiedUserViewHolder}
+     *             that was clicked.
+     */
+    public void simplifiedUserClicked(User user)
+    {
+        handleUserNameClick(user.getId());
+    }
 }
