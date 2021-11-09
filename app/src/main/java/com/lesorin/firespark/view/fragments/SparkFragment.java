@@ -153,13 +153,18 @@ public class SparkFragment extends FiresparkFragmentAdapter
     {
         if(_commentsRVAdapter != null)
         {
-            setBackGroundText(_commentsRVAdapter.getItemCount() == 0 ? _activity.getString(R.string.NoCommentsText) : "");
+            updateBackgroundText();
         }
 
         if(_swipeRefresh != null)
         {
             _swipeRefresh.setRefreshing(false);
         }
+    }
+
+    private void updateBackgroundText()
+    {
+        setBackGroundText(_commentsRVAdapter.getItemCount() == 0 ? _activity.getString(R.string.NoCommentsText) : "");
     }
 
     /**
@@ -319,6 +324,7 @@ public class SparkFragment extends FiresparkFragmentAdapter
         _commentsRVAdapter.addComment(comment);
         _sendComment.setEnabled(true);
         updateCommentsAmount();
+        updateBackgroundText();
     }
 
     @Override
@@ -346,6 +352,7 @@ public class SparkFragment extends FiresparkFragmentAdapter
     {
         _commentsRVAdapter.deleteComment(comment);
         updateCommentsAmount();
+        updateBackgroundText();
     }
 
     @Override
