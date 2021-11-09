@@ -81,7 +81,7 @@ public class MainModel implements MainContract.Model
             {
                 JSONObject json = new JSONObject(response);
 
-                if(json.getInt(KEY_CODE) == 200)
+                if(json.getInt(KEY_CODE) == RESPONSE_OK)
                 {
                     JSONObject message = json.getJSONObject(KEY_MESSAGE);
                     JSONObject jsonUser = message.getJSONObject(KEY_PROFILE);
@@ -183,7 +183,7 @@ public class MainModel implements MainContract.Model
             {
                 JSONObject json = new JSONObject(response);
 
-                if(json.getInt(KEY_CODE) == 200)
+                if(json.getInt(KEY_CODE) == RESPONSE_OK)
                 {
                     JSONArray jsonSparks = json.getJSONArray(KEY_MESSAGE);
                     ArrayList<Spark> sparks = getSparksFromJSONArray(jsonSparks);
@@ -225,7 +225,7 @@ public class MainModel implements MainContract.Model
         {
             int code = json.getInt(KEY_CODE);
 
-            if(code == 400)
+            if(code == RESPONSE_ERROR)
             {
                 if(json.has(KEY_ERRNO))
                 {
@@ -288,7 +288,7 @@ public class MainModel implements MainContract.Model
             {
                 JSONObject json = new JSONObject(response);
 
-                if(json.getInt(KEY_CODE) == 200)
+                if(json.getInt(KEY_CODE) == RESPONSE_OK)
                 {
                     RESTSpark spark = getSparkFromJSONObject(json.getJSONObject(KEY_MESSAGE));
 
@@ -342,7 +342,7 @@ public class MainModel implements MainContract.Model
             {
                 JSONObject json = new JSONObject(response);
 
-                if(json.getInt(KEY_CODE) == 200)
+                if(json.getInt(KEY_CODE) == RESPONSE_OK)
                 {
                     _sparksCache.remove(spark.getId());
                     _presenter.responseDeleteSparkSuccess(spark);
@@ -395,7 +395,7 @@ public class MainModel implements MainContract.Model
             {
                 JSONObject json = new JSONObject(response);
 
-                if(json.getInt(KEY_CODE) == 200)
+                if(json.getInt(KEY_CODE) == RESPONSE_OK)
                 {
                     user.getFollowers().add(_userid);
                     user.setFollowedByCurrentUser(true);
@@ -450,7 +450,7 @@ public class MainModel implements MainContract.Model
             {
                 JSONObject json = new JSONObject(response);
 
-                if(json.getInt(KEY_CODE) == 200)
+                if(json.getInt(KEY_CODE) == RESPONSE_OK)
                 {
                     user.getFollowers().remove(_userid);
                     user.setFollowedByCurrentUser(false);
@@ -504,7 +504,7 @@ public class MainModel implements MainContract.Model
             {
                 JSONObject json = new JSONObject(response);
 
-                if(json.getInt(KEY_CODE) == 200)
+                if(json.getInt(KEY_CODE) == RESPONSE_OK)
                 {
                     spark.getLikes().add(_userid);
                     spark.setLikedByCurrentUser(true);
@@ -558,7 +558,7 @@ public class MainModel implements MainContract.Model
             {
                 JSONObject json = new JSONObject(response);
 
-                if(json.getInt(KEY_CODE) == 200)
+                if(json.getInt(KEY_CODE) == RESPONSE_OK)
                 {
                     spark.getLikes().remove(_userid);
                     spark.setLikedByCurrentUser(false);
@@ -613,7 +613,7 @@ public class MainModel implements MainContract.Model
             {
                 JSONObject json = new JSONObject(response);
 
-                if(json.getInt(KEY_CODE) == 200)
+                if(json.getInt(KEY_CODE) == RESPONSE_OK)
                 {
                     comment.getLikes().add(_userid);
                     comment.setLikedByCurrentUser(true);
@@ -668,7 +668,7 @@ public class MainModel implements MainContract.Model
             {
                 JSONObject json = new JSONObject(response);
 
-                if(json.getInt(KEY_CODE) == 200)
+                if(json.getInt(KEY_CODE) == RESPONSE_OK)
                 {
                     comment.getLikes().remove(_userid);
                     comment.setLikedByCurrentUser(false);
@@ -729,7 +729,7 @@ public class MainModel implements MainContract.Model
             {
                 JSONObject json = new JSONObject(response);
 
-                if(json.getInt(KEY_CODE) == 200)
+                if(json.getInt(KEY_CODE) == RESPONSE_OK)
                 {
                     JSONObject message = json.getJSONObject(KEY_MESSAGE);
                     JSONObject jsonSpark = message.getJSONObject(KEY_SPARK);
@@ -858,7 +858,7 @@ public class MainModel implements MainContract.Model
             {
                 JSONObject json = new JSONObject(response);
 
-                if(json.getInt(KEY_CODE) == 200)
+                if(json.getInt(KEY_CODE) == RESPONSE_OK)
                 {
                     removeCommentFromSpark(comment);
                     _commentsCache.remove(comment.getId());

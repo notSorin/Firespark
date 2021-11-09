@@ -54,7 +54,9 @@ public class ModelConstants
     public static final String ACTION_LIKE_COMMENT = "like";
     public static final String ACTION_UNLIKE_COMMENT = "unlike";
 
-    //Error codes.
+    //Response codes.
+    public static final int RESPONSE_OK = 200;
+    public static final int RESPONSE_ERROR = 400;
     public static final String ERRNO_IC = "ERRNO_IC"; //Invalid credentials.
 
     //Keys for logging in.
