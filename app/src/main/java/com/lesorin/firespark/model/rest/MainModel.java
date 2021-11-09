@@ -135,7 +135,11 @@ public class MainModel implements MainContract.Model
         RESTUser user = _gson.fromJson(jsonProfile.toString(), RESTUser.class);
 
         user.setCurrentUser(user.getId().equals(_userid));
-        user.setFollowedByCurrentUser(user.getFollowers().contains(_userid));
+
+        if(user.getFollowers() != null)
+        {
+            user.setFollowedByCurrentUser(user.getFollowers().contains(_userid));
+        }
 
         return updateUsersCache(user);
     }
