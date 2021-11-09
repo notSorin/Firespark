@@ -397,8 +397,7 @@ public class MainModel implements MainContract.Model
 
                 if(json.getInt(KEY_CODE) == RESPONSE_OK)
                 {
-                    user.getFollowers().add(_userid);
-                    user.setFollowedByCurrentUser(true);
+                    updateUsersAfterFollow(user);
                     _presenter.responseFollowUserSuccess(user);
                 }
                 else
@@ -441,6 +440,34 @@ public class MainModel implements MainContract.Model
         _requestQueue.add(request);
     }
 
+    private void updateUsersAfterFollow(User followedUser)
+    {
+        followedUser.getFollowers().add(_userid);
+        followedUser.setFollowedByCurrentUser(true);
+
+        //Also update the current user if they are in the cache.
+        User currentUser = _usersCache.get(_userid);
+
+        if(currentUser != null)
+        {
+            currentUser.getFollowing().add(followedUser.getId());
+        }
+    }
+
+    private void updateUsersAfterUnfollow(User unfollowedUser)
+    {
+        unfollowedUser.getFollowers().remove(_userid);
+        unfollowedUser.setFollowedByCurrentUser(false);
+
+        //Also update the current user if they are in the cache.
+        User currentUser = _usersCache.get(_userid);
+
+        if(currentUser != null)
+        {
+            currentUser.getFollowing().remove(unfollowedUser.getId());
+        }
+    }
+
     @Override
     public void requestUnfollowUser(User user)
     {
@@ -452,8 +479,7 @@ public class MainModel implements MainContract.Model
 
                 if(json.getInt(KEY_CODE) == RESPONSE_OK)
                 {
-                    user.getFollowers().remove(_userid);
-                    user.setFollowedByCurrentUser(false);
+                    updateUsersAfterUnfollow(user);
                     _presenter.responseUnfollowUserSuccess(user);
                 }
                 else
