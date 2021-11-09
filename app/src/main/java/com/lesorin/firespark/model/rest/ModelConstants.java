@@ -30,6 +30,7 @@ public class ModelConstants
     public static final String DELETE_COMMENT_URL = USING_API_URL + "DeleteComment.php";
     public static final String LIKE_COMMENT_URL = USING_API_URL + "LikeUnlikeComment.php";
     public static final String UNLIKE_COMMENT_URL = USING_API_URL + "LikeUnlikeComment.php";
+    public static final String SEND_COMMENT_URL = USING_API_URL + "SendComment.php";
 
     //JSON keys.
     public static final String KEY_CODE = "code";
@@ -53,6 +54,8 @@ public class ModelConstants
     public static final String KEY_COMMENT_ID = "commentid";
     public static final String ACTION_LIKE_COMMENT = "like";
     public static final String ACTION_UNLIKE_COMMENT = "unlike";
+    public static final String KEY_COMMENT_BODY = "body";
+    public static final String KEY_COMMENT_REPLYTOID = "replytoid";
 
     //Response codes.
     public static final int RESPONSE_OK = 200;

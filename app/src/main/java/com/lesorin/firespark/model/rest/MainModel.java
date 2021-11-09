@@ -846,7 +846,58 @@ public class MainModel implements MainContract.Model
     @Override
     public void requestSendComment(Spark spark, String commentBody, Comment replyComment)
     {
-        //todo
+        Response.Listener<String> rl = response ->
+        {
+            try
+            {
+                JSONObject json = new JSONObject(response);
+
+                if(json.getInt(KEY_CODE) == RESPONSE_OK)
+                {
+                    RESTComment comment = getCommentFromJSONObject(json.getJSONObject(KEY_MESSAGE));
+
+                    addCommentToSpark(comment);
+                    _presenter.responseSendCommentSuccess(comment);
+                }
+                else
+                {
+                    _presenter.responseSendCommentFailure();
+                    handleResponseError(json);
+                }
+            }
+            catch(Exception e)
+            {
+                _presenter.responseSendCommentFailure();
+            }
+        };
+
+        StringRequest request = new StringRequest(Request.Method.POST, SEND_COMMENT_URL, rl,
+                error -> _presenter.responseNetworkError())
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String> params = new HashMap<>();
+
+                params.put(KEY_SPARKID, spark.getId());
+                params.put(KEY_COMMENT_BODY, commentBody);
+                params.put(KEY_COMMENT_REPLYTOID, replyComment != null ? replyComment.getId() : "null");
+
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders()
+            {
+                Map<String, String> params = new HashMap<>();
+
+                params.put(KEY_TOKEN_AUTH, _token);
+
+                return params;
+            }
+        };
+
+        _requestQueue.add(request);
     }
 
     @Override
@@ -911,6 +962,17 @@ public class MainModel implements MainContract.Model
         {
             spark.getComments().remove(comment.getUserId());
             spark.setContainsCommentFromCurrentUser(spark.getComments().contains(_userid));
+        }
+    }
+
+    private void addCommentToSpark(RESTComment comment)
+    {
+        Spark spark = _sparksCache.get(comment.getSparkId());
+
+        if(spark != null)
+        {
+            spark.getComments().add(_userid);
+            spark.setContainsCommentFromCurrentUser(true);
         }
     }
 }
