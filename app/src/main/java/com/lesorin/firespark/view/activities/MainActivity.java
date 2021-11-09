@@ -522,18 +522,21 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     public void responseSendCommentSuccess(Comment comment)
     {
         _fragmentsStack.peek().addComment(comment);
+        _fragmentsStack.peek().setCommentRelatedElementsState(true);
     }
 
     @Override
     public void responseSendCommentFailure()
     {
         Snackbar.make(_navigationView, R.string.ResponseSendCommentFailure, Snackbar.LENGTH_LONG).show();
+        _fragmentsStack.peek().setCommentRelatedElementsState(false);
     }
 
     @Override
     public void responseSendCommentEmptyBody()
     {
         Snackbar.make(_navigationView, R.string.ResponseSendCommentEmptyBody, Snackbar.LENGTH_LONG).show();
+        _fragmentsStack.peek().setCommentRelatedElementsState(true);
     }
 
     @Override
@@ -802,6 +805,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
      */
     public void sendComment(Spark spark, String commentBody, @Nullable Comment replyComment)
     {
+        _fragmentsStack.peek().setCommentRelatedElementsState(false);
         _presenter.requestSendComment(spark, commentBody, replyComment);
     }
 

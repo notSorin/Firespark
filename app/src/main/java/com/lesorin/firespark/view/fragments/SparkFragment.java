@@ -88,7 +88,6 @@ public class SparkFragment extends FiresparkFragmentAdapter
 
         _sendComment.setOnClickListener(view ->
         {
-            _sendComment.setEnabled(false);
             _activity.sendComment(_spark, _commentInput.getText().toString(), _replyComment);
             setReplyComment(null);
             _commentInput.setText("");
@@ -322,7 +321,6 @@ public class SparkFragment extends FiresparkFragmentAdapter
     public void addComment(Comment comment)
     {
         _commentsRVAdapter.addComment(comment);
-        _sendComment.setEnabled(true);
         updateCommentsAmount();
         updateBackgroundText();
     }
@@ -365,5 +363,11 @@ public class SparkFragment extends FiresparkFragmentAdapter
     public void commentUnliked(Comment comment)
     {
         _commentsRVAdapter.commentUnliked(comment);
+    }
+
+    @Override
+    public void setCommentRelatedElementsState(boolean enabled)
+    {
+        _sendComment.setEnabled(enabled);
     }
 }

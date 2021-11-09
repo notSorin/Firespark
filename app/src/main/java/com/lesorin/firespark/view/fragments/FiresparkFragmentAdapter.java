@@ -137,4 +137,9 @@ public class FiresparkFragmentAdapter extends FiresparkFragment
     public void commentUnliked(Comment comment)
     {
     }
+
+    @Override
+    public void setCommentRelatedElementsState(boolean enabled)
+    {
+    }
 }

@@ -161,4 +161,11 @@ public abstract class FiresparkFragment extends Fragment
      * @param comment The comment which was unliked.
      */
     public abstract void commentUnliked(Comment comment);
+
+    /**
+     * Sets the state of elements related to sending new comments.
+     *
+     * @param enabled True to enable the elements, false otherwise.
+     */
+    public abstract void setCommentRelatedElementsState(boolean enabled);
 }
