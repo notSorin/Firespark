@@ -13,7 +13,6 @@
         android:orientation="vertical"
         android:padding="12dp"
         android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
@@ -28,7 +27,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/Username">
+            android:hint="@string/SearchUserHint">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/SearchUsername"
@@ -40,20 +39,13 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <LinearLayout
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/SearchButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/SearchButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:text="@string/Search"
-                app:cornerRadius="20dp" />
-        </LinearLayout>
+            android:layout_marginTop="12dp"
+            android:text="@string/Search"
+            app:cornerRadius="20dp" />
 
     </LinearLayout>
 
