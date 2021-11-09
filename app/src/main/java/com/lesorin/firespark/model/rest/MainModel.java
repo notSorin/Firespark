@@ -747,7 +747,70 @@ public class MainModel implements MainContract.Model
     @Override
     public void requestSearchUser(String usernameOrName)
     {
-        //todo
+        Response.Listener<String> rl = response ->
+        {
+            try
+            {
+                JSONObject json = new JSONObject(response);
+
+                if(json.getInt(KEY_CODE) == RESPONSE_OK)
+                {
+                    JSONArray jsonUsers = json.getJSONArray(KEY_MESSAGE);
+                    ArrayList<User> users = getUsersFromJSONArray(jsonUsers);
+
+                    _presenter.responseSearchUserSuccess(users);
+                }
+                else
+                {
+                    _presenter.responseSearchUserFailure();
+                    handleResponseError(json);
+                }
+            }
+            catch(JSONException e)
+            {
+                _presenter.responseSearchUserFailure();
+            }
+        };
+
+        StringRequest request = new StringRequest(Request.Method.POST, SEARCH_USERS_URL, rl,
+                error -> _presenter.responseNetworkError())
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String> params = new HashMap<>();
+
+                params.put(KEY_USER_NAME, usernameOrName);
+
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders()
+            {
+                Map<String, String> params = new HashMap<>();
+
+                params.put(KEY_TOKEN_AUTH, _token);
+
+                return params;
+            }
+        };
+
+        _requestQueue.add(request);
+    }
+
+    private ArrayList<User> getUsersFromJSONArray(JSONArray jsonUsers) throws JSONException
+    {
+        ArrayList<User> users = new ArrayList<>();
+
+        for(int i = 0; i < jsonUsers.length(); i++)
+        {
+            RESTUser user = getUserFromJSONObject(jsonUsers.getJSONObject(i));
+
+            users.add(user);
+        }
+
+        return users;
     }
 
     @Override

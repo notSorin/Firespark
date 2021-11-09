@@ -425,7 +425,13 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public void responseSearchUserSuccess(ArrayList<User> users)
     {
-        requestProfileSuccess(user, sparks);
+        _searchUserFragment.setUsers(users);
+        _searchUserFragment.displayElements();
+
+        if(users.isEmpty())
+        {
+            Snackbar.make(_navigationView, R.string.ResponseSearchUserNoResults, Snackbar.LENGTH_LONG).show();
+        }
     }
 
     @Override
@@ -793,6 +799,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
      */
     public void requestSearchUser(String name)
     {
+        hideKeyboard();
         _presenter.requestSearchUser(name);
     }
 
