@@ -91,7 +91,7 @@ public abstract class FragmentWithSparks extends FiresparkFragmentAdapter
             if(_sparksRVAdapter != null)
             {
                 _sparksRVAdapter.setSparks(_sparksList);
-                setBackGroundText(_sparksList.isEmpty() ? _activity.getString(R.string.NoDataText) : "");
+                updateBackgroundText();
             }
 
             if(_swipeRefresh != null)
@@ -99,6 +99,11 @@ public abstract class FragmentWithSparks extends FiresparkFragmentAdapter
                 _swipeRefresh.setRefreshing(false);
             }
         }
+    }
+
+    private void updateBackgroundText()
+    {
+        setBackGroundText(_sparksList.isEmpty() ? _activity.getString(R.string.NoDataText) : "");
     }
 
     /**
@@ -118,12 +123,14 @@ public abstract class FragmentWithSparks extends FiresparkFragmentAdapter
     public void addSpark(Spark spark)
     {
         _sparksRVAdapter.addSpark(spark);
+        updateBackgroundText();
     }
 
     @Override
     public void deleteSpark(Spark spark)
     {
         _sparksRVAdapter.deleteSpark(spark);
+        updateBackgroundText();
     }
 
     @Override
