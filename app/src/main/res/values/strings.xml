@@ -76,6 +76,7 @@
     <string name="DeleteCommentTitle">Delete Comment?</string>
     <string name="DeleteCommentMessage">Are you sure you want to delete this Comment? This action cannot be undone.</string>
     <string name="SearchUserHint">Name or Username</string>
+    <string name="FirstLastName">First and Last Name</string>
 
     <!--Responses-->
     <string name="ResponseSendSparkEmpty">Cannot send an empty Spark!</string>
@@ -101,4 +102,5 @@
     <string name="ResponseLikeCommentFailure">Could not like comment.</string>
     <string name="ResponseUnlikeCommentFailure">Could not unlike comment.</string>
     <string name="ResponseSendCommentTooLong">Comment body is too long.</string>
+    <string name="ResponseSearchUserNoResults">No users found with that name.</string>
 </resources>
