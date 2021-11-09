@@ -423,7 +423,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     }
 
     @Override
-    public void responseSearchUserSuccess(User user, ArrayList<Spark> sparks)
+    public void responseSearchUserSuccess(ArrayList<User> users)
     {
         requestProfileSuccess(user, sparks);
     }

@@ -345,9 +345,9 @@ class MainPresenter implements MainContract.PresenterView, MainContract.Presente
     }
 
     @Override
-    public void responseSearchUserSuccess(User user, ArrayList<Spark> sparks)
+    public void responseSearchUserSuccess(ArrayList<User> users)
     {
-        _view.responseSearchUserSuccess(user, sparks);
+        _view.responseSearchUserSuccess(users);
     }
 
     @Override

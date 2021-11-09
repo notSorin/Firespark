@@ -251,12 +251,11 @@ public interface MainContract
         void responseUnfollowUserFailure();
 
         /**
-         * Called if a user was found during a search.
+         * Called if the search for users was successful, even if no users were found.
          *
-         * @param user   The user that was found in the search.
-         * @param sparks The sparks belonging to the user found in the search.
+         * @param users A list with the users found in the search.
          */
-        void responseSearchUserSuccess(User user, ArrayList<Spark> sparks);
+        void responseSearchUserSuccess(ArrayList<User> users);
 
         /**
          * Called if a user could not be searched for.
@@ -465,12 +464,11 @@ public interface MainContract
         void responseUnfollowUserFailure();
 
         /**
-         * Called if a user was found during a search.
+         * Called if the search for users was successful, even if no users were found.
          *
-         * @param user   The user that was found in the search.
-         * @param sparks The sparks belonging to the user found in the search.
+         * @param users A list with the users found in the search.
          */
-        void responseSearchUserSuccess(User user, ArrayList<Spark> sparks);
+        void responseSearchUserSuccess(ArrayList<User> users);
 
         /**
          * Called if a user could not be searched for.
