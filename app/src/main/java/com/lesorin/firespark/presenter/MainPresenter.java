@@ -148,7 +148,14 @@ class MainPresenter implements MainContract.PresenterView, MainContract.Presente
     @Override
     public void requestSearchUser(String name)
     {
-        _model.requestSearchUser(name);
+        if(!name.isEmpty())
+        {
+            _model.requestSearchUser(name);
+        }
+        else
+        {
+            _view.responseSearchUserFailure();
+        }
     }
 
     @Override
