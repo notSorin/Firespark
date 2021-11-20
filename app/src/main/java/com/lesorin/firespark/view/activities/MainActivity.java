@@ -30,7 +30,6 @@ import com.lesorin.firespark.view.fragments.SparkFragment;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
-
 import javax.annotation.Nullable;
 
 /**
@@ -605,6 +604,18 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         Snackbar.make(_navigationView, R.string.ResponseUnlikeCommentFailure, Snackbar.LENGTH_LONG).show();
     }
 
+    @Override
+    public void responsePopularDataRefreshSuccess(ArrayList<Spark> sparks)
+    {
+        _popularFragment.refreshSparks(sparks);
+    }
+
+    @Override
+    public void responsePopularDataRefreshFailure()
+    {
+        Snackbar.make(_navigationView, R.string.ResponsePopularDataRefreshFailure, Snackbar.LENGTH_LONG).show();
+    }
+
     private void hideKeyboard()
     {
         InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
@@ -635,7 +646,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
      */
     public void refreshPopularData()
     {
-        //todo
+        _presenter.requestPopularDataRefresh();
     }
 
     /**

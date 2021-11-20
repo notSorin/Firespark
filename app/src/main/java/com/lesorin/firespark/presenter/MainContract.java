@@ -145,6 +145,11 @@ public interface MainContract
          * @param comment The comment to like or unlike.
          */
         void requestLikeUnlikeComment(Comment comment);
+
+        /**
+         * Called when the current user requests to refresh the popular data.
+         */
+        void requestPopularDataRefresh();
     }
 
     /**
@@ -613,6 +618,18 @@ public interface MainContract
          * Called if a comment could not be unliked.
          */
         void responseUnlikeCommentFailure();
+
+        /**
+         * Called if the popular data was acquired after a refresh request.
+         *
+         * @param sparks Sparks for the popular feed.
+         */
+        void responsePopularDataRefreshSuccess(ArrayList<Spark> sparks);
+
+        /**
+         * Called if the popular data could not be acquired after a refresh request.
+         */
+        void responsePopularDataRefreshFailure();
     }
 
     /**
