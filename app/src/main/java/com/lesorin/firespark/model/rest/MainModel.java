@@ -285,7 +285,46 @@ public class MainModel implements MainContract.Model
     @Override
     public void requestPopularData()
     {
-        //todo
+        Response.Listener<String> rl = response ->
+        {
+            try
+            {
+                JSONObject json = new JSONObject(response);
+
+                if(json.getInt(KEY_CODE) == RESPONSE_OK)
+                {
+                    JSONArray jsonSparks = json.getJSONArray(KEY_MESSAGE);
+                    ArrayList<Spark> sparks = getSparksFromJSONArray(jsonSparks);
+
+                    _presenter.responsePopularDataSuccess(sparks);
+                }
+                else
+                {
+                    _presenter.responsePopularDataFailure();
+                    handleResponseError(json);
+                }
+            }
+            catch(JSONException e)
+            {
+                _presenter.responsePopularDataFailure();
+            }
+        };
+
+        StringRequest request = new StringRequest(Request.Method.POST, GET_POPULAR_DATA_URL, rl,
+                error -> _presenter.responseNetworkError())
+        {
+            @Override
+            public Map<String, String> getHeaders()
+            {
+                Map<String, String> params = new HashMap<>();
+
+                params.put(KEY_TOKEN_AUTH, _token);
+
+                return params;
+            }
+        };
+
+        _requestQueue.add(request);
     }
 
     @Override
