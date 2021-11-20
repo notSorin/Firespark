@@ -269,13 +269,27 @@ class MainPresenter implements MainContract.PresenterView, MainContract.Presente
     @Override
     public void responsePopularDataSuccess(ArrayList<Spark> sparks)
     {
-        //todo
+        if(_lastRequestWasRefresh)
+        {
+            _view.responsePopularDataRefreshSuccess(sparks);
+        }
+        else
+        {
+            _view.responsePopularDataSuccess(sparks);
+        }
     }
 
     @Override
     public void responsePopularDataFailure()
     {
-        //todo
+        if(_lastRequestWasRefresh)
+        {
+            _view.responsePopularDataRefreshFailure();
+        }
+        else
+        {
+            _view.responsePopularDataFailure();
+        }
     }
 
 
