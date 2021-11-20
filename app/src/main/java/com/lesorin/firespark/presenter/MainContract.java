@@ -532,14 +532,14 @@ public interface MainContract
         void responseProfileDataRefreshFailure();
 
         /**
-         * Called if the home data was acquired.
+         * Called if the home data was acquired after a refresh request.
          *
          * @param sparks Sparks for the home feed.
          */
         void responseHomeDataRefreshSuccess(ArrayList<Spark> sparks);
 
         /**
-         * Called if the home data could not be acquired.
+         * Called if the home data could not be acquired after a refresh request.
          */
         void responseHomeDataRefreshFailure();
 
