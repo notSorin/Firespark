@@ -86,7 +86,7 @@ public class MainModel implements MainContract.Model
                     JSONObject message = json.getJSONObject(KEY_MESSAGE);
                     JSONObject jsonUser = message.getJSONObject(KEY_PROFILE);
                     JSONArray jsonSparks = message.getJSONArray(KEY_PROFILE_SPARKS);
-                    RESTUser user = getUserFromJSONObject(jsonUser);
+                    RESTUser user = getUserFromJSONObject(jsonUser, true);
                     ArrayList<Spark> sparks = getSparksFromJSONArray(jsonSparks);
 
                     _presenter.responseProfileDataSuccess(user, sparks);
@@ -130,7 +130,7 @@ public class MainModel implements MainContract.Model
         _requestQueue.add(request);
     }
 
-    private RESTUser getUserFromJSONObject(JSONObject jsonProfile) throws JSONException
+    private RESTUser getUserFromJSONObject(JSONObject jsonProfile, boolean updateCache) throws JSONException
     {
         RESTUser user = _gson.fromJson(jsonProfile.toString(), RESTUser.class);
 
@@ -141,7 +141,12 @@ public class MainModel implements MainContract.Model
             user.setFollowedByCurrentUser(user.getFollowers().contains(_userid));
         }
 
-        return updateUsersCache(user);
+        if(updateCache)
+        {
+            user = updateUsersCache(user);
+        }
+
+        return user;
     }
 
     private RESTUser updateUsersCache(RESTUser user)
@@ -756,7 +761,7 @@ public class MainModel implements MainContract.Model
                 if(json.getInt(KEY_CODE) == RESPONSE_OK)
                 {
                     JSONArray jsonUsers = json.getJSONArray(KEY_MESSAGE);
-                    ArrayList<User> users = getUsersFromJSONArray(jsonUsers);
+                    ArrayList<User> users = getUsersFromJSONArray(jsonUsers, false);
 
                     _presenter.responseSearchUserSuccess(users);
                 }
@@ -799,13 +804,13 @@ public class MainModel implements MainContract.Model
         _requestQueue.add(request);
     }
 
-    private ArrayList<User> getUsersFromJSONArray(JSONArray jsonUsers) throws JSONException
+    private ArrayList<User> getUsersFromJSONArray(JSONArray jsonUsers, boolean updateCache) throws JSONException
     {
         ArrayList<User> users = new ArrayList<>();
 
         for(int i = 0; i < jsonUsers.length(); i++)
         {
-            RESTUser user = getUserFromJSONObject(jsonUsers.getJSONObject(i));
+            RESTUser user = getUserFromJSONObject(jsonUsers.getJSONObject(i), updateCache);
 
             users.add(user);
         }
