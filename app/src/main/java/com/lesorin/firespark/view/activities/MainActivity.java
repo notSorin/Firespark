@@ -616,6 +616,17 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         Snackbar.make(_navigationView, R.string.ResponsePopularDataRefreshFailure, Snackbar.LENGTH_LONG).show();
     }
 
+    @Override
+    public void invalidUserCredentialsDetected()
+    {
+        MaterialAlertDialogBuilder madb = new MaterialAlertDialogBuilder(this);
+
+        madb.setTitle(getString(R.string.LoggedOut)).setMessage(getString(R.string.LoggedOutMessage)).
+            setPositiveButton(getString(R.string.OK), (dialogInterface, i) -> responseLogoutSuccess());
+        madb.setCancelable(false);
+        madb.show();
+    }
+
     private void hideKeyboard()
     {
         InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);

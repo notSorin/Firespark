@@ -630,6 +630,11 @@ public interface MainContract
          * Called if the popular data could not be acquired after a refresh request.
          */
         void responsePopularDataRefreshFailure();
+
+        /**
+         * Called when a user request could not be completed due to invalid credentials.
+         */
+        void invalidUserCredentialsDetected();
     }
 
     /**

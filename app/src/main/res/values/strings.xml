@@ -77,6 +77,9 @@
     <string name="DeleteCommentMessage">Are you sure you want to delete this Comment? This action cannot be undone.</string>
     <string name="SearchUserHint">Name or Username</string>
     <string name="FirstLastName">First and Last Name</string>
+    <string name="LoggedOut">You have been logged out</string>
+    <string name="LoggedOutMessage">You have been automatically logged out for security reasons. Please sign in again to keep using Firespark.</string>
+    <string name="OK">OK</string>
 
     <!--Responses-->
     <string name="ResponseSendSparkEmpty">Cannot send an empty Spark!</string>

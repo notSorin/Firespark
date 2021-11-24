@@ -12,13 +12,14 @@ class MainPresenter implements MainContract.PresenterView, MainContract.Presente
 
     private MainContract.View _view;
     private MainContract.Model _model;
-    private boolean _lastRequestWasRefresh;
+    private boolean _lastRequestWasRefresh, _invalidCredentialsDetected;
 
     @Override
     public void setView(MainContract.View view)
     {
         _view = view;
         _lastRequestWasRefresh = false;
+        _invalidCredentialsDetected = false;
     }
 
     @Override
@@ -452,7 +453,14 @@ class MainPresenter implements MainContract.PresenterView, MainContract.Presente
     @Override
     public void responseLogoutSuccess()
     {
-        _view.responseLogoutSuccess();
+        if(_invalidCredentialsDetected)
+        {
+            _view.invalidUserCredentialsDetected();
+        }
+        else
+        {
+            _view.responseLogoutSuccess();
+        }
     }
 
     @Override
@@ -464,7 +472,9 @@ class MainPresenter implements MainContract.PresenterView, MainContract.Presente
     @Override
     public void invalidUserCredentialsDetected()
     {
-        //TODO inform the user that their credentials expired and take them to the login screen.
+        _invalidCredentialsDetected = true;
+
+        _model.requestLogout();
     }
 
     @Override
