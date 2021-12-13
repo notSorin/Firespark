@@ -13,7 +13,7 @@ public class ModelConstants
     private static final String API_PRE_URL = API_URL + "pre/";
 
     //Replace USING_API_URL with the version of the API to use.
-    private static final String USING_API_URL = API_PRE_URL;
+    private static final String USING_API_URL = API_V1_URL;
 
     //REST URLS.
     public static final String SIGN_UP_URL = USING_API_URL + "RegisterUser.php";
