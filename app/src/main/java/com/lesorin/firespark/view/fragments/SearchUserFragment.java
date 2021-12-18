@@ -26,7 +26,6 @@ public class SearchUserFragment extends FiresparkFragmentAdapter
     private MaterialButton _searchButton;
     private RecyclerView _usersRV;
     private SimplifiedUserRecycleViewAdapter _usersRVAdapter;
-    private ArrayList<User> _usersList;
 
     /**
      * Instantiates a new Search user fragment.
@@ -39,7 +38,6 @@ public class SearchUserFragment extends FiresparkFragmentAdapter
 
         _view = null;
         _usersRVAdapter = new SimplifiedUserRecycleViewAdapter(activity);
-        _usersList = new ArrayList<>();
     }
 
     @Nullable
@@ -63,7 +61,7 @@ public class SearchUserFragment extends FiresparkFragmentAdapter
     {
         if(_usersRVAdapter != null)
         {
-            _usersRVAdapter.setUsers(_usersList);
+            _usersRVAdapter.displayData();
         }
     }
 
@@ -90,6 +88,6 @@ public class SearchUserFragment extends FiresparkFragmentAdapter
 
     public void setUsers(ArrayList<User> users)
     {
-        _usersList = users;
+        _usersRVAdapter.setUsers(users);
     }
 }
