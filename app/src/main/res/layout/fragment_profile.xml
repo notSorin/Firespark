@@ -97,19 +97,6 @@
             android:textColor="@android:color/white"
             app:layout_constraintTop_toBottomOf="@id/FollowingData" />
 
-        <ImageView
-            android:id="@+id/LogoutButton"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:layout_marginBottom="6dp"
-            android:src="@drawable/icon_logout"
-            android:text="@string/LogOut"
-            app:cornerRadius="20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/UserJoined"
-            app:tint="@color/primaryColor" />
-
         <com.google.android.material.button.MaterialButton
             android:id="@+id/FollowButton"
             android:layout_width="wrap_content"

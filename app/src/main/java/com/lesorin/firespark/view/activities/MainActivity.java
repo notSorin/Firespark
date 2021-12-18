@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     private HomeFragment _homeFragment;
     private PopularFragment _popularFragment;
     private SearchUserFragment _searchUserFragment;
-    private FloatingActionButton _mainFab, _newSparkFab, _searchFab;
+    private FloatingActionButton _mainFab, _newSparkFab, _searchFab, _logOutFab;
     private SendSparkFragment _sendSparkFragment;
     private Vibrator _vibrator;
     private Animation _fabOpen, _fabClose, _fabFromBottom, _fabToBottom;
@@ -78,6 +78,14 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         initializeMainFAB();
         initializeNewSparkFab();
         initializeSearchFab();
+        initializeLogOutFab();
+    }
+
+    private void initializeLogOutFab()
+    {
+        _logOutFab = findViewById(R.id.LogOutFAB);
+
+        _logOutFab.setOnClickListener(view -> logOutButtonPressed());
     }
 
     private void initializeSearchFab()
@@ -146,6 +154,8 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
                 _newSparkFab.setClickable(true);
                 _searchFab.startAnimation(_fabFromBottom);
                 _searchFab.setClickable(true);
+                _logOutFab.startAnimation(_fabFromBottom);
+                _logOutFab.setClickable(true);
                 _mainFab.startAnimation(_fabOpen);
             }
             else
@@ -154,11 +164,14 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
                 _newSparkFab.setClickable(false);
                 _searchFab.startAnimation(_fabToBottom);
                 _searchFab.setClickable(false);
+                _logOutFab.startAnimation(_fabToBottom);
+                _logOutFab.setClickable(false);
                 _mainFab.startAnimation(_fabClose);
             }
 
             _newSparkFab.setVisibility(_newSparkFab.getVisibility() == View.INVISIBLE ? View.VISIBLE : View.INVISIBLE);
             _searchFab.setVisibility(_searchFab.getVisibility() == View.INVISIBLE ? View.VISIBLE : View.INVISIBLE);
+            _logOutFab.setVisibility(_logOutFab.getVisibility() == View.INVISIBLE ? View.VISIBLE : View.INVISIBLE);
         });
     }
 

@@ -24,7 +24,7 @@ public class ProfileFragment extends FragmentWithSparks
 {
     private final String JOINED_FORMAT = "d MMM yyyy";
     private MaterialButton _followButton;
-    private View _logoutButton, _originalIcon;
+    private View _originalIcon;
     private TextView _firstLastName, _username, _userFollowers, _userFollowing, _userJoined;
     private User _user;
     private SimpleDateFormat _dateFormat;
@@ -61,7 +61,6 @@ public class ProfileFragment extends FragmentWithSparks
                 _activity.refreshProfileData(_user);
             });
             initializeTexts();
-            initializeLogoutButton();
             initializeFollowButton();
             initializeSparksRecyclerView();
             initializeFollowingClick();
@@ -110,13 +109,7 @@ public class ProfileFragment extends FragmentWithSparks
             updateFollowers();
             updateJoined();
             updateFollowButton();
-            updateLogoutButton();
         }
-    }
-
-    private void updateLogoutButton()
-    {
-        _logoutButton.setVisibility(_user.isCurrentUser() ? View.VISIBLE : View.GONE);
     }
 
     private void updateUserName()
@@ -162,13 +155,6 @@ public class ProfileFragment extends FragmentWithSparks
         _userFollowers = _view.findViewById(R.id.UserFollowers);
         _userFollowing = _view.findViewById(R.id.UserFollowing);
         _userJoined = _view.findViewById(R.id.UserJoined);
-    }
-
-    private void initializeLogoutButton()
-    {
-        _logoutButton = _view.findViewById(R.id.LogoutButton);
-
-        _logoutButton.setOnClickListener(view -> _activity.logOutButtonPressed());
     }
 
     @Override
