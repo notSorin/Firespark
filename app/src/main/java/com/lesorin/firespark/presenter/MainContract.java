@@ -1,7 +1,6 @@
 package com.lesorin.firespark.presenter;
 
 import androidx.annotation.Nullable;
-
 import java.util.ArrayList;
 
 /**
@@ -150,6 +149,22 @@ public interface MainContract
          * Called when the current user requests to refresh the popular data.
          */
         void requestPopularDataRefresh();
+
+        /**
+         * Called when the current user requests the profiles of the followers of a certain user.
+         * It could be that they request their own followers, or the followers of someone else.
+         *
+         * @param user The user whose followers are requested.
+         */
+        void requestUserFollowers(User user);
+
+        /**
+         * Called when the current user requests the profiles of the following of a certain user.
+         * It could be that they request their own following, or the following of someone else.
+         *
+         * @param user The user whose following are requested.
+         */
+        void requestUserFollowing(User user);
     }
 
     /**
@@ -355,6 +370,32 @@ public interface MainContract
          * Called if a comment could not be unliked.
          */
         void responseUnlikeCommentFailure();
+
+        /**
+         * Called if the request of a user's followers was successful.
+         *
+         * @param user The user whose followers were requested.
+         * @param followers A list with the users' followers.
+         */
+        void responseUserFollowersSuccess(User user, ArrayList<User> followers);
+
+        /**
+         * Called if the request of a user's followers failed.
+         */
+        void responseUserFollowersFailure();
+
+        /**
+         * Called if the request of a user's following was successful.
+         *
+         * @param user The user whose following were requested.
+         * @param following A list with the users' following.
+         */
+        void responseUserFollowingSuccess(User user, ArrayList<User> following);
+
+        /**
+         * Called if the request of a user's following failed.
+         */
+        void responseUserFollowingFailure();
     }
 
     /**
@@ -635,6 +676,32 @@ public interface MainContract
          * Called when a user request could not be completed due to invalid credentials.
          */
         void invalidUserCredentialsDetected();
+
+        /**
+         * Called if the request of a user's followers was successful.
+         *
+         * @param user The user whose followers were requested.
+         * @param followers A list with the users' followers.
+         */
+        void responseUserFollowersSuccess(User user, ArrayList<User> followers);
+
+        /**
+         * Called if the request of a user's followers failed.
+         */
+        void responseUserFollowersFailure();
+
+        /**
+         * Called if the request of a user's following was successful.
+         *
+         * @param user The user whose following were requested.
+         * @param following A list with the users' following.
+         */
+        void responseUserFollowingSuccess(User user, ArrayList<User> following);
+
+        /**
+         * Called if the request of a user's following failed.
+         */
+        void responseUserFollowingFailure();
     }
 
     /**
@@ -759,5 +826,21 @@ public interface MainContract
          * @param comment The comment to unlike.
          */
         void requestUnlikeComment(Comment comment);
+
+        /**
+         * Called when the current user requests the profiles of the followers of a certain user.
+         * It could be that they request their own followers, or the followers of someone else.
+         *
+         * @param user The user whose followers are requested.
+         */
+        void requestUserFollowers(User user);
+
+        /**
+         * Called when the current user requests the profiles of the following of a certain user.
+         * It could be that they request their own following, or the following of someone else.
+         *
+         * @param user The user whose following are requested.
+         */
+        void requestUserFollowing(User user);
     }
 }

@@ -627,6 +627,30 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         madb.show();
     }
 
+    @Override
+    public void responseUserFollowersSuccess(User user, ArrayList<User> followers)
+    {
+        //TODO
+    }
+
+    @Override
+    public void responseUserFollowersFailure()
+    {
+        //TODO
+    }
+
+    @Override
+    public void responseUserFollowingSuccess(User user, ArrayList<User> following)
+    {
+        //TODO
+    }
+
+    @Override
+    public void responseUserFollowingFailure()
+    {
+        //TODO
+    }
+
     private void hideKeyboard()
     {
         InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
@@ -901,7 +925,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
      */
     public void userFollowersClicked(User user)
     {
-        //TODO
+        _presenter.requestUserFollowers(user);
     }
 
     /**
@@ -911,6 +935,6 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
      */
     public void userFollowingClicked(User user)
     {
-        //TODO
+        _presenter.requestUserFollowing(user);
     }
 }

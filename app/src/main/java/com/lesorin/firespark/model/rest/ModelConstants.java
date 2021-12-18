@@ -33,6 +33,8 @@ public class ModelConstants
     public static final String SEND_COMMENT_URL = USING_API_URL + "SendComment.php";
     public static final String SEARCH_USERS_URL = USING_API_URL + "SearchProfiles.php";
     public static final String GET_POPULAR_DATA_URL = USING_API_URL + "GetPopularSparks.php";
+    public static final String GET_USER_FOLLOWERS = USING_API_URL + "GetUserFollowers.php";
+    public static final String GET_USER_FOLLOWING = USING_API_URL + "GetUserFollowing.php";
 
     //JSON keys.
     public static final String KEY_CODE = "code";

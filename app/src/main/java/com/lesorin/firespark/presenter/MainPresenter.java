@@ -250,6 +250,18 @@ class MainPresenter implements MainContract.PresenterView, MainContract.Presente
     }
 
     @Override
+    public void requestUserFollowers(User user)
+    {
+        _model.requestUserFollowers(user);
+    }
+
+    @Override
+    public void requestUserFollowing(User user)
+    {
+        _model.requestUserFollowing(user);
+    }
+
+    @Override
     public void responseHomeDataSuccess(ArrayList<Spark> sparks)
     {
         if(_lastRequestWasRefresh)
@@ -511,5 +523,29 @@ class MainPresenter implements MainContract.PresenterView, MainContract.Presente
     public void responseUnlikeCommentFailure()
     {
         _view.responseUnlikeCommentFailure();
+    }
+
+    @Override
+    public void responseUserFollowersSuccess(User user, ArrayList<User> followers)
+    {
+        _view.responseUserFollowersSuccess(user, followers);
+    }
+
+    @Override
+    public void responseUserFollowersFailure()
+    {
+        _view.responseUserFollowersFailure();
+    }
+
+    @Override
+    public void responseUserFollowingSuccess(User user, ArrayList<User> following)
+    {
+        _view.responseUserFollowingSuccess(user, following);
+    }
+
+    @Override
+    public void responseUserFollowingFailure()
+    {
+        _view.responseUserFollowingFailure();
     }
 }

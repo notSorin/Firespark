@@ -420,6 +420,16 @@ public class MainModel implements MainContract.Model
 
     }
 
+    @Override
+    public void requestUserFollowers(User user) {
+
+    }
+
+    @Override
+    public void requestUserFollowing(User user) {
+
+    }
+
     private Comment updateCommentsCache(Comment comment)
     {
         Comment commentInCache = _commentsCache.get(comment.getId());
