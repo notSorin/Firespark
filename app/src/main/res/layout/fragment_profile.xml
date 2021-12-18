@@ -51,15 +51,41 @@
             android:textColor="@android:color/white"
             app:layout_constraintTop_toBottomOf="@id/FirstLastName" />
 
-        <TextView
-            android:id="@+id/UserFollowing"
+        <LinearLayout
+            android:id="@+id/FollowingData"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@string/UserFollowing"
-            android:textAppearance="@style/TextAppearance.Firespark.Body1"
-            android:textColor="@android:color/white"
-            app:layout_constraintTop_toBottomOf="@id/Username" />
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/Username">
+
+            <TextView
+                android:id="@+id/UserFollowers"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/UserFollowers"
+                android:textAppearance="@style/TextAppearance.Firespark.Body1"
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text=" - "
+                android:textAppearance="@style/TextAppearance.Firespark.Body1"
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:id="@+id/UserFollowing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/UserFollowing"
+                android:textAppearance="@style/TextAppearance.Firespark.Body1"
+                android:textColor="@android:color/white" />
+
+        </LinearLayout>
 
         <TextView
             android:id="@+id/UserJoined"
@@ -69,7 +95,7 @@
             android:text="@string/UserJoined"
             android:textAppearance="@style/TextAppearance.Firespark.Body1"
             android:textColor="@android:color/white"
-            app:layout_constraintTop_toBottomOf="@id/UserFollowing" />
+            app:layout_constraintTop_toBottomOf="@id/FollowingData" />
 
         <ImageView
             android:id="@+id/LogoutButton"

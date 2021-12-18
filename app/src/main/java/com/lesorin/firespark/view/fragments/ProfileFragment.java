@@ -25,7 +25,7 @@ public class ProfileFragment extends FragmentWithSparks
     private final String JOINED_FORMAT = "d MMM yyyy";
     private MaterialButton _followButton;
     private View _logoutButton, _originalIcon;
-    private TextView _firstLastName, _username, _userFollowing, _userJoined;
+    private TextView _firstLastName, _username, _userFollowers, _userFollowing, _userJoined;
     private User _user;
     private SimpleDateFormat _dateFormat;
 
@@ -95,6 +95,7 @@ public class ProfileFragment extends FragmentWithSparks
             updateFirstLastName();
             updateUserName();
             updateFollowing();
+            updateFollowers();
             updateJoined();
             updateFollowButton();
             updateLogoutButton();
@@ -123,7 +124,12 @@ public class ProfileFragment extends FragmentWithSparks
 
     private void updateFollowing()
     {
-        _userFollowing.setText(String.format(_activity.getString(R.string.UserFollowers), _user.getFollowers().size(), _user.getFollowing().size()));
+        _userFollowing.setText(String.format(_activity.getString(R.string.UserFollowing), _user.getFollowing().size()));
+    }
+
+    private void updateFollowers()
+    {
+        _userFollowers.setText(String.format(_activity.getString(R.string.UserFollowers), _user.getFollowers().size()));
     }
 
     private void updateFollowButton()
@@ -141,6 +147,7 @@ public class ProfileFragment extends FragmentWithSparks
     {
         _firstLastName = _view.findViewById(R.id.FirstLastName);
         _username = _view.findViewById(R.id.Username);
+        _userFollowers = _view.findViewById(R.id.UserFollowers);
         _userFollowing = _view.findViewById(R.id.UserFollowing);
         _userJoined = _view.findViewById(R.id.UserJoined);
     }
@@ -179,14 +186,14 @@ public class ProfileFragment extends FragmentWithSparks
     @Override
     public void userFollowed()
     {
-        updateFollowing();
+        updateFollowers();
         updateFollowButton();
     }
 
     @Override
     public void userUnfollowed()
     {
-        updateFollowing();
+        updateFollowers();
         updateFollowButton();
     }
 

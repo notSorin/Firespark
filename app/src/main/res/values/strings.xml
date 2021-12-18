@@ -35,7 +35,6 @@
     <string name="PopularPage">Popular</string>
     <string name="LogOut">Log out</string>
     <string name="Placeholder">Placeholder</string>
-    <string name="UserFollowing">%d Followers - Following %d</string>
     <string name="UserName">Username</string>
     <string name="SparkLikesTimestamp">%d Likes - %s</string>
     <string name="LoremIpsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras aliquet in est ac ultricies. Nunc at varius neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</string>
@@ -70,7 +69,8 @@
     <string name="NoCommentsText">No comments here.</string>
     <string name="Reply">Reply</string>
     <string name="UserHandle">\@%s</string>
-    <string name="UserFollowers">%d Followers - Following %d</string>
+    <string name="UserFollowers">%d Followers</string>
+    <string name="UserFollowing">Following %d</string>
     <string name="SparkOwnerUsername">%s (@%s)</string>
     <string name="DeletedComment"><![CDATA[<<<deleted comment>>>]]></string>
     <string name="DeleteCommentTitle">Delete Comment?</string>
