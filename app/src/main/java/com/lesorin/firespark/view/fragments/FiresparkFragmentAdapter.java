@@ -142,4 +142,10 @@ public class FiresparkFragmentAdapter extends FiresparkFragment
     public void setCommentRelatedElementsState(boolean enabled)
     {
     }
+
+    @Override
+    public boolean isUsersFragment()
+    {
+        return false;
+    }
 }

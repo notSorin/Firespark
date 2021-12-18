@@ -168,4 +168,9 @@ public abstract class FiresparkFragment extends Fragment
      * @param enabled True to enable the elements, false otherwise.
      */
     public abstract void setCommentRelatedElementsState(boolean enabled);
+
+    /**
+     * @return True if the fragment is a @{@link UsersFragment}, false otherwise.
+     */
+    public abstract boolean isUsersFragment();
 }
