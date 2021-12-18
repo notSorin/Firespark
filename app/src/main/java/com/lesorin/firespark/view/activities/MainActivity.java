@@ -893,4 +893,24 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     {
         handleUserNameClick(user.getId());
     }
+
+    /**
+     * Handles the event of clicking the "followers" on a user profile.
+     *
+     * @param user The user whose "followers" was clicked.
+     */
+    public void userFollowersClicked(User user)
+    {
+        //TODO
+    }
+
+    /**
+     * Handles the event of clicking the "following" on a user profile.
+     *
+     * @param user The user whose "following" was clicked.
+     */
+    public void userFollowingClicked(User user)
+    {
+        //TODO
+    }
 }

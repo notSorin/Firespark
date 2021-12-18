@@ -64,9 +64,21 @@ public class ProfileFragment extends FragmentWithSparks
             initializeLogoutButton();
             initializeFollowButton();
             initializeSparksRecyclerView();
+            initializeFollowingClick();
+            initializeFollowersClick();
         }
 
         return _view;
+    }
+
+    private void initializeFollowersClick()
+    {
+        _userFollowers.setOnClickListener(view -> ((MainActivity)view.getContext()).userFollowersClicked(_user));
+    }
+
+    private void initializeFollowingClick()
+    {
+        _userFollowing.setOnClickListener(view -> ((MainActivity)view.getContext()).userFollowingClicked(_user));
     }
 
     private void initializeVerifiedIcon()
