@@ -68,7 +68,10 @@ public class SimplifiedUserRecycleViewAdapter extends RecyclerView.Adapter<Simpl
     public void setUsers(ArrayList<User> users)
     {
         _usersList = users;
+    }
 
+    public void displayData()
+    {
         notifyDataSetChanged();
     }
 }
