@@ -80,6 +80,8 @@
     <string name="LoggedOut">You have been logged out</string>
     <string name="LoggedOutMessage">You have been automatically logged out for security reasons. Please sign in again to keep using Firespark.</string>
     <string name="OK">OK</string>
+    <string name="FollowersTitle">\@%s\'s Followers</string>
+    <string name="FollowingTitle">\@%s\'s Following</string>
 
     <!--Responses-->
     <string name="ResponseSendSparkEmpty">Cannot send an empty Spark!</string>
@@ -107,4 +109,6 @@
     <string name="ResponseSendCommentTooLong">Comment body is too long.</string>
     <string name="ResponseSearchUserNoResults">No users found with that name.</string>
     <string name="ResponsePopularDataRefreshFailure">Could not refresh popular data.</string>
+    <string name="ResponseUserFollowersFailure">Could not acquire the user\'s followers.</string>
+    <string name="ResponseUserFollowingFailure">Could not acquire the user\'s following.</string>
 </resources>

@@ -27,6 +27,7 @@ import com.lesorin.firespark.view.fragments.ProfileFragment;
 import com.lesorin.firespark.view.fragments.SearchUserFragment;
 import com.lesorin.firespark.view.fragments.SendSparkFragment;
 import com.lesorin.firespark.view.fragments.SparkFragment;
+import com.lesorin.firespark.view.fragments.UsersFragment;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
@@ -630,25 +631,97 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public void responseUserFollowersSuccess(User user, ArrayList<User> followers)
     {
-        //TODO
+        UsersFragment uf = findUserFollowersFragment(user);
+
+        if(uf == null)
+        {
+            uf = new UsersFragment(this);
+        }
+
+        uf.setUser(user);
+        uf.setUsers(followers);
+        uf.setHoldingFollowers(true);
+        openFragment(uf);
     }
 
     @Override
     public void responseUserFollowersFailure()
     {
-        //TODO
+        Snackbar.make(_navigationView, R.string.ResponseUserFollowersFailure, Snackbar.LENGTH_LONG).show();
     }
 
     @Override
     public void responseUserFollowingSuccess(User user, ArrayList<User> following)
     {
-        //TODO
+        UsersFragment uf = findUserFollowingFragment(user);
+
+        if(uf == null)
+        {
+            uf = new UsersFragment(this);
+        }
+
+        uf.setUser(user);
+        uf.setUsers(following);
+        uf.setHoldingFollowing(true);
+        openFragment(uf);
     }
 
     @Override
     public void responseUserFollowingFailure()
     {
-        //TODO
+        Snackbar.make(_navigationView, R.string.ResponseUserFollowingFailure, Snackbar.LENGTH_LONG).show();
+    }
+
+    /**
+     * Finds a @{@link UsersFragment} in the fragments stack with the followers of the parameter user.
+     *
+     * @param user The user whose fragment to find.
+     * @return The fragment if it is found in the fragments stack, null otherwise.
+     */
+    private UsersFragment findUserFollowersFragment(User user)
+    {
+        UsersFragment uf = null;
+
+        for(FiresparkFragment ff : _fragmentsStack)
+        {
+            if(ff.isUsersFragment())
+            {
+                UsersFragment tmp = (UsersFragment)ff;
+
+                if(tmp.getUser() == user && tmp.isHoldingFollowers())
+                {
+                    uf = tmp;
+                }
+            }
+        }
+
+        return uf;
+    }
+
+    /**
+     * Finds a @{@link UsersFragment} in the fragments stack with the following of the parameter user.
+     *
+     * @param user The user whose fragment to find.
+     * @return The fragment if it is found in the fragments stack, null otherwise.
+     */
+    private UsersFragment findUserFollowingFragment(User user)
+    {
+        UsersFragment uf = null;
+
+        for(FiresparkFragment ff : _fragmentsStack)
+        {
+            if(ff.isUsersFragment())
+            {
+                UsersFragment tmp = (UsersFragment)ff;
+
+                if(tmp.getUser() == user && tmp.isHoldingFollowing())
+                {
+                    uf = tmp;
+                }
+            }
+        }
+
+        return uf;
     }
 
     private void hideKeyboard()
